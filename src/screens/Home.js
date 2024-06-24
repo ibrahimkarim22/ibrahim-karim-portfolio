@@ -1,10 +1,17 @@
 import '../SCSS/App.scss';
+import { PerspectiveCamera } from '@react-three/drei';
+import  { Canvas } from '@react-three/fiber';
+
 
 const Home = () => {
     return (
-        <div className="App">
-        <h1 className="title">Ibrahim Karim</h1>
-        </div>
+    <Canvas>
+      <PerspectiveCamera fov={75} position={[0, 0, 5]} />
+      <mesh>
+        <boxGeometry />
+        <meshStandardMaterial />
+      </mesh>
+    </Canvas>
     )
 }
 

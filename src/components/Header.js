@@ -4,19 +4,11 @@ import { NavLink } from "react-router-dom";
 
 const Header = () => {
     const [menuOpen, setMenuOpen] = useState(false);
-    const [lightMode, setLightMode] = useState(false);
 
     const closeMenu = () => setMenuOpen(false);
 
-    const toggleLightMode = () => setLightMode(prevMode => !prevMode);
-
-    useEffect(() => {
-        const body = document.body;
-        body.style.backgroundColor = lightMode ? '#f8f9fa' : '#212529';
-    }, [lightMode]);
-
     return (
-        <Navbar dark={lightMode ? false : true} color={lightMode ? 'light' : 'dark'} expand="md">
+        <Navbar light expand="md">
             <NavbarBrand href="/">
                 Ibrahim Karim
             </NavbarBrand>
@@ -28,9 +20,6 @@ const Header = () => {
                 <Nav className="ml-auto" navbar>
                     <NavItem>
                         <NavLink to="/" className="nav-link" onClick={closeMenu}>Home</NavLink>
-                    </NavItem>
-                    <NavItem>
-                        <Button color={lightMode ? 'dark' : 'light'} onClick={toggleLightMode}>Toggle Mode</Button>
                     </NavItem>
                 </Nav>
             </Collapse>
