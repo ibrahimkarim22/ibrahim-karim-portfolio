@@ -1,35 +1,24 @@
-import { useRef } from 'react';
+// import { useRef, useState } from 'react';
 import '../SCSS/App.scss';
 import { Canvas, useFrame } from '@react-three/fiber';
+import { SpotLight, OrbitControls, useGLTF } from '@react-three/drei';
+import landscape from '../models/landscape.glb';
 
-function Cube({ size = [2, 2, 2], speed = 0.01, color = 'steelblue', position = [0, 0, 0] }) {
-    const meshRef = useRef(null);
-
-    useFrame(() => {
-        if (meshRef.current) {
-            meshRef.current.rotation.x += speed;
-            meshRef.current.rotation.y += speed;
-        }
-    });
-
-    return (
-        <mesh ref={meshRef} position={position}>
-            <boxGeometry args={size} />
-            <meshStandardMaterial color={color} />
-        </mesh>
-    );
+function Landscape({ path }) {
+    const { scene } = useGLTF(path);
+    return <primitive object={scene} />;
 }
 
-const Home = () => {
+function Home() {
     return (
-        <Canvas style={{ width: '100%', height: '100vh' }}>
+        <Canvas style={{ width: '100%', height: '100vh' }} camera={{ position: [0, 0, 10], fov: 50 }}>
             <ambientLight intensity={1} />
-            <pointLight position={[10, 10, 10]} />
-            <Cube size={[3, 3, 3]} speed={0.003} color="steelblue" position={[0, 0, 0]} />
-            <Cube size={[2, 2, 2]} speed={0.002} color="red" position={[5, 0, 0]} />
-            <Cube size={[1, 1, 1]} speed={0.001} color="green" position={[-5, 0, 0]} />
+            <SpotLight position={[10, 15, 10]} intensity={2} angle={0.4} />
+            <pointLight position={[-10, -10, -10]} intensity={1} />
+            <Landscape path={landscape} />
+            <OrbitControls />
         </Canvas>
     );
-};
+}
 
 export default Home;
