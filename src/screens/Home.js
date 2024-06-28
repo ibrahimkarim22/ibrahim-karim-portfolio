@@ -1,8 +1,19 @@
-// import { useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import '../SCSS/App.scss';
-import { Canvas, useFrame } from '@react-three/fiber';
-import { SpotLight, OrbitControls, useGLTF } from '@react-three/drei';
-import landscape from '../models/landscape.glb';
+import { Canvas, useFrame, useThree } from '@react-three/fiber';
+import { SpotLight, OrbitControls, useGLTF, PerspectiveCamera } from '@react-three/drei';
+import * as THREE from 'three';
+import landscape from '../models/landscape2.glb';
+
+function BackgroundColor({ color }) {
+    const { scene } = useThree();
+
+    useEffect(() => {
+        scene.background = new THREE.Color(color);
+    }, [scene, color]);
+
+    return null;
+}
 
 function Landscape({ path }) {
     const { scene } = useGLTF(path);
@@ -10,13 +21,31 @@ function Landscape({ path }) {
 }
 
 function Home() {
+    const cameraRef = useRef();
+    const controlsRef = useRef();
+
     return (
-        <Canvas style={{ width: '100%', height: '100vh' }} camera={{ position: [0, 0, 10], fov: 50 }}>
+        <Canvas style={{ width: '70%', height: '70vh' }}>
+            <BackgroundColor color="black" />
             <ambientLight intensity={1} />
-            <SpotLight position={[10, 15, 10]} intensity={2} angle={0.4} />
+            <SpotLight position={[10, 15, 10]} intensity={4} angle={1} scale={10} />
             <pointLight position={[-10, -10, -10]} intensity={1} />
+            <PerspectiveCamera
+                makeDefault
+                ref={cameraRef}
+                position={[22, 222, 222]}
+                fov={70}
+                near={5}
+                far={10000}
+            />
             <Landscape path={landscape} />
-            <OrbitControls />
+            <OrbitControls
+                ref={controlsRef}
+                enableZoom={true}
+                minDistance={10}
+                maxDistance={500}
+                zoomSpeed={4}
+            />
         </Canvas>
     );
 }
