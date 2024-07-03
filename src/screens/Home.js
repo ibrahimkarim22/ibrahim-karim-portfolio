@@ -16,8 +16,27 @@ function BackgroundColor({ color }) {
 }
 
 function Landscape({ path }) {
-    const { scene } = useGLTF(path);
-    return <primitive object={scene} />;
+    const group = useRef();
+    const { scene, animations } = useGLTF(path);
+    console.log('ANIMATIONS',animations);
+    const mixer = useRef();
+
+    useEffect(() => {
+        if (animations.length) {
+            mixer.current = new THREE.AnimationMixer(scene);
+            animations.forEach((clip) => {
+                const action = mixer.current.clipAction(clip);
+                action.setLoop(THREE.LoopRepeat); 
+                action.play();
+            });
+        }
+    }, [scene, animations]);
+
+    useFrame((state, delta) => {
+        mixer.current?.update(delta);
+    });
+
+    return <primitive ref={group} object={scene} />;
 }
 
 function Home() {
@@ -25,17 +44,17 @@ function Home() {
     const controlsRef = useRef();
 
     return (
-        <Canvas style={{ width: '70%', height: '70vh' }}>
+        <Canvas style={{ width: '100%', height: '100vh' }}>
             <BackgroundColor color="black" />
-            <ambientLight intensity={1} />
-            <SpotLight position={[10, 15, 10]} intensity={4} angle={1} scale={10} />
-            <pointLight position={[-10, -10, -10]} intensity={1} />
+            <ambientLight intensity={0} />
+            <SpotLight position={[10, 15, 10]} intensity={0} angle={1} scale={10} />
+            <pointLight position={[-10, -10, -10]} intensity={0} />
             <PerspectiveCamera
                 makeDefault
                 ref={cameraRef}
-                position={[22, 222, 222]}
+                position={[3000, -10, -2000]} 
                 fov={70}
-                near={5}
+                near={.1}
                 far={10000}
             />
             <Landscape path={landscape} />
@@ -43,7 +62,7 @@ function Home() {
                 ref={controlsRef}
                 enableZoom={true}
                 minDistance={10}
-                maxDistance={500}
+                maxDistance={180}
                 zoomSpeed={4}
             />
         </Canvas>
