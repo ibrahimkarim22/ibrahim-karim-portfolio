@@ -47,14 +47,12 @@ function Home() {
         <Canvas style={{ width: '100%', height: '100vh' }}>
             <BackgroundColor color="black" />
             <ambientLight intensity={0} />
-            <SpotLight position={[10, 15, 10]} intensity={0} angle={1} scale={10} />
-            <pointLight position={[-10, -10, -10]} intensity={0} />
             <PerspectiveCamera
                 makeDefault
                 ref={cameraRef}
-                position={[3000, -10, -2000]} 
+                position={[33, 220, 120]} 
                 fov={70}
-                near={.1}
+                near={1}
                 far={10000}
             />
             <Landscape path={landscape} />
