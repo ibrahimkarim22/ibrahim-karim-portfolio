@@ -44,7 +44,7 @@ function Home() {
     const controlsRef = useRef();
 
     return (
-        <Canvas style={{ width: '100%', height: '100vh' }}>
+        <Canvas className='canvas-container'>
             <BackgroundColor color="black" />
             <ambientLight intensity={0} />
             <PerspectiveCamera
