@@ -43,7 +43,7 @@ function BlenderEnvironment() {
     const controlsRef = useRef();
 
     return (
-        <Canvas style={{ border: '3px solid white', width: '70%', height: '70vh', left: '15%', position: 'absolute' }}>
+        <Canvas style={{ border: '3px solid white', width: '50%', height: '70vh', left: '25%', position: 'absolute' }}>
             <BackgroundColor color="black" />
             <ambientLight intensity={0} />
             <PerspectiveCamera
