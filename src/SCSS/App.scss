@@ -1,35 +1,30 @@
 body {
-    background-color: orange;
+  background-image: url("../../public/moss.jpg");
 }
-.title {
-    color: steelblue;
-    font-size: 50px;
-} 
-@import 'Progress';
-.blender-environment {
-    cursor: url(https://uploads.codesandbox.io/uploads/user/b3e56831-8b98-4fee-b941-0e27f39883ab/Ad1_-cursor.png) 39 39, auto;
 
-}
+@import "Progress";
+@import "Navbar";
+@import "3dEnvironment";
+@import "Ads";
 
 // .canvas-container {
 //     border: '1px solid black';
 //      width: '70%';
-//      height: '70vh'; 
+//      height: '70vh';
 //      left: '15%';
 //      position: 'absolute'
 //   }
-  
+
 //   @media (max-width: 768px) {
 //     .canvas-container {
-//       width: 80%; 
-//       left: 30%;  
+//       width: 80%;
+//       left: 30%;
 //     }
 //   }
-  
+
 //   @media (max-width: 480px) {
 //     .canvas-container {
-//       width: 90%; 
-//       left: 30%;  
+//       width: 90%;
+//       left: 30%;
 //     }
 //   }
-  

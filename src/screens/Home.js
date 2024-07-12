@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { Container, Row, Col, Alert, Button } from "reactstrap";
+import { Container, Row, Col, Button } from "reactstrap";
 import BlenderEnvironment from "../components/3dEnvironment";
 import Progress from "../components/Progress";
 import { Parallax, ParallaxProvider } from "react-scroll-parallax";
@@ -53,21 +53,43 @@ function Home() {
 /> */}
 
           <Container>
+            <ParallaxProvider>
+              <Parallax
+                translateY={[100, -100]}
+                scale={[.9, .8]}
+                // rotate={[0.5, 1]}
+                // translateX={[3, 4]}
+              >
+
+            <Row>
+              <Col >
+                <div
+                  className="ad1-main"
+                >
+                  <div
+                    className="ad1-01"
+                  >
+                    Relax your mind.
+                  </div>
+             
+                </div>
+              </Col>
+            </Row>
+            </Parallax>
+            </ParallaxProvider>
             <Row>
               <Col>
                 <div className="blender-environment" align="center">
                   <BlenderEnvironment setProgress={setProgress} />
                 </div>
               </Col>
-            </Row>
-                <Row>
-            <ParallaxProvider>
-              <Parallax
-                y={[0, 1]}
-                scale={[1, 2]}
-                rotate={[0.5, 7]}
-                translateX={[3, 4]}
-              >
+              <ParallaxProvider>
+                <Parallax
+                  y={[0, 1]}
+                  scale={[1, 2]}
+                  rotate={[0.5, 7]}
+                  translateX={[3, 4]}
+                >
                   <Col>
                     <div
                       className="topAd"
@@ -76,13 +98,12 @@ function Home() {
                         height: 300,
                         backgroundColor: "rgba(255, 255, 255, 1)",
                         borderRadius: 8,
-                        marginTop: 100,
                       }}
                     ></div>
                   </Col>
-              </Parallax>
-            </ParallaxProvider>
-                </Row>
+                </Parallax>
+              </ParallaxProvider>
+            </Row>
           </Container>
         </>
       )}
