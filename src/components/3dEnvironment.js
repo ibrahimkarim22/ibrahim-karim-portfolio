@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { OrbitControls, useGLTF, PerspectiveCamera, PresentationControls } from '@react-three/drei';
 import * as THREE from 'three';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import landscape from '../models/landscape2.glb';
 
 function BackgroundColor({ color }) {
@@ -17,7 +18,6 @@ function BackgroundColor({ color }) {
 function Landscape({ path }) {
     const group = useRef();
     const { scene, animations } = useGLTF(path);
-    console.log('ANIMATIONS',animations);
     const mixer = useRef();
 
     useEffect(() => {
@@ -38,12 +38,28 @@ function Landscape({ path }) {
     return <primitive ref={group} object={scene} />;
 }
 
-function BlenderEnvironment() {
+function BlenderEnvironment({ setProgress }) {
     const cameraRef = useRef();
     const controlsRef = useRef();
 
+    useEffect(() => {
+        const loader = new GLTFLoader();
+        loader.load(
+            landscape,
+            (gltf) => {
+                console.log('MODEL LOADED');
+            },
+            (xhr) => {
+                setProgress((xhr.loaded / xhr.total) * 100);
+            },
+            (error) => {
+                console.error('An error happened', error);
+            }
+        );
+    }, [setProgress]);
+
     return (
-        <Canvas style={{ border: '3px solid white', width: '50%', height: '70vh', left: '25%', position: 'absolute' }}>
+        <Canvas style={{ borderColor: 'Sienna', borderStyle: 'ridge', borderWidth: '33px', left: '25%', width: '50%', height: '90vh', position: 'absolute', overflow: 'hidden' }}>
             <BackgroundColor color="black" />
             <ambientLight intensity={0} />
             <PerspectiveCamera

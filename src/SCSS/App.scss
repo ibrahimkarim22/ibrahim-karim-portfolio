@@ -1,10 +1,15 @@
 body {
-    background-color: black;
+    background-color: orange;
 }
 .title {
     color: steelblue;
     font-size: 50px;
 } 
+@import 'Progress';
+.blender-environment {
+    cursor: url(https://uploads.codesandbox.io/uploads/user/b3e56831-8b98-4fee-b941-0e27f39883ab/Ad1_-cursor.png) 39 39, auto;
+
+}
 
 // .canvas-container {
 //     border: '1px solid black';
