@@ -1,0 +1,55 @@
+.menu-div-main {
+    width: 80%;
+    height: 80%;
+    background-color: rgb(255, 255, 255);
+    border-radius: 4px;
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%) perspective(0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+    box-shadow: 40px 40px 40px rgba(35, 35, 35, 0.7);
+  }
+  
+  .logo-div {
+    position: relative;
+    top: 50%;
+  left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .projects-title-div {
+    position: absolute;
+    top: -77%;
+    left: 60%;
+    // transform: translate(-50%, -50%);
+    font-size: 40px;
+    display: inline-block;
+    text-align: start;
+    color: rgb(0, 0, 0);
+    font-size: 44px;
+    border-radius: 8px;
+    padding: 0px;
+    margin: 0px;
+    position: relative;
+    text-shadow: 
+      -1px -1px 0 #ff0000, 
+      1px -1px 0 #37ff00, 
+      -1px 1px 0 #000000, 
+      2px 2px 0 #000000;
+    transform: perspective(200px) rotateX(0deg) rotateY(1deg) rotateZ(0deg);
+    // box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
+    // background-color: rgba(0, 0, 0, 0.2);
+    // border: 2px solid rgb(255, 0, 242);
+    font-family: "Zeyada", cursive;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 44px;
+    letter-spacing: 22px;
+  transition: transform 3s ease;
+  }
+
+  .projects-title-div:hover {
+    transform: rotateY(-22deg);
+    
+}
+

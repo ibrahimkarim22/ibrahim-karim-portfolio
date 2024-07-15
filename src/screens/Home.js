@@ -45,7 +45,10 @@ function Home() {
           <div className="logo-div">
             <Logo setProgress={setProgress} />
           </div>
-          
+
+          <div className="projects-title-div">
+            PROJECTS
+            </div>
         </div>
           {/* <animated.div
     onClick={handleClick}
