@@ -8,7 +8,7 @@ const Header = () => {
     const closeMenu = () => setMenuOpen(false);
 
     return (
-        <Navbar dark expand="md" sticky="top" className="navbar p-5 mb-5 shadow">
+        <Navbar dark expand="md" sticky="top" className="navbar p-2 mb-5 shadow ">
             <NavbarBrand href="/">
                 Ibrahim Karim
             </NavbarBrand>

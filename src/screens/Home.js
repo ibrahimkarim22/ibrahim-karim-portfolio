@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Container, Row, Col, Button } from "reactstrap";
 import BlenderEnvironment from "../components/3dEnvironment";
+import Logo from "../components/Logo";
 import Progress from "../components/Progress";
 import { Parallax, ParallaxProvider } from "react-scroll-parallax";
 // import { animated, useSpring } from "@react-spring/web";
@@ -40,6 +41,12 @@ function Home() {
         <Progress progress={progress} />
       ) : (
         <>
+        <div className="menu-div-main">
+          <div className="logo-div">
+            <Logo setProgress={setProgress} />
+          </div>
+          
+        </div>
           {/* <animated.div
     onClick={handleClick}
     style={{
@@ -52,43 +59,32 @@ function Home() {
     }}
 /> */}
 
-          <Container>
-            <ParallaxProvider>
-              <Parallax
-                translateY={[100, -100]}
-                scale={[.9, .8]}
-                // rotate={[0.5, 1]}
-                // translateX={[3, 4]}
-              >
-
-            <Row>
-              <Col >
-                <div
-                  className="ad1-main"
-                >
-                  <div
-                    className="ad1-01"
-                  >
-                    Relax your mind.
-                  </div>
-             
-                </div>
-              </Col>
-            </Row>
-            </Parallax>
-            </ParallaxProvider>
-            <Row>
+          {/* <Container> */}
+  
+            {/* <Row>
               <Col>
                 <div className="blender-environment" align="center">
                   <BlenderEnvironment setProgress={setProgress} />
+                  <div className="orbit-instructions">
+                    <p>
+                      <span style={{ color: "blue" }}>RC</span> Pan
+                      <br />
+                      <span style={{ color: "blue" }}>LC</span> Rotate
+                      <br />
+                      <span style={{ color: "blue" }}>MW</span> Zoom
+                    </p>
+                  </div>
                 </div>
               </Col>
-              <ParallaxProvider>
+            </Row> */}
+            {/* <ParallaxProvider>
                 <Parallax
-                  y={[0, 1]}
+                  y={[10, 20]}
                   scale={[1, 2]}
                   rotate={[0.5, 7]}
-                  translateX={[3, 4]}
+                  // translateX={[200, -600]}
+           
+                  
                 >
                   <Col>
                     <div
@@ -98,13 +94,13 @@ function Home() {
                         height: 300,
                         backgroundColor: "rgba(255, 255, 255, 1)",
                         borderRadius: 8,
+                     
                       }}
                     ></div>
                   </Col>
                 </Parallax>
-              </ParallaxProvider>
-            </Row>
-          </Container>
+              </ParallaxProvider> */}
+          {/* </Container> */}
         </>
       )}
     </>

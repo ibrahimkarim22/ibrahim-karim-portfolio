@@ -66,11 +66,11 @@ function BlenderEnvironment({ setProgress }) {
   return (
     <Canvas
       style={{
-        borderColor: "Sienna",
+        borderColor: "white",
         borderStyle: "ridge",
-        borderWidth: "33px",
-        width: "85%",
-        height: "90vh",
+        borderWidth: "3px",
+       width: "100%",
+       height: "100vh",
       }}
     >
       <BackgroundColor color="black" />

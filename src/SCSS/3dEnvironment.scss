@@ -3,3 +3,16 @@
       39 39,
     auto;
 }
+
+.orbit-instructions {
+ background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 33px;
+  padding: 20px;
+  position: relative;
+  top: -550px;
+  right: -550px;
+  display: inline-block;
+  z-index: 2;
+  font-size: 22px;
+  color: red
+}

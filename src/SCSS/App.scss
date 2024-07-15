@@ -1,5 +1,27 @@
 body {
-  background-image: url("../../public/moss.jpg");
+  // background-image: url("../../public/moss.jpg");
+  background-color: rgb(105, 104, 104);
+}
+
+.menu-div-main {
+  width: 80%;
+  height: 80%;
+  background-color: rgb(255, 255, 255);
+  border-radius: 4px;
+  position: absolute;
+  top: 10%;
+  left: 50%;
+
+  transform: translateX(-50%) perspective(0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+
+  box-shadow: 40px 40px 40px rgba(35, 35, 35, 0.7);
+}
+
+.logo-div {
+  position: relative;
+  top: 50%;
+  left: 100%;
+  transform: translate(-50%, -50%);
 }
 
 @import "Progress";
