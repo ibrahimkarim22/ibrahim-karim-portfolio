@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Container, Row, Col, Button } from "reactstrap";
+import { Link } from "react-router-dom";
 import BlenderEnvironment from "../components/3dEnvironment";
 import Logo from "../components/Logo";
 import Progress from "../components/Progress";
@@ -49,10 +50,11 @@ function Home() {
             <div className="logo-div">
               <Logo setProgress={setProgress} />
             </div>
-
-            <div className="projects-title-div" onClick={handleProjects}>
-              Projects
-            </div>
+            <Link to="/projects">
+              <div className="projects-title-div">
+                Projects
+              </div>
+            </Link>
             <div className="pdfResume-title-div" onClick={handleProjects}>
               One Page Resume
             </div>

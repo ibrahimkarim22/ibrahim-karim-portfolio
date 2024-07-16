@@ -1,0 +1,33 @@
+@keyframes projectsPageBgStartUp {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+  
+
+.projects-div-main {
+  width: 80%;
+  height: 300%;
+  background-color: rgb(255, 255, 255);
+  border-radius: 4px;
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%) perspective(0px) rotateX(0deg) rotateY(0deg)
+    rotateZ(0deg);
+  box-shadow: 40px 40px 40px rgba(35, 35, 35, 0.7);
+
+  animation: projectsPageBgStartUp 15s ease-in-out forwards;
+}
+
+.mmBtn {
+  position: absolute;
+  top: 5%;
+  left: 5%;
+  font-size: 30px;
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+}
