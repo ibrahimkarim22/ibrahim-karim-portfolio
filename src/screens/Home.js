@@ -9,6 +9,10 @@ import { Parallax, ParallaxProvider } from "react-scroll-parallax";
 function Home() {
   const [progress, setProgress] = useState(0);
 
+  const handleProjects = () => {
+    console.log("projects clicked");
+  };
+
   useEffect(() => {
     const interval = setInterval(() => {
       setProgress((prev) => {
@@ -41,15 +45,21 @@ function Home() {
         <Progress progress={progress} />
       ) : (
         <>
-        <div className="menu-div-main">
-          <div className="logo-div">
-            <Logo setProgress={setProgress} />
-          </div>
-
-          <div className="projects-title-div">
-            PROJECTS
+          <div className="menu-div-main">
+            <div className="logo-div">
+              <Logo setProgress={setProgress} />
             </div>
-        </div>
+
+            <div className="projects-title-div" onClick={handleProjects}>
+              Projects
+            </div>
+            <div className="pdfResume-title-div" onClick={handleProjects}>
+              One Page Resume
+            </div>
+            <div className="threeResume-title-div" onClick={handleProjects}>
+              3D Resume
+            </div>
+          </div>
           {/* <animated.div
     onClick={handleClick}
     style={{
@@ -63,8 +73,8 @@ function Home() {
 /> */}
 
           {/* <Container> */}
-  
-            {/* <Row>
+
+          {/* <Row>
               <Col>
                 <div className="blender-environment" align="center">
                   <BlenderEnvironment setProgress={setProgress} />
@@ -80,7 +90,7 @@ function Home() {
                 </div>
               </Col>
             </Row> */}
-            {/* <ParallaxProvider>
+          {/* <ParallaxProvider>
                 <Parallax
                   y={[10, 20]}
                   scale={[1, 2]}
