@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import BlenderEnvironment from "../components/3dEnvironment";
 import Logo from "../components/Logo";
 import Progress from "../components/Progress";
+
 import { Parallax, ParallaxProvider } from "react-scroll-parallax";
 // import { animated, useSpring } from "@react-spring/web";
 // import { Parallax, ParallaxLayer } from '@react-spring/parallax';
