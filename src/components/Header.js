@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Nav, Navbar, NavbarBrand, NavbarToggler, NavItem, Collapse, Button } from "reactstrap";
 import { NavLink } from "react-router-dom";
+import Mm from "../components/Mm";
 
 const Header = () => {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -10,7 +11,7 @@ const Header = () => {
     return (
         <Navbar dark expand="md" sticky="top" className="navbar p-2 mb-5 shadow ">
             <NavbarBrand href="/">
-                Ibrahim Karim
+                <Mm />
             </NavbarBrand>
 
             <NavbarToggler onClick={() => setMenuOpen(!menuOpen)} />
@@ -18,9 +19,9 @@ const Header = () => {
             <Collapse isOpen={menuOpen} navbar>
 
                 <Nav className="ml-auto" navbar>
-                    <NavItem>
+                    {/* <NavItem>
                         <NavLink to="/" className="nav-link" onClick={closeMenu}>Home</NavLink>
-                    </NavItem>
+                    </NavItem> */}
                 </Nav>
             </Collapse>
         </Navbar>

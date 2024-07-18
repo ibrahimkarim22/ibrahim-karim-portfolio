@@ -42,9 +42,9 @@ function Mm() {
     return (
         <Canvas
             style={{
-                border: '1px solid black',
-                width: '100%',
-                height: '20vh',
+                // border: '1px solid black',
+                width: '10vw',
+                height: '18vh',
             }}
         >
             <BackgroundColor color='white' />
@@ -52,17 +52,17 @@ function Mm() {
             <PerspectiveCamera 
                 ref={cameraRef}
                 makeDefault
-                position={[.3, .01, 2.2]}
-                fov={10}
+                position={[.5, .01, 2.2]}
+                fov={40}
             />
             <ambientLight intensity={2} />
-            <OrbitControls
+            {/* <OrbitControls
         ref={controlsRef}
         enableZoom={true}
         minDistance={10}
         maxDistance={1800}
         zoomSpeed={4}
-      />
+      /> */}
             {/* <pointLight position={[10, 10, 10]} intensity={0.5} />
             <spotLight
                 position={[10, 10, 10]}
