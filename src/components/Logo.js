@@ -4,6 +4,8 @@ import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { useGLTF, PerspectiveCamera } from '@react-three/drei';
 import { GLTFLoader } from 'three/examples/jsm/Addons.js';
 import logo from '../models/logo.glb';
+import '../SCSS/App.scss';
+
 
 function BackgroundColor({ color }) {
     const { scene } = useThree();
@@ -55,10 +57,11 @@ function Logo({ setProgress }) {
     }, [setProgress]);
 
     return (
-        <Canvas
+        <Canvas className='logo-canvas'
             style={{
-            // border: '1px solid black',
-                width: '50%',
+                borderRadius: '22px',
+            // // border: '1px solid black',
+                width: '80%',
                 height: '70vh',
             }}
         >
@@ -68,7 +71,7 @@ function Logo({ setProgress }) {
                 ref={cameraRef}
                 makeDefault
                 position={[0.4, .4, 2.2]}
-                fov={30}
+                fov={33}
             
             />
             <ambientLight intensity={0.1} />

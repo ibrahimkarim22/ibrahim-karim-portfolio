@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
+import moss from '../images/moss.jpg';
 
 
 const Progress = ({ progress }) => {
     return (
         <div className='progress-container'>
             <img
-                src='../../public/logo192.png'
+                src={moss}
                 className='progress-image'
                 style={{ filter: `brightness(${progress}%)` }}
                 alt='Ibrahim Image'

@@ -55,9 +55,9 @@ function Home() {
             <div className="logo-div">
               <Logo setProgress={setProgress} />
             </div>
-          <div>
 
-            <Link to="/projects">
+          <div className="menu-items">
+            <Link to="/projects" style={{ textDecoration: "none" }}>
               <div className="projects-title-div">
                 Projects
               </div>

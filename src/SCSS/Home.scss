@@ -40,6 +40,11 @@
 
 
 .menu-div-main {
+  display: grid;
+  grid-template-columns: repeat(1, 2fr);
+  // grid-template-rows: repeat(2, 3fr);
+  // grid-template-columns: auto;
+  gap: 20px;
   width: 80%;
   height: 80%;
   background-color: snow;
@@ -48,8 +53,7 @@
   position: absolute;
   top: 10%;
   left: 50%;
-  transform: translateX(-50%) perspective(0px) rotateX(0deg) rotateY(0deg)
-    rotateZ(0deg);
+  transform: translateX(-50%);
   box-shadow: 0px 0px 100px rgb(0, 128, 255);
   animation: menuPageBgStartUp 22s ease-in-out forwards;
 }
@@ -64,12 +68,26 @@
 }
 
 .logo-div {
+  grid-column: 1;
+  justify-content: center;
+  align-self: center;
   position: relative;
-  top: 46%;
-  left: 52%;
-  transform: translate(-50%, -50%);
+  bottom: 5%;
+
+  // left: 52%;
+  // transform: translate(-50%, -50%);
   // animation: slideIn 4s ease-out forwards;
   animation: logoStartUp 22s ease-in-out forwards;
+}
+.menu-items {
+  grid-column: 2;
+  display: flex;
+  flex-direction: column;
+  // grid-row: 1 / 2;
+  justify-content: center;
+  align-self: center;
+  animation: projectsStartUp 22s ease-in-out forwards;
+
 }
 
 @keyframes projectsStartUp {
@@ -84,15 +102,15 @@
 .projects-title-div,
 .pdfResume-title-div,
 .threeResume-title-div {
-  position: absolute;
+  // position: absolute;
   font-size: 40px;
-  display: inline-block;
+  // display: block;
   text-align: center;
   color: rgb(0, 0, 0);
   font-size: 44px;
   border-radius: 8px;
   padding: 0px;
-  margin: 0px;
+  margin: 10px 0px;
   // text-shadow:
   //   -1px -1px 0 #4c00ff,
   //   1px -1px 0 #000000,
@@ -118,20 +136,20 @@
 }
 
 .projects-title-div {
-  top: 22%;
-  left: 64%;
+  // top: 22%;
+  // left: 64%;
   animation: projectsStartUp 5s ease-in-out forwards;
 }
 
 .pdfResume-title-div {
-  top: 35%;
-  left: 64%;
+  // top: 35%;
+  // left: 64%;
   animation: projectsStartUp 10s ease-in-out forwards;
 }
 
 .threeResume-title-div {
-  top: 48%;
-  left: 64%;
+  // top: 48%;
+  // left: 64%;
   animation: projectsStartUp 15s ease-in-out forwards;
 }
 
@@ -153,10 +171,37 @@
   3px 3px 0 #00ff2a;
 }
 
-@media screen and (max-width: 1024px) {
-  .projects-title-div,
-  .pdfResume-title-div,
-  .threeResume-title-div {
-    scale: 0.3;
-  }
-}
+
+
+
+
+  // @media screen and (max-width: 1024px) {
+  //   .projects-title-div,
+  //   .pdfResume-title-div,
+  //   .threeResume-title-div {
+  //     scale: 0.3;
+  //   }
+  // }
+  
+  // @media screen and (max-width: 600px) {
+  //   .menu-div-main {
+  //     grid-template-columns: 1fr; 
+  //     grid-template-rows: auto auto auto; 
+  //     width: 100%;
+  //     height: auto; 
+  //     top: 5%;
+  //   }
+  
+  //   @media (max-width: 1024px) {
+  //     .logo-canvas {
+  //       height: 50vh; 
+  //     }
+  //   }
+    
+  //   /* Adjustments for mobile devices */
+  //   @media (max-width: 600px) {
+  //     .logo-canvas {
+  //       height: 30vh; 
+  //     }
+  //   }
+  // }
