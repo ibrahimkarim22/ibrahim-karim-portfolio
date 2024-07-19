@@ -47,7 +47,7 @@ function Mm() {
                 height: '18vh',
             }}
         >
-            <BackgroundColor color='white' />
+            <BackgroundColor color='snow' />
             <MmInit path={mm} position={[0.5, 0, 0]} />
             <PerspectiveCamera 
                 ref={cameraRef}

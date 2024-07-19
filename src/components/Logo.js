@@ -62,7 +62,7 @@ function Logo({ setProgress }) {
                 height: '70vh',
             }}
         >
-            <BackgroundColor className='logo-container' />
+            <BackgroundColor color='snow' />
             <LogoInit path={logo} position={[0.5, 0, 0]}/>
             <PerspectiveCamera 
                 ref={cameraRef}

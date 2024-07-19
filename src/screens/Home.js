@@ -47,10 +47,16 @@ function Home() {
         <Progress progress={progress} />
       ) : (
         <>
-          <div className="menu-div-main">
+        {/* <div className="static">
+          
+        </div> */}
+          <div className="menu-div-main">`
+    
             <div className="logo-div">
               <Logo setProgress={setProgress} />
             </div>
+          <div>
+
             <Link to="/projects">
               <div className="projects-title-div">
                 Projects
@@ -62,6 +68,7 @@ function Home() {
             <div className="threeResume-title-div" onClick={handleProjects}>
               3D Resume
             </div>
+          </div>
           </div>
           {/* <animated.div
     onClick={handleClick}

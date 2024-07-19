@@ -4,11 +4,14 @@ import Mm from "../components/Mm";
 const Projects = () => {
   return (
     <div className="projects-div-main">
-      {/* <Link to="/" style={{ textDecoration: "none" }}> */}
+      <div className="projects-divOne">
+      <Link to="/" style={{ textDecoration: "none" }}>
         <div className="mmBtn">
           <Mm />
         </div>
-      {/* </Link> */}
+      </Link>
+
+      </div>
     </div>
   );
 };
