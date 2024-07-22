@@ -70,8 +70,8 @@ function Logo({ setProgress }) {
             <PerspectiveCamera 
                 ref={cameraRef}
                 makeDefault
-                position={[0.4, .4, 2.2]}
-                fov={33}
+                position={[0.45, .4, 2.2]}
+                fov={36}
             
             />
             <ambientLight intensity={0.1} />

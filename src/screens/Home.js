@@ -5,6 +5,7 @@ import BlenderEnvironment from "../components/3dEnvironment";
 import Logo from "../components/Logo";
 import Progress from "../components/Progress";
 
+
 import { Parallax, ParallaxProvider } from "react-scroll-parallax";
 // import { animated, useSpring } from "@react-spring/web";
 // import { Parallax, ParallaxLayer } from '@react-spring/parallax';
@@ -50,7 +51,12 @@ function Home() {
         {/* <div className="static">
           
         </div> */}
-          <div className="menu-div-main">`
+          <div className="menu-div-main">
+            <div className="contact-div">
+              <h4>LinkedIn</h4>
+              <h4>Github</h4> 
+                       
+            </div>
     
             <div className="logo-div">
               <Logo setProgress={setProgress} />
