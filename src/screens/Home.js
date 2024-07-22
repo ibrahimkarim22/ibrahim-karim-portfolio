@@ -53,8 +53,9 @@ function Home() {
         </div> */}
           <div className="menu-div-main">
             <div className="contact-div">
-              <h4>LinkedIn</h4>
-              <h4>Github</h4> 
+              <div className="linkedin">LinkedIn</div>
+              <div className="github">Github</div> 
+              <div className="gmail">Gmail</div>
                        
             </div>
     
