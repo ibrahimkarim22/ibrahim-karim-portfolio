@@ -4,14 +4,13 @@ import Mm from "../components/Mm";
 const Projects = () => {
   return (
     <div className="projects-div-main">
-      <div className="projects-divOne">
-      <Link to="/" style={{ textDecoration: "none" }}>
-        <div className="mmBtn">
+        <div className="whacka-div-main">
+          </div>
+      {/* <div className="mmBtn">
+        <Link to="/">
           <Mm />
-        </div>
-      </Link>
-
-      </div>
+        </Link>
+      </div> */}
     </div>
   );
 };

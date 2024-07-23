@@ -40,7 +40,7 @@
 .menu-div-main {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: 1fr auto;
+  grid-template-rows: 1fr;
   // grid-template-columns: auto;
   gap: 20px;
   width: 80%;
@@ -66,15 +66,20 @@
 }
 
 .contact-div {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr;
   grid-column: 1 / 2;
   grid-row: 1 / 2;
-  // grid-area: 1 / 1 / 2 / 2;
   width: 100%;
   height: 100%;
 }
 
 .linkedin, .github, .gmail {
   margin: 2%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: #000000;
   text-shadow: 0px 0px 0 #000000, 0px 0px 0 #000000, 0px 0px 0 #000000,
   0px 0px 0 #000000;
@@ -99,7 +104,7 @@
     transform: translate(-26%, 10%) scale(1) skew(20deg);
 }
 
-.contact-div, .logo-div, .menu-items, .bio-div-main, .full-stack-div {
+ .logo-div, .menu-items, .bio-div-main, .full-stack-div {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -108,12 +113,15 @@
 }
 
 .bio-div-main {
-  justify-content: start;
-}
-
-.bio-div-main {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-template-rows: 1fr;
   grid-column: 2 / 2;
   grid-row: 1 / 2;
+  justify-content: start;
+  position: absolute;
+  // top: 60%;
+  font-size: 20px;
 }
 
 .logo-div {
@@ -131,22 +139,24 @@
 
 @keyframes fullStackStartUp {
   0% {
-    transform: translateY(0%);
+    transform: translate(0%, 0%), rotate(-90deg);
   }
   50% {
-    transform: translateY(10%);
+    transform: translate(10%, 0%), rotate(-90deg);
   }
   100% {
-    transform: translateY(80%);
+    transform: translate(80%, 0%), rotate(-90deg);
   }
 }
 
 .full-stack-div {
   // position: absolute;
   // top: 10%;
-  transform: translateY(0%) rotate(-90deg);
+  grid-column: 2 / 3;
+  grid-row: -1 / 2;
+  transform: translateY(122%) rotate(-90deg);
   
-  animation: fullStackStartUp 22s ease-in-out forwards;
+  // animation: fullStackStartUp 22s ease-in 10s;
   
 }
 
