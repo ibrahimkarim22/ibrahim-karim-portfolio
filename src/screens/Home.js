@@ -53,10 +53,16 @@ function Home() {
         </div> */}
           <div className="menu-div-main">
             <div className="contact-div">
-              <div className="linkedin">LinkedIn</div>
+              <div className="linkedin">Linkedin</div>
               <div className="github">Github</div> 
               <div className="gmail">Gmail</div>
                        
+            </div>
+            <div className="bio-div-main">
+              <div>Hi, I'm Ibrahim! I was born I was born in Baghdad, Iraq. </div>
+              <div>
+            <div className="full-stack-div">Full Stack Developer</div>
+          </div>
             </div>
     
             <div className="logo-div">
@@ -75,6 +81,7 @@ function Home() {
             <div className="threeResume-title-div" onClick={handleProjects}>
               3D Resume
             </div>
+        
           </div>
           </div>
           {/* <animated.div
