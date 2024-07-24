@@ -61,7 +61,7 @@ function Logo({ setProgress }) {
             style={{
                 borderRadius: '22px',
             // // border: '1px solid black',
-                width: '80%',
+                width: '100%',
                 height: '70vh',
             }}
         >

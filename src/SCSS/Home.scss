@@ -28,29 +28,47 @@
   0% {
     opacity: 0;
   }
-  50% {
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes bioStartUp {
+  0% {
+    opacity: 0;
+  }
+  100% {
     opacity: 1;
   }
 }
 
 @keyframes fullStackStartUp {
   0% {
-    transform: translate(0%, 0%), rotate(-90deg);
+    transform: translate(0%, -200%) rotate(-90deg);
   }
-  50% {
-    transform: translate(10%, 0%), rotate(-90deg);
-  }
+  // 50% {
+  //   transform: translate(0%, 10%) rotate(-90deg);
+  // }
   100% {
-    transform: translate(80%, 0%), rotate(-90deg);
+    transform: translate(0%, 5%) rotate(-90deg);
   }
 }
 
-@keyframes projectsStartUp {
+@keyframes menuItemsStartUp {
   0% {
     opacity: 0;
   }
   50% {
     opacity: 1;
+  }
+}
+
+@keyframes contactsStartUp {
+  0% {
+    transform: translate(200%, 0%);
+  }
+  100% {
+    transform: translate(0%, 0%);
   }
 }
 
@@ -92,7 +110,7 @@
   grid-template-columns: repeat(10, 1fr);
   grid-template-rows: repeat(10, 1fr);
   // grid-template-columns: auto;
-  gap: 2px;
+  gap: 20px;
   width: 80%;
   height: 80%;
   background-color: snow;
@@ -112,11 +130,13 @@
   margin-top: 2%;
   justify-content: center;
   align-items: center;
-  grid-column: 1 / 2;
+  grid-column: 4 / 6;
   grid-row: 2 / 2;
   width: 100%;
   height: 100%;
   z-index: 2;
+  // transform: translate(40%, 0%);
+  animation: contactsStartUp 22s ease-in-out forwards;
 }
 
 .linkedin,
@@ -132,9 +152,8 @@
   letter-spacing: 2px;
   text-shadow: 0px 0px 0 #000000, 0px 0px 0 #000000, 0px 0px 0 #000000,
     0px 0px 0 #000000;
-  font-family: "Edu AU VIC WA NT Hand", cursive;
-  font-optical-sizing: auto;
-  font-weight: 700;
+    font-family: "Lato", sans-serif;
+  font-weight: 400;
   font-style: normal;
 }
 
@@ -166,31 +185,32 @@
 }
 
 .bio-div-main {
-  grid-column: 5 / 6;
-    grid-row: 8 / 10;
+  grid-column: 5 / 7;
+    grid-row: 4 / 7;
   justify-content: start;
   position: absolute;
   // top: 40%;
   font-size: 20px;
-  font-family: "Edu AU VIC WA NT Hand", cursive;
-  font-optical-sizing: auto;
+  font-family: "Merriweather", serif;
   font-weight: 700;
   font-style: normal;
   z-index: 2;
+
+  animation: bioStartUp 22s ease-in-out forwards;
 }
 
 .logo-div {
   grid-column: 1 / 5;
   grid-row: 4 / 8;
-  animation: logoStartUp 22s ease-in-out forwards;
+  animation: logoStartUp 15s ease-in-out forwards;
 }
 .menu-items {
-  grid-column: 7 / 9;
+  grid-column: 7 / 10;
   flex-direction: column;
-  grid-row: 3 / 8;
-  animation: projectsStartUp 22s ease-in-out forwards;
+  grid-row: 4 / 8;
+  animation: menuItemsStartUp 30s ease-in-out forwards;
   position: relative;
-  // right: 12%;
+  left: 15%;
 }
 
 .full-stack-div {
@@ -202,12 +222,12 @@
   padding: 0px;
   margin: 0px;
   font-size: 33px;
-  grid-column: 5 ;
-  grid-row: 3 / 7;
+  grid-column: 10;
+  grid-row: 5 / 7;
   text-wrap: nowrap;
   transform: rotate(-90deg);
 
-  animation: fullStackStartUp 10s ease-in 10s;
+  animation: fullStackStartUp 10s ease-in-out forwards;
 }
 
 .projects-title-div,
@@ -215,7 +235,7 @@
 .threeResume-title-div {
   // position: absolute;
   // display: block;
-  text-align: start;
+  text-align: center;
   color: snow;
   font-size: 66px;
   border-radius: 8px;
