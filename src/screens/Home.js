@@ -59,18 +59,18 @@ function Home() {
                        
             </div>
             <div className="bio-div-main">
-              <div>I am a developer with some 2d and 3d editing, design, and animation skills.
+              <div>I am a developer with some 2D and 3D editing, design, and animation skills.
                 I love learning on the process of creating something that seems imossible at first. My strong suit I would say is debugging.
                  </div>
               
           
-            <div className="full-stack-div">Full Stack Developer</div>
             </div>
     
             <div className="logo-div">
               <Logo setProgress={setProgress} />
             </div>
 
+            <div className="full-stack-div">Full-Stack Developer</div>
           <div className="menu-items">
             <Link to="/projects" style={{ textDecoration: "none" }}>
               <div className="projects-title-div">
@@ -78,10 +78,10 @@ function Home() {
               </div>
             </Link>
             <div className="pdfResume-title-div" onClick={handleProjects}>
-              One Page Resume
+              Resume
             </div>
             <div className="threeResume-title-div" onClick={handleProjects}>
-              3D Resume
+              3DResume
             </div>
         
           </div>

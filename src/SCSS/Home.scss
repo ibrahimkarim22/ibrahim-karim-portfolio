@@ -24,38 +24,6 @@
     opacity: 0;
   }
 }
-
-.static {
-  width: 80%;
-  height: 80%;
-  padding: 33px;
-  position: absolute;
-  top: 10%;
-  left: 10%;
-  background-image: url("../../public/static.jpg");
-  border-radius: 22px;
-  animation: staticFlicker 1s ease-out;
-}
-
-.menu-div-main {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: 1fr;
-  // grid-template-columns: auto;
-  gap: 20px;
-  width: 80%;
-  height: 80%;
-  background-color: snow;
-  border-radius: 55px;
-  border: solid 2px rgb(0, 38, 255);
-  position: absolute;
-  top: 10%;
-  left: 50%;
-  transform: translateX(-50%);
-  box-shadow: 0px 0px 100px rgb(0, 128, 255);
-  animation: menuPageBgStartUp 22s ease-in-out forwards;
-}
-
 @keyframes logoStartUp {
   0% {
     opacity: 0;
@@ -63,78 +31,6 @@
   50% {
     opacity: 1;
   }
-}
-
-.contact-div {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: 1fr;
-  grid-column: 1 / 2;
-  grid-row: 1 / 2;
-  width: 100%;
-  height: 100%;
-}
-
-.linkedin, .github, .gmail {
-  margin: 2%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #000000;
-  text-shadow: 0px 0px 0 #000000, 0px 0px 0 #000000, 0px 0px 0 #000000,
-  0px 0px 0 #000000;
-
-}
-
-.linkedin::before {
-    content: '';
-    position: absolute;
-    // top: 50%;
-    // left: 50%;
-    width: 6%;
-    height: 2%;
-    border-radius: 22px;
-    background-color: rgb(255, 242, 0);
-    transform: translate(0%, 0%) scale(0);
-    transition: transform 0.5s ease-in-out;
-    z-index: -1;
-  }
-  
-  .linkedin:hover::before {
-    transform: translate(-26%, 10%) scale(1) skew(20deg);
-}
-
- .logo-div, .menu-items, .bio-div-main, .full-stack-div {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-}
-
-.bio-div-main {
-  display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  grid-template-rows: 1fr;
-  grid-column: 2 / 2;
-  grid-row: 1 / 2;
-  justify-content: start;
-  position: absolute;
-  // top: 60%;
-  font-size: 20px;
-}
-
-.logo-div {
-  grid-column: 1 / 2;
-  animation: logoStartUp 22s ease-in-out forwards;
-}
-.menu-items {
-  grid-column: 2 / 3;
-  flex-direction: column;
-  // grid-row: 1 / 2;
-  animation: projectsStartUp 22s ease-in-out forwards;
-  position: relative;
-  right: 12%;
 }
 
 @keyframes fullStackStartUp {
@@ -148,18 +44,6 @@
     transform: translate(80%, 0%), rotate(-90deg);
   }
 }
-
-.full-stack-div {
-  // position: absolute;
-  // top: 10%;
-  grid-column: 2 / 3;
-  grid-row: -1 / 2;
-  transform: translateY(122%) rotate(-90deg);
-  
-  // animation: fullStackStartUp 22s ease-in 10s;
-  
-}
-
 
 @keyframes projectsStartUp {
   0% {
@@ -184,32 +68,160 @@
 
 @keyframes projectsBGColor {
   0% {
-   
   }
   50% {
-   
   }
   100% {
-    
   }
+}
+
+.static {
+  width: 80%;
+  height: 80%;
+  padding: 33px;
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  background-image: url("../../public/static.jpg");
+  border-radius: 22px;
+  animation: staticFlicker 1s ease-out;
+}
+
+.menu-div-main {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+  // grid-template-columns: auto;
+  gap: 2px;
+  width: 80%;
+  height: 80%;
+  background-color: snow;
+  border-radius: 55px;
+  border: solid 2px rgb(0, 38, 255);
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0px 0px 100px rgb(0, 128, 255);
+  animation: menuPageBgStartUp 22s ease-in-out forwards;
+}
+
+.contact-div {
+  gap: 11px;
+  display: flex;
+  margin-top: 2%;
+  justify-content: center;
+  align-items: center;
+  grid-column: 1 / 2;
+  grid-row: 2 / 2;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+.linkedin,
+.github,
+.gmail {
+  position: relative;
+  left: 50%;
+  top: 33%;
+  justify-content: center;
+  align-items: center;
+  color: #000000;
+  font-size: 122%;
+  letter-spacing: 2px;
+  text-shadow: 0px 0px 0 #000000, 0px 0px 0 #000000, 0px 0px 0 #000000,
+    0px 0px 0 #000000;
+  font-family: "Edu AU VIC WA NT Hand", cursive;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.linkedin::before {
+  content: "";
+  position: absolute;
+  // top: 50%;
+  // left: 50%;
+  width: 6%;
+  height: 2%;
+  border-radius: 22px;
+  background-color: rgb(255, 242, 0);
+  transform: translate(0%, 0%) scale(0);
+  transition: transform 0.5s ease-in-out;
+  z-index: -1;
+}
+
+.linkedin:hover::before {
+  transform: translate(-26%, 10%) scale(1) skew(20deg);
+}
+
+.logo-div,
+.menu-items,
+.bio-div-main,
+.full-stack-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bio-div-main {
+  grid-column: 5 / 6;
+    grid-row: 8 / 10;
+  justify-content: start;
+  position: absolute;
+  // top: 40%;
+  font-size: 20px;
+  font-family: "Edu AU VIC WA NT Hand", cursive;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+  z-index: 2;
+}
+
+.logo-div {
+  grid-column: 1 / 5;
+  grid-row: 4 / 8;
+  animation: logoStartUp 22s ease-in-out forwards;
+}
+.menu-items {
+  grid-column: 7 / 9;
+  flex-direction: column;
+  grid-row: 3 / 8;
+  animation: projectsStartUp 22s ease-in-out forwards;
+  position: relative;
+  // right: 12%;
+}
+
+.full-stack-div {
+  // position: relative;
+  // top: 50%;
+  // left: 50%;
+  // width: 20%;
+  // height: 100%;
+  padding: 0px;
+  margin: 0px;
+  font-size: 33px;
+  grid-column: 5 ;
+  grid-row: 3 / 7;
+  text-wrap: nowrap;
+  transform: rotate(-90deg);
+
+  animation: fullStackStartUp 10s ease-in 10s;
 }
 
 .projects-title-div,
 .pdfResume-title-div,
 .threeResume-title-div {
   // position: absolute;
-  font-size: 40px;
   // display: block;
-  text-align: center;
+  text-align: start;
   color: snow;
-  font-size: 65px;
+  font-size: 66px;
   border-radius: 8px;
   padding: 0px;
   margin: 10px 0px;
-  text-shadow:
-    -1px -1px 0 #000000,
-    1px -1px 0 #000000,
-    -1px 1px 0 #000000,
+  text-shadow: -1px -1px 0 #000000, 1px -1px 0 #000000, -1px 1px 0 #000000,
     1px 1px 0 #000000;
   // transform: perspective(200px) rotateX(0deg) rotateY(1deg) rotateZ(0deg);
   // box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
@@ -237,18 +249,19 @@
 }
 
 .projects-title-div {
-  animation: projectsStartUp 5s ease-in-out forwards, letterspacing 10s ease-in-out infinite;
+  animation: projectsStartUp 5s ease-in-out forwards,
+    letterspacing 10s ease-in-out infinite;
 }
 
 .pdfResume-title-div {
-  animation: projectsStartUp 10s ease-in-out forwards, letterspacing 10s ease-in-out infinite;
+  animation: projectsStartUp 10s ease-in-out forwards,
+    letterspacing 10s ease-in-out infinite;
 }
-
 
 .threeResume-title-div {
-  animation: projectsStartUp 15s ease-in-out forwards, letterspacing 10s ease-in-out infinite;
+  animation: projectsStartUp 15s ease-in-out forwards,
+    letterspacing 10s ease-in-out infinite;
 }
-
 
 .projects-title-div:hover,
 .pdfResume-title-div:hover,
@@ -272,9 +285,8 @@
   transform: rotateY(55deg) skew(60deg);
 }
 
-
 .projects-title-div::before {
-  content: '';
+  content: "";
   position: absolute;
   // top: 50%;
   // left: 50%;
@@ -288,36 +300,5 @@
 }
 
 .projects-title-div:hover::before {
-  transform: translate(-26%, -22%) scale(.5) rotate(360deg) skew(20deg);
+  transform: translate(-26%, -22%) scale(0.5) rotate(360deg) skew(20deg);
 }
-
-// @media screen and (max-width: 1024px) {
-//   .projects-title-div,
-//   .pdfResume-title-div,
-//   .threeResume-title-div {
-//     scale: 0.3;
-//   }
-// }
-
-// @media screen and (max-width: 600px) {
-//   .menu-div-main {
-//     grid-template-columns: 1fr;
-//     grid-template-rows: auto auto auto;
-//     width: 100%;
-//     height: auto;
-//     top: 5%;
-//   }
-
-//   @media (max-width: 1024px) {
-//     .logo-canvas {
-//       height: 50vh;
-//     }
-//   }
-
-//   /* Adjustments for mobile devices */
-//   @media (max-width: 600px) {
-//     .logo-canvas {
-//       height: 30vh;
-//     }
-//   }
-// }
