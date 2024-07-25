@@ -35,17 +35,23 @@
   animation: menuPageBgStartUp 22s ease-in-out forwards;
 }
 
-.whacka-div-main, .bard-div-main, .krispy-div-main, .hey-you-div-main, .this-portfolio-div-main {
-  display: flex;
-  justify-content: center;
+.whacka-div-main,
+.bard-div-main,
+.krispy-div-main,
+.hey-you-div-main,
+.this-portfolio-div-main {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
   align-items: center;
+  justify-items: center;
 }
 
 .whacka-div-main {
   grid-column: 1 / 3;
   grid-row: 1 / 11;
   background-color: rgb(255, 0, 0);
-  border-radius: 55px 0px 0px 55px;
+  border-radius: 53px 0px 0px 53px;
   animation: projectDivStartup 2s ease-in-out forwards;
 }
 
@@ -68,52 +74,117 @@
   grid-row: 1 / 11;
   background-color: rgb(0, 255, 0);
   animation: projectDivStartup 5s ease-in-out forwards;
-  display: flex;
 }
 
 .this-portfolio-div-main {
   grid-column: 9 / 11;
   grid-row: 1 / 11;
   background-color: rgb(255, 0, 255);
-  border-radius: 0px 55px 55px 0px;
+  border-radius: 0px 53px 53px 0px;
   animation: projectDivStartup 6s ease-in-out forwards;
 }
 
 .whacka-text,
+.whacka-description-text,
 .krispy-text,
+.krispy-description-text,
 .hey-you-text,
+.hey-you-description-text,
 .bard-text,
-.this-portfolio-text {
+.bard-description-text,
+.this-portfolio-text,
+.this-portfolio-description-text {
   text-wrap: nowrap;
   transform: rotate(-90deg);
 }
 
 .whacka-text {
+  grid-column: 1 / 3;
+  grid-row: 2 / 4;
   font-size: 77px;
   font-family: "Bangers", system-ui;
   font-weight: 400;
   font-style: normal;
-  color:rgb(0, 255, 255)
+  color: rgb(0, 255, 255);
+}
+
+.whacka-description-text {
+  grid-column: 4 / 6;
+  grid-row: 2 / 4;
+  font-size: 44px;
+  font-family: "Raleway", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+  color: rgb(255, 255, 255);
 }
 
 .krispy-text {
+  grid-column: 1 / 3;
+  grid-row: 2 / 4;
   font-size: 77px;
   font-family: "Montserrat", sans-serif;
   font-optical-sizing: auto;
-  font-weight: 400;
+  font-weight: 700;
   font-style: normal;
+  color: whitesmoke;
+}
+
+.krispy-description-text {
+  grid-column: 4 / 6;
+  grid-row: 2 / 4;
+  font-size: 44px;
+  color: white;
 }
 
 .hey-you-text {
+  grid-column: 1 / 3;
+  grid-row: 2 / 4;
   font-size: 77px;
+  font-family: "Raleway", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+  color: snow;
+}
+
+.hey-you-description-text {
+  grid-column: 4 / 6;
+  grid-row: 2 / 4;
+  font-size: 44px;
+  color: snow;
 }
 
 .bard-text {
+  grid-column: 1 / 3;
+  grid-row: 2 / 4;
   font-size: 77px;
+  font-family: "Playfair Display", serif;
+  font-optical-sizing: auto;
+  font-weight: 900;
+  font-style: italic;
+}
+
+.bard-description-text {
+  grid-column: 4 / 6;
+  grid-row: 2 / 4;
+  font-size: 44px;
 }
 
 .this-portfolio-text {
+  grid-column: 1 / 3;
+  grid-row: 2 / 4;
   font-size: 77px;
+  font-family: "Lato", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.this-portfolio-description-text {
+  grid-column: 4 / 6;
+  grid-row: 2 / 4;
+  font-size: 44px;
+  color: snow;
 }
 
 .mmBtn {
