@@ -1,26 +1,42 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import Mm from "../components/Mm";
+import WhackaModal from "../components/WhackaModal";
 
 const Projects = () => {
+  const [modalOpen, setModalOpen] = useState({ WhackaModal: false });
+
+  const openModal = (modal) => {
+    setModalOpen({ ...modalOpen, [modal]: true });
+  };
+
+  const closeModal = (modal) => {
+    setModalOpen({ ...modalOpen, [modal]: false });
+  };
+
   return (
     <div className="projects-div-main">
       <div className="nav-div-main">
-        <Link className="nav-home-btn" to={"/"}>
+        <Link className="nav-home-btn" to="/">
           <div>Home</div>
         </Link>
-        <Link className="nav-resume-btn" to={"/"}>
+        <Link className="nav-resume-btn" to="/">
           <div>Resume</div>
         </Link>
-        <Link className="nav-three-dee-resume-btn" to={"/"}>
+        <Link className="nav-three-dee-resume-btn" to="/">
           <div>3D Resume</div>
         </Link>
-        <Link className="nav-contact-container" to="/">
-          <div className="nav-linkedin-btn">Linkedin</div>
-          <div className="nav-github-btn">GitHub</div>
-          <div className="nav-gmail-btn">Gmail</div>
+        <Link className="nav-linkedin-btn" to="/">
+          <div>Linkedin</div>
+        </Link>
+        <Link className="nav-github-btn" to="https://github.com/ibrahim-karim-22">
+          <div>GitHub</div>
+        </Link>
+        <Link className="nav-gmail-btn" to="mailto:ib2ra2heem@gmail.com">
+          <div> Gmail</div>
         </Link>
       </div>
-      <div className="whacka-div-main">
+      <div className="whacka-div-main" onClick={() => openModal("WhackaModal")}>
+        <WhackaModal isOpen={modalOpen.WhackaModal} closeModal={() => closeModal("WhackaModal")} />
         <div className="whacka-text">Whack a Mole</div>
         <div className="whacka-description-text">Online Game</div>
       </div>
@@ -40,7 +56,6 @@ const Projects = () => {
         <div className="this-portfolio-text">This Portfolio</div>
         <div className="this-portfolio-description-text">This Portfolio</div>
       </div>
-
       <div className="footer-div-main"></div>
     </div>
   );
