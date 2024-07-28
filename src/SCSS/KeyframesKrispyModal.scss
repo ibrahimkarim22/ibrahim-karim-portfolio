@@ -1,8 +1,94 @@
-@keyframes krispyModalHeaderStartup {
-    0% {
-      transform: translate(700px, 0px);
-    }
-    100% {
-      transform: translate(0px, 0px);
-    }
+@keyframes krispyModalMainDivStartupScale {
+  0% {
+    transform: scale(0);
   }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes krispyModalHeaderStartup {
+  0% {
+    transform: translate(0px, -100px);
+  }
+  100% {
+    transform: translate(0px, 0px);
+  }
+}
+
+@keyframes krispyModalBodyStartup {
+  0% {
+    transform: scale(0);
+  }
+
+  90% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes krispyModalSubHeaderStartup {
+  0% {
+    transform: translate(0px, -200px);
+  }
+  100% {
+    transform: translate(0px, 10px);
+  }
+}
+
+@keyframes krispyModalFooterStartup {
+  0% {
+    transform: translate(0px, -100px);
+  }
+  100% {
+    transform: translate(0px, 0px);
+  }
+}
+
+@keyframes krispyModalInfoStartup {
+  0% {
+    transform: scale(0);
+  }
+  80% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes krispyModalHeaderSlideInLeft {
+  0% {
+    transform: translate(-100%, 0px);
+  }
+  100% {
+    transform: translate(0px, 0px);
+  }
+}
+
+@keyframes krispyModalBtnStartup {
+  0% {
+    transform: scale(0.5);
+  }
+
+  90% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes imageFadeInAndOutCyclic {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

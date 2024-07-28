@@ -1,5 +1,6 @@
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
-
+import chaplin1 from "../images/chaplin1.jpg";
+import fox from "../images/fox.png";
 
 function KrispyModal({ isOpen, closeModal }) {
     return (
@@ -26,6 +27,8 @@ function KrispyModal({ isOpen, closeModal }) {
                    Krispy also includes live streams from "Venice, Italy", "London, UK", "New York", "Amsterdam, Netherlands", 
                    "Rio de Janero, Brazil", "Miami, Florida", and "Tokyo, Japan".
                 </div>
+                <img className="chaplin1" src={chaplin1} alt='charlie chaplin' />
+                <img className="fox" src={fox} alt='fox news' />
                 </ModalBody>
             <ModalFooter className="krispy-modal-footer">
                 <Button color="danger" className="krispy-modal-close-btn" onClick={closeModal}>
@@ -42,7 +45,7 @@ function KrispyModal({ isOpen, closeModal }) {
         </Button>
         <Button
           color="info"
-          className="whacka-modal-github-btn"
+          className="krispy-modal-github-btn"
           onClick={(src) =>
             window.open(
               "https://github.com/ibrahim-karim-22/portfolioProjectReact"
