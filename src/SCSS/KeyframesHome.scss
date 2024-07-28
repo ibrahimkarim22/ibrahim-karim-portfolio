@@ -1,0 +1,77 @@
+@keyframes menuPageBgStartUp {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes logoStartUp {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes bioStartUp {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes fullStackStartUp {
+    0% {
+      transform: translate(0%, -200%) rotate(-90deg);
+    }
+    // 50% {
+    //   transform: translate(0%, 10%) rotate(-90deg);
+    // }
+    100% {
+      transform: translate(0%, 5%) rotate(-90deg);
+    }
+  }
+  
+  @keyframes menuItemsStartUp {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes contactsStartUp {
+    0% {
+      transform: translate(200%, 0%);
+    }
+    100% {
+      transform: translate(0%, 0%);
+    }
+  }
+  
+  @keyframes letterspacing {
+    0% {
+      letter-spacing: 0px;
+    }
+    50% {
+      letter-spacing: 1.7px;
+    }
+    100% {
+      letter-spacing: 0px;
+    }
+  }
+  
+  @keyframes projectsBGColor {
+    0% {
+    }
+    50% {
+    }
+    100% {
+    }
+  }

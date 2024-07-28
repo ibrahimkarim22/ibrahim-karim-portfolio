@@ -4,11 +4,22 @@ body {
 }
 
 @import "Home";
-@import "Projects";
-@import "Progress";
+@import "HomeProgress";
+@import "KeyframesBardModal";
+@import "KeyframesHeyYouModal";
+@import "KeyframesHome";
+@import "KeyframesKrispyModal";
+@import "KeyframesProjects";
+@import "KeyframesThisPortfolioModal";
+@import "KeyframesWhackaModal";
 @import "Navbar";
-@import "3dEnvironment";
-@import "Ads";
+@import "Projects";
+@import "ProjectsBardModal";
+@import "ProjectsHeyYouModal";
+@import "ProjectsKrispyModal";
+@import "ProjectsWhackaModal";
+@import "ThreeDeeResume";
+
 
 // .canvas-container {
 //     border: '1px solid black';

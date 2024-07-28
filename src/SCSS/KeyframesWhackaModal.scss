@@ -1,0 +1,94 @@
+@keyframes WhackaModalHeaderStartup {
+    0% {
+      transform: translate(-700px, 0px);
+    }
+    100% {
+      transform: translate(0px, 0px);
+    }
+  }
+
+  @keyframes whackaModalSubtextCyclical {
+    0% {
+      transform: translate(-22x, 0px);
+    }
+    50% {
+      transform: translate(22px, 0px);
+    }
+  
+    100% {
+      color: rgb(0, 0, 0);
+      transform: translate(0px, 10px);
+    }
+  }
+  
+  @keyframes WhackaModalBodyStartup {
+    0% {
+      transform: translate(0px, 700px);
+    }
+    100% {
+      transform: translate(0px, 0px);
+    }
+  }
+  
+  @keyframes WhackaModalFooterStartup {
+    0% {
+      transform: translate(700px, 0px);
+    }
+    100% {
+      transform: translate(0px, 0px);
+    }
+  }
+  
+  @keyframes WhackaModalFadeInBackground {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes whackaModalLogoCyclical {
+    0% {
+      transform: translate(0px, 0px);
+    }
+    20% {
+      transform: translate(0%, -10px);
+    }
+    40% {
+      transform: translate(0px, -250px);
+    }
+    100% {
+      transform: translate(0px, 0px);
+    }
+  }
+  
+  @keyframes jsWhackaModalLogoCyclical {
+    0% {
+      transform: translate(0px, 0px);
+    }
+    20% {
+      transform: translate(0%, -10px);
+    }
+    40% {
+      transform: translate(0px, -240px);
+    }
+    100% {
+      transform: translate(0px, 0px);
+    }
+  }
+  
+  @keyframes sassWhackaModalLogoCyclical {
+    0% {
+      transform: translate(0px, 0px);
+    }
+    20% {
+      transform: translate(0%, -10px);
+    }
+    40% {
+      transform: translate(0px, -200px);
+    }
+    100% {
+      transform: translate(0px, 0px);
+    }
+  }

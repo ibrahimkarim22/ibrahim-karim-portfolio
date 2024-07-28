@@ -1,0 +1,26 @@
+@keyframes projectsPageBgStartUp {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes projectDivStartup {
+    0% {
+      transform: translate(0%, -500%);
+    }
+    100% {
+      transform: translate(0%, 0%);
+    }
+  }
+  
+  @keyframes navDivStartup {
+    0% {
+      transform: translate(0%, -500%);
+    }
+    100% {
+      transform: translate(0%, 0%);
+    }
+  }

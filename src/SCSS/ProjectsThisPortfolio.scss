@@ -1,0 +1,90 @@
+.this-portfolio-modal-header {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1fr;
+    align-items: center;
+    background-color: gold;
+  }
+  
+  .this-portfolio-modal-header .modal-title {
+    grid-column: 2;
+    grid-row: 1 / 3;
+    font-size: 69px;
+    color: pink;
+  }
+  
+  .this-portfolio-modal-header-sub-text-container {
+    grid-column: 4 / 7;
+    width: 100%;
+    position: sticky;
+  }
+  
+  .this-portfolio-modal-header-sub-text {
+      background-color: red;
+      color: rgb(255, 255, 255);
+      display: inline-block;
+      border-radius: 22px;
+      padding: 1%;
+  }
+  .this-portfolio-modal-header .btn-close {
+    scale: 1.5;
+    background-color: rgb(255, 255, 255);
+    grid-column: 3;
+  }
+  
+  .this-portfolio-modal-body {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+    background-color: rgb(25, 28, 0);
+    background-blend-mode: multiply;
+  }
+  
+  .this-portfolio-modal-info {
+    grid-column: 4 / 10;
+    grid-row: 5 / 9;
+    border: solid 1px rgb(255, 255, 255);
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    box-shadow: gold 0px 0px 100px;
+  }
+  
+  .this-portfolio-modal-footer {
+    display: grid;
+    height: 10%;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    background-color: gold;
+    border: solid 1px rgb(0, 0, 0);
+  }
+  
+  .this-portfolio-modal-close-btn,
+  .this-portfolio-site-btn,
+  .this-portfolio-modal-github-btn {
+    width: 50%;
+    scale: 1.5;
+    border: solid 1px rgb(0, 0, 0);
+    color: rgb(0, 0, 0);
+    letter-spacing: 2px;
+    background-color: rgb(255, 255, 255);
+  }
+  
+  .this-portfolio-modal-close-btn {
+    grid-column: 2 / 3;
+    grid-row: 2;
+    background-color: rgb(255, 255, 255);
+    color: rgb(255, 0, 0);
+  }
+  
+  .this-portfolio-site-btn {
+    grid-column: 3 / 4;
+    grid-row: 2;
+    background-color: rgb(255, 255, 255);
+  }
+  
+  .this-portfolio-modal-github-btn {
+    grid-column: 5;
+    grid-row: 2;
+    background-color: rgb(255, 255, 255);
+  }
+  
