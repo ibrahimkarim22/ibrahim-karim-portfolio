@@ -1,7 +1,18 @@
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
-import chaplin1 from "../images/chaplin1.jpg";
+import chaplinVagabond from "../images/chaplinVagabond.jpg";
+import chaplinAutoRace from "../images/chaplinAutoRace.jpg";
+import chaplinBehindTheScreen from "../images/chaplinBehindTheScreen.jpg";
+import chaplinInThePark from "../images/chaplinInThePark.jpg";
+import chaplinOneAM from "../images/chaplinOneAM.jpg";
+import chaplinANightInTheShow from "../images/chaplinANightInTheShow.jpg"; 
+import chaplinTheCure from "../images/chaplinTheCure.webp";
+import chaplinCharlot from "../images/chaplinCharlot.jpg";
 import fox from "../images/fox.png";
-
+import natGeoWild from "../images/natGeoWild.jpg";
+import nasaTV from "../images/nasaTV.webp";
+import euronews from "../images/euronews.jpg";
+import france from "../images/france.jpg";
+import nbc from "../images/nbc.webp";
 function KrispyModal({ isOpen, closeModal }) {
     return (
         <Modal
@@ -27,8 +38,26 @@ function KrispyModal({ isOpen, closeModal }) {
                    Krispy also includes live streams from "Venice, Italy", "London, UK", "New York", "Amsterdam, Netherlands", 
                    "Rio de Janero, Brazil", "Miami, Florida", and "Tokyo, Japan".
                 </div>
-                <img className="chaplin1" src={chaplin1} alt='charlie chaplin' />
+                <img className="chaplin-vagabond" src={chaplinVagabond} alt='charlie chaplin Vagabond' />
+                <img className="chaplin-auto-race" src={chaplinAutoRace} alt='charlie chaplin Auto Race' />
+                <img className="chaplin-behind-the-screen" src={chaplinBehindTheScreen} alt='charlie chaplin behind the screen' />
+                <img className="chaplin-in-the-park" src={chaplinInThePark} alt='charlie chaplin in the park' />
+                <img className="chaplin-one-am" src={chaplinOneAM} alt='charlie chaplin one am' />
+                <img className="chaplin-a-night-in-the-show" src={chaplinANightInTheShow} alt='charlie chaplin a night in the show' />
+                <img className="chaplin-charlot" src={chaplinCharlot} alt='charlie chaplin charlot' />
+                <img className="chaplin-the-cure" src={chaplinTheCure} alt='charlie chaplin the cure' />                                      
+                  
+
                 <img className="fox" src={fox} alt='fox news' />
+                <img className="natgeo" src={natGeoWild} alt='nat geo wild' />
+                <img className="nasa" src={nasaTV} alt='nasa tv' />
+                <img className="euronews" src={euronews} alt='euronews' />
+                <img className="france" src={france} alt='france' />
+                <img className="nbc" src={nbc} alt='nbc news' />
+
+                
+
+
                 </ModalBody>
             <ModalFooter className="krispy-modal-footer">
                 <Button color="danger" className="krispy-modal-close-btn" onClick={closeModal}>
