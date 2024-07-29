@@ -3,14 +3,19 @@
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: 1fr;
     align-items: center;
-    background-color: gold;
+    z-index: 3;
+    height: 10%;
+    background-color: rgb(0, 225, 255);
+    transform-origin: 10% 0%;
+    animation: heyYouModalHeaderStartup 5s ease-in-out forwards;
   }
   
   .hey-you-modal-header .modal-title {
     grid-column: 2;
     grid-row: 1 / 3;
     font-size: 69px;
-    color: pink;
+    color: rgb(255, 255, 255);
+    animation: heyYouModalTitleStartup 5s ease-in-out forwards;
   }
   
   .hey-you-modal-header-sub-text-container {
@@ -20,11 +25,13 @@
   }
   
   .hey-you-modal-header-sub-text {
-      background-color: red;
-      color: rgb(255, 255, 255);
+      background-color: rgb(255, 242, 0);
+      color: rgb(0, 0, 0);
       display: inline-block;
       border-radius: 22px;
-      padding: 1%;
+      border: solid 1px rgb(255, 0, 0);
+      padding: 2%;
+      box-shadow: rgb(0, 157, 255) 0px 0px 100px;
   }
   .hey-you-modal-header .btn-close {
     scale: 1.5;
@@ -36,17 +43,28 @@
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     grid-template-rows: repeat(10, 1fr);
-    background-color: rgb(25, 28, 0);
+    background-color: rgb(255, 255, 255);
     background-blend-mode: multiply;
+    transform-origin: 0% 0%;
+    animation: heyYouModalBodyStartup 5s ease-in-out forwards ;
   }
   
   .hey-you-modal-info {
-    grid-column: 4 / 10;
-    grid-row: 5 / 9;
-    border: solid 1px rgb(255, 255, 255);
+    grid-column: 5 / 8;
+    grid-row: 4 / 7;
+    border: solid 1px rgb(255, 0, 0);
+    border-radius: 10px;
+    padding: 22px;
+    text-align: center;
     color: rgb(0, 0, 0);
-    background-color: rgb(255, 255, 255);
-    box-shadow: gold 0px 0px 100px;
+    background-color: rgb(0, 195, 255);
+    box-shadow: rgb(0, 157, 255) 0px 0px 100px;
+  }
+
+  .js-logo-hey-you {
+    grid-column: 5 / 6;
+    grid-row: 2 / 5;
+    width: 100%;
   }
   
   .hey-you-modal-footer {
@@ -54,12 +72,14 @@
     height: 10%;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(3, 1fr);
-    background-color: gold;
+    background-color: rgb(0, 225, 255);
     border: solid 1px rgb(0, 0, 0);
+    transform-origin: -100% -100%;
+    animation: heyYouModalFooterStartup 5s ease-in-out forwards;
   }
   
   .hey-you-modal-close-btn,
-  .hey-you-site-btn,
+  .hey-you-request-apk-btn,
   .hey-you-modal-github-btn {
     width: 50%;
     scale: 1.5;
@@ -72,19 +92,20 @@
   .hey-you-modal-close-btn {
     grid-column: 2 / 3;
     grid-row: 2;
-    background-color: rgb(255, 255, 255);
-    color: rgb(255, 0, 0);
+    background-color: rgba(255, 0, 0, 0.735);
+    color: rgb(0, 0, 0);
   }
   
-  .hey-you-site-btn {
+  .hey-you-request-apk-btn {
     grid-column: 3 / 4;
     grid-row: 2;
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(0, 255, 21);
   }
   
   .hey-you-modal-github-btn {
     grid-column: 5;
     grid-row: 2;
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(0, 68, 255);
+    color: snow;
   }
   

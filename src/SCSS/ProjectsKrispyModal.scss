@@ -64,10 +64,15 @@
   grid-row: 5 / 11;
   padding: 2%;
   font-size: 22px;
-  border: solid 1px rgb(255, 255, 255);
-  background-color: rgb(1, 0, 35, 0.9);
-  color: rgb(255, 255, 255);
-  box-shadow: gold 0px 0px 100px;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  font-weight: 200;
+  font-style: normal;
+  border: solid 1px rgb(0, 0, 0);
+  border-radius: 22px;
+  background-color: rgba(0, 242, 255, 0.9);
+  color: rgb(0, 0, 0);
+  box-shadow: rgb(0, 251, 255) 0px 0px 100px;
   animation: krispyModalInfoStartup 5s ease-in-out;
 }
 
