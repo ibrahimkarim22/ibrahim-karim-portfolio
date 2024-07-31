@@ -6,7 +6,7 @@
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: 1fr;
   align-items: center;
-  background-color: gold;
+  background-color: rgb(255, 215, 0, 0.9);
   height: 10%;
   border: solid 1px rgb(0, 0, 0);
   z-index: 5;
@@ -34,9 +34,11 @@
 }
 
 .krispy-modal-header-sub-text {
-    background-color: rgb(238, 255, 0);
-    color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.7);
+    color: rgb(255, 255, 255);
     display: inline-block;
+    box-shadow: white 0px 0px 80px;
+    border-color: rgb(0, 242, 255);
     border-radius: 4px;
     padding: 2%;
     font-size: 20px;
@@ -223,7 +225,7 @@
   height: 10%;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(3, 1fr);
-  background-color: gold;
+  background-color: rgb(255, 215, 0, 0.9);
   border: solid 1px rgb(0, 0, 0);
   z-index: 5;
   box-shadow: gold 0px 0px 100px;

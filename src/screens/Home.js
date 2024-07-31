@@ -5,7 +5,6 @@ import BlenderEnvironment from "../components/3dEnvironment";
 import Logo from "../components/Logo";
 import Progress from "../components/Progress";
 
-
 import { Parallax, ParallaxProvider } from "react-scroll-parallax";
 // import { animated, useSpring } from "@react-spring/web";
 // import { Parallax, ParallaxLayer } from '@react-spring/parallax';
@@ -48,43 +47,41 @@ function Home() {
         <Progress progress={progress} />
       ) : (
         <>
-        {/* <div className="static">
+          {/* <div className="static">
           
         </div> */}
           <div className="menu-div-main">
             <div className="contact-div">
               <div className="linkedin">Linkedin</div>
-              <div className="github">Github</div> 
+              <div className="github">Github</div>
               <div className="gmail">Gmail</div>
-                       
             </div>
             <div className="bio-div-main">
-              <div>I am a developer with some 2D and 3D editing, design, and animation skills.
-                I love learning on the process of creating something that seems imossible at first. My strong suit I would say is debugging.
-                 </div>
-              
-          
+              <div>
+                I am a developer with some 2D and 3D editing, design, and
+                animation skills. I love learning on the process of creating
+                something that seems imossible at first. My strong suit I would
+                say is debugging.
+              </div>
             </div>
-    
+
             <div className="logo-div">
               <Logo setProgress={setProgress} />
             </div>
 
             <div className="full-stack-div">Full-Stack Developer</div>
-          <div className="menu-items">
-            <Link to="/projects" style={{ textDecoration: "none" }}>
-              <div className="projects-title-div">
-                Projects
+            <div className="menu-items">
+              <Link to="/projects" style={{ textDecoration: "none" }}>
+                <div className="projects-title-div">Projects</div>
+              </Link>
+              <div className="pdfResume-title-div" onClick={handleProjects}>
+                Resume
               </div>
-            </Link>
-            <div className="pdfResume-title-div" onClick={handleProjects}>
-              Resume
+              <Link to="/threeDeeResume" style={{ textDecoration: "none" }}>
+                <div className="threeResume-title-div">3DResume</div>
+              </Link>
+              ;
             </div>
-            <div className="threeResume-title-div" onClick={handleProjects}>
-              3DResume
-            </div>
-        
-          </div>
           </div>
           {/* <animated.div
     onClick={handleClick}

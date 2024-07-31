@@ -1,111 +1,187 @@
 .hey-you-modal-header {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: 1fr;
-    align-items: center;
-    z-index: 3;
-    height: 10%;
-    background-color: rgb(0, 225, 255);
-    transform-origin: 10% 0%;
-    animation: heyYouModalHeaderStartup 5s ease-in-out forwards;
-  }
-  
-  .hey-you-modal-header .modal-title {
-    grid-column: 2;
-    grid-row: 1 / 3;
-    font-size: 69px;
-    color: rgb(255, 255, 255);
-    animation: heyYouModalTitleStartup 5s ease-in-out forwards;
-  }
-  
-  .hey-you-modal-header-sub-text-container {
-    grid-column: 4 / 7;
-    width: 100%;
-    position: sticky;
-  }
-  
-  .hey-you-modal-header-sub-text {
-      background-color: rgb(255, 242, 0);
-      color: rgb(0, 0, 0);
-      display: inline-block;
-      border-radius: 22px;
-      border: solid 1px rgb(255, 0, 0);
-      padding: 2%;
-      box-shadow: rgb(0, 157, 255) 0px 0px 100px;
-  }
-  .hey-you-modal-header .btn-close {
-    scale: 1.5;
-    background-color: rgb(255, 255, 255);
-    grid-column: 3;
-  }
-  
-  .hey-you-modal-body {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: repeat(10, 1fr);
-    background-color: rgb(255, 255, 255);
-    background-blend-mode: multiply;
-    transform-origin: 0% 0%;
-    animation: heyYouModalBodyStartup 5s ease-in-out forwards ;
-  }
-  
-  .hey-you-modal-info {
-    grid-column: 5 / 8;
-    grid-row: 4 / 7;
-    border: solid 1px rgb(255, 0, 0);
-    border-radius: 10px;
-    padding: 22px;
-    text-align: center;
-    color: rgb(0, 0, 0);
-    background-color: rgb(0, 195, 255);
-    box-shadow: rgb(0, 157, 255) 0px 0px 100px;
-  }
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 1fr;
+  align-items: center;
+  z-index: 3;
+  height: 10%;
+  background-color: rgb(0, 225, 255);
+  transform-origin: 10% 0%;
+  box-shadow: rgb(0, 157, 255) 0px 0px 700px;
 
-  .js-logo-hey-you {
-    grid-column: 5 / 6;
-    grid-row: 2 / 5;
-    width: 100%;
-  }
+  animation: heyYouModalHeaderStartup 5s ease-in-out forwards;
+}
+
+.hey-you-modal-header .modal-title {
+  grid-column: 2;
+  grid-row: 1 / 3;
+  font-size: 69px;
+  color: rgb(255, 255, 255);
+  animation: heyYouModalTitleStartup 5s ease-in-out forwards;
+}
+
+
+.hey-you-modal-header .btn-close {
+  scale: 1.5;
+  background-color: rgb(255, 255, 255);
+  grid-column: 3;
+}
+
+.hey-you-modal-body-main {
+  background-color: rgb(133, 133, 133);
+}
+
+.hey-you-modal-body {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  width: 100%;
+  overflow-x: scroll;
+  // max-width: 100%;
+  max-height: 100%;
+  margin: 0 auto;
+  scroll-behavior: smooth;
+  background-color: rgb(255, 255, 255);
+  background-blend-mode: multiply;
+  transform-origin: 0% 0%;
+  border-radius: 22px;
+  // animation: heyYouModalBodyStartup 5s ease-in-out forwards ;
+}
+
+
+.hey-you-main-title-container {
+  flex: 0 0 auto;
+  order: 1;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  z-index: 2;
+}
+
+.hey-you-modal-main-title {
+  grid-column: 1 / 6;
+  display: flex;
   
-  .hey-you-modal-footer {
-    display: grid;
-    height: 10%;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-    background-color: rgb(0, 225, 255);
-    border: solid 1px rgb(0, 0, 0);
-    transform-origin: -100% -100%;
-    animation: heyYouModalFooterStartup 5s ease-in-out forwards;
-  }
+  align-items: center;
+  justify-content: center;
+  color: rgb(0, 255, 255);
+  text-shadow: rgb(0, 225, 255) 0px 100px 1000px; 
+
+  border-radius: 220px;
+  font-size: 188px;
+  font-family: "Raleway", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+  animation: heyYouModalMainTitleStartup 4s ease-in-out forwards infinite;
+}
+
+.hey-you-modal-header-sub-text-container {
+grid-column: 1 / 6;
+grid-row: 1 / 2;
+display: flex;
+align-items: center;
+justify-content: center;
+  width: 100%;
+}
+
+.hey-you-modal-header-sub-text {
+  color: rgb(0, 0, 0);
+  border-radius: 22px;
+  font-size: 22px;
+  background-color: rgba(255, 255, 255, 0.304);
+  border: solid 1px rgb(255, 255, 255);
+  padding: 2%;
+  text-align: center;
+  box-shadow: rgb(255, 255, 255) 0px 0px 2px;
+  // animation: heyYouModalHeaderSubTextStartup 5s ease-in-out forwards;
+}
+
+.hey-you-modal-info-container {
+  flex: 0 0 auto;
+  display: grid;
+  grid-template-columns: repeat(5, 400px);
+  grid-template-rows: repeat(3, 1fr);
+  background-color: rgb(221, 255, 0);
+  order: 2;
+  z-index: 3;
+}
+
+.hey-you-modal-info {
+  display: flex;
+  grid-column: 1 / 2;
+  grid-row: 1 / 4;
+  align-items: center;
+  justify-content: center;
+  // padding: 20%;
+  font-size: 22px;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  font-weight: 200;
+  font-style: normal;
+  border-radius: 22px;
+  background-color: rgba(255, 255, 255, 0.304);
+  color: rgb(0, 0, 0);
+  box-shadow: rgb(255, 255, 255) 0px 0px 100px;
+}
+
+.js-logo-hey-you-container {
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  z-index: 1;
+}
+
+.js-logo-hey-you {
+  width: 100%;
+  height: 100%;
   
-  .hey-you-modal-close-btn,
-  .hey-you-request-apk-btn,
-  .hey-you-modal-github-btn {
-    width: 50%;
-    scale: 1.5;
-    border: solid 1px rgb(0, 0, 0);
-    color: rgb(0, 0, 0);
-    letter-spacing: 2px;
-    background-color: rgb(255, 255, 255);
-  }
-  
-  .hey-you-modal-close-btn {
-    grid-column: 2 / 3;
-    grid-row: 2;
-    background-color: rgba(255, 0, 0, 0.735);
-    color: rgb(0, 0, 0);
-  }
-  
-  .hey-you-request-apk-btn {
-    grid-column: 3 / 4;
-    grid-row: 2;
-    background-color: rgb(0, 255, 21);
-  }
-  
-  .hey-you-modal-github-btn {
-    grid-column: 5;
-    grid-row: 2;
-    background-color: rgb(0, 68, 255);
-    color: snow;
-  }
-  
+}
+
+.hey-you-modal-footer {
+  display: grid;
+  height: 10%;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  background-color: rgb(0, 225, 255);
+  border: solid 1px rgb(0, 0, 0);
+  transform-origin: -100% -100%;
+  box-shadow: rgb(0, 106, 255) 0px 0px 20px;
+  animation: heyYouModalFooterStartup 5s ease-in-out forwards;
+}
+
+.hey-you-modal-close-btn,
+.hey-you-request-apk-btn,
+.hey-you-modal-github-btn {
+  width: 50%;
+  scale: 1.5;
+  border: solid 1px rgb(0, 0, 0);
+  color: rgb(0, 0, 0);
+  letter-spacing: 2px;
+  background-color: rgb(255, 255, 255);
+}
+
+.hey-you-modal-close-btn {
+  grid-column: 2 / 3;
+  grid-row: 2;
+  background-color: rgba(255, 0, 0, 0.735);
+  color: rgb(0, 0, 0);
+}
+
+.hey-you-request-apk-btn {
+  grid-column: 3 / 4;
+  grid-row: 2;
+  background-color: rgb(0, 255, 21);
+}
+
+.hey-you-modal-github-btn {
+  grid-column: 5;
+  grid-row: 2;
+  background-color: rgb(0, 68, 255);
+  color: snow;
+}
