@@ -1,3 +1,9 @@
+// .hey-you-modal-main-div {
+//   overflow: hidden; 
+//   width: 100vw;
+//   height: 100vh;
+// }
+
 .hey-you-modal-header {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -8,7 +14,6 @@
   background-color: rgb(0, 225, 255);
   transform-origin: 10% 0%;
   box-shadow: rgb(0, 157, 255) 0px 0px 700px;
-
   animation: heyYouModalHeaderStartup 5s ease-in-out forwards;
 }
 
@@ -20,55 +25,67 @@
   animation: heyYouModalTitleStartup 5s ease-in-out forwards;
 }
 
-
 .hey-you-modal-header .btn-close {
   scale: 1.5;
   background-color: rgb(255, 255, 255);
   grid-column: 3;
 }
 
+// .hey-you-modal-body {
+//   display: flex;
+//   flex-direction: row;
+//   height: 100%;
+//   width: 100%;
+//   overflow-x: scroll;
+//   // max-width: 100%;
+//   max-height: 100%;
+//   margin: 0 auto;
+//   scroll-behavior: smooth;
+//   background-color: rgb(255, 255, 255);
+//   background-blend-mode: multiply;
+//   transform-origin: 0% 0%;
+//   border-radius: 22px;
+//   // animation: heyYouModalBodyStartup 5s ease-in-out forwards ;
+// }
+
 .hey-you-modal-body-main {
-  background-color: rgb(133, 133, 133);
+  // display: flex;
+  // flex-direction: row;
+  // align-items: center;
+  // justify-content: center;
+
+  background-color: rgb(255, 255, 255);
+  // overflow: hidden; 
 }
 
-.hey-you-modal-body {
+.hey-you-horizontal-scroll {
   display: flex;
-  flex-direction: row;
-  height: 100%;
   width: 100%;
-  overflow-x: scroll;
-  // max-width: 100%;
-  max-height: 100%;
-  margin: 0 auto;
+  height: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
   scroll-behavior: smooth;
-  background-color: rgb(255, 255, 255);
-  background-blend-mode: multiply;
-  transform-origin: 0% 0%;
-  border-radius: 22px;
-  // animation: heyYouModalBodyStartup 5s ease-in-out forwards ;
 }
 
 
 .hey-you-main-title-container {
   flex: 0 0 auto;
-  order: 1;
-  width: 100%;
-  height: 100%;
-  display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(3, 1fr);
-  z-index: 2;
+  order: 1;
+  width: 100vw;
+  // height: 100vh;
+  display: grid;
 }
 
 .hey-you-modal-main-title {
   grid-column: 1 / 6;
+  grid-row: 1 / 6;
   display: flex;
-  
   align-items: center;
   justify-content: center;
   color: rgb(0, 255, 255);
-  text-shadow: rgb(0, 225, 255) 0px 100px 1000px; 
-
+  text-shadow: rgb(69, 73, 73) 0px 100px 1000px; 
   border-radius: 220px;
   font-size: 188px;
   font-family: "Raleway", sans-serif;
@@ -84,7 +101,6 @@ grid-row: 1 / 2;
 display: flex;
 align-items: center;
 justify-content: center;
-  width: 100%;
 }
 
 .hey-you-modal-header-sub-text {
@@ -96,51 +112,57 @@ justify-content: center;
   padding: 2%;
   text-align: center;
   box-shadow: rgb(255, 255, 255) 0px 0px 2px;
-  // animation: heyYouModalHeaderSubTextStartup 5s ease-in-out forwards;
 }
 
 .hey-you-modal-info-container {
-  flex: 0 0 auto;
   display: grid;
   grid-template-columns: repeat(5, 400px);
   grid-template-rows: repeat(3, 1fr);
-  background-color: rgb(221, 255, 0);
+  flex: 0 0 auto;
   order: 2;
   z-index: 3;
 }
 
 .hey-you-modal-info {
   display: flex;
-  grid-column: 1 / 2;
-  grid-row: 1 / 4;
+  grid-column: 2 / 4;
+  grid-row: 2 / 3;
   align-items: center;
   justify-content: center;
-  // padding: 20%;
   font-size: 22px;
   text-align: center;
   font-family: "Poppins", sans-serif;
   font-weight: 200;
   font-style: normal;
-  border-radius: 22px;
-  background-color: rgba(255, 255, 255, 0.304);
   color: rgb(0, 0, 0);
-  box-shadow: rgb(255, 255, 255) 0px 0px 100px;
 }
 
 .js-logo-hey-you-container {
-  grid-column: 2 / 3;
-  grid-row: 2 / 3;
+  grid-column: 5;
+  grid-row: 2;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  z-index: 1;
+
+  // width: 100%;
+  z-index: 3;
+  animation: jsHeyYouModalLogoCyclical 5s ease-in-out forwards infinite;
 }
 
-.js-logo-hey-you {
-  width: 100%;
-  height: 100%;
-  
+.js-logo-hey-you, .docker-logo-hey-you {
+  width: 50%;
+  // height: 100%;
+}
+
+.docker-logo-hey-you-container {
+  grid-column: 5;
+  grid-row: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // width: 100%;
+  z-index: 3;
+  animation: jsHeyYouModalLogoCyclical 5s ease-in-out forwards infinite;
 }
 
 .hey-you-modal-footer {

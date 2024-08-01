@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 
-const HorizontalScroll = ({ children }) => {
+const HorizontalScroll = ({ children, className }) => {
   const scrollContainerRef = useRef(null);
 
   useEffect(() => {
@@ -9,7 +9,7 @@ const HorizontalScroll = ({ children }) => {
     const onWheel = (event) => {
       if (event.deltaY !== 0) {
         event.preventDefault();
-        scrollContainer.scrollLeft += event.deltaY;
+        scrollContainer.scrollLeft += event.deltaY * 7;
       }
     };
 
@@ -21,10 +21,7 @@ const HorizontalScroll = ({ children }) => {
   }, []);
 
   return (
-    <div
-      ref={scrollContainerRef}
-          className="hey-you-modal-body"
-    >
+    <div ref={scrollContainerRef} className={className}>
       {children}
     </div>
   );
