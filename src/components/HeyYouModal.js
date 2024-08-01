@@ -23,32 +23,76 @@ function HeyYouModal({ isOpen, closeModal }) {
       <ModalBody className="hey-you-modal-body-main">
         <HorizontalScroll className="hey-you-horizontal-scroll">
           <div className="hey-you-main-title-container">
-            <div className="hey-you-modal-header-sub-text-container">
-              <div className="hey-you-modal-header-sub-text">
-                Location Tracker/Chat Service: JavaScript, React Native, Atlas,
-                MongoDB, Docker, Socket.io, Google Maps API, Google Cloud,
-                Google Run, Node.js, Express.js, SCSS, SASS.
+            <div className="hey-you-modal-main-title">HeyYou</div>
+          </div>
+          <div className="hey-you-modal-tools-container">
+            <div className="hey-you-modal-bg-container"></div>
+            <div className="hey-you-modal-backend-container">
+              <div className="hey-you-modal-backend-text">
+                <div>Backend</div>
+                <div>Node.js, Express.js, MongoDB Atlas</div>
               </div>
             </div>
-            <div className="hey-you-modal-main-title">HeyYou</div>
-            <div className="js-logo-hey-you-container">
+            <div className="hey-you-modal-real-time-container">
+              <div className="hey-you-modal-real-time-text">
+                <div>Real-time Updates</div>
+                <div>Socket.io</div>
+              </div>
+            </div>
+            <div className="hey-you-modal-containerization-container">
+              <div className="hey-you-modal-containerization-text">
+                <div>Containerization</div>
+                <div>Docker, Google Cloud Run</div>
+              </div>
+            </div>
+            <div className="hey-you-modal-frontend-container">
+              <div className="hey-you-modal-frontend-text">
+                <div>Frontend</div>
+                <div>React Native, Expo</div>
+              </div>
+            </div>
+            <div className="hey-you-modal-location-services-container">
+              <div className="hey-you-modal-location-services-text">
+                <div>Location Services</div>
+                <div>Google Maps API, expo-location </div>
+              </div>
+            </div>
+            <div className="hey-you-modal-access-key-container">
+              <div className="hey-you-modal-access-key-text">
+                <div>Access Key System</div>
+                <div>uui4vd()</div>
+              </div>
+            </div>
+            <div className="hey-you-modal-ibrahim-container">
+              <div className="hey-you-modal-ibrahim-text">
+                <div>Ibrahim</div>
+                <div>
+                  <i class="fa-solid fa-heart" style={{ color: "red", margin: "2px" }}></i>
+                  <i class="fa-solid fa-heart" style={{ color: "red", margin: "2px" }}></i>
+                  <i class="fa-solid fa-grin-squint" style={{ color: "gold", margin: "2px" }}></i>
+                  <i class="fa-solid fa-smile" style={{ color: "gold", margin: "2px" }}></i>
+                </div>
+            </div>
+                <div className="hey-you-modal-text-box-container">
+                  <div className="hey-you-modal-text-box">
+                    <div className="hey-you-modal-text-box-text">
+                      It looks like you're 5 minutes away!
+                    </div>
+                  </div>
+                </div>
+            {/* <div className="hey-you-modal-tools"> */}
+              {/* <div className="js-logo-hey-you-container">
               <img className="js-logo-hey-you" src={js} alt="js logo" />
             </div>
             <div className="docker-logo-hey-you-container">
-              <img className="docker-logo-hey-you" src={docker} alt="docker logo" />
+              <img
+                className="docker-logo-hey-you"
+                src={docker}
+                alt="docker logo"
+              />
+            </div> */}
+            {/* </div> */}
             </div>
-          </div>
-          <div className="hey-you-modal-info-container">
-            <div className="hey-you-modal-info">
-              Developed a React Native app for real-time location tracking and
-              messaging, enhancing seamless communication. Utilized Atlas,
-              Docker, Google Cloud, Node.js, Express.js, and Socket.io,
-              achieving 99.9% data transmission reliability and scalability.
-              Developed secure group access keys, boosting data privacy by
-              roughly 30% through advanced encryption techniques.
-            </div>
-
-
           </div>
         </HorizontalScroll>
       </ModalBody>

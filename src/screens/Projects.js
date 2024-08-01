@@ -5,7 +5,6 @@ import KrispyModal from "../components/KrispyModal";
 import HeyYouModal from "../components/HeyYouModal";
 import BardModal from "../components/BardModal";
 import ThisPortfolioModal from "../components/ThisPortfolioModal";
-import { Parallax } from "@react-spring/parallax";
 
 
 const Projects = () => {
@@ -54,9 +53,7 @@ const Projects = () => {
         <div className="krispy-description-text">Streaming Service</div>
       </div>
       <div className="hey-you-div-main" onClick={() => openModal("HeyYouModal")}>
-   
         <HeyYouModal isOpen={modalOpen.HeyYouModal} closeModal={() => closeModal("HeyYouModal")} />
-
         <div className="hey-you-text">HeyYou</div>
         <div className="hey-you-software-text">JavaScript Socket.io Atlas MongoDB Docker GoogleCloud Node.js Express.js</div>
         <div className="hey-you-description-text">Location Tracking App</div>

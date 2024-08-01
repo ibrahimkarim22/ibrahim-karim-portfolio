@@ -1,5 +1,5 @@
 // .hey-you-modal-main-div {
-//   overflow: hidden; 
+//   overflow: hidden;
 //   width: 100vw;
 //   height: 100vh;
 // }
@@ -55,7 +55,7 @@
   // justify-content: center;
 
   background-color: rgb(255, 255, 255);
-  // overflow: hidden; 
+  // overflow: hidden;
 }
 
 .hey-you-horizontal-scroll {
@@ -66,7 +66,6 @@
   overflow-y: hidden;
   scroll-behavior: smooth;
 }
-
 
 .hey-you-main-title-container {
   flex: 0 0 auto;
@@ -85,7 +84,7 @@
   align-items: center;
   justify-content: center;
   color: rgb(0, 255, 255);
-  text-shadow: rgb(69, 73, 73) 0px 100px 1000px; 
+  text-shadow: rgb(69, 73, 73) 0px 100px 1000px;
   border-radius: 220px;
   font-size: 188px;
   font-family: "Raleway", sans-serif;
@@ -95,35 +94,89 @@
   animation: heyYouModalMainTitleStartup 4s ease-in-out forwards infinite;
 }
 
-.hey-you-modal-header-sub-text-container {
-grid-column: 1 / 6;
-grid-row: 1 / 2;
-display: flex;
-align-items: center;
-justify-content: center;
+.hey-you-modal-tools-container {
+  display: grid;
+  grid-template-columns: repeat(10, 200px);
+  grid-template-rows: repeat(10, 1fr);
+  background-color: rgb(165, 165, 165);
+  flex: 0 0 auto;
+  order: 2;
+  z-index: 3;
 }
 
-.hey-you-modal-header-sub-text {
+.hey-you-modal-bg-container {
+  background-color: rgb(255, 255, 255);
+  grid-column: 3 / 9;
+  grid-row: 1 / 11;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 200px;
+  
+}
+.hey-you-modal-backend-container {
+  grid-column: 4 / 6;
+  grid-row: 2 / 3;
+  // display: flex;
+  // align-items: center;
+  // justify-content: center;
+}
+
+.hey-you-modal-real-time-container {
+  grid-column: 6 / 8;
+  grid-row: 3 / 4;
+}
+
+.hey-you-modal-containerization-container {
+  grid-column: 4 / 6;
+  grid-row: 4 / 5;
+}
+
+.hey-you-modal-frontend-container {
+  grid-column: 6 / 8;
+  grid-row: 5 / 6;
+}
+
+.hey-you-modal-location-services-container {
+  grid-column: 4 / 6;
+  grid-row: 6 / 7;
+}
+
+.hey-you-modal-access-key-container {
+  grid-column: 6 / 8;
+  grid-row: 7 / 8;
+}
+
+.hey-you-modal-ibrahim-container {
+  grid-column: 4 / 6;
+  grid-row: 8 / 9;
+}
+
+.hey-you-modal-backend-text,
+.hey-you-modal-real-time-text,
+.hey-you-modal-containerization-text,
+.hey-you-modal-frontend-text,
+.hey-you-modal-location-services-text,
+.hey-you-modal-access-key-text,
+.hey-you-modal-ibrahim-text {
   color: rgb(0, 0, 0);
   border-radius: 22px;
   font-size: 22px;
-  background-color: rgba(255, 255, 255, 0.304);
+  background-color: rgba(230, 255, 1, 0.304);
   border: solid 1px rgb(255, 255, 255);
   padding: 2%;
   text-align: center;
   box-shadow: rgb(255, 255, 255) 0px 0px 2px;
 }
 
-.hey-you-modal-info-container {
-  display: grid;
-  grid-template-columns: repeat(5, 400px);
-  grid-template-rows: repeat(3, 1fr);
-  flex: 0 0 auto;
-  order: 2;
-  z-index: 3;
+.hey-you-modal-real-time-text,
+.hey-you-modal-frontend-text,
+.hey-you-modal-access-key-text {
+  background-color: rgba(0, 157, 255, 0.304);
 }
 
-.hey-you-modal-info {
+.hey-you-modal-tools {
   display: flex;
   grid-column: 2 / 4;
   grid-row: 2 / 3;
@@ -146,10 +199,11 @@ justify-content: center;
 
   // width: 100%;
   z-index: 3;
-  animation: jsHeyYouModalLogoCyclical 5s ease-in-out forwards infinite;
+  // animation: jsHeyYouModalLogoCyclical 5s ease-in-out forwards infinite;
 }
 
-.js-logo-hey-you, .docker-logo-hey-you {
+.js-logo-hey-you,
+.docker-logo-hey-you {
   width: 50%;
   // height: 100%;
 }
@@ -162,7 +216,7 @@ justify-content: center;
   justify-content: center;
   // width: 100%;
   z-index: 3;
-  animation: jsHeyYouModalLogoCyclical 5s ease-in-out forwards infinite;
+  // animation: jsHeyYouModalLogoCyclical 5s ease-in-out forwards infinite;
 }
 
 .hey-you-modal-footer {
