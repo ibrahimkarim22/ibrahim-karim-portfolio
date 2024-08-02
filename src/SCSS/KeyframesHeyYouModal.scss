@@ -25,7 +25,7 @@
     opacity: 0;
   }
 
-  50% {                                                                                                                                                                                                 
+  50% {
     opacity: 1;
   }
 
@@ -38,63 +38,98 @@
   }
 }
 
-@keyframes nodeLogoInfiniteHeyYouModal {
-  0% {
-    transform: translate(30px, 0px);
-  }
-
-  25% {
-    transform: translate(10px, 25px);
-  }
-
-  50% {
-    transform: translate(30px, 0px);
-  }
-
-  75% {
-    transform: translate(0px, 0px);
-  }
-
-  100% {
-    transform: translate(30px, 0px);
-  }
-}
-
 @keyframes expressLogoInfiniteHeyYouModal {
   0% {
-    transform: translate(30px, 0px);
+    transform: scale(1) skew(0deg);
   }
-
   25% {
-    transform: translate(20px, 25px);
+    opacity: 0;
   }
-
+  28% {
+    opacity: 1;
+  }
+  30% {
+    opacity: 0;
+  }
+  33% {
+    opacity: 1;
+  }
   50% {
-    transform: translate(30px, 0px);
+    transform: skew(-5deg);
   }
-
-  75% {
-    transform: translate(0px, 0px);
+  55% {
+    transform: scale(1) skew(-20deg);
   }
-
   100% {
-    transform: translate(30px, 0px);
+    transform: scale(1) skew(0deg);
   }
 }
 
-@keyframes mongoLogoInfiniteHeyYouModal {
+@keyframes expressBgOpacityInfiniteHeyYouModal {
   0% {
-    transform: translate(0px, 0px);
+    opacity: 1;
+  }
+  25% {
+    opacity: 0;
+  }
+  28% {
+    opacity: 1;
+  }
+  30% {
+    opacity: 0;
+  }
+  33% {
+    opacity: 1;
   }
 
   50% {
-    transform: translate(0px, 100px);
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+
+@keyframes expressBgOpacityTwoInfiniteHeyYouModal {
+  0% {
+    opacity: 1;
+    transform: translate(0px, 0px);
+  }
+  25% {
+    opacity: 0;
+  }
+  28% {
+    opacity: 1;
+  }
+  30% {
+    transform: translate(30px, 20px);
+    opacity: 0;
+  }
+  33% {
+    opacity: 1;
+  }
+
+  50% {
+    transform: translate(-20px, -20px);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(0px, 0px);
+    opacity: 1;
+  }
+}
+@keyframes mongoLogoInfiniteHeyYouModal {
+  0% {
+    transform: translate(0px, 200px) rotate(0deg);
+  }
+  70% {
+    transform: translate(0px, -132px) rotate(0deg);
   }
 
   100% {
-    transform: translate(0px, 0px);
+    transform: translate(0px, 200px) rotate(360deg);
   }
-
 }
 
 @keyframes nodeBgLightInfiniteHeyYouModal {

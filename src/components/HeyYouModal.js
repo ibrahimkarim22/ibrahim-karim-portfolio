@@ -35,22 +35,32 @@ function HeyYouModal({ isOpen, closeModal }) {
               <div className="hey-you-modal-backend-text">Backend</div>
               <div className="node-bg-light-hey-you-modal"></div>
               <div className="node-bg-light-hey-you-modal-two"></div>
+              <div className="node-bg-light-hey-you-modal-three"></div>
+              <div className="node-hey-you-modal-container"> 
+
               <img
                 src={node}
                 className="node-hey-you-modal"
                 alt="node.js logo"
               />
-              <img
-                src={express}
-                className="express-hey-you-modal"
-                alt="express logo"
-              />
-              <img
-                src={mongo}
-                className="mongo-hey-you-modal"
-                alt="mongodb logo"
-              />
-              <div className="hey-you-modal-backend-logo-names">Node.js, Express.js, MongoDB Atlas</div>
+              </div>
+              <div className="express-hey-you-modal-container">
+                <img
+                  src={express}
+                  className="express-hey-you-modal"
+                  alt="express logo"
+                />
+              </div>
+              <div className="mongo-hey-you-modal-container">
+                <img
+                  src={mongo}
+                  className="mongo-hey-you-modal"
+                  alt="mongodb logo"
+                />
+              </div>
+              <div className="hey-you-modal-backend-logo-names">
+                Node.js, Express.js, MongoDB Atlas
+              </div>
             </div>
             <div className="hey-you-modal-backend-paragraph">
               I developed a React Native app for real-time location tracking and
@@ -58,7 +68,6 @@ function HeyYouModal({ isOpen, closeModal }) {
               and I used MongoDB Atlas for storing user account information,
               messages, and location data. User location data is deleted from
               the database upon logout to ensure privacy.
-
             </div>
           </div>
         </HorizontalScroll>
