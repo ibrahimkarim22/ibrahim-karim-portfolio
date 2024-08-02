@@ -8,6 +8,9 @@ import { Parallax, ParallaxLayer } from "@react-spring/parallax";
 import HorizontalScroll from "./HorizontalScroll";
 import js from "../images/js.png";
 import docker from "../images/docker.png";
+import express from "../images/express.png";
+import mongo from "../images/mongo.png";
+import node from "../images/node.png";
 
 function HeyYouModal({ isOpen, closeModal }) {
   return (
@@ -18,80 +21,44 @@ function HeyYouModal({ isOpen, closeModal }) {
       className="hey-you-modal-main-div"
     >
       <ModalHeader toggle={closeModal} className="hey-you-modal-header">
-        <div className="hey-you-modal-header-text">HeyYou</div>
+        <div className="hey-you-modal-header-text">
+          Location Tracking & Messaging
+        </div>
       </ModalHeader>
       <ModalBody className="hey-you-modal-body-main">
         <HorizontalScroll className="hey-you-horizontal-scroll">
           <div className="hey-you-main-title-container">
             <div className="hey-you-modal-main-title">HeyYou</div>
           </div>
-          <div className="hey-you-modal-tools-container">
-            <div className="hey-you-modal-bg-container"></div>
-            <div className="hey-you-modal-backend-container">
-              <div className="hey-you-modal-backend-text">
-                <div>Backend</div>
-                <div>Node.js, Express.js, MongoDB Atlas</div>
-              </div>
-            </div>
-            <div className="hey-you-modal-real-time-container">
-              <div className="hey-you-modal-real-time-text">
-                <div>Real-time Updates</div>
-                <div>Socket.io</div>
-              </div>
-            </div>
-            <div className="hey-you-modal-containerization-container">
-              <div className="hey-you-modal-containerization-text">
-                <div>Containerization</div>
-                <div>Docker, Google Cloud Run</div>
-              </div>
-            </div>
-            <div className="hey-you-modal-frontend-container">
-              <div className="hey-you-modal-frontend-text">
-                <div>Frontend</div>
-                <div>React Native, Expo</div>
-              </div>
-            </div>
-            <div className="hey-you-modal-location-services-container">
-              <div className="hey-you-modal-location-services-text">
-                <div>Location Services</div>
-                <div>Google Maps API, expo-location </div>
-              </div>
-            </div>
-            <div className="hey-you-modal-access-key-container">
-              <div className="hey-you-modal-access-key-text">
-                <div>Access Key System</div>
-                <div>uui4vd()</div>
-              </div>
-            </div>
-            <div className="hey-you-modal-ibrahim-container">
-              <div className="hey-you-modal-ibrahim-text">
-                <div>Ibrahim</div>
-                <div>
-                  <i class="fa-solid fa-heart" style={{ color: "red", margin: "2px" }}></i>
-                  <i class="fa-solid fa-heart" style={{ color: "red", margin: "2px" }}></i>
-                  <i class="fa-solid fa-grin-squint" style={{ color: "gold", margin: "2px" }}></i>
-                  <i class="fa-solid fa-smile" style={{ color: "gold", margin: "2px" }}></i>
-                </div>
-            </div>
-                <div className="hey-you-modal-text-box-container">
-                  <div className="hey-you-modal-text-box">
-                    <div className="hey-you-modal-text-box-text">
-                      It looks like you're 5 minutes away!
-                    </div>
-                  </div>
-                </div>
-            {/* <div className="hey-you-modal-tools"> */}
-              {/* <div className="js-logo-hey-you-container">
-              <img className="js-logo-hey-you" src={js} alt="js logo" />
-            </div>
-            <div className="docker-logo-hey-you-container">
+          <div className="hey-you-modal-backend-container">
+            <div className="hey-you-modal-backend">
+              <div className="hey-you-modal-backend-text">Backend</div>
+              <div className="node-bg-light-hey-you-modal"></div>
+              <div className="node-bg-light-hey-you-modal-two"></div>
               <img
-                className="docker-logo-hey-you"
-                src={docker}
-                alt="docker logo"
+                src={node}
+                className="node-hey-you-modal"
+                alt="node.js logo"
               />
-            </div> */}
-            {/* </div> */}
+              <img
+                src={express}
+                className="express-hey-you-modal"
+                alt="express logo"
+              />
+              <img
+                src={mongo}
+                className="mongo-hey-you-modal"
+                alt="mongodb logo"
+              />
+              <div className="hey-you-modal-backend-logo-names">Node.js, Express.js, MongoDB Atlas</div>
+            </div>
+            <div className="hey-you-modal-backend-paragraph">
+              I developed a React Native app for real-time location tracking and
+              messaging. The server was created using Express.js and Node.js,
+              and I used MongoDB Atlas for storing user account information,
+              messages, and location data. User location data is deleted from
+              the database upon logout to ensure privacy.
+
             </div>
           </div>
         </HorizontalScroll>

@@ -9,7 +9,7 @@ const HorizontalScroll = ({ children, className }) => {
     const onWheel = (event) => {
       if (event.deltaY !== 0) {
         event.preventDefault();
-        scrollContainer.scrollLeft += event.deltaY * 7;
+        scrollContainer.scrollLeft += event.deltaY * 3;
       }
     };
 
