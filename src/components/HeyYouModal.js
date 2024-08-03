@@ -11,6 +11,7 @@ import docker from "../images/docker.png";
 import express from "../images/express.png";
 import mongo from "../images/mongo.png";
 import node from "../images/node.png";
+import socketio from "../images/socketio.png";
 
 function HeyYouModal({ isOpen, closeModal }) {
   return (
@@ -27,22 +28,22 @@ function HeyYouModal({ isOpen, closeModal }) {
       </ModalHeader>
       <ModalBody className="hey-you-modal-body-main">
         <HorizontalScroll className="hey-you-horizontal-scroll">
-          <div className="hey-you-main-title-container">
+          <div className="hey-you-main-title-page-container hey-you-page">
             <div className="hey-you-modal-main-title">HeyYou</div>
           </div>
-          <div className="hey-you-modal-backend-container">
+          <div className="hey-you-modal-backend-page-container hey-you-page">
             <div className="hey-you-modal-backend">
               <div className="hey-you-modal-backend-text">Backend</div>
-              <div className="node-bg-light-hey-you-modal"></div>
-              <div className="node-bg-light-hey-you-modal-two"></div>
-              <div className="node-bg-light-hey-you-modal-three"></div>
-              <div className="node-hey-you-modal-container"> 
-
-              <img
-                src={node}
-                className="node-hey-you-modal"
-                alt="node.js logo"
-              />
+              <div className="bg-light-hey-you-modal"></div>
+              <div className="bg-light-hey-you-modal-two"></div>
+              <div className="bg-light-hey-you-modal-three"></div>
+              
+              <div className="node-hey-you-modal-container">
+                <img
+                  src={node}
+                  className="node-hey-you-modal"
+                  alt="node.js logo"
+                />
               </div>
               <div className="express-hey-you-modal-container">
                 <img
@@ -62,6 +63,9 @@ function HeyYouModal({ isOpen, closeModal }) {
                 Node.js, Express.js, MongoDB Atlas
               </div>
             </div>
+            
+                <div className="hey-you-bg-logo-one">HeyYou</div>
+           
             <div className="hey-you-modal-backend-paragraph">
               I developed a React Native app for real-time location tracking and
               messaging. The server was created using Express.js and Node.js,
@@ -69,6 +73,17 @@ function HeyYouModal({ isOpen, closeModal }) {
               messages, and location data. User location data is deleted from
               the database upon logout to ensure privacy.
             </div>
+          </div>
+          <div className='hey-you-modal-realtime-page-container hey-you-page'>
+            <div className="socket-io-logo-container">
+              <img
+                src={socketio}
+                className="socket-io-logo"
+                alt="socket.io logo"
+              />
+               </div>
+               <div className="hey-you-modal-realtime-title">Real-Time Updates</div>
+
           </div>
         </HorizontalScroll>
       </ModalBody>
