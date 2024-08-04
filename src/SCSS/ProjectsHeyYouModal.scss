@@ -172,7 +172,23 @@
 .google-maps-api-logos-container,
 .saftey-features-title,
 .saftey-features-paragraph,
-.safety-features-paragraph-two {
+.safety-features-paragraph-two,
+.hey-you-modal-deployment-title,
+.hey-you-modal-deployment-paragraph-backend,
+.hey-you-modal-deployment-paragraph-frontend,
+.fa-user-secret,
+.fa-key,
+.docker-logo-container,
+.google-cloud-run-building,
+.expo-building,
+.react-native-building,
+.sand-left,
+.sand-right,
+.water-div,
+// .expo-logo-container,
+.google-cloud-run-logo-container,
+.react-native-logo-container
+{
   display: flex;
   align-items: center;
   justify-content: center;
@@ -497,7 +513,7 @@
 .safety-features-paragraph,
 .safety-features-paragraph-two {
   grid-column: 2 / 12;
-  grid-row: 2 / 12;
+  grid-row: 1 / 4;
   font-size: 75px;
   font-family: "Raleway", sans-serif;
   font-optical-sizing: auto;
@@ -509,17 +525,37 @@
 
 .safety-features-paragraph,
 .safety-features-paragraph-two {
-  grid-column: 2 / 12;
-  grid-row: 9 / 12;
+  grid-column: 5 / 9;
+  grid-row: 8 / 12;
   font-size: 30px;
   font-weight: 300;
   color: rgb(255, 255, 255);
+  text-align: center;
 }
 
 .safety-features-paragraph-two {
   grid-column: 2 / 12;
   grid-row: 3 / 6;
   font-size: 30px;
+}
+
+.fa-user-secret {
+  grid-column: 2 / 12;
+  grid-row: 5 / 8;
+  z-index: 3;
+  color: rgb(0, 0, 0);
+  font-size: 100px;
+  text-shadow: rgb(32, 32, 32) 0 0 7px;
+}
+
+.fa-key {
+  grid-column: 4 / 7;
+  grid-row: 6 / 8;
+  transform: rotate(100deg);
+  z-index: 2;
+  color: rgba(255, 255, 255, 0.637);
+  font-size: 122px;
+  animation: keyHeyYouModal 22s linear 4s infinite;
 }
 /*==========================
         APP DEPLOYMENT PAGE
@@ -530,10 +566,121 @@
   order: 7;
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: repeat(12, 1fr);
-  background-color: rgb(43, 255, 0);
-  z-index: 1;
+  background-color: rgb(0, 0, 0);
+  z-index: 2;
 }
 
+.hey-you-modal-deployment-title, .hey-you-modal-deployment-paragraph-backend, .hey-you-modal-deployment-paragraph-frontend {
+  grid-column: 2 / 12;
+  grid-row: 1 / 3;
+  font-size: 75px;
+  font-family: "Raleway", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 200;
+  font-style: normal;
+  color: snow;
+  z-index: 3
+}
+
+.hey-you-modal-deployment-paragraph-backend {
+  grid-column: 3 / 11;
+  grid-row: 9 / 12;
+  font-size: 33px;
+  font-weight: 500;
+  color:snow;                                            
+}
+
+.hey-you-modal-deployment-paragraph-frontend {
+  grid-column: 4 / 10;
+  grid-row: 3 / 5;
+  font-size: 33px;
+  font-weight: 500;
+}
+
+.water-div {
+  grid-column: 1 / 13;
+  grid-row: 7 / 9;
+  background-color:rgb(0, 106, 255);
+  z-index: 3;
+
+}
+.docker-logo-container {
+  grid-column: 7 / 10;
+  grid-row: 6 / 8;
+  z-index: 3;
+  animation: dockerLogo 5s ease infinite;
+}
+
+.sand-right {
+  grid-column: 10 / 13;
+  grid-row: 7 / 9;
+  z-index: 4;
+  background-color: rgb(84, 84, 84);
+}
+
+.sand-left {
+  grid-column: 1 / 4;
+  grid-row: 7 / 9;
+  z-index: 4;
+  background-color: rgb(84, 84, 84);
+}
+
+.google-cloud-run-building {
+  grid-column: 2 / 3;
+  grid-row: 3 / 8;
+  z-index: 4;
+  box-shadow: rgb(255, 255, 255) 0px 0px 20px;
+  background-color: rgb(255, 255, 255);
+}
+
+.google-cloud-run-logo-container {
+  grid-column: 1 / 4;
+  grid-row: 3 / 5;
+  z-index: 4;
+}
+
+.google-cloud-run-logo {
+  scale: .1;
+}
+
+.expo-building {
+  grid-column: 1 / 2;
+  grid-row: 2 / 8;
+  height: 110%;
+ box-shadow: rgb(255, 0, 0) 0px 0px 20px;
+  z-index: 4;
+  background-color: rgb(255, 0, 0);
+}
+
+.expo-logo-container {
+  grid-column: 1 / 3;
+  grid-row: 2 / 4;
+  z-index: 4;
+}
+
+.expo-logo {
+  scale: .4;
+}
+
+.react-native-building {
+  grid-column: 11 / 12;
+  grid-row: 4 / 8;
+  // width: 80%;
+
+  box-shadow: rgb(153, 0, 255) 0px 0px 20px;
+  z-index: 4;
+  background-color: rgb(166, 0, 255);
+}
+
+.react-native-logo-container {
+  grid-column: 11 / 12;
+  grid-row: 4 / 8;
+  z-index: 4;
+}
+
+.react-native-logo {
+  scale: .4;
+}
 /*==========================
             FOOTER
 ============================*/

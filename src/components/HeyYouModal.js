@@ -11,6 +11,10 @@ import socketMessage from "../images/socketMessage.png";
 import googleMaps from "../images/googleMaps.png";
 import js from "../images/js.png";
 import docker from "../images/docker.png";
+import native from "../images/native.png";
+import run from "../images/run.png";
+import expo from "../images/expo.png";
+
 
 function HeyYouModal({ isOpen, closeModal }) {
   return (
@@ -187,6 +191,7 @@ function HeyYouModal({ isOpen, closeModal }) {
           </div>
           <div className="saftey-features-page-container hey-you-page">
             <div className="saftey-features-title">Saftey Features</div>
+            <i class="fas fa-user-secret"></i>
             <div className="safety-features-paragraph">
               To facilitate tracking between multiple devices, I implemented an
               access key system using uuidv4(). This key can be shared between
@@ -198,15 +203,46 @@ function HeyYouModal({ isOpen, closeModal }) {
               database upon logout. Also, no tracking happens unless the user
               has the map displayed and manually inputs the group access key.
             </div>
+            <i class="fas fa-key"></i>
           </div>
           <div className="hey-you-modal-deployment-page-container hey-you-page">
             <div className="hey-you-modal-deployment-title">App Deployment</div>
-            <div className="hey-you-modal-deployment-paragraph">
+            <div className="hey-you-modal-deployment-paragraph-backend">
               For the backend, I containerized the application using Docker,
               creating an image with a Dockerfile. This image was then uploaded
-              to Google Cloud Run for hosting the server. For the frontend, I
-              built and deployed the Android APK using React Native and Expo,
-              generating an APK that is easily accessible on Android devices.
+              to Google Cloud Run for hosting the server.
+            </div>
+
+            <div className="water-div"></div>
+            <div className="sand-right"></div>
+            <div className="sand-left"></div>
+            <div className="docker-logo-container">
+              <img src={docker} className="docker-logo" alt="docker logo" />
+            </div>
+            <div className="google-cloud-run-building"></div>
+            <div className="google-cloud-run-logo-container">
+              <img
+                src={run}
+                className="google-cloud-run-logo"
+                alt="google cloud run logo"
+              />
+            </div>
+            <div className="expo-building"></div>
+            <div className="expo-logo-container">
+              <img src={expo} className="expo-logo" alt="expo logo" />
+            </div>
+            <div className="react-native-building"></div>
+            <div className="react-native-logo-container">
+              <img
+                src={native}
+                className="react-native-logo"
+                alt="react native logo"
+              />
+            </div>
+            <div className="hey-you-modal-deployment-paragraph-frontend">
+              For the frontend, I built and deployed the Android APK using React
+              Native and Expo, generating an APK that is easily accessible on
+              Android devices.
             </div>
           </div>
         </HorizontalScroll>

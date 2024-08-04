@@ -145,7 +145,6 @@
   33% {
     opacity: 1;
   }
-
   50% {
     opacity: 1;
   }
@@ -200,6 +199,44 @@
     transform: rotateY(360deg) translateZ(-200px);
   }
 }
+
+
+/*==========================
+            SAFETY FEATURES PAGE
+============================*/
+@keyframes keyHeyYouModal {
+  0% {
+   transform: translate(0px, 700px) rotate(0deg);
+  }
+  100% {
+    transform: translate(0px, -700px) rotate(360deg);
+  }
+}
+
+/*==========================
+  APP DEPLOYMENT  PAGE
+============================*/
+
+@keyframes dockerLogo {
+  0% {
+    transform: translate(0px, 0px) rotate(0deg);
+  }
+
+  // 25% { 
+  //   transform: translate(0px, 0px) rotate(20deg);
+  // }
+  // 50% {
+  //   transform: translate(-50px, 0px) rotate(-5deg);
+  // }
+
+  // 75% {
+  //   transform: translate(-200px, 0px) rotate(20deg);
+  // }
+  100% {
+    transform: translate(-500px, 0px) rotate(30deg);
+  }
+}
+
 /*==========================
             FOOTER
 ============================*/
