@@ -21,7 +21,9 @@
   animation: heyYouModalHeaderStartup 5s ease-in-out forwards;
 }
 
-.hey-you-modal-header .modal-title {
+.hey-you-modal-header .modal-title,
+.hey-you-bg-logo-one,
+.hey-you-modal-main-title {
   grid-column: 1 / 4;
   grid-row: 1 / 3;
   display: flex;
@@ -70,7 +72,14 @@
             grid
 ============================*/
 
-.hey-you-main-title-page-container {
+.hey-you-main-title-page-container,
+.hey-you-modal-backend-page-container,
+.hey-you-modal-react-native-page-container,
+.hey-you-modal-realtime-page-container,
+.google-maps-api-page-container,
+.saftey-features-page-container,
+.hey-you-modal-deployment-page-container
+ {
   flex: 0 0 auto;
   width: 100vw;
   order: 1;
@@ -90,25 +99,18 @@
   text-shadow: rgb(69, 73, 73) 0px 100px 1000px;
   border-radius: 220px;
   font-size: 188px;
-  font-family: "Raleway", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 300;
-  font-style: normal;
   animation: heyYouModalMainTitleStartup 4s ease-in-out forwards infinite;
 }
 
 /*==========================
         BACKEND PAGE
-        main grid 
+        grid main
 ============================*/
 
 .hey-you-modal-backend-page-container {
-  display: grid;
   grid-template-columns: repeat(10, 190px);
   grid-template-rows: repeat(10, 1fr);
   background-color: rgb(51, 0, 255);
-  flex: 0 0 auto;
-  width: 100vw;
   order: 2;
   z-index: 3;
 }
@@ -117,26 +119,13 @@
   grid-row: 1 / 3;
   z-index: 1;
   font-size: 55px;
-  font-family: "Raleway", sans-serif;
-  font-optical-sizing: auto;
   font-weight: 100;
-  font-style: normal;
   color: rgb(255, 255, 255);
   // transform: rotateX(20deg);
   // text-shadow: rgb(0, 0, 0) 0 0 5px;
 }
 
-.hey-you-modal-backend-paragraph {
-  grid-column: 7 / 11;
-  grid-row: 3 / 9;
-  font-size: 33px;
-  padding: 0% 5% 0% 5%;
-  color: snow;
-  font-family: "Raleway", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 100;
-  font-style: normal;
-}
+
 
 /*==========================
         BACKEND PAGE continued
@@ -155,6 +144,7 @@
   background-color: snow;
 }
 
+
 .hey-you-modal-backend-text,
 .hey-you-modal-backend-logo-names,
 .hey-you-modal-backend-paragraph,
@@ -165,18 +155,43 @@
 .express-hey-you-modal-container,
 .mongo-hey-you-modal-container,
 .socket-io-logo-container,
+.socket-io-logo-container-two,
+.socket-io-logo-container-three,
+.socket-io-logo-container-four,
+.socket-io-logo-container-five,
 .hey-you-modal-realtime-title,
 .hey-you-modal-realtime-paragraph,
 .socket-io-join-img-container,
 .socket-io-create-img-container,
 .socket-io-location-img-container,
-.socket-io-message-img-container {
+.socket-io-message-img-container,
+.google-maps-api-title,
+.google-maps-api-paragraph,
+.google-maps-api-logo-one-container,
+.google-maps-api-logo-two-container,
+.google-maps-api-logos-container,
+.saftey-features-title,
+.saftey-features-paragraph,
+.safety-features-paragraph-two {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.hey-you-modal-backend-text {
+.hey-you-modal-backend-paragraph {
+  grid-column: 7 / 11;
+  grid-row: 3 / 9;
+  font-size: 33px;
+  padding: 0% 5% 0% 5%;
+  color: snow;
+  font-weight: 200;
+  font-family: "Raleway", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+.hey-you-modal-backend-text,
+.hey-you-modal-backend-logo-names {
   grid-column: 1 / 6;
   grid-row: 1 / 2;
   font-size: 55px;
@@ -187,6 +202,7 @@
   font-style: normal;
   color: rgb(0, 0, 0);
 }
+
 
 .bg-light-hey-you-modal {
   grid-column: 2 / 3;
@@ -252,23 +268,33 @@
   grid-column: 1 / 6;
   grid-row: 5 / 6;
   font-size: 33px;
-  font-family: "Raleway", sans-serif;
-  font-optical-sizing: auto;
   font-weight: 300;
-  font-style: normal;
   z-index: 3;
+}
+/*==========================
+      React Native Page
+        grid main
+============================*/
+.hey-you-modal-react-native-page-container {
+  order: 3;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(12, 1fr);
+  background-color: rgb(153, 0, 255);
+  z-index: 1;
+}
+
+.hey-you-modal-react-native-page-container {
+  grid-column: 2 / 12;
+  grid-row: 2 / 4;
 }
 
 /*==========================
       REAL-TIME UPDATES PAGE
-       real-time grid
+       grid main
 ============================*/
 
 .hey-you-modal-realtime-page-container {
-  order: 3;
-  flex: 0 0 auto;
-  width: 100vw;
-  display: grid;
+  order: 4;
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: repeat(12, 1fr);
   background-color: rgb(242, 255, 0);
@@ -281,31 +307,73 @@
   z-index: 2;
   background-color: rgb(255, 255, 255);
 }
-.hey-you-modal-realtime-title {
+.hey-you-modal-realtime-title,
+.hey-you-modal-real-time-paragraph {
   grid-column: 7 / 12;
   grid-row: 7 / 9;
   font-size: 75px;
   font-family: "Raleway", sans-serif;
   font-optical-sizing: auto;
-  font-weight: 400;
+  font-weight: 200;
   font-style: normal;
   color: rgb(0, 0, 0);
   z-index: 3;
 }
 
 .socket-io-logo-container {
-  grid-column: 6 / 8;
-  grid-row: 7 / 9;
+  grid-column: 2 / 3;
+  grid-row: 4 / 6;
   z-index: 3;
 }
 
-.socket-io-logo {
+.socket-io-logo,
+.socket-io-logo-three,
+.socket-io-logo-four {
   scale: 0.3;
+  animation: socketioLogoHeyYouModal 10s linear infinite reverse;
+}
+
+.socket-io-logo-container-two {
+  grid-column: 1 / 3;
+  grid-row: 2 / 4;
+  z-index: 3;
+}
+
+.socket-io-logo-two {
+  scale: 0.7;
+  animation: socketioLogoHeyYouModal 10s linear infinite;
+}
+.socket-io-logo-container-three {
+  grid-column: 2 / 4;
+  grid-row: 2 / 4;
+  z-index: 3;
+}
+.socket-io-logo-three {
+  animation: socketioLogoHeyYouModal 10s linear infinite reverse;
+}
+.socket-io-logo-container-four {
+  grid-column: 1 / 3;
+  grid-row: 2 / 4;
+  z-index: 3;
+}
+
+.socket-io-logo-four {
+  animation: socketioLogoHeyYouModal 10s ease-in-out infinite;
+}
+
+.socket-io-logo-container-five {
+  grid-column: 1 / 3;
+  grid-row: 2 / 6;
+  z-index: 3;
+}
+
+.socket-io-logo-five {
+  scale: 0.1;
   animation: socketioLogoHeyYouModal 10s linear infinite;
 }
 
 .socket-io-create-img-container {
-  grid-column: 2 / 7;
+  grid-column: 1 / 12;
   grid-row: 1 / 3;
   z-index: 2;
 }
@@ -315,7 +383,7 @@
 }
 
 .socket-io-join-img-container {
-  grid-column: 2 / 8;
+  grid-column: 1 / 12;
   grid-row: 2 / 4;
   z-index: 2;
 }
@@ -336,7 +404,7 @@
 
 .socket-io-message-img-container {
   grid-column: 8 / 12;
-  grid-row: 2 / 6;
+  grid-row: 4 / 6;
   z-index: 2;
 }
 
@@ -348,12 +416,122 @@
   grid-column: 2 / 12;
   grid-row: 9 / 12;
   font-size: 30px;
+  font-weight: 300;
+}
+
+/*==========================
+      GOOGLE MAPS API PAGE
+       google maps grid
+============================*/
+.google-maps-api-page-container {
+  order: 5;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(12, 1fr);
+  background-color: rgb(255, 255, 255);
+  z-index: 1;
+}
+
+.google-maps-api-title,
+.google-maps-api-paragraph {
+  grid-column: 7 / 12;
+  grid-row: 7 / 9;
+  font-size: 75px;
   font-family: "Raleway", sans-serif;
   font-optical-sizing: auto;
-  font-weight: 300;
+  font-weight: 200;
   font-style: normal;
   color: rgb(0, 0, 0);
   z-index: 3;
+}
+
+.google-maps-api-paragraph {
+  grid-column: 2 / 12;
+  grid-row: 9 / 12;
+  font-size: 30px;
+  font-weight: 300;
+}
+
+.google-maps-api-logos-container {
+  grid-column: 2 / 12;
+  grid-row: 2 / 7;
+  gap: 122px;
+  z-index: 3;
+  transform: perspective(1000px);
+}
+
+.google-maps-api-logo-one-container {
+  transform-origin: 0% 0%;
+  animation: googleApiLogoOne 20s linear infinite reverse;
+  // grid-column: 4 / 6;
+  // grid-row: 2 / 5;
+  z-index: 2;
+}
+
+// .google-maps-api-logo-one {
+
+// }
+
+.google-maps-api-logo-two-container {
+  transform-origin: 0% 0%;
+  animation: googleApiLogoTwo 10s linear infinite;
+  z-index: 3;
+}
+
+// .google-0maps-api-logo-two {
+
+// }
+/*==========================
+    SAFETY FEATURES PAGE
+       grid main
+============================*/
+
+.saftey-features-page-container {
+  order: 6;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(12, 1fr);
+  background-color: rgb(255, 0, 0);
+  z-index: 1;
+}
+
+.saftey-features-title,
+.safety-features-paragraph,
+.safety-features-paragraph-two {
+  grid-column: 2 / 12;
+  grid-row: 2 / 12;
+  font-size: 75px;
+  font-family: "Raleway", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 200;
+  font-style: normal;
+  color: rgb(255, 255, 255);
+  z-index: 3;
+}
+
+.safety-features-paragraph,
+.safety-features-paragraph-two {
+  grid-column: 2 / 12;
+  grid-row: 9 / 12;
+  font-size: 30px;
+  font-weight: 300;
+  color: rgb(255, 255, 255);
+}
+
+.safety-features-paragraph-two {
+  grid-column: 2 / 12;
+  grid-row: 3 / 6;
+  font-size: 30px;
+}
+/*==========================
+        APP DEPLOYMENT PAGE
+       grid main
+============================*/
+
+.hey-you-modal-deployment-page-container {
+  order: 7;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(12, 1fr);
+  background-color: rgb(43, 255, 0);
+  z-index: 1;
 }
 
 /*==========================

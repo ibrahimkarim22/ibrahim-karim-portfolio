@@ -1,13 +1,5 @@
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
-import { Parallax, ParallaxLayer } from "@react-spring/parallax";
-// import {
-//   Parallax,
-//   ParallaxProvider,
-//   ParallaxBanner,
-// } from "react-scroll-parallax";
 import HorizontalScroll from "./HorizontalScroll";
-import js from "../images/js.png";
-import docker from "../images/docker.png";
 import express from "../images/express.png";
 import mongo from "../images/mongo.png";
 import node from "../images/node.png";
@@ -16,6 +8,9 @@ import socketJoin from "../images/socketJoin.png";
 import socketCreate from "../images/socketCreate.png";
 import socketLocation from "../images/socketLocation.png";
 import socketMessage from "../images/socketMessage.png";
+import googleMaps from "../images/googleMaps.png";
+import js from "../images/js.png";
+import docker from "../images/docker.png";
 
 function HeyYouModal({ isOpen, closeModal }) {
   return (
@@ -74,12 +69,14 @@ function HeyYouModal({ isOpen, closeModal }) {
               I developed a React Native app for real-time location tracking and
               messaging. The server was created using Express.js and Node.js,
               and I used MongoDB Atlas for storing user account information,
-              messages, and location data. User location data is deleted from
-              the database upon logout to ensure privacy.
+              messages, and location data.
             </div>
           </div>
+          <div className="hey-you-modal-react-native-page-container hey-you-page">
+            <div className="hey-you-modal-react-native-title">React Native</div>
+          </div>
           <div className="hey-you-modal-realtime-page-container hey-you-page">
-          <div className="real-time-second-bg-container"></div>
+            <div className="real-time-second-bg-container"></div>
             <div className="socket-io-logo-container">
               <img
                 src={socketio}
@@ -87,35 +84,64 @@ function HeyYouModal({ isOpen, closeModal }) {
                 alt="socket.io logo"
               />
             </div>
-           
-           <div className="socket-io-create-img-container">
-              <img 
-              className="socket-io-create-img" 
-              src={socketCreate} 
-              alt="socket.emit createGroup" />
+            <div className="socket-io-logo-container-two">
+              <img
+                src={socketio}
+                className="socket-io-logo-two"
+                alt="socket.io logo"
+              />
             </div>
-              <div className="socket-io-join-img-container">
-                <img
-                  src={socketJoin}
-                  className="socket-io-join-img"
-                  alt="socket.emit joinGroup"
-                />
-              </div>
-              <div className="socket-io-location-img-container">
-                <img
-                  src={socketLocation}
-                  className="socket-io-location-img"
-                  alt="socket.emit locationUpdate"
-                />
-              </div>
-              <div className="socket-io-message-img-container">
-                <img
-                  src={socketMessage}
-                  className="socket-io-message-img"
-                  alt="socket.emit messageUpdate"
-                />
-              </div>
-            
+            <div className="socket-io-logo-container-three">
+              <img
+                src={socketio}
+                className="socket-io-logo-three"
+                alt="socket.io logo"
+              />
+            </div>
+            <div className="socket-io-logo-container-four">
+              <img
+                src={socketio}
+                className="socket-io-logo-four"
+                alt="socket.io logo"
+              />
+            </div>
+            <div className="socket-io-logo-container-five">
+              <img
+                src={socketio}
+                className="socket-io-logo-five"
+                alt="socket.io logo"
+              />
+            </div>
+
+            <div className="socket-io-create-img-container">
+              <img
+                className="socket-io-create-img"
+                src={socketCreate}
+                alt="socket.emit createGroup"
+              />
+            </div>
+            <div className="socket-io-join-img-container">
+              <img
+                src={socketJoin}
+                className="socket-io-join-img"
+                alt="socket.emit joinGroup"
+              />
+            </div>
+            <div className="socket-io-location-img-container">
+              <img
+                src={socketLocation}
+                className="socket-io-location-img"
+                alt="socket.emit locationUpdate"
+              />
+            </div>
+            <div className="socket-io-message-img-container">
+              <img
+                src={socketMessage}
+                className="socket-io-message-img"
+                alt="socket.emit messageUpdate"
+              />
+            </div>
+
             <div className="hey-you-modal-realtime-title">
               Real-Time Updates
             </div>
@@ -129,6 +155,58 @@ function HeyYouModal({ isOpen, closeModal }) {
               servers, providing users with the most current information for
               location tracking, messaging, and group management in the HeyYou
               app.
+            </div>
+          </div>
+          <div className="google-maps-api-page-container hey-you-page">
+            <div className="google-maps-api-title">Google Maps API</div>
+            <div className="google-maps-api-paragraph">
+              The HeyYou app integrates with the Google Maps API to provide
+              real-time location tracking. The current locations of users are
+              fetched using the expo-location module and updated on the map,
+              offering an accurate and interactive visual representation of
+              users' movements.
+            </div>
+
+            <div className="google-maps-api-logos-container">
+              <div className="google-maps-api-logo-one-container">
+                <img
+                  src={googleMaps}
+                  className="google-maps-api-logo-one"
+                  alt="google maps logo"
+                />
+              </div>
+
+              <div className="google-maps-api-logo-two-container">
+                <img
+                  src={googleMaps}
+                  className="google-maps-api-logo-two"
+                  alt="google maps logo two"
+                />
+              </div>
+            </div>
+          </div>
+          <div className="saftey-features-page-container hey-you-page">
+            <div className="saftey-features-title">Saftey Features</div>
+            <div className="safety-features-paragraph">
+              To facilitate tracking between multiple devices, I implemented an
+              access key system using uuidv4(). This key can be shared between
+              devices, allowing any number of devices with the same access key
+              to view each other's locations and messages.
+            </div>
+            <div className="safety-features-paragraph-two">
+              To protect user privacy, location data is deleted from the MonogDB
+              database upon logout. Also, no tracking happens unless the user
+              has the map displayed and manually inputs the group access key.
+            </div>
+          </div>
+          <div className="hey-you-modal-deployment-page-container hey-you-page">
+            <div className="hey-you-modal-deployment-title">App Deployment</div>
+            <div className="hey-you-modal-deployment-paragraph">
+              For the backend, I containerized the application using Docker,
+              creating an image with a Dockerfile. This image was then uploaded
+              to Google Cloud Run for hosting the server. For the frontend, I
+              built and deployed the Android APK using React Native and Expo,
+              generating an APK that is easily accessible on Android devices.
             </div>
           </div>
         </HorizontalScroll>

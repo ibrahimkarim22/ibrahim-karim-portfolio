@@ -167,7 +167,6 @@
   }
 }
 
-
 /*==========================
             REAL-TIME PAGE
 ============================*/
@@ -180,6 +179,27 @@
   }
 }
 
+/*==========================
+            GOOGLE MAPS API PAGE
+============================*/
+
+@keyframes googleApiLogoOne {
+  0% {
+    transform: rotateY(0deg) translateZ(500px);
+  }
+  100% {
+    transform: rotateY(360deg) translateZ(100px);
+  }
+}
+
+@keyframes googleApiLogoTwo {
+  0% {
+    transform: rotateY(0deg) translateZ(-200px);
+  }
+  100% {
+    transform: rotateY(360deg) translateZ(-200px);
+  }
+}
 /*==========================
             FOOTER
 ============================*/
