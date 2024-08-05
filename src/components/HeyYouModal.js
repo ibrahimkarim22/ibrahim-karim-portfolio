@@ -15,7 +15,6 @@ import native from "../images/native.png";
 import run from "../images/run.png";
 import expo from "../images/expo.png";
 
-
 function HeyYouModal({ isOpen, closeModal }) {
   return (
     <Modal
@@ -206,22 +205,46 @@ function HeyYouModal({ isOpen, closeModal }) {
             <i class="fas fa-key"></i>
           </div>
           <div className="hey-you-modal-deployment-page-container hey-you-page">
-            <div className="hey-you-modal-deployment-title-container">
-
-            </div>
+            <div className="hey-you-modal-deployment-title-container"></div>
             <div className="hey-you-modal-deployment-title">App Deployment</div>
             <div className="hey-you-modal-deployment-paragraph-backend">
               For the backend, I containerized the application using Docker,
               creating an image with a Dockerfile. This image was then uploaded
               to Google Cloud Run for hosting the server.
             </div>
-            <div className="moon"></div>
-            <div className="water-div"></div>
+            <div className="moon-container">
+              <div className="moon"></div>
+            </div>
+            <div className="stars-grid-container">
+            <div className="star-one-container">
+
+            <div className="star-one"></div>
+            </div>
+
+            <div className="star-two-container">
+            <div className="star-two"></div>
+            </div>
+
+            <div className="star-three-container">
+            <div className="star-three"></div>
+            </div>
+
+            <div className="star-four-container">
+            <div className="star-four"></div>
+            </div>
+            </div>
+            <div className="water-div-at-distance"></div>
+
+            <div className="water-div-further"></div>
+            <div className="water-div-closer"></div>
+            <div className="water-particle-one"></div>
+            <div className="water-particle-two"></div>
 
             <div className="docker-logo-container">
               <img src={docker} className="docker-logo" alt="docker logo" />
             </div>
             <div className="google-cloud-run-building"></div>
+            <div className="google-cloud-run-building-title">Cloud Run</div>
             <div className="google-cloud-run-logo-container">
               <img
                 src={run}
@@ -230,10 +253,12 @@ function HeyYouModal({ isOpen, closeModal }) {
               />
             </div>
             <div className="expo-building"></div>
+            <div className="expo-building-title">Expo</div>
             <div className="expo-logo-container">
               <img src={expo} className="expo-logo" alt="expo logo" />
             </div>
             <div className="react-native-building"></div>
+           
             <div className="react-native-logo-container">
               <img
                 src={native}

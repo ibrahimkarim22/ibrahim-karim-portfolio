@@ -231,34 +231,85 @@
     transform: translate(-500px, 300px) rotate(0deg);//dive down and rotate down
   }
   50% {
-    transform: translate(-750px, 0px) rotate(22deg);//rotate normal moving to the left
+    transform: translate(-750px, 0px) rotate(22deg);//rotate nose up a bit go up from surface moving to the left(start)
   }
 
   70% {
-    transform: translate(-1388px, 10px) rotate(0deg);
+    transform: translate(-1250px, 50px) rotate(0deg);//moving to the left still. goin above expo and G.Run containers
   }
-  75% {
-    transform: translate(-1390px, 100px) rotate(-50deg);
+  
+  74% {
+    transform: translate(-1280px, 50px) rotate(15deg);//get ready dive down
   }
-
-  // 60% {
-  //   transform: translate(-1500px, 20px) rotate(-20deg);
-  // }
-
-  // 70% {
-  //   transform: translate(-1500px, 0px) rotate(20deg);
-  // }
-
   80% {
-    transform: translate(-1400px, 50px) rotate(-80deg) skew(0deg, 10deg);
+    transform: translate(-1400px, 50px) rotate(-80deg) skew(0deg, 10deg);//moving left to where the dive will happen. begin to rotate to dive down
   }
 
   99% {
-    transform: translate(-1403px, 300px) rotate(-90deg) skew(0deg, -10deg);
+    transform: translate(-1422px, 300px) rotate(-90deg) skew(0deg, -10deg);//dive down
   }
 
   100% {
-    transform: translate(0px, 500px) rotate(90deg);
+    transform: translate(0px, 500px) rotate(90deg);//reset
+  }
+}
+
+@keyframes star {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+
+}
+
+@keyframes waterFurther {
+  0% {
+    transform: translate(0px, 0px);
+  }
+  50% {
+    transform: translate(0px, 22px);
+  }
+  100% {
+    transform: translate(0px, 0px);
+  }
+}
+@keyframes waterCloser {
+  0% {
+    transform: translate(0px, 0px);
+  }
+  50% {
+    transform: translate(0px, -20px);
+  }
+  100% {
+    transform: translate(0px, 0px);
+  }
+}
+
+@keyframes waterSplashOne {
+  0% {
+    transform: translate(0px, 200px) rotate(0deg);//splash is hidden by water zindex no opacity
+    opacity: 0;
+  }
+  25% {
+    transform: translate(0px, 0px) rotate(0deg);//keyframe extended
+    opacity: 0;
+  }
+  26% {
+    transform: translate(20px, -100px) rotate(20deg);//splash shoots upwards and rotates a bit opacity and max 
+    opacity: 1;
+  }
+  40% {
+    transform: translate(40px, 200px) rotate(-20deg);//water splash coming down and looses opacity
+    opacity: .7;
+  }
+  100% {
+    transform: translate(0px, 200px) rotate(0deg);//reset
+    opacity: 0;
   }
 }
 
