@@ -219,21 +219,46 @@
 
 @keyframes dockerLogo {
   0% {
-    transform: translate(0px, 0px) rotate(0deg);
+    transform: translate(0px, 500px) rotate(90deg); //start
+  }
+  10% { 
+    transform: translate(-200px, -200px) rotate(90deg); //jump up
+  }
+  15% {
+    transform: translate(-250px, -200px) rotate(90deg);// stay up move in air
+  }
+  25% { 
+    transform: translate(-500px, 300px) rotate(0deg);//dive down and rotate down
+  }
+  50% {
+    transform: translate(-750px, 0px) rotate(22deg);//rotate normal moving to the left
   }
 
-  // 25% { 
-  //   transform: translate(0px, 0px) rotate(20deg);
-  // }
-  // 50% {
-  //   transform: translate(-50px, 0px) rotate(-5deg);
+  70% {
+    transform: translate(-1388px, 10px) rotate(0deg);
+  }
+  75% {
+    transform: translate(-1390px, 100px) rotate(-50deg);
+  }
+
+  // 60% {
+  //   transform: translate(-1500px, 20px) rotate(-20deg);
   // }
 
-  // 75% {
-  //   transform: translate(-200px, 0px) rotate(20deg);
+  // 70% {
+  //   transform: translate(-1500px, 0px) rotate(20deg);
   // }
+
+  80% {
+    transform: translate(-1400px, 50px) rotate(-80deg) skew(0deg, 10deg);
+  }
+
+  99% {
+    transform: translate(-1403px, 300px) rotate(-90deg) skew(0deg, -10deg);
+  }
+
   100% {
-    transform: translate(-500px, 0px) rotate(30deg);
+    transform: translate(0px, 500px) rotate(90deg);
   }
 }
 

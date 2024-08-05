@@ -174,6 +174,7 @@
 .saftey-features-paragraph,
 .safety-features-paragraph-two,
 .hey-you-modal-deployment-title,
+.hey-you-modal-deployment-title-container,
 .hey-you-modal-deployment-paragraph-backend,
 .hey-you-modal-deployment-paragraph-frontend,
 .fa-user-secret,
@@ -182,12 +183,11 @@
 .google-cloud-run-building,
 .expo-building,
 .react-native-building,
-.sand-left,
-.sand-right,
 .water-div,
-// .expo-logo-container,
+.expo-logo-container,
 .google-cloud-run-logo-container,
-.react-native-logo-container
+.react-native-logo-container,
+.moon
 {
   display: flex;
   align-items: center;
@@ -570,29 +570,43 @@
   z-index: 2;
 }
 
-.hey-you-modal-deployment-title, .hey-you-modal-deployment-paragraph-backend, .hey-you-modal-deployment-paragraph-frontend {
-  grid-column: 2 / 12;
-  grid-row: 1 / 3;
+.hey-you-modal-deployment-title-container {
+  grid-column: 4 / 10;
+  grid-row: 9 / 13;
+  background-color: snow;
+  box-shadow: white 0 0 1px 1px;
+  z-index: 4
+}
+
+.hey-you-modal-deployment-title {
   font-size: 75px;
+  grid-column: 4 / 10;
+  grid-row: 10 / 12;
   font-family: "Raleway", sans-serif;
   font-optical-sizing: auto;
   font-weight: 200;
   font-style: normal;
-  color: snow;
-  z-index: 3
+  color: rgb(0, 0, 0);
+  z-index: 4
 }
 
-.hey-you-modal-deployment-paragraph-backend {
-  grid-column: 3 / 11;
-  grid-row: 9 / 12;
+.hey-you-modal-deployment-paragraph-backend, .hey-you-modal-deployment-paragraph-frontend {
+  font-family: "Raleway", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 200;
+  font-style: normal;
+  grid-column: 2 / 6;
+  grid-row: 1 / 6;
   font-size: 33px;
   font-weight: 500;
-  color:snow;                                            
+  color:snow; 
+  text-align: center;                                         
 }
 
 .hey-you-modal-deployment-paragraph-frontend {
-  grid-column: 4 / 10;
-  grid-row: 3 / 5;
+  grid-column: 8 / 12;
+  grid-row: 1 / 6;
+  text-align: center;
   font-size: 33px;
   font-weight: 500;
 }
@@ -600,34 +614,34 @@
 .water-div {
   grid-column: 1 / 13;
   grid-row: 7 / 9;
-  background-color:rgb(0, 106, 255);
-  z-index: 3;
+  background-color:rgba(0, 106, 255, 0.566);
+  box-shadow: blue 0px 0px 100px 1px;
+  border-radius: 44% 44% 0 0;
+  z-index: 5;
 
+}
+
+.moon {
+  grid-column: 7 / 8;
+  grid-row: 4 / 5;
+  width: 40%;
+  scale: 2;
+  z-index: 3;
+  background-color: snow;
+  border-radius: 1000% 1000% 1000% 1000%;
+  animation: moon 18s ease-in infinite;
 }
 .docker-logo-container {
-  grid-column: 7 / 10;
+  grid-column: 10 / 13;
   grid-row: 6 / 8;
   z-index: 3;
-  animation: dockerLogo 5s ease infinite;
+  animation: dockerLogo 18s ease-in infinite;
 }
 
-.sand-right {
-  grid-column: 10 / 13;
-  grid-row: 7 / 9;
-  z-index: 4;
-  background-color: rgb(84, 84, 84);
-}
-
-.sand-left {
-  grid-column: 1 / 4;
-  grid-row: 7 / 9;
-  z-index: 4;
-  background-color: rgb(84, 84, 84);
-}
 
 .google-cloud-run-building {
-  grid-column: 2 / 3;
-  grid-row: 3 / 8;
+  grid-column: 1 / 4;
+  grid-row: 9 / 11;
   z-index: 4;
   box-shadow: rgb(255, 255, 255) 0px 0px 20px;
   background-color: rgb(255, 255, 255);
@@ -635,7 +649,7 @@
 
 .google-cloud-run-logo-container {
   grid-column: 1 / 4;
-  grid-row: 3 / 5;
+  grid-row: 9 / 11;
   z-index: 4;
 }
 
@@ -644,8 +658,8 @@
 }
 
 .expo-building {
-  grid-column: 1 / 2;
-  grid-row: 2 / 8;
+  grid-column: 1 / 4;
+  grid-row: 11 / 13;
   height: 110%;
  box-shadow: rgb(255, 0, 0) 0px 0px 20px;
   z-index: 4;
@@ -653,8 +667,8 @@
 }
 
 .expo-logo-container {
-  grid-column: 1 / 3;
-  grid-row: 2 / 4;
+  grid-column: 1 / 4;
+  grid-row: 11 / 13;
   z-index: 4;
 }
 
@@ -663,8 +677,8 @@
 }
 
 .react-native-building {
-  grid-column: 11 / 12;
-  grid-row: 4 / 8;
+  grid-column: 10 / 13;
+  grid-row: 9 / 13;
   // width: 80%;
 
   box-shadow: rgb(153, 0, 255) 0px 0px 20px;
@@ -673,8 +687,8 @@
 }
 
 .react-native-logo-container {
-  grid-column: 11 / 12;
-  grid-row: 4 / 8;
+  grid-column: 10 / 13;
+  grid-row: 9 / 13;
   z-index: 4;
 }
 

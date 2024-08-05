@@ -206,16 +206,18 @@ function HeyYouModal({ isOpen, closeModal }) {
             <i class="fas fa-key"></i>
           </div>
           <div className="hey-you-modal-deployment-page-container hey-you-page">
+            <div className="hey-you-modal-deployment-title-container">
+
+            </div>
             <div className="hey-you-modal-deployment-title">App Deployment</div>
             <div className="hey-you-modal-deployment-paragraph-backend">
               For the backend, I containerized the application using Docker,
               creating an image with a Dockerfile. This image was then uploaded
               to Google Cloud Run for hosting the server.
             </div>
-
+            <div className="moon"></div>
             <div className="water-div"></div>
-            <div className="sand-right"></div>
-            <div className="sand-left"></div>
+
             <div className="docker-logo-container">
               <img src={docker} className="docker-logo" alt="docker logo" />
             </div>
