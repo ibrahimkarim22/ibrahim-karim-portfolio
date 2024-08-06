@@ -7,6 +7,10 @@
   }
 }
 
+/*=================
+HEADER
+==================*/
+
 @keyframes krispyModalHeaderStartup {
   0% {
     transform: translate(0px, -100px);
@@ -29,21 +33,16 @@
   }
 }
 
+/*=================
+BODY
+==================*/
+
 @keyframes krispyModalSubHeaderStartup {
   0% {
     transform: translate(0px, -200px);
   }
   100% {
     transform: translate(0px, 10px);
-  }
-}
-
-@keyframes krispyModalFooterStartup {
-  0% {
-    transform: translate(0px, -100px);
-  }
-  100% {
-    transform: translate(0px, 0px);
   }
 }
 
@@ -90,5 +89,17 @@
   }
   100% {
     opacity: 0;
+  }
+}
+/*=================
+FOOTER
+==================*/
+
+@keyframes krispyModalFooterStartup {
+  0% {
+    transform: translate(0px, -100px);
+  }
+  100% {
+    transform: translate(0px, 0px);
   }
 }

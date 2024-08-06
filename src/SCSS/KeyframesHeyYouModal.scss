@@ -217,42 +217,7 @@
   APP DEPLOYMENT  PAGE
 ============================*/
 
-@keyframes dockerLogo {
-  0% {
-    transform: translate(0px, 500px) rotate(90deg); //start
-  }
-  10% { 
-    transform: translate(-200px, -200px) rotate(90deg); //jump up
-  }
-  15% {
-    transform: translate(-250px, -200px) rotate(90deg);// stay up move in air
-  }
-  25% { 
-    transform: translate(-500px, 300px) rotate(0deg);//dive down and rotate down
-  }
-  50% {
-    transform: translate(-750px, 0px) rotate(22deg);//rotate nose up a bit go up from surface moving to the left(start)
-  }
 
-  70% {
-    transform: translate(-1250px, 50px) rotate(0deg);//moving to the left still. goin above expo and G.Run containers
-  }
-  
-  74% {
-    transform: translate(-1280px, 50px) rotate(15deg);//get ready dive down
-  }
-  80% {
-    transform: translate(-1400px, 50px) rotate(-80deg) skew(0deg, 10deg);//moving left to where the dive will happen. begin to rotate to dive down
-  }
-
-  99% {
-    transform: translate(-1422px, 300px) rotate(-90deg) skew(0deg, -10deg);//dive down
-  }
-
-  100% {
-    transform: translate(0px, 500px) rotate(90deg);//reset
-  }
-}
 
 @keyframes star {
   0% {
@@ -290,28 +255,137 @@
   }
 }
 
+@keyframes dockerLogo {
+  0% {
+    transform: translate(0px, 500px) rotate(90deg); //start
+  }
+  10% { 
+    transform: translate(-200px, -200px) rotate(90deg); //jump up
+  }
+  15% {
+    transform: translate(-250px, -200px) rotate(90deg);// stay up move in air
+  }
+  25% { 
+    transform: translate(-500px, 300px) rotate(0deg);//dive down and rotate down
+  }
+  50% {
+    transform: translate(-750px, 0px) rotate(22deg);//rotate nose up a bit go up from surface moving to the left(start)
+  }
+
+  70% {
+    transform: translate(-1250px, 50px) rotate(0deg);//moving to the left still. going above expo and G.Run containers
+  }
+  
+  74% {
+    transform: translate(-1280px, 50px) rotate(15deg);//get ready dive down
+  }
+  80% {
+    transform: translate(-1400px, 50px) rotate(-80deg) skew(0deg, 10deg);//moving left to where the dive will happen. begin to rotate to dive down
+  }
+
+  99% {
+    transform: translate(-1422px, 300px) rotate(-90deg) skew(0deg, -10deg);//dive down
+  }
+
+  100% {
+    transform: translate(0px, 500px) rotate(90deg);//reset
+  }
+}
+
 @keyframes waterSplashOne {
   0% {
-    transform: translate(0px, 200px) rotate(0deg);//splash is hidden by water zindex no opacity
+    transform: translate(0px, 200px) rotate(0deg) scale(1) skew(0deg, 0deg);//splash is hidden by water zindex no opacity
     opacity: 0;
   }
-  25% {
-    transform: translate(0px, 0px) rotate(0deg);//keyframe extended
+  10% {
+    transform: translate(0px, 200px) rotate(0deg) scale(1) skew(0deg, 0deg);//keyframe extended
     opacity: 0;
   }
-  26% {
-    transform: translate(20px, -100px) rotate(20deg);//splash shoots upwards and rotates a bit opacity and max 
+  15% {
+    transform: translate(0px, 200px) rotate(0deg) scale(1) skew(0deg, 0deg);//keyframe extended
+    opacity: 0;
+  }
+  20% {
+    transform: translate(20px, 200px) rotate(0deg) scale(1) skew(0deg, 0deg);//keyframe extended
     opacity: 1;
   }
-  40% {
-    transform: translate(40px, 200px) rotate(-20deg);//water splash coming down and looses opacity
-    opacity: .7;
+  25% {
+    transform: translate(40px, -100px) rotate(-20deg) scale(2.5) skew(20deg, 50deg);//splash going up opacity same size increase
+    opacity: 1;
+  }
+  50% {
+    transform: translate(40px, 110px) rotate(-20deg) scale(1);//splash going down losing opacity and scaling down.
+    opacity: 0;
+  }
+  70% {
+    transform: translate(40px, 110px) rotate(-20deg) scale(1);//keyframe extended
+    opacity: 0;
+  }
+  74% {
+    transform: translate(40px, 110px) rotate(-20deg) scale(1);//keyframe extended
+    opacity: 0;
+  }
+  80% {
+    transform: translate(40px, 110px) rotate(-20deg) scale(1);//keyframe extended
+    opacity: 0;
+  }
+  99% {
+    transform: translate(40px, 110px) rotate(-20deg) scale(1);//keyframe extended
+    opacity: 0;
   }
   100% {
-    transform: translate(0px, 200px) rotate(0deg);//reset
+    transform: translate(-20px, 110px) rotate(0deg) scale(1);//reset
     opacity: 0;
   }
 }
+@keyframes waterSplashTwo {
+  0% {
+    transform: translate(0px, 200px) rotate(0deg) scale(0);//splash is hidden by water zindex no opacity
+    opacity: 0;
+  }
+  10% {
+    transform: translate(0px, 200px) rotate(0deg) scale(0);//keyframe extended
+    opacity: 0;
+  }
+  15% {
+    transform: translate(0px, 200px) rotate(0deg) scale(0);//keyframe extended
+    opacity: 0;
+  }
+  20% {
+    transform: translate(-20px, 200px) rotate(0deg) scale(0);//keyframe extended
+    opacity: 1;
+  }
+  25% {
+    transform: translate(-40px, -100px) rotate(20deg) scale(2.5) skew(-20deg, -50deg);//splash going up opacity same size increase
+    opacity: 1;
+  }
+  50% {
+    transform: translate(-40px, 110px) rotate(20deg) scale(1);//splash going down losing opacity and scaling down.
+    opacity: 0;
+  }
+  70% {
+    transform: translate(-40px, 110px) rotate(20deg) scale(1);//keyframe extended
+    opacity: 0;
+  }
+  74% {
+    transform: translate(-40px, 110px) rotate(20deg) scale(1);//keyframe extended
+    opacity: 0;
+  }
+  80% {
+    transform: translate(-40px, 110px) rotate(20deg) scale(1);//keyframe extended
+    opacity: 0;
+  }
+  99% {
+    transform: translate(-40px, 110px) rotate(20deg) scale(1);//keyframe extended
+    opacity: 0;
+  }
+  100% {
+    transform: translate(-20px, 110px) rotate(0deg) scale(1);//reset
+    opacity: 0;
+  }
+}
+
+
 
 /*==========================
             FOOTER

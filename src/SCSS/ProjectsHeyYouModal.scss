@@ -203,7 +203,9 @@
 .star-three,
 .star-four,
 .expo-building-title,
-.google-cloud-run-building-title
+.google-cloud-run-building-title,
+.hey-you-modal-project-video-container,
+.hey-you-modal-project-video-title
 {
   display: flex;
   align-items: center;
@@ -522,7 +524,7 @@
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: repeat(12, 1fr);
   background-color: rgb(255, 0, 0);
-  z-index: 1;
+  z-index: 20;
 }
 
 .saftey-features-title,
@@ -614,17 +616,16 @@
   font-style: normal;
   grid-column: 2 / 6;
   grid-row: 1 / 6;
-  font-size: 33px;
+  font-size: 30px;
   font-weight: 500;
   color:snow; 
-  text-align: center;                                         
+  text-align: start;                                         
 }
 
 .hey-you-modal-deployment-paragraph-frontend {
-  grid-column: 8 / 12;
+  grid-column: 6 / 9;
   grid-row: 1 / 6;
-  text-align: center;
-  font-size: 33px;
+  color: gold;
   font-weight: 500;
 }
 
@@ -665,33 +666,36 @@
   grid-row: 6 / 9;
   // scale: 2;
   background-color:rgb(0, 106, 255);
+  box-shadow: rgb(0, 106, 255) 0 0 100px 77px;
   z-index: 8;
-  animation: waterSplashOne 18s ease-in infinite;
+  animation: waterSplashOne 18s linear infinite ;
 }   
 
 .water-particle-two {
   grid-column: 9 / 10;
-  grid-row: 5 / 7;
+  grid-row: 6 / 7;
   // scale: 2;
   background-color:rgb(0, 106, 255);
+  box-shadow: rgb(0, 106, 255) 0 0 100px 77px;
   z-index: 8;
-  animation: waterSplashOne 18s ease-in infinite reverse ;
+  animation: waterSplashTwo 18s linear infinite ;
 }
 
 .moon-container {
-  grid-column: 1 / 13;
-  grid-row: 1 / 9;
+  grid-column: 7 / 12;
+  grid-row: 1 / 5;
+  transform: perspective(500px) rotate(0deg) scale(2);
 }
 
 .moon {  
-  z-index: 5;
+  z-index: 9;
   background-color: rgb(255, 255, 255);
-  width: 10%;
+  width: 12%;
   height: 40%;
   border: solid 1px rgb(0, 0, 0);
   border-radius: 1000% 1000% 1000% 1000%;
   box-shadow: rgb(212, 212, 212) 0 0 100px 77px;
-  animation: moon 18s ease-in infinite;
+  animation: moon 18s linear infinite;
 }
 
 .stars-grid-container {
@@ -745,7 +749,7 @@ grid-template-rows: repeat(5, 1fr);
   grid-column: 10 / 13;
   grid-row: 6 / 8;
   z-index: 7;
-  animation: dockerLogo 18s ease-in infinite;
+  animation: dockerLogo 18s linear infinite;
 }
 
 
@@ -835,6 +839,46 @@ grid-template-rows: repeat(5, 1fr);
 .react-native-logo {
   scale: .7;
 }
+
+/*==========================
+           PROJECT VIDEO PAGE
+           main grid
+============================*/
+
+.hey-you-modal-project-video-page-container {
+  order: 8;
+  flex: 0 0 auto;
+  width: 100vw;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  background-color: rgb(0, 229, 255);
+  grid-column: 2 / 12;
+  grid-row: 2 / 4;
+  z-index: 20;
+  border: solid 1px rgb(0, 0, 0);
+
+}
+
+.hey-you-modal-project-video-title {
+  grid-column: 1 / 8;
+  grid-row: 1 / 13;
+  font-size: 40px;
+  font-family: "Raleway", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 200;
+  font-style: normal;
+  letter-spacing: 2px;
+  z-index: 20;
+}
+
+.hey-you-modal-project-video-container {
+  grid-column: 7 / 13;
+  grid-row: 1 / 13;
+  scale: 0.8;
+}
+
+
 
 
 /*==========================

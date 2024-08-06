@@ -1,3 +1,7 @@
+/*==========================
+  HEADER
+============================*/
+
 @keyframes WhackaModalHeaderStartup {
     0% {
       transform: translate(-700px, 0px);
@@ -6,6 +10,10 @@
       transform: translate(0px, 0px);
     }
   }
+
+/*==========================
+  BODY
+============================*/
 
   @keyframes whackaModalSubtextCyclical {
     0% {
@@ -30,14 +38,6 @@
     }
   }
   
-  @keyframes WhackaModalFooterStartup {
-    0% {
-      transform: translate(700px, 0px);
-    }
-    100% {
-      transform: translate(0px, 0px);
-    }
-  }
   
   @keyframes WhackaModalFadeInBackground {
     0% {
@@ -87,6 +87,18 @@
     }
     40% {
       transform: translate(0px, -200px);
+    }
+    100% {
+      transform: translate(0px, 0px);
+    }
+  }
+
+  /*==========================
+  FOOTER
+  ============================*/
+  @keyframes WhackaModalFooterStartup {
+    0% {
+      transform: translate(700px, 0px);
     }
     100% {
       transform: translate(0px, 0px);

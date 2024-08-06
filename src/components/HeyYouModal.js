@@ -216,22 +216,21 @@ function HeyYouModal({ isOpen, closeModal }) {
               <div className="moon"></div>
             </div>
             <div className="stars-grid-container">
-            <div className="star-one-container">
+              <div className="star-one-container">
+                <div className="star-one"></div>
+              </div>
 
-            <div className="star-one"></div>
-            </div>
+              <div className="star-two-container">
+                <div className="star-two"></div>
+              </div>
 
-            <div className="star-two-container">
-            <div className="star-two"></div>
-            </div>
+              <div className="star-three-container">
+                <div className="star-three"></div>
+              </div>
 
-            <div className="star-three-container">
-            <div className="star-three"></div>
-            </div>
-
-            <div className="star-four-container">
-            <div className="star-four"></div>
-            </div>
+              <div className="star-four-container">
+                <div className="star-four"></div>
+              </div>
             </div>
             <div className="water-div-at-distance"></div>
 
@@ -258,7 +257,7 @@ function HeyYouModal({ isOpen, closeModal }) {
               <img src={expo} className="expo-logo" alt="expo logo" />
             </div>
             <div className="react-native-building"></div>
-           
+
             <div className="react-native-logo-container">
               <img
                 src={native}
@@ -270,6 +269,24 @@ function HeyYouModal({ isOpen, closeModal }) {
               For the frontend, I built and deployed the Android APK using React
               Native and Expo, generating an APK that is easily accessible on
               Android devices.
+            </div>
+          </div>
+          <div className="hey-you-modal-project-video-page-container hey-you-page">
+            <div className="hey-you-modal-project-video-title">
+              Honor Project Video Submission
+            </div>
+            <div className="hey-you-modal-project-video-container">
+            <iframe
+              className="hey-you-modal-project-video"
+              title="Honor Project Video Submission"
+              width="1024"
+              height="576"
+              src="https://www.youtube.com/embed/CShAZT8jykY?si=ruBs8fOIFK2vkVzq"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+            ></iframe>
             </div>
           </div>
         </HorizontalScroll>

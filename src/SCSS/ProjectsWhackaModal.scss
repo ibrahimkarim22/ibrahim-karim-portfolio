@@ -3,6 +3,9 @@
   animation: WhackaModalFadeInBackground 3s ease-in-out forwards;
 }
 
+/*=================
+HEADER grid main
+==================*/  
 .whacka-modal-header {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -27,6 +30,10 @@
   font-style: normal;
   animation: WhackaModalHeaderStartup 6s ease-in-out forwards;
 }
+
+/*=================
+INTRO PAGE grid main
+==================*/
 
 .whacka-modal-header-sub-text-container {
   grid-column: 4 / 7;
@@ -74,6 +81,11 @@
   box-shadow: 0px 0px 100px rgb(211, 0, 0);
   padding: 22px;
 }
+
+/*==========================
+            FOOTER 
+            grid main
+============================*/
 
 .whacka-modal-footer {
   display: grid;

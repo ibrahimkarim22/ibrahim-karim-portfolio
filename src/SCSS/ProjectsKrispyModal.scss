@@ -1,6 +1,10 @@
 .krispy-modal-main-div {
  animation: krispyModalMainDivStartupScale 3s ease-in-out;
 }
+
+/*=================
+HEADER grid main
+==================*/
 .krispy-modal-header {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -21,6 +25,9 @@
   color: rgb(244, 77, 186);
   animation: krispyModalHeaderSlideInLeft 5s ease-in-out;
 }
+/*=================
+INTRO PAGE grid main
+==================*/
 
 // .krispy-modal-header-text {
 //   animation: krispyModalHeaderSLideInLeft 5s ease-in-out;
@@ -220,6 +227,11 @@
   box-shadow: rgb(0, 242, 255) 0px 0px 100px;
   animation: imageFadeInAndOutCyclic 14s ease-in-out infinite 12s;
 }
+
+/*=========
+FOOTER
+==========*/
+
 .krispy-modal-footer {
   display: grid;
   height: 10%;
