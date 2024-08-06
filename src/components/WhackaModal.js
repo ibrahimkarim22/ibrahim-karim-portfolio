@@ -14,6 +14,7 @@ function WhackaModal({ isOpen, closeModal }) {
     >
       <ModalHeader toggle={closeModal} className="whacka-modal-header">
         <div className="whacka-modal-header-text">Whack a Mole</div>
+        <div className="whacka-modal-header-text-two">Online Game</div>
       </ModalHeader>
       <ModalBody className="whacka-modal-body">
       <div className="whacka-modal-header-sub-text-container">

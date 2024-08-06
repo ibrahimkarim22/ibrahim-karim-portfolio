@@ -10,21 +10,26 @@ function BardModal({ isOpen, closeModal }) {
     >
       <ModalHeader toggle={closeModal} className="bard-modal-header">
         <div className="bard-modal-header-text">BARD</div>
+        <div className="bard-modal-header-text-two">Online Course</div>
       </ModalHeader>
       <ModalBody className="bard-modal-body">
-        <div className="bard-modal-header-sub-text-container">
+        <div className="curtain-right-container">
+          <div className="curtain-shadow-right-one"></div>
+          
+        </div>
+        {/* <div className="bard-modal-header-sub-text-container">
           <div className="bard-modal-header-sub-text">
             Shakespeare Online Course: JavaScript, React, Firebase, Firestore, Redux,
             SCSS, SASS. complete quizzes and earn medals, reach your certrificate!
           </div>
-        </div>
-        <div className="bard-modal-info">
+        </div> */}
+        {/* <div className="bard-modal-info">
           Created an online course platform for all Shakespeare’s plays with
           interactive quizzes, medals, certificates and more. Integrated
           Firebase (firestore) for secure and scalable backend, guaranteeing
           reliable data management and user authentication. Optimized user
           state management by leveraging Redux.
-        </div>
+        </div> */}
       </ModalBody>
       <ModalFooter className="bard-modal-footer">
         <Button
@@ -44,7 +49,7 @@ function BardModal({ isOpen, closeModal }) {
             )
           }
         >
-          Download Android APK!
+          Download APK
         </Button>
         <Button
           color="info"

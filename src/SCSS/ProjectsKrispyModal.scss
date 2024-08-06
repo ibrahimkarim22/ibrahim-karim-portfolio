@@ -18,13 +18,36 @@ HEADER grid main
   animation: krispyModalHeaderStartup 5s ease;
 }
 
+
 .krispy-modal-header .modal-title {
-  grid-column: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  grid-column: 1 / 4;
   grid-row: 1 / 3;
   font-size: 69px;
   color: rgb(244, 77, 186);
   animation: krispyModalHeaderSlideInLeft 5s ease-in-out;
 }
+
+.krispy-modal-header .krispy-modal-header-text-two {
+  color: rgb(255, 255, 255);
+  margin: 30px;
+  font-size: 33px;
+  font-family: "Raleway", system-ui;
+  font-weight: 300;
+  font-style: normal;
+  animation: krispyModalHeaderSlideInLeft 5s ease-in-out;
+}
+
+.krispy-modal-header .btn-close {
+  scale: 1.5;
+  background-color: rgb(255, 255, 255);
+  grid-column: 2 / 3;
+  grid-row: 1 / 3;
+  grid-column: 3 / 4;
+}
+
 /*=================
 INTRO PAGE grid main
 ==================*/
@@ -52,11 +75,6 @@ INTRO PAGE grid main
     
   animation: krispyModalSubHeaderStartup 7s ease-in-out forwards;
   }
-.krispy-modal-header .btn-close {
-  scale: 1.5;
-  background-color: rgb(255, 255, 255);
-  grid-column: 3;
-}
 
 .krispy-modal-body {
   display: grid;

@@ -23,6 +23,7 @@ function KrispyModal({ isOpen, closeModal }) {
         >
             <ModalHeader toggle={closeModal} className="krispy-modal-header">
                 <div className="krispy-modal-header-text">KRISPY</div>
+                <div className="krispy-modal-header-text-two">Streaming Service</div>
             </ModalHeader>
             <ModalBody className="krispy-modal-body">
                 <div className="krispy-modal-header-sub-text-container">

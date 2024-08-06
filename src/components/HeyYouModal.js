@@ -25,8 +25,9 @@ function HeyYouModal({ isOpen, closeModal }) {
     >
       <ModalHeader toggle={closeModal} className="hey-you-modal-header">
         <div className="hey-you-modal-header-text">
-          Location Tracking & Messaging
+          HeyYou
         </div>
+        <div className="hey-you-modal-header-text-two">Location Tracking & Messaging</div>
       </ModalHeader>
       <ModalBody className="hey-you-modal-body-main">
         <HorizontalScroll className="hey-you-horizontal-scroll">
