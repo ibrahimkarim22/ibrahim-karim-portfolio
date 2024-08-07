@@ -1,8 +1,25 @@
+/*==========================
+HEADER
+============================*/
+
 @keyframes bardModalHeaderStartup {
     0% {
       transform: translate(-700px, 0px);
     }
     100% {
       transform: translate(0px, 0px);
+    }
+  }
+
+  /*==========================
+  STAGE CURTAINS
+  ============================*/
+
+  @keyframes stageLeftCurtain {
+    0% {
+      transform: translate(0px, 0px);
+    }
+    100% {
+      transform: translate(0px, -700px);
     }
   }
