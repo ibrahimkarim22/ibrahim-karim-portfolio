@@ -9,7 +9,7 @@
   grid-template-rows: 1fr;
   align-items: center;
   height: 10%;
-  border: solid 1px rgb(91, 76, 0);
+  border: solid 1px rgb(25, 25, 25);
   background-color: rgb(0, 0, 0);
 }
 
@@ -47,8 +47,9 @@
   padding: 0px;
 }
 
-.bard-moday-main-flex-container {
+.bard-modal-main-flex-container {
   display: flex;
+  flex-direction: column;
   width: 100%;
   height: 100%;
   overflow-x: hidden;
@@ -64,13 +65,15 @@
 .bard-modal-intro-page-one-container {
   order: 1;
   flex: 0 0 auto;
-  height: 80vh;
+  // height: 80vh;
+  width: 100%;
   display: grid;
   grid-template-columns: repeat(8, 1fr);
   grid-template-rows: repeat(8, 1fr);
   background-color: rgb(0, 0, 0);
   // background-blend-mode: multiply;
 }
+
 
 // .bard-modal-header-sub-text-container {
 //   grid-column: 4 / 7;
@@ -100,6 +103,7 @@
 ============================*/
 .curtain-container {
   display: grid;
+  position: sticky;
   grid-template-columns: repeat(9, 1fr);
   grid-template-rows: repeat(1, 1fr);
   grid-column: 1 / 9;
@@ -239,6 +243,39 @@
   background-color: rgba(0, 0, 0, 0.400);
   box-shadow: rgba(0, 0, 0, 0.400) 0px 0px 60px 70px;
 }
+
+/*==========================
+        BODY
+/*==========================*/
+
+.bard-modal-page-two-container {
+  order: 2;
+  flex: 0 0 auto ;
+  height: 80vh;
+  width: 100%;
+  display: grid;
+  // grid-template-columns: repeat(8, 1fr);
+  // grid-template-rows: repeat(8, 1fr);
+  // background-color: rgb(0, 0, 0);
+  // background-blend-mode: multiply;
+}
+
+
+
+.bard-modal-intro {
+  border: solid 1px rgb(0, 0, 0);
+  background-color: rgb(81, 23, 0);
+}
+
+.bard-modal-intro-text {
+  color: rgb(255, 255, 255);
+  font-size: 1.5rem;
+  font-family: "Roboto", sans-serif;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+
 /*==========================
         FOOTER  
         grid
@@ -249,7 +286,7 @@
   height: 10%;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(3, 1fr);
-  background-color: rgb(0, 0, 0);
+  background-color: rgb(92, 46, 0);
   border: solid 1px rgb(91, 76, 0);
 }
 
@@ -270,18 +307,18 @@
 .bard-modal-close-btn {
   grid-column: 2 / 3;
   grid-row: 1 / 4;
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(0, 0, 0);
   color: rgb(255, 0, 0);
 }
 
 .bard-apk-download-btn {
   grid-column: 3 / 4;
   grid-row: 1 / 4;
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(122, 35, 0);
 }
 
 .bard-modal-github-btn {
   grid-column: 5;
   grid-row: 1 / 4;
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(91, 0, 0);
 }
