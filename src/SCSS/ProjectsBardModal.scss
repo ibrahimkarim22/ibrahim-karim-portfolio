@@ -9,8 +9,10 @@
   grid-template-rows: 1fr;
   align-items: center;
   height: 10%;
-  border: solid 1px rgb(25, 25, 25);
-  background-color: rgb(0, 0, 0);
+  // border: solid 1px rgb(25, 25, 25);
+  // background-color: rgb(0, 0, 0);
+  background-color: rgb(62, 31, 0);
+  border: solid 1px rgb(0, 0, 0);
 }
 
 .bard-modal-header .modal-title {
@@ -40,10 +42,11 @@
 
 /*==========================
         BODY MAIN 
+        main flex contaienr
 ============================*/
 
 .bard-modal-body-main {
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(0, 0, 0);
   padding: 0px;
 }
 
@@ -58,62 +61,24 @@
 }
 
 /*==========================
-        INTRO PAGE
-        grid 
+        PAGE ONE
+          curtain grid 
 ============================*/
 
 .bard-modal-intro-page-one-container {
   order: 1;
   flex: 0 0 auto;
-  height: 80vh;
+  height: 150vh;
   width: 100%;
   display: grid;
   grid-template-columns: repeat(8, 1fr);
   grid-template-rows: repeat(8, 1fr);
   background-color: rgb(0, 0, 0);
-  z-index: 2;
+  z-index: 20;
+  transform-style: preserve-3d;
+  transform: perspective(100px);
   // background-blend-mode: multiply;
 }
-
-.bard-modal-intro-text {
-  // transform: perspective(200px) scale(1) rotateY(-8deg) translate(0px, 0px);
-  // transform-style: preserve-3d;
-  grid-column: 1 / 9;
-  grid-row: 1 / 9;
-  color: rgb(255, 255, 255);
-  font-size: 55px;
-  // white-space: nowrap;
-  font-family: "Arsenal SC", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-  // letter-spacing: 1px;
-  text-align: center;
-  z-index: 4;
-}
-
-
-// .bard-modal-header-sub-text-container {
-//   grid-column: 4 / 7;
-//   width: 100%;
-//   position: sticky;
-// }
-
-// .bard-modal-header-sub-text {
-//   background-color: red;
-//   color: rgb(255, 255, 255);
-//   display: inline-block;
-//   border-radius: 22px;
-//   padding: 1%;
-// }
-
-// .bard-modal-info {
-//   grid-column: 4 / 10;
-//   grid-row: 5 / 9;
-//   border: solid 1px rgb(255, 255, 255);
-//   background-color: rgb(255, 255, 255);
-//   color: rgb(0, 0, 0);
-//   box-shadow: rgb(207, 84, 1) 0px 0px 100px;
-// }
 
 /*==========================
   CURTAIN grid
@@ -131,7 +96,7 @@
   // animation: stageLeftCurtain 7s ease-in-out forwards;
 }
 
-.bard-modal-intro-text,
+.bard-modal-intro-text-container,
 .curtain-shadow-two-container,
 .curtain-shadow-three-container,
 .curtain-shadow-four-container,
@@ -156,7 +121,7 @@
 .curtain-shadow-eight,
 .curtain-shadow-nine,
 .curtain-shadow-ten {
-  padding: 5px 26px 79vh 5px;
+  padding: 5px 26px 150vh 5px;
 }
 
 .curtain-shadow-one-container {
@@ -262,26 +227,51 @@
 
 /*==========================
         PAGE 2
+        grid 
 /*==========================*/
 
 .bard-modal-page-two-container {
   order: 2;
   flex: 0 0 auto;
-  height: 82vh;
+  height: 100vh;
   width: 100%;
   display: grid;
   grid-template-columns: repeat(8, 1fr);
   grid-template-rows: repeat(8, 1fr);
-  background-color: red;
-  box-shadow: black 0px 0px 60px 70px inset;
+  background-color: rgb(0, 0, 0);
+  box-shadow: rgb(255, 255, 255) -20px 0px 10px 100px;
+  // transform-style: preserve-3d;
+  // transform: perspective(1000px) translateZ(-4000px) translate(0px, 0px)
+  //   scale(3) rotateY(0deg) rotateZ(0deg) rotateX(0deg);
   // z-index: 2;
   // background-color: rgb(0, 0, 0);
   // background-blend-mode: multiply;
   // transform: perspective(100px);
 }
 
+.bard-modal-intro-text-container {
+  grid-column: 1 / 9;
+  grid-row: 1 / 9;
+  z-index: 4;
+}
+
+.bard-modal-intro-text {
+  // transform: perspective(200px) scale(1) rotateY(-8deg) translate(0px, 0px);
+  // transform-style: preserve-3d;
+  color: rgb(255, 255, 255);
+  font-size: 55px;
+  // white-space: nowrap;
+  font-family: "Arsenal SC", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  // letter-spacing: 1px;
+  text-align: center;
+  z-index: 4;
+}
+
 /*==========================
         PAGE 3  
+        grid
 /*==========================*/
 
 .bard-modal-page-three-container {
@@ -300,9 +290,9 @@
   // transform: perspective(100px);
 }
 
-
 /*==========================
         PAGE 4
+        grid
 /*==========================*/
 
 .bard-modal-page-four-container {
@@ -376,6 +366,7 @@
 
 /*==========================
         PAGE 5
+        grid
 /*==========================*/
 
 .bard-modal-page-five-container {
@@ -398,7 +389,6 @@
 }
 
 .bard-modal-firebase-text {
-
   color: rgb(255, 255, 255);
   padding: 3%;
   text-align: center;
@@ -408,11 +398,12 @@
 
 /*==========================
         PAGE 6
+        grid
 /*==========================*/
 
 .bard-modal-page-six-container {
   order: 6;
-  flex: 0 0 auto; 
+  flex: 0 0 auto;
   height: 90vh;
   width: 100%;
   display: grid;
@@ -458,6 +449,7 @@
 
 /*==========================
         PAGE 7
+        grid
 /*==========================*/
 
 .bard-modal-page-seven-container {
@@ -496,7 +488,6 @@
   grid-row: 7 / 8;
 }
 
-
 .bard-modal-additional-features-text-one,
 .bard-modal-additional-features-text-two,
 .bard-modal-additional-features-text-three {
@@ -515,8 +506,8 @@
   height: 10%;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(3, 1fr);
-  background-color: rgb(92, 46, 0);
-  border: solid 1px rgb(91, 76, 0);
+  background-color: rgb(62, 31, 0);
+  border: solid 1px rgb(0, 0, 0);
 }
 
 .bard-modal-close-btn,

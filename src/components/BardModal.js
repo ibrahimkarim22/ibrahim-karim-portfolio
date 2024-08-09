@@ -63,11 +63,13 @@ function BardModal({ isOpen, closeModal }) {
         </div> */}
           {/* <Parallax scale={[1, 1]} rotate={[1, 1]}> */}
           <div className="bard-modal-page-two-container">
+            <div className="bard-modal-intro-text-container">
             <div className="bard-modal-intro-text">
               I created an online course platform for all 38 of Shakespeare’s
               plays. This application aims to provide an engaging way for users
               to explore Shakespeare's works through a combination of reading,
               quizzes, and video content.
+            </div>
             </div>
           </div>
           <div className="bard-modal-page-three-container"></div>
