@@ -70,7 +70,9 @@ function BardModal({ isOpen, closeModal }) {
               quizzes, and video content.
             </div>
           </div>
-          <div className="bard-modal-page-three-container">
+          <div className="bard-modal-page-three-container"></div>
+
+          <div className="bard-modal-page-four-container">
             <div className="bard-modal-folger-logo-container">
               <img src={folger} alt="folger logo" className="folger-logo"></img>
             </div>
@@ -88,7 +90,7 @@ function BardModal({ isOpen, closeModal }) {
             </div>
           </div>
 
-          <div className="bard-modal-page-four-container">
+          <div className="bard-modal-page-five-container">
             <div className="bard-modal-firebase-text-container">
               <div className="bard-modal-firebase-text">
                 Users create accounts, which are securely stored in Google
@@ -96,6 +98,54 @@ function BardModal({ isOpen, closeModal }) {
                 profile that includes their email, password, a default profile
                 picture (which can be updated), and their progress through the
                 plays.
+              </div>
+            </div>
+          </div>
+          <div className="bard-modal-page-six-container">
+            <div className="bard-modal-features-text-one-container">
+              <div className="bard-modal-features-text-one">
+                Level System: Users progress through the plays in an order that
+                typically starts with those familiar from high school, such as
+                "The Tempest." The levels range from easier to more challenging
+                plays.
+              </div>
+            </div>
+
+            <div className="bard-modal-features-text-two-container">
+              <div className="bard-modal-features-text-two">
+                Synopsis and Quizzes: Each level begins with a synopsis of the
+                play. Users can choose to take a quiz after reading the
+                synopsis, with the option to read the entire play before
+                attempting the quiz. Quizzes consist of 7 questions, and users
+                must achieve a perfect score to earn a medal and unlock the next
+                level.
+              </div>
+            </div>
+            <div className="bard-modal-features-text-three-container">
+              <div className="bard-modal-features-text-three">
+                Unlocking Plays and Earning Medals: Plays are locked initially,
+                and users must complete them in sequence to unlock the next.
+                Successfully completing each play awards a medal, and collecting
+                all 38 medals grants a certificate.
+              </div>
+            </div>
+          </div>
+          <div className="bard-modal-page-seven-container">
+            <div className="bard-modal-additional-features-text-one-container">
+              <div className="bard-modal-additional-features-text-one">
+                Flexible Reading Options: Users can read synopses and take
+                quizzes in sequence, or they can choose to read the full plays
+                at their discretion. Additionally, users can explore all
+                synopses or entire plays in any order without following the
+                course structure.
+              </div>
+            </div>
+
+            <div className="bard-modal-additional-features-text-two-container">
+              <div className="bard-modal-additional-features-text-two">
+                Video Content: The platform includes sections for watching
+                'Great Performances' and 'How To' videos on Shakespeare, sourced
+                from YouTube, enhancing the learning experience.
               </div>
             </div>
           </div>
