@@ -2,6 +2,8 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import { Parallax, ParallaxProvider } from "react-scroll-parallax";
 import folger from "../images/folger.jpg";
 import mit from "../images/mit.png";
+import firebase from "../images/firebase.png";
+import firestore from "../images/firestore.png";
 
 function BardModal({ isOpen, closeModal }) {
   return (
@@ -64,31 +66,37 @@ function BardModal({ isOpen, closeModal }) {
           {/* <Parallax scale={[1, 1]} rotate={[1, 1]}> */}
           <div className="bard-modal-page-two-container">
             <div className="bard-modal-intro-text-container">
-            <div className="bard-modal-intro-text">
-              I created an online course platform for all 38 of Shakespeare’s
-              plays. This application aims to provide an engaging way for users
-              to explore Shakespeare's works through a combination of reading,
-              quizzes, and video content.
-            </div>
+              <div className="bard-modal-intro-text">
+                I created an online course platform for all 38 of Shakespeare’s
+                plays. This application aims to provide an engaging way for
+                users to explore Shakespeare's works through a combination of
+                reading, quizzes, and video content.
+              </div>
             </div>
           </div>
+
           <div className="bard-modal-page-three-container"></div>
 
           <div className="bard-modal-page-four-container">
+            <div className="bard-modal-folger-text-container">
+              <div className="bard-modal-folger-text">
+              The app utilizes the Folger Shakespeare Library's official API
+              to fetch the synopses and character lists of each play.
+              </div>
+            </div>
             <div className="bard-modal-folger-logo-container">
               <img src={folger} alt="folger logo" className="folger-logo"></img>
             </div>
 
-            <div className="bard-modal-mit-logo-container">
-              <img src={mit} alt="MIT logo" className="mit-logo"></img>
-            </div>
-            <div className="bard-modal-api-text-container">
-              <div className="bard-modal-api-text">
-                The app utilizes the Folger Shakespeare Library's official API
-                to fetch the synopses and character lists of each play.
+            <div className="bard-modal-mit-text-container">
+              <div className="bard-modal-mit-text">
+              
                 Additionally, it uses the MIT public domain API to retrieve the
                 complete texts of the plays.
               </div>
+            </div>
+            <div className="bard-modal-mit-logo-container">
+              <img src={mit} alt="MIT logo" className="mit-logo"></img>
             </div>
           </div>
 
@@ -102,6 +110,20 @@ function BardModal({ isOpen, closeModal }) {
                 plays.
               </div>
             </div>
+              <div className="bard-modal-firebase-logo-container">
+                <img
+                  src={firebase}
+                  alt="firebase logo"
+                  className="bard-modal-firebase-logo"
+                ></img>
+              </div>
+              <div className="bard-modal-firestore-logo-container">
+                <img
+                  src={firestore}
+                  alt="firestore logo"
+                  className="bard-modal-firestore-logo"
+                ></img>
+              </div>
           </div>
           <div className="bard-modal-page-six-container">
             <div className="bard-modal-features-text-one-container">
