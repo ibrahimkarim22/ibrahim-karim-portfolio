@@ -65,6 +65,7 @@ function BlenderEnvironment({ setProgress }) {
 
   return (
     <Canvas
+      className="resume-canvas"
       style={{
         borderColor: "white",
         borderStyle: "ridge",
