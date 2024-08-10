@@ -1,5 +1,6 @@
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
-
+import heyYouGrid from "../images/heyYouGrid.png";
+import animationHeyYou from "../images/animationHeyYou.png";
 function ThisPortfolioModal({ isOpen, closeModal }) {
   return (
     <Modal
@@ -41,6 +42,25 @@ function ThisPortfolioModal({ isOpen, closeModal }) {
             <div className="grid-title-text-container">
               <div className="grid-title-text">Grid Layout</div>
             </div>
+            <div className="grid-paragraph-container">
+              <div className="grid-paragraph">
+                I’ve become highly proficient with grid layouts and flex
+                containers. When I first learned about grid displays, I was
+                amazed at how straightforward they were to implement. Creating
+                sub-grids within main grids allowed me to align items
+                effortlessly, and using media queries made it easy to adapt
+                layouts for different devices. This approach has significantly
+                simplified the process of aligning and organizing content across
+                my portfolio.
+              </div>
+            </div>
+            <div className="grid-image-hey-you-container">
+              <img
+                src={heyYouGrid}
+                className="grid-image-hey-you"
+                alt="grid image from hey you modal"
+              />
+            </div>
           </div>
           {/* PAGE 3 */}
           <div className="this-portfolio-page-three">
@@ -48,6 +68,27 @@ function ThisPortfolioModal({ isOpen, closeModal }) {
               <div className="css-animation-title-text">
                 CSS animations and keyframes
               </div>
+            </div>
+            
+            <div className="css-animation-paragraph-container">
+              <div className="css-animation-paragraph">
+                I have a deep passion for working on animations. It fascinates
+                me how countless elements come together frame by frame, which
+                ties into my love for theatre and storytelling. Using keyframes
+                felt natural, as it closely resembles animating 3D objects in
+                Blender and 2D in ToonBoom Harmony. Both involve manipulating x,
+                y, and z coordinates on an animation timeline. While coding
+                keyframes required more mental visualization compared to the
+                visual interfaces of Blender and ToonBoom, sketching ideas on
+                paper made everything click.
+              </div>
+            </div>
+            <div className="animation-image-hey-you-container">
+              <img
+                src={animationHeyYou}
+                className="animation-image-hey-you"
+                alt="animation image from hey you modal"
+              />
             </div>
           </div>
           {/* PAGE 4 */}
