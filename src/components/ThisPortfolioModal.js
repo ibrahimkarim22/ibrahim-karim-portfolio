@@ -1,6 +1,10 @@
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import heyYouGrid from "../images/heyYouGrid.png";
-import animationHeyYou from "../images/animationHeyYou.png";
+import whaleKeyframes from "../images/whaleKeyframes.png";
+import splashKeyframes from "../images/splashKeyframes.png";
+import animationSplashHeyYou from "../images/animationSplashHeyYou.png";
+import animationWhaleHeyYou from "../images/animationWhaleHeyYou.png";
+import curtainGrid from "../images/curtainGrid.png";
 function ThisPortfolioModal({ isOpen, closeModal }) {
   return (
     <Modal
@@ -61,6 +65,13 @@ function ThisPortfolioModal({ isOpen, closeModal }) {
                 alt="grid image from hey you modal"
               />
             </div>
+            <div className="curtain-grid-image-container">
+              <img
+                src={curtainGrid}
+                className="curtain-grid-image"
+                alt="curtain grid image"
+              />
+            </div>
           </div>
           {/* PAGE 3 */}
           <div className="this-portfolio-page-three">
@@ -69,7 +80,7 @@ function ThisPortfolioModal({ isOpen, closeModal }) {
                 CSS animations and keyframes
               </div>
             </div>
-            
+
             <div className="css-animation-paragraph-container">
               <div className="css-animation-paragraph">
                 I have a deep passion for working on animations. It fascinates
@@ -83,11 +94,33 @@ function ThisPortfolioModal({ isOpen, closeModal }) {
                 paper made everything click.
               </div>
             </div>
-            <div className="animation-image-hey-you-container">
+            <div className="whale-keyframes-image-hey-you-container">
               <img
-                src={animationHeyYou}
-                className="animation-image-hey-you"
-                alt="animation image from hey you modal"
+                src={whaleKeyframes}
+                className="whale-keyframes-image-hey-you"
+                alt="whale keyframes from css for hey you modal"
+              />
+            </div>
+            <div className="animation-whale-hey-you-container">
+              <img
+                src={animationWhaleHeyYou}
+                className="animation-whale-hey-you"
+                alt="hey you modal whale animation"
+              />
+            </div>
+
+            <div className="splash-keyframes-image-hey-you-container">
+              <img
+                src={splashKeyframes}
+                className="splash-keyframes-image-hey-you"
+                alt="splash keyframes from css for hey you modal"
+              />
+            </div>
+            <div className="animation-splash-hey-you-container">
+              <img
+                src={animationSplashHeyYou}
+                className="animation-splash-hey-you"
+                alt="splash animation from hey you modal"
               />
             </div>
           </div>
@@ -96,6 +129,15 @@ function ThisPortfolioModal({ isOpen, closeModal }) {
             <div className="three-dee-implementation-title-text-container">
               <div className="three-dee-implementation-title-text">
                 3D Implementation
+              </div>
+            </div>
+            <div className="three-dee-paragraph-container">
+              <div className="three-dee-paragraph">
+                I designed and animated the portfolio logo and the 3D resume
+                using Blender. After creating these models, I exported them as
+                GLTF files and used React Three Fiber to import and render them
+                within React. This allowed me to integrate the 3D
+                elements into the interactive scene.
               </div>
             </div>
           </div>

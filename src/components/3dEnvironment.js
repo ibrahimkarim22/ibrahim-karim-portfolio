@@ -69,8 +69,8 @@ function BlenderEnvironment({ setProgress }) {
         borderColor: "white",
         borderStyle: "ridge",
         borderWidth: "3px",
-       width: "100%",
-       height: "100vh",
+        width: "100%",
+        height: "100vh",
       }}
     >
       <BackgroundColor color="black" />

@@ -89,7 +89,7 @@
 .this-portfolio-page-two {
   order: 2;
   flex: 0 0 auto;
-  height: 200vh;
+  height: 250vh;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: repeat(10, 1fr);
@@ -98,7 +98,8 @@
 
 .grid-title-text-container,
 .grid-paragraph-container,
-.grid-image-hey-you-container {
+.grid-image-hey-you-container,
+.curtain-grid-image-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -135,13 +136,22 @@
 
 .grid-image-hey-you-container {
   grid-column: 3 / 11;
-  grid-row: 6 / 8;
+  grid-row: 5 / 8;
 
 }
 
-// .grid-image-hey-you {
-// scale: 0.9;
-// }
+.grid-image-hey-you {
+scale: 0.7;
+}
+
+.curtain-grid-image-container {
+  grid-column: 3 / 11;
+  grid-row: 8 / 11;
+}
+
+.curtain-grid-image {
+  scale: 0.7;
+}
 
 
 /*==========================
@@ -151,16 +161,19 @@
 .this-portfolio-page-three {
   order: 3;
   flex: 0 0 auto;
-  height: 300vh;
+  height: 600vh;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: repeat(10, 1fr);
-  background-color: rgb(255, 0, 0);
+  background-color: rgb(255, 255, 255);
 }
 
 .css-animation-title-text-container,
 .css-animation-paragraph-container,
-.animation-image-hey-you-container {
+.whale-keyframes-image-hey-you-container,
+.animation-whale-hey-you-container,
+.splash-keyframes-image-hey-you-container,
+.animation-splash-hey-you-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -172,7 +185,7 @@
 }
 
 .css-animation-title-text {
-  color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
   font-size: 80px;
   font-family: "Montserrat", serif;
   font-weight: 300;
@@ -181,25 +194,58 @@
 
 .css-animation-paragraph-container {
   grid-column: 2 / 12;
-  grid-row: 2 / 3;
+  grid-row: 1 / 3;
 }
 
 .css-animation-paragraph {
-  color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
   font-size: 35px;
   font-family: "Montserrat", serif;
   font-weight: 300;
   font-style: normal;
 }
 
-.animation-image-hey-you-container {
+.whale-keyframes-image-hey-you-container {
+  grid-column: 2 / 12;
+  grid-row: 2 / 5;
+}
+
+.whale-keyframes-image-hey-you {
+  scale: 0.7;
+}
+
+
+.animation-whale-hey-you-container {
   grid-column: 3 / 11;
   grid-row: 3 / 7;
 }
 
-.css-animation-image-hey-you {
-  scale: 0.9;
+.animation-whale-hey-you {
+  scale: 0.8;
 }
+
+
+.splash-keyframes-image-hey-you-container {
+  grid-column: 3 / 10;
+  grid-row: 4 / 10;
+  transform: translate(-23px, 0px);
+}
+
+.splash-keyframes-image-hey-you {
+  scale: 0.7;
+}
+
+
+.animation-splash-hey-you-container {
+  grid-column: 3 / 11;
+  grid-row: 6 / 12;
+}
+
+.animation-splash-hey-you {
+  scale: 0.8;
+}
+
+
 
 /*==========================
   PAGE 4
@@ -207,14 +253,15 @@
 .this-portfolio-page-four {
   order: 4;
   flex: 0 0 auto;
-  height: 100vh;
+  height: 500vh;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: repeat(10, 1fr);
+  grid-template-rows: repeat(15, 1fr);
   background-color: rgb(17, 0, 255);
 }
 
-.three-dee-implementation-title-text-container {
+.three-dee-implementation-title-text-container,
+.three-dee-paragraph-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -222,12 +269,25 @@
 
 .three-dee-implementation-title-text-container {
   grid-column: 3 / 11;
-  grid-row: 2 / 4;
+  grid-row: 1 / 2;
 }
 
 .three-dee-implementation-title-text {
   color: rgb(255, 255, 255);
-  font-size: 40px;
+  font-size: 100px;
+  font-family: "Montserrat", serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.three-dee-paragraph-container {
+  grid-column: 2 / 12;
+  grid-row: 1 / 4;
+}
+
+.three-dee-paragraph {
+  color: rgb(255, 255, 255);
+  font-size: 35px;
   font-family: "Montserrat", serif;
   font-weight: 300;
   font-style: normal;
