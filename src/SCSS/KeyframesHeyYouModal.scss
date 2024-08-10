@@ -257,30 +257,30 @@
 
 @keyframes dockerLogo {
   0% {
-    transform: translate(0px, 500px) rotate(90deg); //start
+    transform: translate(0px, 500px) rotate(90deg);//start
   }
   10% { 
-    transform: translate(-200px, -200px) rotate(90deg); //jump up
+    transform: translate(-200px, -200px) rotate(90deg);//jump out of water
   }
   15% {
-    transform: translate(-250px, -200px) rotate(90deg);// stay up move in air
+    transform: translate(-250px, -200px) rotate(90deg);//stay up move in air
   }
   25% { 
-    transform: translate(-500px, 300px) rotate(0deg);//dive down and rotate down
+    transform: translate(-500px, 300px) rotate(0deg);//dive down and rotate back to normal
   }
   50% {
-    transform: translate(-750px, 0px) rotate(22deg);//rotate nose up a bit go up from surface moving to the left(start)
+    transform: translate(-750px, 0px) rotate(22deg);//rotate nose up dive up to surface moving to the left
   }
 
   70% {
-    transform: translate(-1250px, 50px) rotate(0deg);//moving to the left still. going above expo and G.Run containers
+    transform: translate(-1250px, 50px) rotate(0deg);//still moving to the left. floating above expo and Cloud Run containers
   }
   
   74% {
     transform: translate(-1280px, 50px) rotate(15deg);//get ready dive down
   }
   80% {
-    transform: translate(-1400px, 50px) rotate(-80deg) skew(0deg, 10deg);//moving left to where the dive will happen. begin to rotate to dive down
+    transform: translate(-1400px, 50px) rotate(-80deg) skew(0deg, 10deg);//moving left slightly to where the dive will happen. begin to rotate to dive down
   }
 
   99% {
@@ -294,7 +294,7 @@
 
 @keyframes waterSplashOne {
   0% {
-    transform: translate(0px, 200px) rotate(0deg) scale(1) skew(0deg, 0deg);//splash is hidden by water zindex no opacity
+    transform: translate(0px, 200px) rotate(0deg) scale(1) skew(0deg, 0deg);//splash is hidden by water's zindex no opacity
     opacity: 0;
   }
   10% {
@@ -310,7 +310,7 @@
     opacity: 1;
   }
   25% {
-    transform: translate(40px, -100px) rotate(-20deg) scale(2.5) skew(20deg, 50deg);//splash going up opacity same size increase
+    transform: translate(40px, -100px) rotate(-20deg) scale(2.5) skew(20deg, 50deg);//splash going up. opacity same. size increases
     opacity: 1;
   }
   50% {
