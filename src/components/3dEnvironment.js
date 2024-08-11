@@ -20,9 +20,11 @@ function BackgroundColor({ color }) {
   return null;
 }
 
-function Landscape({ path }) {
+function Landscape({ path, setProgress }) {
   const group = useRef();
-  const { scene, animations } = useGLTF(path);
+  const { scene, animations } = useGLTF(path, true, (xhr) => {
+    setProgress((xhr.loaded / xhr.total) * 100);
+  });
   const mixer = useRef();
 
   useEffect(() => {
@@ -47,22 +49,6 @@ function BlenderEnvironment({ setProgress }) {
   const cameraRef = useRef();
   const controlsRef = useRef();
 
-  useEffect(() => {
-    const loader = new GLTFLoader();
-    loader.load(
-      landscape,
-      (gltf) => {
-        console.log("MODEL LOADED");
-      },
-      (xhr) => {
-        setProgress((xhr.loaded / xhr.total) * 100);
-      },
-      (error) => {
-        console.error("An error happened", error);
-      }
-    );
-  }, [setProgress]);
-
   return (
     <Canvas
       className="resume-canvas"
@@ -84,7 +70,7 @@ function BlenderEnvironment({ setProgress }) {
         near={1}
         far={20000}
       />
-      <Landscape path={landscape} />
+      <Landscape path={landscape} setProgress={setProgress} />
       <OrbitControls
         ref={controlsRef}
         enableZoom={true}

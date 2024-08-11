@@ -5,6 +5,11 @@ import splashKeyframes from "../images/splashKeyframes.png";
 import animationSplashHeyYou from "../images/animationSplashHeyYou.png";
 import animationWhaleHeyYou from "../images/animationWhaleHeyYou.png";
 import curtainGrid from "../images/curtainGrid.png";
+import useEffectCode from "../images/useEffectCode.png";
+import resumeCanvas from "../images/resumeCanvas.png";
+import logoCanvas from "../images/logoCanvas.png"; 
+import logoModel from "../images/logoModel.png";
+import resumeModel from "../images/resumeModel.png";
 function ThisPortfolioModal({ isOpen, closeModal }) {
   return (
     <Modal
@@ -140,10 +145,59 @@ function ThisPortfolioModal({ isOpen, closeModal }) {
                 elements into the interactive scene.
               </div>
             </div>
+            <div className="use-effect-image-container">
+              <img src={useEffectCode} className="use-effect-image" alt="use effect" />
+            </div>
+            <div className="resume-canvas-image-container">
+              <img
+                src={resumeCanvas}
+                className="resume-canvas-image"
+                alt="resume canvas"
+              />
+            </div>
+            <div className="logo-canvas-image-container">
+              <img
+                src={logoCanvas}
+                className="logo-canvas-image"
+                alt="logo canvas"
+              />
+            </div>
+
+            <div className="logo-model-image-container">
+              <img
+                src={logoModel}
+                className="logo-model-image"
+                alt="logo model"
+              />
+            </div>
+
+            <div className="resume-model-image-container">
+              <img
+                src={resumeModel}
+                className="resume-model-image"
+                alt="resume model"
+              />
+            </div>
+
+            
+
           </div>
 
           {/* PAGE 5 */}
-          <div className="this-portfolio-page-five"></div>
+          <div className="this-portfolio-page-five">
+            <div className="java-script-title-text-container">
+              <div className="java-script-title-text">
+                Java Script
+              </div>
+            </div>
+            <div className="java-script-paragraph-container">
+              <div className="java-script-paragraph">
+                I needed to create a loading screen in order to give time for 
+                the gltf files to load. otherwise there wont be a smooth transition.
+                I used Java Script 
+              </div>
+            </div>
+          </div>
 
           {/* PAGE 6 */}
           <div className="this-portfolio-page-six"></div>

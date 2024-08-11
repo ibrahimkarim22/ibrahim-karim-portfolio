@@ -2,7 +2,6 @@ import { useEffect, useRef } from "react";
 import * as THREE from "three";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { useGLTF, PerspectiveCamera } from "@react-three/drei";
-import { GLTFLoader } from "three/examples/jsm/Addons.js";
 import logo from "../models/logo.glb";
 import "../SCSS/App.scss";
 
@@ -14,9 +13,11 @@ function BackgroundColor({ color }) {
   return null;
 }
 
-function LogoInit({ path, position }) {
+function LogoInit({ path, position, setProgress }) {
   const group = useRef();
-  const { scene, animations } = useGLTF(path);
+  const { scene, animations } = useGLTF(path, true, (xhr) => {
+    setProgress((xhr.loaded / xhr.total) * 100);
+  });
   const mixer = useRef();
 
   useEffect(() => {
@@ -39,21 +40,6 @@ function LogoInit({ path, position }) {
 
 function Logo({ setProgress }) {
   const cameraRef = useRef();
-  useEffect(() => {
-    const loader = new GLTFLoader();
-    loader.load(
-      logo,
-      (gltf) => {
-        console.log("MODEL LOADED");
-      },
-      (xhr) => {
-        setProgress((xhr.loaded / xhr.total) * 100);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
-  }, [setProgress]);
 
   return (
     <Canvas
@@ -65,7 +51,7 @@ function Logo({ setProgress }) {
       }}
     >
       <BackgroundColor color="snow" />
-      <LogoInit path={logo} position={[0.5, 0, 0]} />
+      <LogoInit path={logo} position={[0.5, 0, 0]} setProgress={setProgress} />
       <PerspectiveCamera
         ref={cameraRef}
         makeDefault
