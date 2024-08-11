@@ -36,7 +36,6 @@
 .this-portfolio-modal-body-main {
   background-color: rgb(0, 0, 0);
   padding: 0px;
-  
 }
 
 .this-portfolio-main-flex-container {
@@ -120,8 +119,7 @@
   grid-row: 1 / 3;
 }
 
-
-.grid-paragraph-container{
+.grid-paragraph-container {
   grid-column: 2 / 12;
   grid-row: 3 / 4;
 }
@@ -138,11 +136,10 @@
 .grid-image-hey-you-container {
   grid-column: 3 / 11;
   grid-row: 5 / 8;
-
 }
 
 .grid-image-hey-you {
-scale: 0.7;
+  scale: 0.7;
 }
 
 .curtain-grid-image-container {
@@ -153,7 +150,6 @@ scale: 0.7;
 .curtain-grid-image {
   scale: 0.7;
 }
-
 
 /*==========================
   PAGE 3
@@ -215,7 +211,6 @@ scale: 0.7;
   scale: 0.7;
 }
 
-
 .animation-whale-hey-you-container {
   grid-column: 3 / 11;
   grid-row: 3 / 7;
@@ -224,7 +219,6 @@ scale: 0.7;
 .animation-whale-hey-you {
   scale: 0.8;
 }
-
 
 .splash-keyframes-image-hey-you-container {
   grid-column: 3 / 10;
@@ -236,7 +230,6 @@ scale: 0.7;
   scale: 0.7;
 }
 
-
 .animation-splash-hey-you-container {
   grid-column: 3 / 11;
   grid-row: 6 / 12;
@@ -245,8 +238,6 @@ scale: 0.7;
 .animation-splash-hey-you {
   scale: 0.8;
 }
-
-
 
 /*==========================
   PAGE 4
@@ -299,7 +290,6 @@ scale: 0.7;
   font-style: normal;
 }
 
-
 .use-effect-image-container {
   grid-column: 1 / 5;
   grid-row: 2 / 6;
@@ -345,10 +335,6 @@ scale: 0.7;
   scale: 0.9;
 }
 
-
-
-
-
 /*==========================
   PAGE 5
   /*===========================*/
@@ -356,15 +342,23 @@ scale: 0.7;
 .this-portfolio-page-five {
   order: 5;
   flex: 0 0 auto;
-  height: 200vh;
+  height: 500%;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: repeat(10, 1fr);
+  grid-template-rows: repeat(15, 1fr);
   background-color: rgb(255, 0, 255);
 }
 
 .java-script-title-text-container,
-.java-script-paragraph-container {
+.java-script-progress-paragraph-one-container,
+.java-script-progress-paragraph-two-container,
+.java-script-progress-paragraph-three-container,
+.java-script-scroll-paragraph-one-container,
+.java-script-scroll-paragraph-two-container,
+.java-script-scroll-paragraph-three-container,
+.progress-one-image-container,
+.progress-two-image-container,
+.horizontal-scroll-image-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -372,7 +366,7 @@ scale: 0.7;
 
 .java-script-title-text-container {
   grid-column: 3 / 11;
-  grid-row: 1 / 3;
+  grid-row: 1 / 2;
 }
 
 .java-script-title-text {
@@ -383,12 +377,43 @@ scale: 0.7;
   font-style: normal;
 }
 
-.java-script-paragraph-container {
+.java-script-progress-paragraph-one-container {
   grid-column: 2 / 12;
+  grid-row: 1 / 4;
+}
+.java-script-progress-paragraph-two-container {
+  grid-column: 2 / 5;
+  grid-row: 2 / 5;
+}
+.progress-one-image-container {
+  grid-column: 5 / 12;
   grid-row: 2 / 5;
 }
 
-.java-script-paragraph {
+.progress-one-image {
+  scale: 0.75;
+}
+
+
+.java-script-progress-paragraph-three-container {
+  grid-column: 2 / 12;
+  grid-row: 3 / 7;
+}
+.progress-two-image-container {
+  grid-column: 2 / 12;
+  grid-row: 4 / 7;
+}
+
+.progress-two-image {
+  scale: 0.75;
+}
+
+.java-script-progress-paragraph-one,
+.java-script-progress-paragraph-two,
+.java-script-progress-paragraph-three,
+.java-script-scroll-paragraph-one,
+.java-script-scroll-paragraph-two,
+.java-script-scroll-paragraph-three {
   color: rgb(255, 255, 255);
   font-size: 35px;
   font-family: "Montserrat", serif;
@@ -396,6 +421,32 @@ scale: 0.7;
   font-style: normal;
 }
 
+
+
+
+
+
+.java-script-scroll-paragraph-one-container {
+  grid-column: 2 / 12;
+  grid-row: 5 / 8;
+}
+.java-script-scroll-paragraph-two-container {
+  grid-column: 2 / 12;
+  grid-row: 5 / 10;
+}
+.java-script-scroll-paragraph-three-container {
+  grid-column: 2 / 12;
+  grid-row: 6 / 11;
+}
+
+
+.horizontal-scroll-image-container {
+  grid-column: 2 / 12;
+  grid-row: 9 / 14;
+}
+.horizontal-scroll-image {
+  scale: 0.75;
+}
 
 /*==========================
 FOOOTER

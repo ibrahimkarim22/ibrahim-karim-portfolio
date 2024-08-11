@@ -48,3 +48,7 @@ const alignScroll = () => {
 };
 
 export default HorizontalScroll;
+
+
+
+

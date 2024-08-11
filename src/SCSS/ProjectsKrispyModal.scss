@@ -1,6 +1,4 @@
-.krispy-modal-main-div {
- animation: krispyModalMainDivStartupScale 3s ease-in-out;
-}
+
 
 /*=================
 HEADER grid main
@@ -47,36 +45,40 @@ HEADER grid main
   grid-row: 1 / 3;
   grid-column: 3 / 4;
 }
-
 /*=================
-INTRO PAGE grid main
+main
+==================*/
+.krispy-modal-main-div {
+  animation: krispyModalMainDivStartupScale 3s ease-in-out;
+ }
+ 
+ .krispy-modal-main {
+   padding: 0%;
+   animation: krispyModalMainStartup 3s ease-in-out;
+ }
+ 
+ .krispy-modal-flex-main {
+   display: flex;
+   flex-direction: column;
+   width: 100%;
+   height: 100%;
+   overflow-x: hidden;
+   overflow-y: auto;
+   scroll-behavior: smooth;
+ }
+   
+/*=================
+PAGE 1
 ==================*/
 
 // .krispy-modal-header-text {
 //   animation: krispyModalHeaderSLideInLeft 5s ease-in-out;
 // }
-.krispy-modal-header-sub-text-container {
-  z-index: 2;
-  grid-column: 4 / 9;
-  grid-row: 1 / 2;
-  width: 100%;
-  position: sticky;
-}
 
-.krispy-modal-header-sub-text {
-    background-color: rgba(0, 0, 0, 0.7);
-    color: rgb(255, 255, 255);
-    display: inline-block;
-    box-shadow: white 0px 0px 80px;
-    border-color: rgb(0, 242, 255);
-    border-radius: 4px;
-    padding: 2%;
-    font-size: 20px;
-    
-  animation: krispyModalSubHeaderStartup 7s ease-in-out forwards;
-  }
 
-.krispy-modal-body {
+.krispy-modal-page-one {
+  order: 1;
+  flex: 0 0 auto;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: repeat(12, 1fr);
@@ -85,10 +87,34 @@ INTRO PAGE grid main
     animation: krispyModalBodyStartup 5s ease-in-out;
 }
 
+.krispy-modal-info-container,
+.chaplin-vagabond-container,
+.chaplin-auto-race-container,
+.chaplin-behind-the-screen-container,
+.chaplin-in-the-park-container,
+.chaplin-one-am-container,
+.chaplin-a-night-in-the-show-container,
+.chaplin-charlot-container,
+.chaplin-the-cure-container,
+.fox-container,
+.natgeo-container,
+.nasa-container,
+.euronews-container,
+.france-container,
+.nbc-container 
+{
+  display: flex;
+  justify-content: center;
+  align-items: center;  
+}
+
+.krispy-modal-info-container {
+  grid-column: 2 / 11;
+  grid-row: 2 / 5;
+}
+
 .krispy-modal-info {
   z-index: 2;
-  grid-column: 5 / 9;
-  grid-row: 5 / 11;
   padding: 2%;
   font-size: 22px;
   text-align: center;
@@ -104,9 +130,6 @@ INTRO PAGE grid main
 }
 
 .chaplin-vagabond {
-  
-  grid-column: 2 / 5;
-  grid-row: 7 / 10;
   width: 70%;
   border-radius: 11px;
   z-index: 1;
@@ -115,8 +138,6 @@ INTRO PAGE grid main
 }
 
 .chaplin-auto-race {
-  grid-column: 3 / 7;
-  grid-row: 6 / 9;
   width: 70%;
   border-radius: 11px;
   z-index: 1;
@@ -125,8 +146,6 @@ INTRO PAGE grid main
 }
 
 .chaplin-behind-the-screen {
-  grid-column: 3 / 6;
-  grid-row: 6 / 8;
   width: 70%;
   border-radius: 11px;
   z-index: 1;
@@ -136,8 +155,6 @@ INTRO PAGE grid main
 
 
 .chaplin-the-cure {
-  grid-column: 5 / 8;
-  grid-row: 11 / 14;
   width: 80%;
   border-radius: 11px;
   z-index: 1;
@@ -146,8 +163,6 @@ INTRO PAGE grid main
 }
 
 .chaplin-charlot {
-  grid-column: 8 / 11;
-  grid-row: 9 / 12;
   width: 70%;
   border-radius: 11px;
   z-index: 1;
@@ -156,8 +171,6 @@ INTRO PAGE grid main
 }
 
 .chaplin-in-the-park {
-  grid-column: 6 / 10;
-  grid-row: 9 / 12;
   width: 70%;
   border-radius: 11px;
   z-index: 1;
@@ -166,8 +179,6 @@ INTRO PAGE grid main
 }
 
 .chaplin-one-am {
-  grid-column: 8 / 11;
-  grid-row: 7 / 10;
   width: 90%;
   border-radius: 11px;
   z-index: 1;
@@ -176,8 +187,6 @@ INTRO PAGE grid main
 }
 
 .chaplin-a-night-in-the-show {
-  grid-column: 9 / 12;
-  grid-row: 7 / 10;
   width: 100%;
   border-radius: 11px;
   z-index: 1;
@@ -186,8 +195,6 @@ INTRO PAGE grid main
 }
 
 .fox {
-  grid-column: 5 / 7;
-  grid-row: 2 / 7;
   width: 100%;
   border-radius: 11px;
   z-index: 1;
@@ -197,8 +204,6 @@ INTRO PAGE grid main
 }
 
 .natgeo {
-  grid-column: 8 / 11;
-  grid-row: 3 / 6;
   width: 100%;
   border-radius: 11px;
   z-index: 1;
@@ -207,8 +212,6 @@ INTRO PAGE grid main
 }
 
 .nasa {
-  grid-column: 7 / 11;
-  grid-row: 2 / 5;
   width: 75%;
   border-radius: 11px;
   z-index: 1;
@@ -217,8 +220,6 @@ INTRO PAGE grid main
 }
 
 .euronews {
-  grid-column: 4 / 7;
-  grid-row: 2 / 5;
   width: 75%;
   border-radius: 11px;
   z-index: 1;
@@ -227,8 +228,6 @@ INTRO PAGE grid main
 }
 
 .france {
-  grid-column: 3 / 6;
-  grid-row: 2 / 5;
   width: 75%;
   border-radius: 11px;
   z-index: 1;
@@ -237,8 +236,6 @@ INTRO PAGE grid main
 }
 
 .nbc {
-  grid-column: 2 / 5;
-  grid-row: 1 / 4;
   width: 75%;
   border-radius: 11px;
   z-index: 1;
