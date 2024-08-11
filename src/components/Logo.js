@@ -67,7 +67,7 @@ function Logo() {
         />
         <ambientLight intensity={0.1} />
       </Canvas>
-      {progress > 0 && progress < 100 ? <Progress progress={progress} /> : null}{" "}
+      {progress > 0 && progress < 100 ? <Progress progress={progress} /> : null}
     </div>
   );
 }
