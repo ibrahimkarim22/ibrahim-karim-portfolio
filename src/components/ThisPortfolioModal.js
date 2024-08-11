@@ -192,8 +192,9 @@ function ThisPortfolioModal({ isOpen, closeModal }) {
             </div>
             <div className="java-script-paragraph-container">
               <div className="java-script-paragraph">
-                I needed to create a loading screen in order to give time for 
-                the gltf files to load. otherwise there wont be a smooth transition.
+                I needed to create a loading/progress screen in order to give time for 
+                the gltf files to load. otherwise there wont be a smooth transition when 
+                the gltf files are loaded. 
                 I used Java Script 
               </div>
             </div>

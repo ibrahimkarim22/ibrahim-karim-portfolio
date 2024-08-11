@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useState,useEffect, useRef } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import {
   OrbitControls,
@@ -7,7 +7,7 @@ import {
   PresentationControls,
 } from "@react-three/drei";
 import * as THREE from "three";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+import Progress from './Progress';  
 import landscape from "../models/landscape2.glb";
 
 function BackgroundColor({ color }) {
@@ -45,11 +45,13 @@ function Landscape({ path, setProgress }) {
   return <primitive ref={group} object={scene} />;
 }
 
-function BlenderEnvironment({ setProgress }) {
+function BlenderEnvironment() {
+  const [progress, setProgress] = useState(0);
   const cameraRef = useRef();
   const controlsRef = useRef();
 
   return (
+    <div>
     <Canvas
       className="resume-canvas"
       style={{
@@ -79,6 +81,8 @@ function BlenderEnvironment({ setProgress }) {
         zoomSpeed={4}
       />
     </Canvas>
+    {progress > 0 && progress < 100 ? <Progress progress={progress} /> : null}
+    </div>
   );
 }
 

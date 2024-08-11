@@ -70,7 +70,7 @@
   transform: translate(-26%, 10%) scale(1) skew(20deg);
 }
 
-.logo-div,
+// .logo-div,
 .menu-items,
 .bio-div-main,
 .full-stack-div {
@@ -96,7 +96,7 @@
 
 .logo-div {
   grid-column: 1 / 5;
-  grid-row: 4 / 8;
+  grid-row: 1 / 9;
   animation: logoStartUp 15s ease-in-out forwards;
 }
 .menu-items {

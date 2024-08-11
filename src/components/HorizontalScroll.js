@@ -1,4 +1,3 @@
-import { behavior } from "@testing-library/user-event/dist/cjs/event/behavior/registry.js";
 import { useEffect, useRef } from "react";
 
 const HorizontalScroll = ({ children, className }) => {
