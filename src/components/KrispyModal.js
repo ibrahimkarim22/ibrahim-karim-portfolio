@@ -13,6 +13,13 @@ import nasaTV from "../images/nasaTV.webp";
 import euronews from "../images/euronews.jpg";
 import france from "../images/france.jpg";
 import nbc from "../images/nbc.webp";
+import js from "../images/js.png";
+import reactLogo from "../images/reactLogo.png";
+import sass from "../images/sass.png";
+import firebase from "../images/firebase.png";
+import bootstrapLogo from "../images/bootstrapLogo.png";
+import redux from "../images/redux.png";
+
 function KrispyModal({ isOpen, closeModal }) {
   return (
     <Modal
@@ -34,95 +41,148 @@ function KrispyModal({ isOpen, closeModal }) {
         </div> */}
         <div className="krispy-modal-flex-main">
           <div className="krispy-modal-page-one">
+            <div className="krispy-modal-js-logo-container">
+              <img
+                className="krispy-modal-js-logo"
+                src={js}
+                alt="javascript logo"
+              />
+            </div>
+            <div className="krispy-modal-react-logo-container">
+              <img
+                className="krispy-modal-react-logo"
+                src={reactLogo}
+                alt="react logo"
+              />
+            </div>
+            <div className="krispy-modal-redux-logo-container">
+              <img
+                className="krispy-modal-redux-logo"
+                src={redux}
+                alt="redux logo"
+              />
+            </div>
+            <div className="krispy-modal-sass-logo-container">
+              <img
+                className="krispy-modal-sass-logo"
+                src={sass}
+                alt="sass logo"
+              />
+            </div>
+            <div className="krispy-modal-firebase-logo-container">
+              <img
+                className="krispy-modal-firebase-logo"
+                src={firebase}
+                alt="firebase logo"
+              />
+            </div>
+            <div className="krispy-modal-firestore-logo-container">
+              <img
+                className="krispy-modal-firestore-logo"
+                src={bootstrapLogo}
+                alt="firestore logo"
+              />
+            </div>
+
             <div className="krispy-modal-info-container">
               <div className="krispy-modal-info">
-                Krispy is a streaming service I created using React and
-                Firebase. Watch all of Charlie Chaplin's public domain films.
-                Watch live streams from "Nat Geo Wild", "National Geography",
-                "Disney XD", "Disney Channel" "DW News", "NBC News", "France
-                24", "FOX News", "Dateline NBC", "Aljazeera Arabic", "DW
-                Arabic", Sky News", "NASA TV", "euronews", and "ABC News".
-                Krispy also includes live streams from "Venice, Italy", "London,
-                UK", "New York", "Amsterdam, Netherlands", "Rio de Janero,
-                Brazil", "Miami, Florida", and "Tokyo, Japan".
+                Krispy is a streaming service I created with React, Redux,
+                firebase, Bootstrap and SCSS. Watch live TV streams, live feeds
+                from the globe, and a collection of Charlie Chaplin's public
+                domain films.
               </div>
-              <div className="chaplin-vagabond-container">
-                <img
-                  className="chaplin-vagabond"
-                  src={chaplinVagabond}
-                  alt="charlie chaplin Vagabond"
-                />
-              </div>
-              <div className="chaplin-auto-race-container">
-                <img
-                  className="chaplin-auto-race"
-                  src={chaplinAutoRace}
-                  alt="charlie chaplin Auto Race"
-                />
-              </div>
-              <div className="chaplin-behind-the-screen-container">
-                <img
-                  className="chaplin-behind-the-screen"
-                  src={chaplinBehindTheScreen}
-                  alt="charlie chaplin behind the screen"
-                />
-              </div>
+            </div>
+            <div className="chaplin-vagabond-container">
+              <img
+                className="chaplin-vagabond"
+                src={chaplinVagabond}
+                alt="charlie chaplin Vagabond"
+              />
+            </div>
+            <div className="chaplin-auto-race-container">
+              <img
+                className="chaplin-auto-race"
+                src={chaplinAutoRace}
+                alt="charlie chaplin Auto Race"
+              />
+            </div>
+            <div className="chaplin-behind-the-screen-container">
+              <img
+                className="chaplin-behind-the-screen"
+                src={chaplinBehindTheScreen}
+                alt="charlie chaplin behind the screen"
+              />
+            </div>
 
-              <div className="chaplin-in-the-park-container">
-                <img
-                  className="chaplin-in-the-park"
-                  src={chaplinInThePark}
-                  alt="charlie chaplin in the park"
-                />
-              </div>
+            <div className="chaplin-in-the-park-container">
+              <img
+                className="chaplin-in-the-park"
+                src={chaplinInThePark}
+                alt="charlie chaplin in the park"
+              />
+            </div>
 
-              <div className="chaplin-one-am-container">
-                <img
-                  className="chaplin-one-am"
-                  src={chaplinOneAM}
-                  alt="charlie chaplin one am"
-                />
-              </div>
+            <div className="chaplin-one-am-container">
+              <img
+                className="chaplin-one-am"
+                src={chaplinOneAM}
+                alt="charlie chaplin one am"
+              />
+            </div>
 
-              <div className="chaplin-a-night-in-the-show-container">
-                <img
-                  className="chaplin-a-night-in-the-show"
-                  src={chaplinANightInTheShow}
-                  alt="charlie chaplin a night in the show"
-                />
-              </div>
-              <div className="chaplin-charlot-container">
-                <img
-                  className="chaplin-charlot"
-                  src={chaplinCharlot}
-                  alt="charlie chaplin charlot"
-                />
-              </div>
+            <div className="chaplin-a-night-in-the-show-container">
+              <img
+                className="chaplin-a-night-in-the-show"
+                src={chaplinANightInTheShow}
+                alt="charlie chaplin a night in the show"
+              />
+            </div>
+            <div className="chaplin-charlot-container">
+              <img
+                className="chaplin-charlot"
+                src={chaplinCharlot}
+                alt="charlie chaplin charlot"
+              />
+            </div>
 
-              <div className="chaplin-the-cure-container">
-                <img
-                  className="chaplin-the-cure"
-                  src={chaplinTheCure}
-                  alt="charlie chaplin the cure"
-                />
+            <div className="chaplin-the-cure-container">
+              <img
+                className="chaplin-the-cure"
+                src={chaplinTheCure}
+                alt="charlie chaplin the cure"
+              />
+            </div>
+            <div className="fox-container">
+              <img className="fox" src={fox} alt="fox news" />
+            </div>
+            <div className="natgeo-container">
+              <img className="natgeo" src={natGeoWild} alt="nat geo wild" />
+            </div>
+            <div className="nasa-container">
+              <img className="nasa" src={nasaTV} alt="nasa tv" />
+            </div>
+            <div className="euronews-container">
+              <img className="euronews" src={euronews} alt="euronews" />
+            </div>
+            <div className="france-container">
+              <img className="france" src={france} alt="france" />
+            </div>
+            <div className="nbc-container">
+              <img className="nbc" src={nbc} alt="nbc news" />
+            </div>
+          </div>
+          <div className="krispy-modal-page-two">
+            <div className="krispy-modal-redux-title-container">
+              <div className="krispy-modal-redux-title">
+                Redux for State Management
               </div>
-              <div className="fox-container">
-                <img className="fox" src={fox} alt="fox news" />
-              </div>
-              <div className="natgeo-container">
-                <img className="natgeo" src={natGeoWild} alt="nat geo wild" />
-              </div>
-              <div className="nasa-container">
-                <img className="nasa" src={nasaTV} alt="nasa tv" />
-              </div>
-              <div className="euronews-container">
-                <img className="euronews" src={euronews} alt="euronews" />
-              </div>
-              <div className="france-container">
-                <img className="france" src={france} alt="france" />
-              </div>
-              <div className="nbc-container">
-                <img className="nbc" src={nbc} alt="nbc news" />
+            </div>
+            <div className="krispy-modal-redux-info-container">
+              <div className="krispy-modal-redux-info">
+                In this project, I utilized Redux for centralized state
+                management, specifically handling the addition and removal of
+                favorites across multiple categories like Movies, TV Channels,
+                and Globe Locations.
               </div>
             </div>
           </div>
