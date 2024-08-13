@@ -4,6 +4,18 @@ import folger from "../images/folger.jpg";
 import mit from "../images/mit.png";
 import firebase from "../images/firebase.png";
 import firestore from "../images/firestore.png";
+import folgerSlice from "../images/folgerSlice.png";
+import mitSlice from "../images/mitSlice.png";
+import redux from "../images/redux.png";
+import bardSignUp from "../images/bardSignUp.png";
+import bardLogin from "../images/bardLogin.png";
+import playsRoot from "../images/playsRoot.png";
+import medalsCode from "../images/medalsCode.png";
+import quizCode from "../images/quizCode.png";
+import certificateCode from "../images/certificateCode.png";
+import freeFolger from "../images/freeFolger.png";
+import freeSynopsis from "../images/freeSynopsis.png";
+import readFolger from "../images/readFolger.png";
 
 function BardModal({ isOpen, closeModal }) {
   return (
@@ -15,139 +27,195 @@ function BardModal({ isOpen, closeModal }) {
       className="bard-modal-main-div"
     >
       {isOpen && (
-      <ModalHeader toggle={closeModal} className="bard-modal-header">
-        <div className="bard-modal-header-text">BARD</div>
-        <div className="bard-modal-header-text-two">Online Course</div>
-      </ModalHeader>
+        <ModalHeader toggle={closeModal} className="bard-modal-header">
+          <div className="bard-modal-header-text">BARD</div>
+          <div className="bard-modal-header-text-two">Online Course</div>
+        </ModalHeader>
       )}
       {isOpen && (
-      <ModalBody className="bard-modal-body-main">
-        <div className="bard-modal-main-flex-container">
-          <div className="bard-modal-intro-page-one-container">
-            {/* <Parallax x={[50, -50]} tagOuter="div"> */}
-            <div className="curtain-container">
-              <div className="curtain-shadow-one-container">
-                <div className="curtain-shadow-one"></div>
+        <ModalBody className="bard-modal-body-main">
+          <div className="bard-modal-main-flex-container">
+            <div className="bard-modal-intro-page-one-container">
+              {/* <Parallax x={[50, -50]} tagOuter="div"> */}
+              <div className="curtain-container">
+                <div className="curtain-shadow-one-container">
+                  <div className="curtain-shadow-one"></div>
+                </div>
+                <div className="curtain-shadow-two-container">
+                  <div className="curtain-shadow-two"></div>
+                </div>
+                <div className="curtain-shadow-three-container">
+                  <div className="curtain-shadow-three"></div>
+                </div>
+                <div className="curtain-shadow-four-container">
+                  <div className="curtain-shadow-four"></div>
+                </div>
+                <div className="curtain-shadow-five-container">
+                  <div className="curtain-shadow-five"></div>
+                </div>
+                <div className="curtain-shadow-six-container">
+                  <div className="curtain-shadow-six"></div>
+                </div>
+                <div className="curtain-shadow-seven-container">
+                  <div className="curtain-shadow-seven"></div>
+                </div>
+                <div className="curtain-shadow-eight-container">
+                  <div className="curtain-shadow-eight"></div>
+                </div>
+                <div className="curtain-shadow-nine-container">
+                  <div className="curtain-shadow-nine"></div>
+                </div>
+                <div className="curtain-shadow-ten-container">
+                  <div className="curtain-shadow-ten"></div>
+                </div>
               </div>
-              <div className="curtain-shadow-two-container">
-                <div className="curtain-shadow-two"></div>
-              </div>
-              <div className="curtain-shadow-three-container">
-                <div className="curtain-shadow-three"></div>
-              </div>
-              <div className="curtain-shadow-four-container">
-                <div className="curtain-shadow-four"></div>
-              </div>
-              <div className="curtain-shadow-five-container">
-                <div className="curtain-shadow-five"></div>
-              </div>
-              <div className="curtain-shadow-six-container">
-                <div className="curtain-shadow-six"></div>
-              </div>
-              <div className="curtain-shadow-seven-container">
-                <div className="curtain-shadow-seven"></div>
-              </div>
-              <div className="curtain-shadow-eight-container">
-                <div className="curtain-shadow-eight"></div>
-              </div>
-              <div className="curtain-shadow-nine-container">
-                <div className="curtain-shadow-nine"></div>
-              </div>
-              <div className="curtain-shadow-ten-container">
-                <div className="curtain-shadow-ten"></div>
-              </div>
-            </div>
 
-            {/* </Parallax> */}
-          </div>
-          {/* <div className="bard-modal-header-sub-text-container">
+              {/* </Parallax> */}
+            </div>
+            {/* <div className="bard-modal-header-sub-text-container">
           <div className="bard-modal-header-sub-text">
             Shakespeare Online Course: JavaScript, React, Firebase, Firestore, Redux,
             SCSS, SASS. complete quizzes and earn medals, reach your certrificate!
           </div>
         </div> */}
-          {/* <Parallax scale={[1, 1]} rotate={[1, 1]}> */}
-          <div className="bard-modal-page-two-container">
-            <div className="bard-modal-intro-text-container">
-              <div className="bard-modal-intro-text">
-                I created an online course platform for all 38 of Shakespeare’s
-                plays. This application aims to provide an engaging way for
-                users to explore Shakespeare's works through a combination of
-                reading, quizzes, and video content.
+            {/* <Parallax scale={[1, 1]} rotate={[1, 1]}> */}
+            <div className="bard-modal-page-two-container">
+              <div className="bard-modal-intro-text-container">
+                <div className="bard-modal-intro-text">
+                  I created an online course platform for all 38 of
+                  Shakespeare’s plays. This application aims to provide an
+                  engaging way for users to explore Shakespeare's works through
+                  a combination of reading, quizzes, and video content.
+                </div>
               </div>
             </div>
-          </div>
 
-          <div className="bard-modal-page-three-container"></div>
+            <div className="bard-modal-page-three-container">
+              /*=========3d model========================*/
+            </div>
 
-          <div className="bard-modal-page-four-container">
-            <div className="bard-modal-folger-text-container">
-              <div className="bard-modal-folger-text">
-              The app utilizes the Folger Shakespeare Library's official API
-              to fetch the synopses and character lists of each play.
+            <div className="bard-modal-page-four-container">
+              <div className="bard-modal-api-title-container">
+                <div className="bard-modal-api-title">APIs</div>
+              </div>
+              <div className="bard-modal-folger-text-container">
+                <div className="bard-modal-folger-text">
+                  Folger Shakespeare Library's official API for fetching the
+                  synopses and character lists of each play.
+                </div>
+              </div>
+              <div className="bard-modal-folger-logo-container">
+                <img
+                  src={folger}
+                  alt="folger logo"
+                  className="folger-logo"
+                ></img>
+              </div>
+
+              <div className="bard-modal-mit-text-container">
+                <div className="bard-modal-mit-text">
+                  The MIT public domain API for fetching the complete texts of
+                  the plays.
+                </div>
+              </div>
+              <div className="bard-modal-mit-logo-container">
+                <img src={mit} alt="MIT logo" className="mit-logo"></img>
+              </div>
+              <div className="mit-slice-container">
+                <img src={mitSlice} alt="MIT slice" className="mit-slice" />
+              </div>
+              <div className="folger-slice-container">
+                <img
+                  src={folgerSlice}
+                  alt="Folger slice"
+                  className="folger-slice"
+                />
               </div>
             </div>
-            <div className="bard-modal-folger-logo-container">
-              <img src={folger} alt="folger logo" className="folger-logo"></img>
-            </div>
 
-            <div className="bard-modal-mit-text-container">
-              <div className="bard-modal-mit-text">
-              
-                Additionally, it uses the MIT public domain API to retrieve the
-                complete texts of the plays.
+            <div className="bard-modal-page-five-container">
+              <div className="bard-modal-user-title-container">
+                <div className="bard-modal-user-title">Account</div>
               </div>
-            </div>
-            <div className="bard-modal-mit-logo-container">
-              <img src={mit} alt="MIT logo" className="mit-logo"></img>
-            </div>
-          </div>
-
-          <div className="bard-modal-page-five-container">
-            <div className="bard-modal-firebase-text-container">
-              <div className="bard-modal-firebase-text">
-                Users create accounts, which are securely stored in Google
-                Firestore. Upon account creation, each user receives a unique
-                profile that includes their email, password, a default profile
-                picture (which can be updated), and their progress through the
-                plays.
+              <div className="bard-modal-firebase-text-container">
+                <div className="bard-modal-firebase-text">
+                  Users create accounts, which are securely stored in Google
+                  Firestore. Upon account creation, each user receives a unique
+                  profile that includes their email, password, a default profile
+                  picture (which can be updated), and their progress through the
+                  plays. Upon login the data from firestore is used to update
+                  the redux state of the completed quiz levels and resume user's
+                  progress.
+                </div>
               </div>
-            </div>
               <div className="bard-modal-firebase-logo-container">
                 <img
                   src={firebase}
                   alt="firebase logo"
                   className="bard-modal-firebase-logo"
-                ></img>
+                />
               </div>
               <div className="bard-modal-firestore-logo-container">
                 <img
                   src={firestore}
                   alt="firestore logo"
                   className="bard-modal-firestore-logo"
-                ></img>
+                />
               </div>
-          </div>
-          <div className="bard-modal-page-six-container">
-            <div className="bard-modal-features-text-one-container">
-              <div className="bard-modal-features-text-one">
-                Level System: Users progress through the plays in an order that
-                typically starts with those familiar from high school, such as
-                "The Tempest." The levels range from easier to more challenging
-                plays.
+              <div className="bard-modal-redux-container">
+                <img
+                  src={redux}
+                  alt="redux logo"
+                  className="bard-modal-redux"
+                />
+              </div>
+              <div className="bard-sign-up-container">
+                <img
+                  src={bardSignUp}
+                  alt="bard sign up"
+                  className="bard-sign-up"
+                />
+              </div>
+              <div className="bard-login-container">
+                <img src={bardLogin} alt="bard login" className="bard-login" />
               </div>
             </div>
 
-            <div className="bard-modal-features-text-two-container">
-              <div className="bard-modal-features-text-two">
-                Synopsis and Quizzes: Each level begins with a synopsis of the
-                play. Users can choose to take a quiz after reading the
-                synopsis, with the option to read the entire play before
-                attempting the quiz. Quizzes consist of 7 questions, and users
-                must achieve a perfect score to earn a medal and unlock the next
-                level.
+            <div className="bard-modal-page-six-container">
+              <div className="main-features-title-container">
+                <div className="main-features-title">Main Features</div>
               </div>
-            </div>
+              <div className="bard-modal-features-text-one-container">
+                <div className="bard-modal-features-text-one">
+                  Level System: Users progress through the plays in an order
+                  that typically starts with those familiar from high school,
+                  such as "The Tempest." The levels range from easier to more
+                  challenging plays.
+                </div>
+              </div>
+              <div className="plays-root-container">
+                <img src={playsRoot} alt="plays root" className="plays-root" />
+              </div>
+
+              <div className="bard-modal-features-text-two-container">
+                <div className="bard-modal-features-text-two">
+                  Synopsis and Quizzes: Each level begins with a synopsis of the
+                  play. Users can choose to take a quiz after reading the
+                  synopsis, with the option to read the entire play before
+                  attempting the quiz. Quizzes consist of 7 questions, and users
+                  must achieve a perfect score to earn a medal and unlock the
+                  next level.
+                </div>
+              </div>
+              <div className="quiz-code-container">
+                <img
+                  src={quizCode}
+                  alt="quiz code code"
+                  className="quiz-code"
+                  />
+              </div>
+
+              
             <div className="bard-modal-features-text-three-container">
               <div className="bard-modal-features-text-three">
                 Unlocking Plays and Earning Medals: Plays are locked initially,
@@ -155,63 +223,105 @@ function BardModal({ isOpen, closeModal }) {
                 Successfully completing each play awards a medal, and collecting
                 all 38 medals grants a certificate.
               </div>
+            </div> 
+            <div className="medals-code-container">
+                <img
+                  src={medalsCode}
+                  alt="medals code"
+                  className="medals-code"
+                  />
+              </div> 
+               <div className="certificate-code-container">
+                <img
+                  src={certificateCode}
+                  alt="certificate code"
+                  className="certificate-code"
+                  />
+              </div> 
+              
             </div>
-          </div>
-          <div className="bard-modal-page-seven-container">
-            <div className="bard-modal-additional-features-text-one-container">
-              <div className="bard-modal-additional-features-text-one">
-                Flexible Reading Options: Users can read synopses and take
-                quizzes in sequence, or they can choose to read the full plays
-                at their discretion. Additionally, users can explore all
-                synopses or entire plays in any order without following the
-                course structure.
+            <div className="bard-modal-page-seven-container">
+              <div className="additional-features-title-container">
+                <div className="additional-features-title">Additional Features</div>
               </div>
-            </div>
+              <div className="bard-modal-additional-features-text-one-container">
+                <div className="bard-modal-additional-features-text-one">
+                  Flexible Reading Options: Users can read synopses and take
+                  quizzes in sequence, or they can choose to read the full plays
+                  at their discretion. Additionally, users can explore all
+                  synopses or entire plays in any order without following the
+                  course structure.
+                </div>
+              </div>
+       
 
-            <div className="bard-modal-additional-features-text-two-container">
-              <div className="bard-modal-additional-features-text-two">
-                Video Content: The platform includes sections for watching
-                'Great Performances' and 'How To' videos on Shakespeare, sourced
-                from YouTube, enhancing the learning experience.
+
+              <div className="free-folger-container">
+                <img
+                  src={freeFolger}
+                  alt="free folger code"
+                  className="free-folger"
+                  />
               </div>
+              <div className="free-synopsis-container">
+                <img
+                  src={freeSynopsis}
+                  alt="free synopsis code"
+                  className="free-synopsis"
+                  />
+              </div>
+              <div className="read-folger-container">
+                <img
+                  src={readFolger}
+                  alt="read folger code"
+                  className="read-folger"
+                  />
+              </div>
+                  <div className="bard-modal-additional-features-text-two-container">
+                    <div className="bard-modal-additional-features-text-two">
+                      Video Content: The platform includes sections for watching
+                      'Great Performances' and 'How To' videos on Shakespeare,
+                      sourced from YouTube, enhancing the learning experience.
+                    </div>
+                  </div>
+        
             </div>
           </div>
-        </div>
-      </ModalBody>
+        </ModalBody>
       )}
       {isOpen && (
-      <ModalFooter className="bard-modal-footer">
-        <Button
-          color="danger"
-          className="bard-modal-close-btn"
-          onClick={closeModal}
-        >
-          EXIT
-        </Button>
-        <Button
-          color="warning"
-          className="bard-apk-download-btn"
-          onClick={(src) =>
-            window.open(
-              "https://drive.google.com/file/d/1kblapPn0vab5BiiJwcaMAioJ5yW14cCf/view?usp=drive_link",
-              "_blank"
-            )
-          }
-        >
-          Download APK
-        </Button>
-        <Button
-          color="info"
-          className="bard-modal-github-btn"
-          onClick={(src) =>
-            window.open(
-              "https://github.com/ibrahim-karim-22/reactNativePortfolioProject"
-            )
-          }
-        >
-          GitHub
-        </Button>
-      </ModalFooter>
+        <ModalFooter className="bard-modal-footer">
+          <Button
+            color="danger"
+            className="bard-modal-close-btn"
+            onClick={closeModal}
+          >
+            EXIT
+          </Button>
+          <Button
+            color="warning"
+            className="bard-apk-download-btn"
+            onClick={(src) =>
+              window.open(
+                "https://drive.google.com/file/d/1kblapPn0vab5BiiJwcaMAioJ5yW14cCf/view?usp=drive_link",
+                "_blank"
+              )
+            }
+          >
+            Download APK
+          </Button>
+          <Button
+            color="info"
+            className="bard-modal-github-btn"
+            onClick={(src) =>
+              window.open(
+                "https://github.com/ibrahim-karim-22/reactNativePortfolioProject"
+              )
+            }
+          >
+            GitHub
+          </Button>
+        </ModalFooter>
       )}
     </Modal>
     // </ParallaxProvider>

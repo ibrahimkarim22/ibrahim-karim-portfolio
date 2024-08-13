@@ -10,20 +10,20 @@
   align-items: center;
   background-color: rgb(0, 94, 255);
   border: solid 1px rgb(0, 0, 0);
-  height: 7%;
+  height: 5%;
 }
 
 .this-portfolio-modal-header .modal-title {
   grid-column: 2 / 4;
   grid-row: 1 / 3;
-  font-size: 69px;
+  font-size: 44px;
   color: rgb(255, 255, 255);
   font-family: "Cinzel", serif;
   font-weight: 400;
 }
 
 .this-portfolio-modal-header .btn-close {
-  scale: 1.5;
+  scale: 1;
   background-color: rgb(255, 255, 255);
   grid-column: 3;
   grid-row: 1 / 3;
@@ -57,8 +57,8 @@
   flex: 0 0 auto;
   height: 100vh;
   display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: repeat(10, 1fr);
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
   background-color: rgb(255, 255, 255);
   background-blend-mode: multiply;
 }
@@ -70,8 +70,8 @@
 }
 
 .this-portfolio-modal-info-container {
-  grid-column: 3 / 11;
-  grid-row: 2 / 7;
+  grid-column: 1 / 3;
+  grid-row: 1 / 3;
 }
 
 .this-portfolio-modal-info {
@@ -80,7 +80,9 @@
   font-family: "Montserrat", serif;
   font-weight: 300;
   font-style: normal;
+  text-align: start;
   font-optical-sizing: auto;
+  padding: 300px;
 }
 
 /*==========================
@@ -89,9 +91,9 @@
 .this-portfolio-page-two {
   order: 2;
   flex: 0 0 auto;
-  height: 250vh;
+  height: 350vh;
   display: grid;
-  grid-template-columns: repeat(12, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(10, 1fr);
   background-color: rgb(255, 238, 0);
 }
@@ -99,7 +101,9 @@
 .grid-title-text-container,
 .grid-paragraph-container,
 .grid-image-hey-you-container,
-.curtain-grid-image-container {
+.curtain-grid-image-container,
+.hey-you-grid-code-container,
+.curtain-grid-code-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -115,39 +119,72 @@
 }
 
 .grid-title-text-container {
-  grid-column: 3 / 11;
-  grid-row: 1 / 3;
+  grid-column: 1 / 6;
+  grid-row: 1 / 2;
 }
 
 .grid-paragraph-container {
-  grid-column: 2 / 12;
-  grid-row: 3 / 4;
+  grid-column: 1 / 6;
+  grid-row: 1 / 3;
+  transform: translate(0px, 100px); 
 }
 
 .grid-paragraph {
   color: rgb(0, 0, 0);
   font-size: 30px;
+  padding: 400px;
   font-family: "Montserrat", serif;
   font-weight: 300;
   font-style: normal;
   font-optical-sizing: auto;
+  z-index: 22;
 }
 
 .grid-image-hey-you-container {
-  grid-column: 3 / 11;
-  grid-row: 5 / 8;
+  grid-column: 2 / 5;
+  grid-row: 3 / 5;
+  z-index: 21;
+  transform: perspective(1500px) rotateY(30deg) translate(-100px, 20px);
 }
+
+
+.hey-you-grid-code-container {
+  grid-column: 4 / 6;
+  grid-row: 3 / 5;
+  transform: perspective(1500px) rotateY(30deg) translate(100px, 20px);
+  z-index: 20;
+}
+
+.hey-you-grid-code {
+  scale: 0.6;
+}
+
+
 
 .grid-image-hey-you {
   scale: 0.7;
 }
 
 .curtain-grid-image-container {
-  grid-column: 3 / 11;
-  grid-row: 8 / 11;
+  grid-column: 2 / 6;
+  grid-row: 6 / 9;
+  transform: perspective(2000px) rotateY(-25deg) translate(0px, 30px);
+
 }
 
 .curtain-grid-image {
+  scale: 0.7;
+  
+}
+
+
+.curtain-grid-code-container {
+  grid-column: 1 / 3;
+  grid-row: 6 / 10;
+  transform: perspective(1500px) rotateY(-15deg) translate(0px, 30px);
+}
+
+.curtain-grid-code {
   scale: 0.7;
 }
 
@@ -158,10 +195,10 @@
 .this-portfolio-page-three {
   order: 3;
   flex: 0 0 auto;
-  height: 600vh;
+  height: 400vh;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: repeat(10, 1fr);
+  grid-template-rows: repeat(15, 1fr);
   background-color: rgb(255, 255, 255);
 }
 
@@ -191,12 +228,12 @@
 
 .css-animation-paragraph-container {
   grid-column: 2 / 12;
-  grid-row: 1 / 3;
+  grid-row: 1 / 4;
 }
 
 .css-animation-paragraph {
   color: rgb(0, 0, 0);
-  font-size: 35px;
+  font-size: 30px;
   font-family: "Montserrat", serif;
   font-weight: 300;
   font-style: normal;
@@ -204,39 +241,39 @@
 
 .whale-keyframes-image-hey-you-container {
   grid-column: 2 / 12;
-  grid-row: 2 / 5;
+  grid-row: 3 / 7;
 }
 
 .whale-keyframes-image-hey-you {
-  scale: 0.7;
+  scale: 0.6;
 }
 
 .animation-whale-hey-you-container {
   grid-column: 3 / 11;
-  grid-row: 3 / 7;
+  grid-row: 6 / 10;
 }
 
 .animation-whale-hey-you {
-  scale: 0.8;
+  scale: 0.7;
 }
 
 .splash-keyframes-image-hey-you-container {
   grid-column: 3 / 10;
-  grid-row: 4 / 10;
+  grid-row: 11 / 13;
   transform: translate(-23px, 0px);
 }
 
 .splash-keyframes-image-hey-you {
-  scale: 0.7;
+  scale: 0.6;
 }
 
 .animation-splash-hey-you-container {
   grid-column: 3 / 11;
-  grid-row: 6 / 12;
+  grid-row: 13 / 16;
 }
 
 .animation-splash-hey-you {
-  scale: 0.8;
+  scale: 0.7;
 }
 
 /*==========================
@@ -278,43 +315,48 @@
 }
 
 .three-dee-paragraph-container {
-  grid-column: 2 / 12;
+  grid-column: 2 / 10;
   grid-row: 1 / 4;
+  transform: translate(0px, -70px);
 }
 
 .three-dee-paragraph {
   color: rgb(255, 255, 255);
-  font-size: 35px;
+  font-size: 33px;
   font-family: "Montserrat", serif;
   font-weight: 300;
   font-style: normal;
 }
 
 .use-effect-image-container {
-  grid-column: 1 / 5;
+  grid-column: 2 / 12;
   grid-row: 2 / 6;
+  z-index: 33;
 }
 
 .use-effect-image {
-  scale: 0.7;
+  scale: 0.8;
 }
 
 .resume-canvas-image-container {
-  grid-column: 5 / 8;
-  grid-row: 2 / 6;
+  grid-column: 2 / 5;
+  grid-row: 2 / 5;
+  transform: perspective(2000px) rotateY(40deg) translate(0px, 100px);
 }
 
 .resume-canvas-image {
-  scale: 0.7;
+  scale: 0.58;
 }
 
 .logo-canvas-image-container {
-  grid-column: 8 / 12;
+  grid-column: 8 / 13;
   grid-row: 2 / 6;
+  transform: perspective(1500px) rotateY(-30deg) translate(0px, 0px);
+
 }
 
 .logo-canvas-image {
-  scale: 0.7;
+  scale: 0.63;
 }
 
 .logo-model-image-container {
@@ -329,6 +371,7 @@
 .resume-model-image-container {
   grid-column: 2 / 12;
   grid-row: 6 / 14;
+  
 }
 
 .resume-model-image {
@@ -454,7 +497,7 @@ FOOOTER
 
 .this-portfolio-modal-footer {
   display: grid;
-  height: 7%;
+  height: 5%;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(3, 1fr);
   background-color: rgb(0, 94, 255);
@@ -465,7 +508,7 @@ FOOOTER
 .this-portfolio-site-btn,
 .this-portfolio-modal-github-btn {
   width: 50%;
-  scale: 1.5;
+  scale: 1;
   border: solid 1px rgb(0, 0, 0);
   color: rgb(0, 0, 0);
   letter-spacing: 2px;
@@ -474,19 +517,19 @@ FOOOTER
 
 .this-portfolio-modal-close-btn {
   grid-column: 2 / 3;
-  grid-row: 2;
+  grid-row: 1 / 3;
   background-color: rgb(255, 255, 255);
   color: rgb(255, 0, 0);
 }
 
 .this-portfolio-site-btn {
   grid-column: 3 / 4;
-  grid-row: 2;
+  grid-row: 1 / 3;
   background-color: rgb(255, 255, 255);
 }
 
 .this-portfolio-modal-github-btn {
   grid-column: 5;
-  grid-row: 2;
+  grid-row: 1 / 3;
   background-color: rgb(255, 255, 255);
 }

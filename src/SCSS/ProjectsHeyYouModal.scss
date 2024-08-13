@@ -22,7 +22,7 @@
 }
 
 .hey-you-modal-header .modal-title,
-.hey-you-bg-logo-one,
+
 .hey-you-modal-main-title {
   grid-column: 1 / 4;
   grid-row: 1 / 3;
@@ -129,14 +129,11 @@
   grid-column: 8 / 10;
   grid-row: 1 / 3;
   z-index: 1;
+  font-family: "Raleway", sans-serif;
   font-size: 55px;
   font-weight: 100;
   color: rgb(255, 255, 255);
-  // transform: rotateX(20deg);
-  // text-shadow: rgb(0, 0, 0) 0 0 5px;
 }
-
-
 
 /*==========================
         BACKEND PAGE continued
@@ -150,8 +147,6 @@
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(5, 1fr);
-  // align-items: center;
-  // justify-content: center;
   background-color: snow;
 }
 

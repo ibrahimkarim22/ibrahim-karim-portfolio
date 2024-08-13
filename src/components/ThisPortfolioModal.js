@@ -13,6 +13,11 @@ import resumeModel from "../images/resumeModel.png";
 import progressOne from "../images/progressOne.png";
 import progressTwo from "../images/progressTwo.png";
 import HorizontalScrollImage from "../images/horizontalScrollImage.png";
+import curtainGridCode from "../images/curtainGridCode.png";
+import heyYouGridCode from "../images/heyYouGridCode.png";
+
+
+
 function ThisPortfolioModal({ isOpen, closeModal }) {
   return (
     <Modal
@@ -76,13 +81,28 @@ function ThisPortfolioModal({ isOpen, closeModal }) {
                 alt="grid image from hey you modal"
               />
             </div>
-            <div className="curtain-grid-image-container">
+            <div className="hey-you-grid-code-container">
               <img
-                src={curtainGrid}
-                className="curtain-grid-image"
-                alt="curtain grid image"
+                src={heyYouGridCode}
+                className="hey-you-grid-code"
+                alt="hey you grid code"
+                />
+            </div>
+                <div className="curtain-grid-image-container">
+                  <img
+                    src={curtainGrid}
+                    className="curtain-grid-image"
+                    alt="curtain grid image"
+                  />
+                </div>
+            <div className="curtain-grid-code-container">
+              <img
+                src={curtainGridCode}
+                className="curtain-grid-code"
+                alt="curtain grid code"
               />
             </div>
+             
           </div>
           {/* PAGE 3 */}
           <div className="this-portfolio-page-three">
