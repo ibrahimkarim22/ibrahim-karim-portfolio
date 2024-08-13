@@ -3,6 +3,8 @@ import js from "../images/js.png";
 import html from "../images/html.png";
 import css from "../images/css.png";
 import sass from "../images/sass.png";
+import whacka from "../images/whacka.gif";
+import whackaCode from "../images/whackaCode.png";
 
 function WhackaModal({ isOpen, closeModal }) {
   return (
@@ -12,22 +14,24 @@ function WhackaModal({ isOpen, closeModal }) {
       fullscreen
       className="whacka-modal-main-div"
     >
+      {isOpen && (
       <ModalHeader toggle={closeModal} className="whacka-modal-header">
         <div className="whacka-modal-header-text">Whack a Mole</div>
         <div className="whacka-modal-header-text-two">Online Game</div>
       </ModalHeader>
+      )}
+      {isOpen && (
       <ModalBody className="whacka-modal-main">
         <div className="whacka-modal-flex-main">
           <div className="whacka-modal-page-one">
             <div className="whacka-modal-info-container">
               <div className="whacka-modal-info">
-                Whack a Mole is a JavaScript game created by my two colleagues
+                Whack a Mole is an online game created by my two colleagues
                 (Brandon O'Shea and Sam Golshan) and I. Team work though Git and
                 GitHub plus VS Code Live Share was the most important aspect of
-                this project. It is a 2D game where you have to hit as many
+                this project. It is a 2D game where you have to click as many
                 moles as you can. Don't forget: you have 1 life. Don't hit the
-                empty holes. Don't miss the extra points mole. Do Not click on
-                the Nuke!
+                empty celss. Don't miss the extra points mole. Don't the Nuke!
               </div>
             </div>
             <div className="whacka-modal-js-logo-container">
@@ -59,24 +63,59 @@ function WhackaModal({ isOpen, closeModal }) {
           <div className="whacka-modal-page-two">
             <div className="whacka-paragraph-two-container">
               <div className="whacka-paragraph-two">
-                In this interactive "Whack-a-Mole" game, players engage with a
-                grid where moles, extra point moles, and bombs appear randomly.
-                The goal is to score points by clicking on the moles while
-                avoiding bombs, which end the game if clicked. Each action is
-                accompanied by sound effects, and timers control the pace,
-                making the gameplay both challenging and immersive.
+                The game was created using vanilla JavaScript, HTML, and SCSS.
               </div>
             </div>
             <div className="whacka-gif-container">
-              <img
-                src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif"
-                alt="whacka mole gif"
-                className="whacka-gif"
-              />
+              <img src={whacka} alt="whacka mole gif" className="whacka-gif" />
             </div>
+          </div>
+          <div className="whacka-modal-page-three">
+            <div className="event-listeners-title-container">
+              <div className="event-listeners-title">Event listeners</div>
+            </div>
+            <div className="button-clicks-text-container">
+              <div className="button-clicks-text">
+                Event listeners were attached to buttons like startGameBtn,
+                endGameBtn, and goBackBtn to trigger functions such as starting
+                the game, ending it, or navigating back.
+              </div>
+            </div>
+            <div className="grid-interactions-text-container">
+              <div className="grid-interactions-text">
+                Grid Interactions: Each grid cell (button) was assigned a click
+                event listener to handle scoring actions when the player clicks
+                on moles or other game elements like bombs.
+              </div>
+            </div>
+            <div className="sound-text-container">
+              <div className="sound-text">
+                Specific event listeners were set up to play sounds when certain
+                actions occurred, like starting the game, clicking on a mole, or
+                triggering the game over sequence.
+              </div>
+            </div>
+            <div className="timers-text-container">
+              <div className="timers-text">
+                Timers and Intervals: Event listeners were used to manage game
+                timing, including countdown timers and intervals that control
+                mole appearance, bomb handling, and sound playback, ensuring
+                these elements operate at appropriate times.
+              </div>
+            </div>
+            <div className="whacka-code-image-container">
+              <img
+                src={whackaCode}
+                alt="whacka mole code"
+                className="whacka-code-image"
+                />
+            </div> 
+
           </div>
         </div>
       </ModalBody>
+      )}
+      {isOpen && (
       <ModalFooter className="whacka-modal-footer">
         <Button color="danger" className="modal-close-btn" onClick={closeModal}>
           Close
@@ -102,6 +141,7 @@ function WhackaModal({ isOpen, closeModal }) {
           GitHub
         </Button>
       </ModalFooter>
+      )}
     </Modal>
   );
 }

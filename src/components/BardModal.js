@@ -14,10 +14,13 @@ function BardModal({ isOpen, closeModal }) {
       fullscreen
       className="bard-modal-main-div"
     >
+      {isOpen && (
       <ModalHeader toggle={closeModal} className="bard-modal-header">
         <div className="bard-modal-header-text">BARD</div>
         <div className="bard-modal-header-text-two">Online Course</div>
       </ModalHeader>
+      )}
+      {isOpen && (
       <ModalBody className="bard-modal-body-main">
         <div className="bard-modal-main-flex-container">
           <div className="bard-modal-intro-page-one-container">
@@ -175,6 +178,8 @@ function BardModal({ isOpen, closeModal }) {
           </div>
         </div>
       </ModalBody>
+      )}
+      {isOpen && (
       <ModalFooter className="bard-modal-footer">
         <Button
           color="danger"
@@ -207,6 +212,7 @@ function BardModal({ isOpen, closeModal }) {
           GitHub
         </Button>
       </ModalFooter>
+      )}
     </Modal>
     // </ParallaxProvider>
   );

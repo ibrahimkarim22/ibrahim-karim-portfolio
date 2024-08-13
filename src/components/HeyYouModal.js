@@ -23,12 +23,15 @@ function HeyYouModal({ isOpen, closeModal }) {
       fullscreen
       className="hey-you-modal-main-div"
     >
+      {isOpen && (
       <ModalHeader toggle={closeModal} className="hey-you-modal-header">
         <div className="hey-you-modal-header-text">
           HeyYou
         </div>
         <div className="hey-you-modal-header-text-two">Location Tracking & Messaging</div>
       </ModalHeader>
+      )}
+      {isOpen && (
       <ModalBody className="hey-you-modal-body-main">
         <HorizontalScroll className="hey-you-horizontal-scroll">
           <div className="hey-you-main-title-page-container hey-you-page">
@@ -292,6 +295,8 @@ function HeyYouModal({ isOpen, closeModal }) {
           </div>
         </HorizontalScroll>
       </ModalBody>
+      )}
+      {isOpen && (
       <ModalFooter className="hey-you-modal-footer">
         <Button
           color="danger"
@@ -324,6 +329,7 @@ function HeyYouModal({ isOpen, closeModal }) {
           GitHub
         </Button>
       </ModalFooter>
+      )}
     </Modal>
   );
 }

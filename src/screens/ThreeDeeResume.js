@@ -4,12 +4,10 @@ import Progress from "../components/Progress";
 
 function ThreeDeeResume() {
   const [progress, setProgress] = useState(0);
-
-  const handleProjects = () => {
-    console.log("projects clicked");
-  };
+  const [loadModel, setLoadModel] = useState(false);
 
   useEffect(() => {
+    // Simulate loading progress
     const interval = setInterval(() => {
       setProgress((prev) => {
         if (prev < 100) {
@@ -21,16 +19,22 @@ function ThreeDeeResume() {
       });
     }, 50);
 
-    return () => clearInterval(interval); // Clear interval on component unmount
+    return () => clearInterval(interval); 
   }, []);
 
+  useEffect(() => {
+    if (progress === 100) {
+      setLoadModel(true); 
+    }
+  }, [progress]);
+
   return (
-    <>
+    <div className="three-dee-resume-page">
       {progress < 100 ? (
         <Progress progress={progress} />
       ) : (
         <div className="blender-environment" align="center">
-          <BlenderEnvironment setProgress={setProgress} />
+          {loadModel && <BlenderEnvironment />} 
           <div className="orbit-instructions">
             <p>
               <span style={{ color: "blue" }}>RC</span> Pan
@@ -42,7 +46,7 @@ function ThreeDeeResume() {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 }
 

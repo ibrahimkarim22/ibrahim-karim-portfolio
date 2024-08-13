@@ -19,6 +19,12 @@ import sass from "../images/sass.png";
 import firebase from "../images/firebase.png";
 import bootstrapLogo from "../images/bootstrapLogo.png";
 import redux from "../images/redux.png";
+import kirspyFavorite from "../images/krispyFavorite.png";
+import krispyFavoriteGif from "../images/krispyFavoriteGif.gif";
+import krispyMapCode from "../images/krispyMapCode.png";
+import krispyRoutingCode from "../images/krispyRoutingCode.png";
+import krispyBootstrapCode from "../images/krispyBootstrapCode.png";
+import krispyParallaxCode from "../images/krispyParallaxCode.png";
 
 function KrispyModal({ isOpen, closeModal }) {
   return (
@@ -28,10 +34,13 @@ function KrispyModal({ isOpen, closeModal }) {
       fullscreen
       className="krispy-modal-main-div"
     >
+      {isOpen && (
       <ModalHeader toggle={closeModal} className="krispy-modal-header">
         <div className="krispy-modal-header-text">KRISPY</div>
         <div className="krispy-modal-header-text-two">Streaming Service</div>
       </ModalHeader>
+      )}
+      {isOpen && (
       <ModalBody className="krispy-modal-body-main">
         {/* <div className="krispy-modal-header-sub-text-container">
           <div className="krispy-modal-header-sub-text">
@@ -185,9 +194,125 @@ function KrispyModal({ isOpen, closeModal }) {
                 and Globe Locations.
               </div>
             </div>
+             <div className="favorite-code-container">
+              <img
+                className="favorite-code"
+                src={kirspyFavorite}
+                alt="krispy favorites code implementation"
+                />
+            </div>
+            <div className="favorite-gif-container">
+              <img
+                className="favorite-gif"
+                src={krispyFavoriteGif}
+                alt="krispy favorite gif"
+                />
+            </div>
           </div>
+          <div className="krispy-page-three">
+            <div className="map-title-container">
+              <div className="map-title">
+                Dynamic Rendering with Map Methods
+              </div>
+            </div>
+            <div className="map-info-container">
+              <div className="map-info">
+                I implemented dynamic rendering throughout the application using
+                JavaScript's .map() method to display lists of movies, TV
+                channels, and globe locations.
+              </div>
+            </div>
+            <div className="map-info-two-container">
+              <div className="map-info-two">
+                The use of conditional rendering further improves user
+                experience by displaying content based on the presence of user
+                favorites or by selected genre.
+              </div>
+            </div>
+            <div className="map-code-container">
+              <img
+                className="map-code"
+                src={krispyMapCode}
+                alt="krispy map code"
+                />
+            </div>
+          </div>
+          <div className="krispy-page-four">
+            <div className="routing-title-container">
+              <div className="routing-title">Routing with React Router</div>
+            </div>
+            <div className="routing-info-container">
+              <div className="routing-info">
+                React Router plays a crucial role in managing the navigation of
+                this application. With nested routing and dynamic URL
+                parameters, users can easily navigate between various sections
+                like movies, TV channels, and live globe streams.
+              </div>
+            </div>
+            <div className="routing-code-container">
+              <img
+                className="routing-code"
+                src={krispyRoutingCode}
+                alt="krispy routing"
+                />
+            </div>
+          </div>
+          <div className="krispy-page-five">
+            <div className="bootstrap-title-container">
+              <div className="bootstrap-title">
+                Responsive Design with Bootstrap
+              </div>
+            </div>
+            <div className="bootstrap-info-container">
+              <div className="bootstrap-info">
+                To ensure the application is responsive across various devices,
+                I incorporated Bootstrap alongside custom SCSS for styling.
+                Using Bootstrap's grid system and responsive utilities, I
+                maintained a consistent and visually appealing layout,
+                regardless of screen size.
+              </div>
+            </div>
+      
+            <div className="bootstrap-code-container">
+              <img
+                className="bootstrap-code"
+                src={krispyBootstrapCode}
+                alt="krispy bootstrap code example"
+                />
+            </div>
+          </div>
+          <div className="krispy-page-six">
+            <div className="parallax-title-container">
+              <div className="parallax-title">React Scroll Parallax</div>
+            </div>
+            <div className="parallax-info-container">
+              <div className="parallax-info">
+                React Router plays a crucial role in managing the navigation of
+                this application. With nested routing and dynamic URL
+                parameters, users can easily navigate between various sections
+                like movies, TV channels, and live globe streams.
+              </div>
+            </div>
+            <div className="parallax-code-container">
+              <img
+                className="parallax-code"
+                src={krispyParallaxCode}
+                alt="krispy parallax"
+                />
+            </div>
+            {/* <div className="parallax-gif-container">
+              <img
+                className="parallax-gif"
+                src={krispyParallaxGif}
+                alt="krispy parallax gif"
+                />
+          </div> */}
+            </div> 
+                
         </div>
       </ModalBody>
+      )}
+      {isOpen && (
       <ModalFooter className="krispy-modal-footer">
         <Button
           color="danger"
@@ -215,6 +340,7 @@ function KrispyModal({ isOpen, closeModal }) {
           GitHub
         </Button>
       </ModalFooter>
+      )}
     </Modal>
   );
 }

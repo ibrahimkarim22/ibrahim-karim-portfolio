@@ -21,9 +21,12 @@ function ThisPortfolioModal({ isOpen, closeModal }) {
       fullscreen
       className="this-portfolio-modal-main-div"
     >
+      {isOpen && (
       <ModalHeader toggle={closeModal} className="this-portfolio-modal-header">
         <div className="this-portfolio-modal-header-text">This Portfolio</div>
       </ModalHeader>
+      )}
+      {isOpen && (
       <ModalBody className="this-portfolio-modal-body-main">
         {/* <div className="this-portfolio-modal-header-sub-text-container">
           <div className="this-portfolio-modal-header-sub-text">
@@ -267,6 +270,8 @@ function ThisPortfolioModal({ isOpen, closeModal }) {
           <div className="this-portfolio-page-seven"></div>
         </div>
       </ModalBody>
+      )}
+      {isOpen && (
       <ModalFooter className="this-portfolio-modal-footer">
         <Button
           color="danger"
@@ -294,6 +299,7 @@ function ThisPortfolioModal({ isOpen, closeModal }) {
           GitHub
         </Button>
       </ModalFooter>
+      )}
     </Modal>
   );
 }

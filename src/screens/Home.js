@@ -10,6 +10,7 @@ import { Parallax, ParallaxProvider } from "react-scroll-parallax";
 // import { Parallax, ParallaxLayer } from '@react-spring/parallax';
 function Home() {
   const [progress, setProgress] = useState(0);
+  const [loadLogo, setLoadLogo] = useState(false);
 
   const handleProjects = () => {
     console.log("projects clicked");
@@ -26,30 +27,24 @@ function Home() {
         }
       });
     }, 50);
+
+    return () => clearInterval(interval);
   }, []);
 
-  // const [props, api] = useSpring(() => ({
-  //     from: { y: 0 },
-  // }))
-  // const handleClick = () => {
-  //     api.start({
-  //         from: {
-  //             y: 0,
-  //         },
-  //         to: {
-  //             y: 1700,
-  //         },
-  //     })
-  // }
+  useEffect(() => {
+    if (progress === 100) {
+      setLoadLogo(true);
+    }
+  }, [progress]);
+
+
   return (
     <>
       {progress < 100 ? (
         <Progress progress={progress} />
       ) : (
         <>
-          {/* <div className="static">
-          
-        </div> */}
+
           <div className="menu-div-main">
             <div className="contact-div">
               <div className="linkedin">Linkedin</div>
