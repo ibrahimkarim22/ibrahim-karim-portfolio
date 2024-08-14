@@ -6,3 +6,36 @@
       transform: translate(0px, 0px);
     }
   }
+
+  @keyframes designOne {
+    0% {
+      scale: 1;
+      transform: translate(0px, 0px);
+    }
+    50% {
+      scale: 4;
+      transform: translate(-200px, 0px);
+    }
+    100% {
+      scale: 1 ;
+      transform: translate(0px, 0px);
+    }
+  }
+
+  @keyframes designTwo {
+    0% {
+      transform: rotateY(0deg) rotateX(89deg);
+    }
+    100% {
+      transform: rotateY(360deg) rotateX(89deg);
+    }
+  }
+
+  @keyframes designThree {
+    0% {
+      transform: rotateZ(0deg) rotateX(89deg);
+    }
+    100% {
+      transform: rotateZ(360deg) rotateX(89deg);
+    }
+  }

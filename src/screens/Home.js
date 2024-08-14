@@ -37,14 +37,12 @@ function Home() {
     }
   }, [progress]);
 
-
   return (
     <>
       {progress < 100 ? (
         <Progress progress={progress} />
       ) : (
         <>
-
           <div className="menu-div-main">
             <div className="contact-div">
               <div className="linkedin">Linkedin</div>
@@ -76,6 +74,20 @@ function Home() {
                 <div className="threeResume-title-div">3DResume</div>
               </Link>
               ;
+            </div>
+            <div className="megaracer-container">
+              <div className="megaracer">Megaracer</div>
+              <a
+                href="https://data.typeracer.com/pit/profile?user=ib_ra_heem_22&ref=badge"
+                target="_blank"
+              >
+                <img
+                  src="https://data.typeracer.com/misc/badge?user=ib_ra_heem_22"
+                  border="0"
+                  alt="TypeRacer.com scorecard for user ib_ra_heem_22"
+                  className="typeracer"
+                />
+              </a>
             </div>
           </div>
           {/* <animated.div

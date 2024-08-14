@@ -15,7 +15,10 @@ import progressTwo from "../images/progressTwo.png";
 import HorizontalScrollImage from "../images/horizontalScrollImage.png";
 import curtainGridCode from "../images/curtainGridCode.png";
 import heyYouGridCode from "../images/heyYouGridCode.png";
-
+import fiber from "../images/fiber.png";
+import blenderLogo from "../images/blender.png";
+import conditionalRendering from "../images/conditionalRendering.png";
+import firebase from "../images/firebase.png"; 
 
 
 function ThisPortfolioModal({ isOpen, closeModal }) {
@@ -33,12 +36,6 @@ function ThisPortfolioModal({ isOpen, closeModal }) {
       )}
       {isOpen && (
       <ModalBody className="this-portfolio-modal-body-main">
-        {/* <div className="this-portfolio-modal-header-sub-text-container">
-          <div className="this-portfolio-modal-header-sub-text">
-            Tools I used to build this portfolio: JavaScript, React, Firebase,
-            React Fiber, Reactstrap, SCSS, SASS, Blender, Photoshop.
-          </div>
-        </div> */}
         <div className="this-portfolio-main-flex-container">
           {/* PAGE 1 */}
           <div className="this-portfolio-page-one">
@@ -208,6 +205,26 @@ function ThisPortfolioModal({ isOpen, closeModal }) {
                 alt="resume model"
               />
             </div>
+            <div className="fiber-container">
+              <img
+                src={fiber}
+                className="fiber"
+                alt="react fiber three logo"
+              />
+            </div>
+            <div className="blender-logo-container">
+              <img
+                src={blenderLogo}
+                className="blender-logo"
+                alt="blender logo"
+              />
+            </div>
+            <div className="design-one-container">
+              </div>
+              <div className="design-two-container">
+              </div>
+              <div className="design-three-container">
+              </div>
           </div>
 
           {/* PAGE 5 */}
@@ -281,13 +298,54 @@ function ThisPortfolioModal({ isOpen, closeModal }) {
                 alt="horizontal scroll code"
               />
             </div>
+            <div className="lazy-load-info-container">
+              <div className="lazy-load-info">
+                To make the app runs smoothly with the gltf files, CSS animations and 
+                gif that are scattered throughout this portfolio, I used lazy loading.
+                Each modal in the Projects page containes conditional rendering using isOpen 
+                state to determine if the modal's header, body, and footer should be 
+                rendered. Once a modal closes the header, body, and footer are removed.
+              </div>
+            </div>
+            <div className="lazy-load-code-container">
+              <img
+                src={conditionalRendering}
+                className="lazy-load-code"
+                alt="lazy load"
+              />
+            </div>
           </div>
 
           {/* PAGE 6 */}
-          <div className="this-portfolio-page-six"></div>
+          <div className="this-portfolio-page-six">
+            <div className="this-portfolio-firebase-title-container">
+              <div className="this-portfolio-firebase-title">
+                Web App Deployment
+              </div>
+            </div>
+              <div className="this-portfolio-firebase-info-container">
+                <div className="this-portfolio-firebase-info">
+                  To deploy this portfolio to a web app I used firebase
+                </div>
+              </div>
+              <div className="this-portfolio-firebase-logo-container">
+                <img
+                  src={firebase}
+                  className="this-portfolio-firebase-logo"
+                  alt="firebase logo"
+                />
+              </div>
+            </div>
+     
 
           {/* PAGE 7 */}
-          <div className="this-portfolio-page-seven"></div>
+          <div className="this-portfolio-page-seven">
+            <div className="download-gltf-model-container">
+              <div className="download-gltf-model">
+              Free GLTF: My 3D Android Model for Your Website
+              </div>
+          </div>
+        </div>
         </div>
       </ModalBody>
       )}

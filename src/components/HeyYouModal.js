@@ -36,7 +36,11 @@ function HeyYouModal({ isOpen, closeModal }) {
         <HorizontalScroll className="hey-you-horizontal-scroll">
           <div className="hey-you-main-title-page-container hey-you-page">
             <div className="hey-you-modal-main-title">HeyYou</div>
+          <div className="hey-you-honors-title-container">
+            <div className="hey-you-honors-title">Nucamp Full-Stack Honors Award</div>
           </div>
+          </div>
+        
           <div className="hey-you-modal-backend-page-container hey-you-page">
             <div className="hey-you-modal-backend">
               <div className="hey-you-modal-backend-text">Backend</div>

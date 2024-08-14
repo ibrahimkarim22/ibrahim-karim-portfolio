@@ -88,6 +88,11 @@ function BardModal({ isOpen, closeModal }) {
                   a combination of reading, quizzes, and video content.
                 </div>
               </div>
+              <div className="bard-honors-award-text-container">
+                <div className="bard-honors-award-text">
+                  Nucamp Front-End Honors Award
+                </div>
+              </div>
             </div>
 
             <div className="bard-modal-page-three-container">
@@ -212,37 +217,37 @@ function BardModal({ isOpen, closeModal }) {
                   src={quizCode}
                   alt="quiz code code"
                   className="quiz-code"
-                  />
+                />
               </div>
 
-              
-            <div className="bard-modal-features-text-three-container">
-              <div className="bard-modal-features-text-three">
-                Unlocking Plays and Earning Medals: Plays are locked initially,
-                and users must complete them in sequence to unlock the next.
-                Successfully completing each play awards a medal, and collecting
-                all 38 medals grants a certificate.
+              <div className="bard-modal-features-text-three-container">
+                <div className="bard-modal-features-text-three">
+                  Unlocking Plays and Earning Medals: Plays are locked
+                  initially, and users must complete them in sequence to unlock
+                  the next. Successfully completing each play awards a medal,
+                  and collecting all 38 medals grants a certificate.
+                </div>
               </div>
-            </div> 
-            <div className="medals-code-container">
+              <div className="medals-code-container">
                 <img
                   src={medalsCode}
                   alt="medals code"
                   className="medals-code"
-                  />
-              </div> 
-               <div className="certificate-code-container">
+                />
+              </div>
+              <div className="certificate-code-container">
                 <img
                   src={certificateCode}
                   alt="certificate code"
                   className="certificate-code"
-                  />
-              </div> 
-              
+                />
+              </div>
             </div>
             <div className="bard-modal-page-seven-container">
               <div className="additional-features-title-container">
-                <div className="additional-features-title">Additional Features</div>
+                <div className="additional-features-title">
+                  Additional Features
+                </div>
               </div>
               <div className="bard-modal-additional-features-text-one-container">
                 <div className="bard-modal-additional-features-text-one">
@@ -253,38 +258,53 @@ function BardModal({ isOpen, closeModal }) {
                   course structure.
                 </div>
               </div>
-       
-
 
               <div className="free-folger-container">
                 <img
                   src={freeFolger}
                   alt="free folger code"
                   className="free-folger"
-                  />
+                />
               </div>
               <div className="free-synopsis-container">
                 <img
                   src={freeSynopsis}
                   alt="free synopsis code"
                   className="free-synopsis"
-                  />
+                />
               </div>
               <div className="read-folger-container">
                 <img
                   src={readFolger}
                   alt="read folger code"
                   className="read-folger"
-                  />
+                />
               </div>
-                  <div className="bard-modal-additional-features-text-two-container">
-                    <div className="bard-modal-additional-features-text-two">
-                      Video Content: The platform includes sections for watching
-                      'Great Performances' and 'How To' videos on Shakespeare,
-                      sourced from YouTube, enhancing the learning experience.
-                    </div>
-                  </div>
-        
+              <div className="bard-modal-additional-features-text-two-container">
+                <div className="bard-modal-additional-features-text-two">
+                  Video Content: The platform includes sections for watching
+                  'Great Performances' and 'How To' videos on Shakespeare,
+                  sourced from YouTube, enhancing the learning experience.
+                </div>
+              </div>
+            </div>
+            <div className="bard-modal-page-eight-container">
+              <div className="bard-modal-honors-title-container">
+                <div className="bard-modal-honors-title">Honors</div>
+              </div>
+              <div className="bard-modal-honors-video-container">
+                <iframe
+                  className="bard-modal-honors-video"
+                  width="560"
+                  height="315"
+                  src="https://www.youtube.com/embed/mDVozMvFYb8?si=ep73q8kv4df0j77v"
+                  title="YouTube video player"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  allowfullscreen
+                ></iframe>
+              </div>
             </div>
           </div>
         </ModalBody>

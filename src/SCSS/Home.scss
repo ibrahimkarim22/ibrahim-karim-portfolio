@@ -217,3 +217,42 @@
 .projects-title-div:hover::before {
   transform: translate(-26%, -22%) scale(0.5) rotate(360deg) skew(20deg);
 }
+
+
+.megaracer-container {  
+  grid-column: 5 / 8;
+  grid-row: 9 / 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.megaracer {
+  font-size: 40px;
+  font-family: "Raleway", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 200;
+  font-style: normal;
+  color: rgb(255, 255, 255);
+  text-shadow: -1px -1px 0 #000000, 1px -1px 0 #000000, -1px 1px 0 #000000,
+    1px 1px 0 #000000;
+  transform: perspective(300px) rotateY(30deg);
+  z-index: 11;
+  cursor: default;
+}
+
+.typeracer {
+  position: absolute;
+  top: 500px;
+  left: 500px;
+  // width: 10%;
+  // height: 20%;
+  display: none;
+}
+
+.megaracer-container:hover .typeracer {
+  display: block;
+}
+
+
+

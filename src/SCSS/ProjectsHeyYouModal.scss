@@ -112,6 +112,22 @@
   font-size: 188px;
   animation: heyYouModalMainTitleStartup 4s ease-in-out forwards infinite;
 }
+.hey-you-honors-title-container {
+  grid-column: 1 / 6;
+  grid-row: 3 / 6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hey-you-honors-title {
+  color: rgb(0, 0, 0);
+  text-shadow: rgb(69, 73, 73) 0px 100px 1000px;
+  font-size: 44px;
+  font-family: "Raleway", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
 
 /*==========================
         BACKEND PAGE
