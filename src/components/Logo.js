@@ -49,7 +49,7 @@ function Logo() {
         className="logo-canvas"
         style={{
           borderRadius: "22px",
-          width: "100%",
+          width: "30vw",
           height: "70vh",
         }}
       >

@@ -46,15 +46,33 @@
     }
   }
   
-  @keyframes contactsStartUp {
+  @keyframes linkedinStartUp {
     0% {
       transform: translate(200%, 0%);
     }
     100% {
-      transform: translate(0%, 0%);
+      transform: translate(-270%, 100%);
     }
   }
   
+  @keyframes gitHubStartUp {
+    0% {
+      transform: translate(200%, 0%);
+    }
+    100% {
+      transform: translate(-280%, 100%);
+    }
+  }
+
+  @keyframes gmailStartUp {
+    0% {
+      transform: translate(200%, 0%);
+    }
+    100% {
+      transform: translate(-280%, 100%);
+    }
+  }
+
   @keyframes letterspacing {
     0% {
       letter-spacing: 0px;
