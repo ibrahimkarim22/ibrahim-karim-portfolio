@@ -16,6 +16,17 @@ import certificateCode from "../images/certificateCode.png";
 import freeFolger from "../images/freeFolger.png";
 import freeSynopsis from "../images/freeSynopsis.png";
 import readFolger from "../images/readFolger.png";
+import phoneBardHome from "../images/phoneBardHome.png";
+import phoneBardProfile from "../images/phoneBardProfile.png";
+import phoneBardSideMenu from "../images/phoneBardSideMenu.png";
+import phoneBardCourse from "../images/phoneBardCourse.png";
+import phoneBardQuiz from "../images/phoneBardQuiz.png";
+import phoneBardQuizOne from "../images/phoneBardQuizOne.png";
+import phoneBardMedals from "../images/phoneBardMedals.png";
+import phoneBardInfo from "../images/phoneBardInfo.png";
+import phoneBardSynopsis from "../images/phoneBardSynopsis.png";
+import phoneBardPerformance from "../images/phoneBardPerformance.png";
+import phoneBardHowTo from "../images/phoneBardHowTo.png";
 
 function BardModal({ isOpen, closeModal }) {
   return (
@@ -96,8 +107,35 @@ function BardModal({ isOpen, closeModal }) {
             </div>
 
             <div className="bard-modal-page-three-container">
-              /*=========3d model========================*/
+              <div className="phone-bard-home-container">
+              <img src={phoneBardHome} alt="Bard app home page" className="phone-bard-home" />
+              </div>
+              <div className="phone-bard-profile-container">
+              <img src={phoneBardProfile} alt="Bard app profile page" className="phone-bard-profile" />
+              </div>  
+              <div className="phone-bard-side-menu-container">
+              <img src={phoneBardSideMenu} alt="Bard app side menu" className="phone-bard-side-menu" />
+              </div>
+              <div className="phone-bard-course-container">
+              <img src={phoneBardCourse} alt="Bard app course page" className="phone-bard-course" />
+              </div>
+              <div className="phone-bard-quiz-container">
+              <img src={phoneBardQuiz} alt="Bard app quiz page" className="phone-bard-quiz" />
+              </div>
+              <div className="phone-bard-quiz-one-container">
+              <img src={phoneBardQuizOne} alt="Bard app quiz one page" className="phone-bard-quiz-one" />
+              </div>
+              <div className="phone-bard-medals-container">
+              <img src={phoneBardMedals} alt="Bard app medals page" className="phone-bard-medals" />
+              </div>
+              <div className="phone-bard-synopsis-container">
+              <img src={phoneBardSynopsis} alt="Bard app synopsis page" className="phone-bard-synopsis" />
+              </div>
+              <div className="phone-bard-info-container">
+              <img src={phoneBardInfo} alt="Bard app info page" className="phone-bard-info" />
+              </div>
             </div>
+
 
             <div className="bard-modal-page-four-container">
               <div className="bard-modal-api-title-container">
@@ -286,6 +324,20 @@ function BardModal({ isOpen, closeModal }) {
                   'Great Performances' and 'How To' videos on Shakespeare,
                   sourced from YouTube, enhancing the learning experience.
                 </div>
+              </div>
+              <div className="phone-bard-performance-container">
+                <img
+                  src={phoneBardPerformance}
+                  alt="phone bard performance"
+                  className="phone-bard-performance"
+                />
+              </div>
+              <div className="phone-bard-how-to-container">
+                <img
+                  src={phoneBardHowTo}
+                  alt="phone bard how to"
+                  className="phone-bard-how-to"
+                />  
               </div>
             </div>
             <div className="bard-modal-page-eight-container">

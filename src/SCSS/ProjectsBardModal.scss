@@ -299,7 +299,7 @@
 .bard-modal-page-three-container {
   order: 3;
   flex: 0 0 auto;
-  height: 200vh;
+  height: 400vh;
   width: 100%;
   display: grid;
   grid-template-columns: repeat(8, 1fr);
@@ -311,6 +311,102 @@
   // background-blend-mode: multiply;
   // transform: perspective(100px);
 }
+
+.phone-bard-home-container, 
+.phone-bard-profile-container,
+.phone-bard-side-menu-container,
+.phone-bard-course-container,
+.phone-bard-quiz-container,
+.phone-bard-quiz-one-container,
+.phone-bard-medals-container,
+.phone-bard-synopsis-container,
+.phone-bard-info-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.phone-bard-home-container {
+  grid-column: 1 / 5;
+  grid-row: 1 / 4;
+}
+
+.phone-bard-home {
+  scale: 0.7;
+}
+
+.phone-bard-profile-container {
+  grid-column: 5 / 9;
+  grid-row: 1 / 4;
+}
+
+.phone-bard-profile {
+  scale: 0.7;
+}
+
+.phone-bard-side-menu-container {
+  grid-column: 2 / 8;
+  grid-row: 2 / 4;
+}
+
+.phone-bard-side-menu {
+  scale: 0.58;
+}
+
+.phone-bard-course-container {
+  grid-column: 1 / 5;
+  grid-row: 3 / 7;
+}
+
+.phone-bard-course {
+  scale: 0.7;
+}
+
+.phone-bard-quiz-container {
+  grid-column: 1 / 9;
+  grid-row: 3 / 7;
+}
+
+.phone-bard-quiz {
+  scale: 0.5;
+}
+
+.phone-bard-quiz-one-container {
+  grid-column: 5 / 10;
+  grid-row: 3 / 7;
+}
+
+.phone-bard-quiz-one {
+  scale: 0.7;
+}
+
+.phone-bard-medals-container {
+  grid-column: 1 / 5;
+  grid-row: 6 / 9;
+}
+
+.phone-bard-medals {
+  scale: 0.7;
+}
+
+.phone-bard-synopsis-container {
+  grid-column: 3 / 7;
+  grid-row: 6 / 9;
+}
+
+.phone-bard-synopsis {
+  scale: 0.7;
+}
+
+.phone-bard-info-container {
+  grid-column: 5 / 9;
+  grid-row: 6 / 9;
+}
+
+.phone-bard-info {
+  scale: 0.7;
+}
+
 
 /*==========================
         PAGE 4
@@ -703,7 +799,9 @@
 .bard-modal-additional-features-text-three-container,
 .free-folger-container,
 .free-synopsis-container,
-.read-folger-container {
+.read-folger-container,
+.phone-bard-performance-container,
+.phone-bard-how-to-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -777,6 +875,28 @@
 
   color: rgb(255, 255, 255);
 }
+
+.phone-bard-performance-container {
+  grid-column: 4 / 10;
+  grid-row: 11 / 14;
+  z-index: 5;
+  // transform: perspective(800px) rotateX(20deg);
+}
+
+.phone-bard-performance {
+  scale: .6;
+}
+
+.phone-bard-how-to-container {
+  grid-column: 6 / 14;
+  grid-row: 11 / 14;
+
+}
+
+.phone-bard-how-to {
+  scale: .6;
+}
+
 
 /*==========================
         PAGE 8

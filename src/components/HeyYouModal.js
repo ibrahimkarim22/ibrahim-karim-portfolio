@@ -14,6 +14,9 @@ import docker from "../images/docker.png";
 import native from "../images/native.png";
 import run from "../images/run.png";
 import expo from "../images/expo.png";
+import phoneHeyYouMenu from "../images/phoneHeyYouMenu.png";
+import phoneHeyYouMain from "../images/phoneHeyYouMain.png";
+import phoneHeyYouGenerate from "../images/phoneHeyYouGenerate.png";
 
 function HeyYouModal({ isOpen, closeModal }) {
   return (
@@ -84,7 +87,30 @@ function HeyYouModal({ isOpen, closeModal }) {
             </div>
           </div>
           <div className="hey-you-modal-react-native-page-container hey-you-page">
-            <div className="hey-you-modal-react-native-title">React Native</div>
+            <div className="hey-you-modal-react-native-title-container">
+              <div className="hey-you-modal-react-native-title">React Native</div>
+              </div>
+              <div className="hey-you-phone-menu-container">
+                <img
+                  src={phoneHeyYouMenu}
+                  className="hey-you-phone-menu"
+                  alt="phone menu"
+                />
+              </div>
+              <div className="hey-you-phone-main-container">  
+                <img
+                  src={phoneHeyYouMain}
+                  className="hey-you-phone-main"
+                  alt="phone main"
+                />
+              </div>
+              <div className="hey-you-phone-generate-container">
+                <img
+                  src={phoneHeyYouGenerate}
+                  className="hey-you-phone-generate"
+                  alt="phone generate"
+                />
+              </div>
           </div>
           <div className="hey-you-modal-realtime-page-container hey-you-page">
             <div className="real-time-second-bg-container"></div>

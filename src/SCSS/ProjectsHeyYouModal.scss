@@ -344,6 +344,43 @@
   grid-row: 2 / 4;
 }
 
+.hey-you-phone-main-container,
+.hey-you-phone-menu-container,
+.hey-you-phone-generate-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hey-you-phone-main-container {
+  grid-column: 2 / 4;
+  grid-row: 1 / 12;
+}
+
+.hey-you-phone-main {
+  scale: .6;
+}
+
+.hey-you-phone-menu-container {
+  grid-column: 4 / 7;
+  grid-row: 1 / 12;
+}
+
+.hey-you-phone-menu {
+  scale: .6;
+}
+
+.hey-you-phone-generate-container {
+  grid-column: 7 / 12;
+  grid-row: 1 / 12;
+}
+
+.hey-you-phone-generate {
+  scale: .6;
+}
+
+
+
 /*==========================
       REAL-TIME UPDATES PAGE
        grid main
