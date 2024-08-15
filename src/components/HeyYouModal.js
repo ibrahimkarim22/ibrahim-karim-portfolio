@@ -17,6 +17,9 @@ import expo from "../images/expo.png";
 import phoneHeyYouMenu from "../images/phoneHeyYouMenu.png";
 import phoneHeyYouMain from "../images/phoneHeyYouMain.png";
 import phoneHeyYouGenerate from "../images/phoneHeyYouGenerate.png";
+import phoneHeyYouJoined from "../images/phoneHeyYouJoined.png";
+import phoneHeyYouMap from "../images/phoneHeyYouMap.png";
+import phoneHeyYouChat from "../images/phoneHeyYouChat.png";
 
 function HeyYouModal({ isOpen, closeModal }) {
   return (
@@ -109,6 +112,27 @@ function HeyYouModal({ isOpen, closeModal }) {
                   src={phoneHeyYouGenerate}
                   className="hey-you-phone-generate"
                   alt="phone generate"
+                />
+              </div>
+              <div className="hey-you-phone-joined-container">
+                <img
+                  src={phoneHeyYouJoined}
+                  className="hey-you-phone-joined"
+                  alt="phone joined"
+                />
+              </div>
+              <div className="hey-you-phone-map-container">
+                <img
+                  src={phoneHeyYouMap}
+                  className="hey-you-phone-map"
+                  alt="phone map"
+                />
+              </div>
+              <div className="hey-you-phone-chat-container">
+                <img
+                  src={phoneHeyYouChat}
+                  className="hey-you-phone-chat"
+                  alt="phone chat"
                 />
               </div>
           </div>
