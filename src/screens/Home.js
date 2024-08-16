@@ -35,6 +35,7 @@ function Home() {
       ) : (
         <>
           <div className="menu-div-main">
+            <div className="contact-items">
               <a href="https://www.linkedin.com/in/ibrahim-karim-abaa952a7/" target="_blank" className="linkedin" style={{ textDecoration: "none" }}>
               Linkedin
               </a>
@@ -44,6 +45,7 @@ function Home() {
               <a href="mailto:hema-thechamp@yahoo.com" target="_blank" className="gmail" style={{ textDecoration: "none" }}>
               Gmail
               </a>
+            </div>
             <div className="bio-div-main-container">
               <div className="bio-div-main">
                 I am a developer with some 2D and 3D editing, design, and
@@ -80,7 +82,6 @@ function Home() {
                 </div>
               </Link>
               
-            </div>
             <div className="megaracer-container">
               <div className="megaracer">Megaracer</div>
               <a
@@ -94,6 +95,7 @@ function Home() {
                   className="typeracer"
                 />
               </a>
+            </div>
             </div>
           </div>
         </>

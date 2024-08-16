@@ -1,6 +1,6 @@
 .menu-div-main {
   display: grid;
-  grid-template-columns: repeat(10, 1fr);
+  grid-template-columns: repeat(15, 1fr);
   grid-template-rows: repeat(10, 1fr);
   width: 80vw;
   height: 80vh;
@@ -15,12 +15,12 @@
   animation: menuPageBgStartUp 22s ease-in-out forwards;
 }
 
-
 .linkedin,
 .github,
 .gmail {
   color: #000000;
-  font-size: 122%;
+  font-size: 100%;
+  padding: 22px;
   letter-spacing: 2px;
   text-shadow: 0px 0px 0 #000000, 0px 0px 0 #000000, 0px 0px 0 #000000,
     0px 0px 0 #000000;
@@ -35,53 +35,60 @@
 
 .linkedin {
   animation: linkedinStartUp 12s ease-in-out forwards;
-  background-color: rgba(168, 165, 165, 0.057);
-  box-shadow: #00000004 0px 0px 10px 10px;
+  // background-color: rgba(168, 165, 165, 0.057);
+  // box-shadow: #00000004 0px 0px 10px 10px;
   border-radius: 1000px;
 }
 
-.linkedin:hover, .github:hover, .gmail:hover {
-  box-shadow: #003cff47 0px 0px 10px 10px;
+.contact-items {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  grid-column: 12 / 15;
+
+  grid-row: 8 / 10;
+}
+
+.linkedin:hover,
+.github:hover,
+.gmail:hover {
+  box-shadow: #9292923f 0px 0px 10px 10px;
 }
 
 .github {
   animation: gitHubStartUp 12s ease-in-out forwards;
-  background-color: rgba(168, 165, 165, 0.057);
-  box-shadow: #00000004 0px 0px 10px 10px;
+  // background-color: rgba(168, 165, 165, 0.057);
+  // box-shadow: #00000004 0px 0px 10px 10px;
   border-radius: 1000px;
-
 }
 
 .gmail {
   animation: gmailStartUp 12s ease-in-out forwards;
-  background-color: rgba(168, 165, 165, 0.057);
-  box-shadow: #00000004 0px 0px 10px 10px;
+  // background-color: rgba(168, 165, 165, 0.057);
+  // box-shadow: #00000004 0px 0px 10px 10px;
   border-radius: 1000px;
 }
 
-
-
-
 // .logo-div,
 .menu-items,
-.bio-div-main,
 .full-stack-div,
-.bio-div-main-container,
-.logo-div-container {
+.bio-div-main-container
+// .logo-div-container
+{
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .bio-div-main-container {
-  grid-column: 5 / 7;
+  grid-column: 2 / 6;
   grid-row: 1 / 12;
+  // margin: 50px;
   z-index: 100;
 }
 
 .bio-div-main {
-  font-size: 24px;
-  padding: 10px;
+  font-size: 40px;
   // text-align: center;
   font-family: "Raleway", serif;
   font-weight: 400;
@@ -89,18 +96,8 @@
   animation: bioStartUp 22s ease-in-out forwards;
 }
 
-.logo-div-container {
-  grid-column: 1 / 5;
-  grid-row: 1 / 12;
-  animation: logoStartUp 15s ease-in-out forwards;
-}
-
-// .logo-div {
-//   scale: 0.5;
-// }
-
 .menu-items {
-  grid-column: 7 / 10;
+  grid-column: 10 / 15;
   flex-direction: column;
   grid-row: 4 / 8;
   animation: menuItemsStartUp 30s ease-in-out forwards;
@@ -111,8 +108,8 @@
 .full-stack-div {
   padding: 0px;
   margin: 0px;
-  font-size: 33px;
-  grid-column: 10 / 12;
+  font-size: 50px;
+  grid-column: 14 / 16;
   grid-row: 5 / 7;
   text-wrap: nowrap;
   transform: rotate(-90deg);
@@ -123,10 +120,15 @@
 }
 .projects-title-div-container,
 .pdfResume-title-div-container,
-.threeResume-title-div-container {
+.threeResume-title-div-container,
+.menu-items {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.menu-items {
+  grid-row: 4 / 9;
 }
 
 .projects-title-div,
@@ -134,7 +136,7 @@
 .threeResume-title-div {
   text-align: center;
   color: snow;
-  font-size: 66px;
+  font-size: 100px;
   text-shadow: -1px -1px 0 #000000, 1px -1px 0 #000000, -1px 1px 0 #000000,
     1px 1px 0 #000000;
   font-family: "Playfair Display", serif;
@@ -143,34 +145,23 @@
   font-style: normal;
   cursor: pointer;
   transform-origin: center;
-}
-
-.projects-title-div-container {
-  grid-column: 8 / 10;
-  grid-row: 4 / 5;
+  word-wrap: nowrap;
 }
 
 .projects-title-div {
-  animation: projectsStartUp 5s ease-in-out forwards,
-    letterspacing 10s ease-in-out infinite;
-}
-
-.pdfResume-title-div-container {
-  grid-column: 8 / 10;
-  grid-row: 5 / 6;
+  transform: perspective(500px) rotateY(33deg) translate(0%, -50%);
+  animation: projectsStartUp 5s ease-in-out forwards;
+  // letterspacing 10s ease-in-out infinite;
 }
 
 .pdfResume-title-div {
-  animation: projectsStartUp 10s ease-in-out forwards,
-    letterspacing 10s ease-in-out infinite;
-}
-
-.threeResume-title-div-container {
-  grid-column: 8 / 10;
-  grid-row: 5 / 6;
+  transform: perspective(500px) rotateY(-33deg) translate(-10%, -50%);
+  animation: projectsStartUp 10s ease-in-out forwards;
+  // letterspacing 10s ease-in-out infinite;
 }
 
 .threeResume-title-div {
+  transform: perspective(500px) rotateY(33deg) translate(6%, -50%);
   animation: projectsStartUp 15s ease-in-out forwards,
     letterspacing 10s ease-in-out infinite;
 }
@@ -187,7 +178,7 @@
   text-shadow: -20px -20px 0 #fb0000, 20px -20px 0 #4dff00, -20px 20px 0 #04ff00,
     30px 30px 0 #ff0000;
 
-  transform: rotateY(55deg) skew(60deg);
+  transform: perspective(500px) rotateY(33deg) translate(6%, -50%) skew(60deg);
 }
 
 .projects-title-div::before {
@@ -195,8 +186,8 @@
   position: absolute;
   top: 12%;
   // left: 50%;
-  width: 120%;
-  height: 28%;
+  width: 200%;
+  height: 120%;
   border-radius: 22px;
   background-color: rgb(255, 0, 0);
   transform: translate(-33%, -102%) scale(0);
@@ -209,18 +200,17 @@
 }
 
 .megaracer-container {
-  grid-column: 8 / 10;
-  grid-row: 8 / 9;
+  transform: translate(0%, 0%);
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .megaracer {
-  font-size: 50px;
+  font-size: 40px;
   font-family: "Raleway", sans-serif;
   font-optical-sizing: auto;
-  font-weight: 200;
+  font-weight: 100;
   font-style: normal;
   color: rgb(255, 255, 255);
   text-shadow: -1px -1px 0 #000000, 1px -1px 0 #000000, -1px 1px 0 #000000,
@@ -228,25 +218,380 @@
   // transform: perspective(300px) rotateY(30deg);
   z-index: 11;
   cursor: default;
+  transform: perspective(500px) rotateX(0deg) rotateY(0deg) translate(0%, -50%);
 }
 
 .megaracer:hover {
-  color: red;
+  color: rgb(0, 0, 0);
 }
 
 .typeracer {
   // position: absolute;
   // top: 500px;
-  // left: 500px;
+  right: 430px;
+  bottom: 45px;
   // // width: 10%;
   // // height: 20%;
   // display: none;
-  grid-column: 5 / 8;
-  grid-row: 6 / 10;
+
   position: absolute;
   display: none;
 }
 
 .megaracer-container:hover .typeracer {
   display: block;
+}
+
+// @media (max-width: 1440px) {
+//   .logo-div-container {
+//     scale: 0.4;
+
+//   }
+//   .bio-div-main {
+//     font-size: 30px;
+//   }
+//   .linkedin, .github, .gmail {
+//     font-size: 100%;
+//   }
+
+//   .projects-title-div, .pdfResume-title-div, .threeResume-title-div {
+//     font-size: 20px;
+//   }
+
+// }
+
+.logo-div-container {
+  grid-column: 1 / 16;
+  grid-row: 1 / 12;
+  animation: logoStartUp 15s ease-in-out forwards;
+}
+
+@media (max-width: 3590px) {
+  .logo-div-container {
+    scale: 1;
+  }
+  .bio-div-main {
+    font-size: 40px;
+  }
+  .linkedin,
+  .github,
+  .gmail {
+    font-size: 200%;
+  }
+
+  .projects-title-div,
+  .pdfResume-title-div,
+  .threeResume-title-div {
+    font-size: 100px;
+  }
+}
+
+@media (max-width: 2800px) {
+  .logo-div-container {
+    scale: 1;
+  }
+  .bio-div-main {
+    font-size: 37px;
+  }
+  .linkedin,
+  .github,
+  .gmail {
+    font-size: 200%;
+  }
+
+  .projects-title-div,
+  .pdfResume-title-div,
+  .threeResume-title-div {
+    font-size: 87px;
+  }
+}
+
+.logo-canvas-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.logo-canvas {
+  transform-origin: center center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80vw;
+  height: 70vh;
+}
+
+@media (max-width: 2500px) {
+  .logo-canvas {
+    width: 70vw;
+    height: 70vh;
+  }
+  .bio-div-main {
+    font-size: 32px;
+  }
+  .linkedin,
+  .github,
+  .gmail {
+    font-size: 150%;
+  }
+
+  .projects-title-div,
+  .pdfResume-title-div,
+  .threeResume-title-div {
+    font-size: 78px;
+  }
+}
+@media (max-width: 2000px) {
+  .projects-title-div,
+  .pdfResume-title-div,
+  .threeResume-title-div {
+    font-size: 68px;
+  }
+  .linkedin,
+  .github,
+  .gmail {
+    font-size: 120%;
+  }
+  .full-stack-div {
+    font-size: 40px;
+  }
+  .contact-items {
+    font-size: 15px;
+    grid-row: 9 / 10;
+  }
+  .bio-div-main {
+    font-size: 28px;
+    z-index: 3;
+  }
+}
+
+@media (max-width: 1650px) {
+  .logo-canvas {
+    width: 50vw;
+    height: 50vh;
+  }
+  .bio-div-main {
+    font-size: 28px;
+  }
+  .linkedin,
+  .github,
+  .gmail {
+    font-size: 80%;
+  }
+
+  .projects-title-div,
+  .pdfResume-title-div,
+  .threeResume-title-div
+   {
+    font-size: 58px;
+  }
+  .megaracer {
+    font-size: 30px;
+  }
+
+  .full-stack-div {
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 1400px) {
+  .logo-canvas {
+    width: 40vw;
+    height: 40vh;
+  }
+  .bio-div-main {
+    font-size: 18px;
+  }
+  .linkedin,
+  .github,
+  .gmail {
+    font-size: 80%;
+  }
+
+  .projects-title-div,
+  .pdfResume-title-div,
+  .threeResume-title-div {
+    font-size: 40px;
+  }
+  .megaracer {
+    font-size: 20px;
+    letter-spacing: 3px;
+  }
+  .menu-items {
+    grid-column: 10 / 14;
+  }
+
+  .full-stack-div {
+    font-size: 25px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .logo-canvas-container {
+    grid-column: 2 / 5;
+    grid-row: 5 / 12;
+  }
+
+  .logo-canvas {
+    width: 50vw;
+    height: 50vh;
+  }
+  .bio-div-main-container {
+    grid-column: 3 / 14;
+    grid-row: 2 / 4;
+  }
+  .menu-items {
+    grid-column: 1 / 12;
+    grid-row: 8 / 12;
+    flex-direction: row;
+  }
+  .projects-title-div,
+  .pdfResume-title-div,
+  .threeResume-title-div {
+    margin: 10px;
+    animation: none;
+  }
+  .megaracer {
+    font-size: 35px;
+    letter-spacing: 0px;
+  }
+
+  .threeResume-title-div
+  {
+    transform: translate(0%, -20%);
+    // font-size: 25px;
+  }
+  .full-stack-div {
+    font-size: 28px;
+    grid-column: 11 / 15;
+  }
+
+  .contact-items {
+    grid-column: 5 / 12;
+    grid-row: 9 / 11;
+  }
+}
+
+@media (max-width: 1000px) {
+  .bio-div-main-container {
+    
+    grid-column: 4 / 14;
+  }
+  .full-stack-div {
+    grid-column: 12 / 15;
+  
+  }
+  .projects-title-div,
+  .pdfResume-title-div,
+  .threeResume-title-div,
+  .megaracer {
+    font-size: 20px;
+    transform: perspective(0px) rotateY(0deg) translate(0%, 0%);
+  }
+  .megaracer {
+    text-shadow: -1px -1px 0 #000000, 1px -1px 0 #000000, -1px 1px 0 #000000,
+    1px 1px 0 #000000;
+  font-family: "Playfair Display", serif;
+  font-optical-sizing: auto;
+  font-weight: 900;
+  font-style: normal;
+  color: snow;
+    transform: translate(14%, 0%);
+  }
+
+  .menu-items {
+    grid-row: 8 / 9;
+  }
+
+  .contact-items {
+    grid-row: 8 / 9;
+    
+  }
+}
+
+@media (max-width: 800px) {
+  .logo-canvas {
+    width: 40vw;
+    height: 30vh;
+  }
+  .full-stack-div {
+    font-size: 20px;
+  }
+  .megaracer {
+    transform: translate(0%, 30%);
+    font-size: 15px;
+    letter-spacing: 0.5px;
+    font-weight: 100;
+  }
+  .menu-items {
+    flex-direction: column;
+    grid-column: 2 / 12;
+    grid-row: 6 / 11;
+  }
+
+  .contact-items {
+   font-size: 10px;
+    grid-row: 8 / 11;
+    
+ 
+  }
+  .linkedin,
+  .github,
+  .gmail {
+    font-family: "Cinzel", serif;
+    font-optical-sizing: auto;
+    font-weight: 200;
+    font-style: normal;
+    margin: -7px;
+  }
+
+  .full-stack-div {
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 600px) {
+  .logo-canvas {
+    width: 60vw;
+    height: 30vh;
+  }
+  
+  .full-stack-div {
+    grid-row: 7 / 10;
+    font-size: 20px;
+  }
+  .bio-div-main-container {
+    grid-column: 5 / 12;
+    grid-row: 1 / 5;
+  }
+  .bio-div-main {
+    
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 400px) {
+  .logo-canvas {
+    width: 50vw;
+    height: 20vh;
+  }
+  .full-stack-div {
+    font-size: 15px;
+  }
+  .bio-div-main {
+    font-size: 12px;
+  }
+  .contact-items {
+    font-size: 8px;
+  }
+}
+
+@media (max-width: 300px) {
+  .logo-canvas {
+    width: 60vw;
+    height: 10vh;
+  }
+
 }

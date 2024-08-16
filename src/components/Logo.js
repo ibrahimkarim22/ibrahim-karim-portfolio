@@ -44,15 +44,9 @@ function Logo() {
   const cameraRef = useRef();
 
   return (
-    <div>
-      <Canvas
-        className="logo-canvas"
-        style={{
-          borderRadius: "22px",
-          width: "30vw",
-          height: "70vh",
-        }}
-      >
+    <div className="logo-canvas-container">
+    <div className="logo-canvas">
+      <Canvas>
         <BackgroundColor color="snow" />
         <LogoInit
           path={logo}
@@ -68,6 +62,7 @@ function Logo() {
         <ambientLight intensity={0.1} />
       </Canvas>
       {progress > 0 && progress < 100 ? <Progress progress={progress} /> : null}
+    </div>
     </div>
   );
 }
