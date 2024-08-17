@@ -77,7 +77,7 @@ function Home() {
               <Link to="/threeDeeResume" style={{ textDecoration: "none" }}>
                 <div className="threeResume-title-div-container">
                 <div className="threeResume-title-div">
-                  3D Resume
+                 3D Profile
                   </div>
                 </div>
               </Link>
@@ -97,6 +97,9 @@ function Home() {
               </a>
             </div>
             </div>
+            <div className="home-copyright-container">
+        <div className="copyright-text">&copy; 2024 Ibrahim Karim.</div>
+        </div>
           </div>
         </>
       )}

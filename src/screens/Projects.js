@@ -24,6 +24,7 @@ const Projects = () => {
   return (
     <div className="projects-div-main">
       <div className="nav-div-main">
+      <div className="ibrahim-karim-mobile">Ibrahim Karim</div>
         <Link className="nav-home-btn" to="/">
           <div>Home</div>
         </Link>
@@ -31,7 +32,7 @@ const Projects = () => {
           <div>Resume</div>
         </Link>
         <Link className="nav-three-dee-resume-btn" to="/">
-          <div>3D Resume</div>
+          <div>3D Profile</div>
         </Link>
         <div className="social-container">
 
@@ -56,6 +57,28 @@ const Projects = () => {
       <div className="location">Livonia, Michigan</div>
       <div className="phone">(248) 499-2327</div>
         </div>
+      </div>
+      <div className="profile-main-mobile">
+      <div className="profile-div-main-mobile">
+      
+      <div className="location">Livonia, Michigan</div>
+      <div className="phone">(248) 499-2327</div>
+        </div>
+        <div className="social-container-mobile">
+
+<Link className="nav-linkedin-btn" to="/">
+  <div>Linkedin</div>
+</Link>
+<Link
+  className="nav-github-btn"
+  to="https://github.com/ibrahim-karim-22"
+>
+  <div>GitHub</div>
+</Link>
+<Link className="nav-gmail-btn" to="mailto:ib2ra2heem@gmail.com">
+  <div> Gmail</div>
+</Link>
+</div>
       </div>
       <div className="whacka-div-main" onClick={() => openModal("WhackaModal")}>
         <WhackaModal
@@ -102,7 +125,7 @@ const Projects = () => {
           <div className="hey-you-mongodb">MongoDB</div>
           <div className="hey-you-nodejs">Node.js</div>
           <div className="hey-you-docker">Docker</div>
-          <div className="hey-you-googlecloud">GoogleCloud</div>
+          <div className="hey-you-googlecloud">Google Cloud</div>
         </div>
         <div className="hey-you-description-text">Location & Chat</div>
       </div>
@@ -133,18 +156,17 @@ const Projects = () => {
           <div className="this-portfolio-software-text-container">
             <div className="this-portfolio-js">JavaScript </div>
             <div className="this-portfolio-react">React</div>
-            <div className="this-portfolio-react-fiber">React Three Fiber</div>
             <div className="this-portfolio-firebase">Firebase</div>
             <div className="this-portfolio-scss">SCSS</div>
             <div className="this-portfolio-blender">Blender</div>
+            <div className="this-portfolio-react-fiber">React Three</div>
           </div>
         <div className="this-portfolio-description-text">This Portfolio</div>
         </div>
    
       <div className="footer-div-main">
-        <div className="copyright-container">
-        <div className="copyright-text">2024 Ibrahim Karim. All rights reserved.</div>
-        <div className="made-with-love">from Livonia with ❤️</div>
+        <div className="projects-copyright-container">
+        <div className="copyright-text">&copy; 2024 Ibrahim Karim. </div>
         </div>
       </div>
     </div>
