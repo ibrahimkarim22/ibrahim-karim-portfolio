@@ -10,7 +10,7 @@ const HorizontalScroll = ({ children, className }) => {
     const onWheel = (event) => {
       if (event.deltaY !== 0) {
         event.preventDefault();
-        scrollContainer.scrollLeft += event.deltaY * 7;
+        scrollContainer.scrollLeft += event.deltaY * 3;
       }
     };
 
@@ -18,18 +18,20 @@ const HorizontalScroll = ({ children, className }) => {
       clearTimeout(scrollTimeout);
       scrollTimeout = setTimeout(() => {
         alignScroll();
-      }, 50);
+      }, 150);
     };
 
-const alignScroll = () => {
-  const pages = scrollContainer.querySelectorAll(".hey-you-page");
-  const pagesPositions = Array.from(pages).map(page => page.offsetLeft); 
-  const scrollLeft = scrollContainer.scrollLeft; 
-  const nearestPosition = pagesPositions.reduce((prev, curr) => {
-    return Math.abs(curr - scrollLeft) < Math.abs(prev - scrollLeft) ? curr : prev 
-  });
-  scrollContainer.scrollTo({ left: nearestPosition, behavior: "smooth" });
-};
+    const alignScroll = () => {
+      const pages = scrollContainer.querySelectorAll(".hey-you-page");
+      const pagesPositions = Array.from(pages).map((page) => page.offsetLeft);
+      const scrollLeft = scrollContainer.scrollLeft;
+      const nearestPosition = pagesPositions.reduce((prev, curr) => {
+        return Math.abs(curr - scrollLeft) < Math.abs(prev - scrollLeft)
+          ? curr
+          : prev;
+      });
+      scrollContainer.scrollTo({ left: nearestPosition, behavior: "smooth" });
+    };
 
     scrollContainer.addEventListener("wheel", onWheel);
     scrollContainer.addEventListener("scroll", onScroll);
@@ -48,7 +50,3 @@ const alignScroll = () => {
 };
 
 export default HorizontalScroll;
-
-
-
-
