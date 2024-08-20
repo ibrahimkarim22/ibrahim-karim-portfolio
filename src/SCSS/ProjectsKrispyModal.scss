@@ -271,7 +271,7 @@ PAGE 2
   flex-direction: row;
   grid-column: 1 / 14;
   grid-row: 6 / 12;
-  
+
   // overflow: hidden;
 }
 
@@ -288,7 +288,6 @@ PAGE 2
   max-width: 100%;
   object-fit: contain;
   border-radius: 20px;
-  
 }
 
 /*=========
@@ -473,8 +472,9 @@ PAGE 6
   grid-column: 3 / 4;
   grid-row: 5;
 
-  .copyright-text {
+  .krispy-copyright-container .copyright-text {
     font-size: 30px;
+    color: black;
   }
 }
 
@@ -635,7 +635,7 @@ FOOTER
   //   scale: 1;
   // }
   .krispy-modal-page-two {
-    height:140vh;
+    height: 140vh;
   }
 
   .krispy-modal-info {
@@ -678,17 +678,17 @@ FOOTER
 
   .krispy-copyright-container .copyright-text {
     font-size: 12px;
-}
+    color: black;
+  }
 }
 
 @media (max-width: 1850px) {
-
   .krispy-page-four {
-    height:100vh;
+    height: 100vh;
   }
 
   .krispy-modal-page-two {
-    height:120vh;
+    height: 120vh;
   }
   .krispy-modal-info {
     font-size: 30px;
@@ -727,18 +727,14 @@ FOOTER
   .krispy-modal-github-btn {
     font-size: 15px;
   }
-
-
 }
 @media (max-width: 1450px) {
   .krispy-modal-page-two {
-    height:100vh;
+    height: 100vh;
   }
   .krispy-page-three {
-    height:80vh;
+    height: 80vh;
   }
-
-
 
   .krispy-modal-info {
     font-size: 25px;
@@ -761,7 +757,7 @@ FOOTER
     font-size: 20px;
   }
 
-  .map-info-container,  
+  .map-info-container,
   .map-info-two-container {
     grid-column: 2 / 5;
   }
@@ -773,7 +769,7 @@ FOOTER
     scale: 0.25;
   }
   .krispy-page-four {
-    height:100vh;
+    height: 100vh;
   }
 
   .krispy-page-five {
@@ -792,33 +788,30 @@ FOOTER
   .bootstrap-title-container {
     grid-column: 1 / -1;
   }
-.parallax-title-container {
-  grid-column: 1 / -1;
-}
-.parallax-info-container {
-  grid-column: 1 / 4;
-}
+  .parallax-title-container {
+    grid-column: 1 / -1;
+  }
+  .parallax-info-container {
+    grid-column: 1 / 4;
+  }
 
-.krispy-page-five {
-height: 80vh;
-}
+  .krispy-page-five {
+    height: 80vh;
+  }
   .routing-code {
     scale: 0.4;
   }
-
-
 }
 
 @media (max-width: 769px) {
-
   .krispy-modal-page-one {
     height: 60vh;
   }
   .krispy-modal-page-two {
-    height:180vh;
+    height: 180vh;
   }
   .krispy-page-three {
-    height:140vh;
+    height: 140vh;
   }
 
   .krispy-page-four {
@@ -826,30 +819,28 @@ height: 80vh;
     grid-template-rows: repeat(10, 1fr);
   }
 
-
   .krispy-modal-info {
     font-size: 15px;
   }
 
+  .favorite-code-main-container {
+    flex-direction: column;
+    gap: 68px;
+    // height: 50%;
+  }
 
-.favorite-code-main-container {
-  flex-direction: column;
-  gap: 68px;
-  // height: 50%;
-}
+  .routing-code {
+    scale: 0.5;
+  }
 
-.routing-code {
-  scale: 0.5;
-}
-
-.routing-code-container {
-  grid-column: 1 / -1;
-  grid-row: 5 / 10;
-}
-.routing-info-container {
-  grid-column: 1 / -1;
-  grid-row: 2 / 4;
-}
+  .routing-code-container {
+    grid-column: 1 / -1;
+    grid-row: 5 / 10;
+  }
+  .routing-info-container {
+    grid-column: 1 / -1;
+    grid-row: 2 / 4;
+  }
   .krispy-modal-redux-title,
   .map-title,
   .routing-title,
@@ -871,7 +862,7 @@ height: 80vh;
     grid-row: 2 / 3;
   }
 
-  .map-info-container,  
+  .map-info-container,
   .map-info-two-container {
     grid-column: 2 / 5;
   }
@@ -891,27 +882,26 @@ height: 80vh;
 
   .map-code {
     scale: 0.3;
-   
-  }
-  
-  .bootstrap-code {
-    scale: 0.30;
   }
 
-.krispy-page-five {
-  grid-template-rows: repeat(10, 1fr);
-  height: 100vh;
-}
+  .bootstrap-code {
+    scale: 0.3;
+  }
+
+  .krispy-page-five {
+    grid-template-rows: repeat(10, 1fr);
+    height: 100vh;
+  }
 
   .bootstrap-code-container {
     grid-column: 1 / -1;
     grid-row: 5 / 10;
   }
 
-.bootstrap-info-container {
-  grid-column: 1 / -1;
-  grid-row: 2 / 4;
-}
+  .bootstrap-info-container {
+    grid-column: 1 / -1;
+    grid-row: 2 / 4;
+  }
 
   .favorite-code,
   .favorite-gif {
@@ -919,8 +909,8 @@ height: 80vh;
   }
 
   .krispy-page-six {
-   grid-template-rows: repeat(10, 1fr);
-   height: 150vh;
+    grid-template-rows: repeat(10, 1fr);
+    height: 150vh;
   }
 
   .parallax-info-container {
@@ -929,7 +919,7 @@ height: 80vh;
   }
 
   .parallax-code {
-    scale: 0.40;
+    scale: 0.4;
   }
 
   .parallax-code-container {
@@ -948,7 +938,7 @@ height: 80vh;
     margin-left: 5px;
   }
   .krispy-modal-header .btn-close {
-    scale: .7;
+    scale: 0.7;
   }
   .krispy-modal-close-btn,
   .krispy-site-btn,
@@ -958,8 +948,6 @@ height: 80vh;
 }
 
 @media (max-width: 450px) {
-
-  
   .krispy-modal-header .modal-title {
     font-size: 12px;
   }
@@ -968,7 +956,7 @@ height: 80vh;
     margin-left: 5px;
   }
   .krispy-modal-header .btn-close {
-    scale: .4;
+    scale: 0.4;
   }
   .krispy-modal-close-btn,
   .krispy-site-btn,
@@ -983,14 +971,12 @@ height: 80vh;
     height: 150vh;
   }
 
-
-
   .krispy-modal-js-logo,
   .krispy-modal-react-logo,
   .krispy-modal-redux-logo,
   .krispy-modal-sass-logo,
   .krispy-modal-firebase-logo,
-  .krispy-modal-bootstrap-logo  {
+  .krispy-modal-bootstrap-logo {
     scale: 5;
   }
 
@@ -1011,7 +997,7 @@ height: 80vh;
   .krispy-modal-redux-logo,
   .krispy-modal-sass-logo,
   .krispy-modal-firebase-logo,
-  .krispy-modal-bootstrap-logo  {
+  .krispy-modal-bootstrap-logo {
     scale: 10;
   }
   .krispy-modal-redux-title,
@@ -1040,20 +1026,18 @@ height: 80vh;
     height: 150vh;
   }
   .map-code {
-    scale: 0.20;
+    scale: 0.2;
   }
   .krispy-page-four {
     height: 110vh;
   }
 
   .routing-code {
-    scale: 0.30;
+    scale: 0.3;
   }
 
-
-
   .bootstrap-code {
-    scale: 0.20;
+    scale: 0.2;
   }
 
   .krispy-page-six {
@@ -1067,11 +1051,10 @@ height: 80vh;
 }
 
 @media (min-height: 100px) and (orientation: landscape) {
-
-.krispy-modal-header,
-.krispy-modal-footer {
- height: 13%;
-}
+  .krispy-modal-header,
+  .krispy-modal-footer {
+    height: 5%;
+  }
 
   .krispy-modal-page-one {
     height: 300vh;
@@ -1094,33 +1077,27 @@ height: 80vh;
   .krispy-page-six {
     height: 340vh;
   }
-
 }
 
-@media (min-height: 500px) and (orientation: landscape) {
-
+@media (max-height: 500px) and (orientation: landscape) {
   .krispy-modal-header,
   .krispy-modal-footer {
-   height: 13%;
+    height: 13%;
   }
-  
-    .krispy-modal-page-one {
-      height: 100vh;
-    }
-  
-    .krispy-modal-page-two {
-      height: 170vh;
-    }
-    .krispy-page-three {
-      height: 100vh;
-    }
-    .krispy-page-five, 
-    .krispy-page-six, 
-    .krispy-page-four {
-      height: 100vh;
-    }
-  
-   
- 
-  
+
+  .krispy-modal-page-one {
+    height: 100vh;
   }
+
+  .krispy-modal-page-two {
+    height: 170vh;
+  }
+  .krispy-page-three {
+    height: 100vh;
+  }
+  .krispy-page-five,
+  .krispy-page-six,
+  .krispy-page-four {
+    height: 100vh;
+  }
+}

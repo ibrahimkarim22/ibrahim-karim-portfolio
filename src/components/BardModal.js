@@ -27,6 +27,7 @@ import phoneBardInfo from "../images/phoneBardInfo.png";
 import phoneBardSynopsis from "../images/phoneBardSynopsis.png";
 import phoneBardPerformance from "../images/phoneBardPerformance.png";
 import phoneBardHowTo from "../images/phoneBardHowTo.png";
+import native from "../images/native.png";
 
 function BardModal({ isOpen, closeModal }) {
   return (
@@ -107,6 +108,9 @@ function BardModal({ isOpen, closeModal }) {
             </div>
 
             <div className="bard-modal-page-three-container">
+              <div className="bard-react-native-container">
+                <img src={native} alt="React Native logo" className="bard-react-native-logo" />
+              </div>
               <div className="phone-bard-home-container">
               <img src={phoneBardHome} alt="Bard app home page" className="phone-bard-home" />
               </div>
@@ -178,7 +182,7 @@ function BardModal({ isOpen, closeModal }) {
 
             <div className="bard-modal-page-five-container">
               <div className="bard-modal-user-title-container">
-                <div className="bard-modal-user-title">Account</div>
+                <div className="bard-modal-user-title">User Account</div>
               </div>
               <div className="bard-modal-firebase-text-container">
                 <div className="bard-modal-firebase-text">
@@ -342,7 +346,7 @@ function BardModal({ isOpen, closeModal }) {
             </div>
             <div className="bard-modal-page-eight-container">
               <div className="bard-modal-honors-title-container">
-                <div className="bard-modal-honors-title">Honors</div>
+                <div className="bard-modal-honors-title">Honors Video Submission</div>
               </div>
               <div className="bard-modal-honors-video-container">
                 <iframe
@@ -356,6 +360,9 @@ function BardModal({ isOpen, closeModal }) {
                   referrerpolicy="strict-origin-when-cross-origin"
                   allowfullscreen
                 ></iframe>
+              </div>
+              <div className="bard-copyright-container">
+                <div className="copyright-text">&copy; 2024 Ibrahim Karim.</div>
               </div>
             </div>
           </div>
@@ -380,7 +387,7 @@ function BardModal({ isOpen, closeModal }) {
               )
             }
           >
-            Download APK
+            APK!
           </Button>
           <Button
             color="info"

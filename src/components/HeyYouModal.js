@@ -323,6 +323,9 @@ function HeyYouModal({ isOpen, closeModal }) {
                   allowfullscreen
                 ></iframe>
               </div>
+              <div className="hey-you-copyright-container">
+                <div className="copyright-text">&copy; 2024 Ibrahim Karim.</div>
+              </div>
             </div>
           </HorizontalScroll>
         </ModalBody>
