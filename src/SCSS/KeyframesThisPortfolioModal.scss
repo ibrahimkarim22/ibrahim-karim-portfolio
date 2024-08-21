@@ -10,15 +10,15 @@
   @keyframes designOne {
     0% {
       scale: 1;
-      transform: translate(0px, 0px);
+      transform: translate(0vw, 0vh);
     }
     50% {
       scale: 4;
-      transform: translate(-200px, 0px);
+      transform: translate(-5vw, -2vh);
     }
     100% {
       scale: 1 ;
-      transform: translate(0px, 0px);
+      transform: translate(0vw, 0vh);
     }
   }
 

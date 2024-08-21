@@ -19,6 +19,7 @@ import fiber from "../images/fiber.png";
 import blenderLogo from "../images/blender.png";
 import conditionalRendering from "../images/conditionalRendering.png";
 import firebase from "../images/firebase.png"; 
+import phoneBlender from "../images/phoneBlender.png";
 
 
 function ThisPortfolioModal({ isOpen, closeModal }) {
@@ -61,7 +62,7 @@ function ThisPortfolioModal({ isOpen, closeModal }) {
             </div>
             <div className="grid-paragraph-container">
               <div className="grid-paragraph">
-                I’ve become highly proficient with grid layouts and flex
+                I’ve become proficient with grid layouts and flex
                 containers. When I first learned about grid displays, I was
                 amazed at how straightforward they were to implement. Creating
                 sub-grids within main grids allowed me to align items
@@ -105,7 +106,7 @@ function ThisPortfolioModal({ isOpen, closeModal }) {
           <div className="this-portfolio-page-three">
             <div className="css-animation-title-text-container">
               <div className="css-animation-title-text">
-                CSS animations and keyframes
+                CSS animations & keyframes
               </div>
             </div>
 
@@ -205,6 +206,13 @@ function ThisPortfolioModal({ isOpen, closeModal }) {
                 alt="resume model"
               />
             </div>
+            <div className="phone-blender-container">
+              <img
+                src={phoneBlender}
+                className="phone-blender"
+                alt="phone blender"
+              />
+            </div>
             <div className="fiber-container">
               <img
                 src={fiber}
@@ -220,6 +228,7 @@ function ThisPortfolioModal({ isOpen, closeModal }) {
               />
             </div>
             <div className="design-one-container">
+              <div className="design-one"></div>
               </div>
               <div className="design-two-container">
               </div>
@@ -335,17 +344,10 @@ function ThisPortfolioModal({ isOpen, closeModal }) {
                   alt="firebase logo"
                 />
               </div>
-            </div>
-     
-
-          {/* PAGE 7 */}
-          <div className="this-portfolio-page-seven">
-            <div className="download-gltf-model-container">
-              <div className="download-gltf-model">
-              Free GLTF: My 3D Android Model for Your Website
+              <div className="this-portfolio-copyright-container">
+                <div className="copyright-text">&copy; 2024 Ibrahim Karim.</div>
               </div>
-          </div>
-        </div>
+            </div> 
         </div>
       </ModalBody>
       )}
@@ -363,7 +365,7 @@ function ThisPortfolioModal({ isOpen, closeModal }) {
           className="this-portfolio-site-btn"
           onClick={(src) => "mailto:ib2ra2heem@gmail.com"}
         >
-          Email Me!
+          Email!
         </Button>
         <Button
           color="info"
