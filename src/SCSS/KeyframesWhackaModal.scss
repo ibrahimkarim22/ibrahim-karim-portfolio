@@ -4,13 +4,39 @@
 
 @keyframes WhackaModalHeaderStartup {
     0% {
-      transform: translate(-700px, 0px);
-    }
-    100% {
       transform: translate(0px, 0px);
     }
+    30% {
+      transform: translate(0px, 0px);
+    }
+    50% {
+      scale: 2;
+    }
+    60% {
+      scale: 1;
+    }
+    70% {
+      transform: rotateX(50deg);
+    }
+    80% {
+      transform: rotateX(-50deg);
+    }
+    90% {
+      transform: rotateX(20deg);
+    }
+    100% {
+      transform: rotateX(0deg);
+    }
+  }
+@keyframes whackaTextTwo {
+  0% {
+    transform: translate(-500px, 0px);
   }
 
+  100% {
+    transform: translate(0px, 0px);
+  }
+}
 /*==========================
   BODY
 ============================*/
@@ -109,11 +135,38 @@
   /*==========================
   FOOTER
   ============================*/
-  @keyframes WhackaModalFooterStartup {
+  @keyframes whackaFooterBody {
     0% {
-      transform: translate(700px, 0px);
+      scale: .2;
+    }
+    10% {
+      scale: 3;
+    }
+    20% {
+      scale: .2;
+    }
+    30% {
+      scale: 3;
+    }
+    40% {
+      scale: .2;
+    }
+    50% {
+      scale: 3;
+    }
+    60% {
+      scale: .2;
+    }
+    70% {
+      scale: 3;
+    }
+    80% {
+      scale: .2;
+    }
+    90% {
+      scale: 3;
     }
     100% {
-      transform: translate(0px, 0px);
+      scale: 1;
     }
   }

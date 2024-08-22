@@ -17,7 +17,7 @@ function WhackaModal({ isOpen, closeModal }) {
       {isOpen && (
         <ModalHeader toggle={closeModal} className="whacka-modal-header">
           <div className="whacka-modal-header-text">Whack a Mole</div>
-          
+
           <div className="whacka-modal-header-text-two">Online Game</div>
         </ModalHeader>
       )}
@@ -27,14 +27,24 @@ function WhackaModal({ isOpen, closeModal }) {
             <div className="whacka-modal-page-one">
               <div className="whacka-modal-info-container">
                 <div className="whacka-modal-info">
-                  Whack a Mole is an online game developed collaboratively by my
-                  colleagues, Brandon O'Shea and Sam Golshan, and myself. The
-                  project emphasized teamwork, utilizing Git, GitHub, and VS
-                  Code Live Share for collaboration. The game itself is
-                  a 2D challenge where your goal is to click as many moles as
-                  possible. But be careful—you only have one life! Avoid hitting
-                  empty cells, don't miss the extra points mole, and definitely
-                  steer clear of the Nuke!
+                  <span className="red-text">Whack a Mole</span> is an online
+                  game developed collaboratively by my colleagues,
+                  <span className="higlighter-green-text">
+                    {" "}
+                    Brandon O'Shea
+                  </span>{" "}
+                  and <span className="higlighter-green-text">
+                    Sam Golshan
+                  </span>{" "}
+                  , and <span className="higlighter-green-text">myself</span>.
+                  The project emphasized teamwork, utilizing{" "}
+                  <span className="blue-text">Git</span>,{" "}
+                  <span className="blue-text"> GitHub</span>, and{" "}
+                  <span className="blue-text"> VS Code Live Share</span> for
+                  collaboration. The game itself is a 2D challenge where your
+                  goal is to click as many moles as possible. But be careful—you
+                  only have one life! Avoid hitting empty cells, don't miss the
+                  extra points mole, and definitely steer clear of the Nuke!
                 </div>
               </div>
               <div className="whacka-modal-js-logo-container">
@@ -60,7 +70,10 @@ function WhackaModal({ isOpen, closeModal }) {
             <div className="whacka-modal-page-two">
               <div className="whacka-paragraph-two-container">
                 <div className="whacka-paragraph-two">
-                  The game was created using vanilla JavaScript, HTML, and SCSS.
+                  The game was created using{" "}<span className="blue-text">HTML</span>, {" "}
+                  <span className="yellow-text">vanilla JavaScript</span>, and
+                  {" "} <span className="pink-text">SCSS</span>.
+               
                 </div>
               </div>
               <div className="whacka-gif-container">
@@ -73,36 +86,37 @@ function WhackaModal({ isOpen, closeModal }) {
             </div>
             <div className="whacka-modal-page-three">
               <div className="event-listeners-title-container">
-                <div className="event-listeners-title">Event listeners</div>
+                <div className="event-listeners-title">Event listeners!</div>
               </div>
               <div className="button-clicks-text-container">
                 <div className="button-clicks-text">
-                  Event listeners were attached to buttons like startGameBtn,
+                  <span className="blue-text">Button Clicks:</span>{" "}Event listeners were attached to buttons like startGameBtn,
                   endGameBtn, and goBackBtn to trigger functions such as
                   starting the game, ending it, or navigating back.
                 </div>
               </div>
               <div className="grid-interactions-text-container">
                 <div className="grid-interactions-text">
-                  Grid Interactions: Each grid cell (button) was assigned a
+                  <span className="yellow-text">Grid Interactions:</span>{" "}Each grid cell (button) was assigned a click event listener to handle scoring actions when the player clicks on moles or other game elements like bombs."Grid Interactions: Each grid cell (button) was assigned a
                   click event listener to handle scoring actions when the player
                   clicks on moles or other game elements like bombs.
                 </div>
               </div>
               <div className="sound-text-container">
                 <div className="sound-text">
-                  Specific event listeners were set up to play sounds when
+                 <span className="violet-text">Sound:</span>{" "} Specific event listeners were set up to play sounds when
                   certain actions occurred, like starting the game, clicking on
                   a mole, an extra points mole, an empty cell, or a nuke.
                 </div>
               </div>
               <div className="timers-text-container">
                 <div className="timers-text">
-                  Timers and Intervals: Event listeners were used to manage game
+                  <span className="pink-text">Timers and Intervals:</span>{" "}Event listeners were used to manage game
                   timing, including countdown timers and intervals that control
                   mole appearance, bomb handling, and sound playback.
                 </div>
               </div>
+
               <div className="whacka-code-image-container">
                 <img
                   src={whackaCode}
@@ -111,8 +125,8 @@ function WhackaModal({ isOpen, closeModal }) {
                 />
               </div>
               <div className="whacka-copyright-container">
-        <div className="copyright-text">&copy; 2024 Ibrahim Karim.</div>
-        </div>
+                <div className="copyright-text">&copy; 2024 Ibrahim Karim.</div>
+              </div>
             </div>
           </div>
         </ModalBody>

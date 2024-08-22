@@ -36,7 +36,7 @@
 .hey-you-modal-header .modal-title,
 .bard-modal-header .modal-title,
 .this-portfolio-modal-header .modal-title {
-  font-size: 35px;
+  font-size: 45px;
   margin-left: 20vw;
 }
 .whacka-modal-header .btn-close,
@@ -88,6 +88,7 @@
     text-wrap: nowrap;
   }
 }
+
 @media (max-width: 300px) {
     .whacka-modal-header .modal-title,
     .krispy-modal-header .modal-title,
@@ -95,11 +96,10 @@
     .bard-modal-header .modal-title,
     .this-portfolio-modal-header .modal-title {
       font-size: 15px;
-      margin-left: 70px;
       text-wrap: nowrap;
     }
   }
-@media (max-height: 1000px) and (orientation: landscape) {
+@media (max-height: 800px) and (orientation: landscape) {
   .whacka-modal-header .modal-title,
   .krispy-modal-header .modal-title,
   .hey-you-modal-header .modal-title,
@@ -132,17 +132,23 @@
   font-family: "Bangers", system-ui;
   font-weight: 400;
   font-style: normal;
-  // animation: WhackaModalHeaderStartup 6s ease-in-out forwards;
+  animation: WhackaModalHeaderStartup 5s ease-in-out forwards;
 }
 .whacka-modal-header-text-two {
   color: rgb(0, 255, 255);
   font-family: "Raleway", system-ui;
   font-weight: 300;
   font-style: normal;
-  animation: WhackaModalHeaderStartup 6s ease-in-out forwards;
-  margin: 50px;
-  font-size: 15px;
+  animation: whackaTextTwo 6s ease-in-out forwards;
+  margin: 15px;
+  font-size: 22px;
   text-wrap: nowrap;
+}
+@media (max-width: 750px) {
+  .whacka-modal-header-text-two {
+    font-size: 15px;
+    margin: 15px;
+  }
 }
 .whacka-modal-header .btn-close {
   background-color: rgb(255, 255, 255);
@@ -163,7 +169,7 @@
   animation: krispyModalHeaderSlideInLeft 5s ease-in-out;
 }
 .krispy-modal-header-text-two {
-  margin: 40px;
+  margin: 15px;
   font-size: 15px;
   text-wrap: nowrap;
   color: rgb(12, 12, 12);
@@ -192,7 +198,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 40px;
+  font-size: 15px;
   font-family: "Raleway", sans-serif;
   font-optical-sizing: auto;
   font-weight: 300;
@@ -202,7 +208,7 @@
 }
 
 .hey-you-modal-header-text-two {
-  margin: 50px;
+  margin: 15px;
   font-size: 15px;
   text-wrap: nowrap;
   color: rgb(0, 8, 255);
@@ -226,7 +232,7 @@
   color: rgb(255, 255, 255);
 }
 .bard-modal-header-text-two {
-  margin: 50px;
+  margin: 15px;
   font-size: 15px;
   text-wrap: nowrap;
   color: rgb(255, 255, 255);
