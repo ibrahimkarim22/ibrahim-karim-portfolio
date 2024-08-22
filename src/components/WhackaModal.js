@@ -70,10 +70,10 @@ function WhackaModal({ isOpen, closeModal }) {
             <div className="whacka-modal-page-two">
               <div className="whacka-paragraph-two-container">
                 <div className="whacka-paragraph-two">
-                  The game was created using{" "}<span className="blue-text">HTML</span>, {" "}
-                  <span className="yellow-text">vanilla JavaScript</span>, and
-                  {" "} <span className="pink-text">SCSS</span>.
-               
+                  The game was created using{" "}
+                  <span className="blue-text">HTML</span>,{" "}
+                  <span className="yellow-text">vanilla JavaScript</span>, and{" "}
+                  <span className="pink-text">SCSS</span>.
                 </div>
               </div>
               <div className="whacka-gif-container">
@@ -90,30 +90,54 @@ function WhackaModal({ isOpen, closeModal }) {
               </div>
               <div className="button-clicks-text-container">
                 <div className="button-clicks-text">
-                  <span className="blue-text">Button Clicks:</span>{" "}Event listeners were attached to buttons like startGameBtn,
-                  endGameBtn, and goBackBtn to trigger functions such as
-                  starting the game, ending it, or navigating back.
+                  <span className="blue-text">Button Clicks:</span> Event
+                  listeners were attached to buttons like{" "}
+                  <span className="highlighter-green-text">"startGameBtn</span>,{" "}
+                  <span className="highlighter-green-text">"endGameBtn"</span>,
+                  and <span className="highlighter-green-text">goBackBtn"</span>{" "}
+                  to handle the start, end, and go back buttons.
                 </div>
               </div>
               <div className="grid-interactions-text-container">
                 <div className="grid-interactions-text">
-                  <span className="yellow-text">Grid Interactions:</span>{" "}Each grid cell (button) was assigned a click event listener to handle scoring actions when the player clicks on moles or other game elements like bombs."Grid Interactions: Each grid cell (button) was assigned a
-                  click event listener to handle scoring actions when the player
-                  clicks on moles or other game elements like bombs.
+                  <span className="yellow-text">Grid Interactions:</span> Each{" "}
+                  <span className="highlighter-green-text">
+                    grid cell (button)
+                  </span>{" "}
+                  was assigned a click event listener to{" "}
+                  <span className="highlighter-green-text">
+                    handle scoring actions
+                  </span>{" "}
+                  when the player clicks on moles or other game elements such as
+                  extra points moles. Players can also lose points by clicking
+                  empty cells or end the game by clicking the nuke.
                 </div>
               </div>
               <div className="sound-text-container">
                 <div className="sound-text">
-                 <span className="violet-text">Sound:</span>{" "} Specific event listeners were set up to play sounds when
-                  certain actions occurred, like starting the game, clicking on
-                  a mole, an extra points mole, an empty cell, or a nuke.
+                  <span className="violet-text">Sound:</span> Event listeners
+                  were set up to{" "}
+                  <span className="highlighter-green-text">
+                    trigger sound effects at key moments in the game
+                  </span>
+                  . For example, distinct sounds play when the game starts, when
+                  a player successfully clicks on a mole, hits an extra points
+                  mole, misses by clicking on an empty cell, or accidentally
+                  clicks on a nuke.
                 </div>
               </div>
               <div className="timers-text-container">
                 <div className="timers-text">
-                  <span className="pink-text">Timers and Intervals:</span>{" "}Event listeners were used to manage game
-                  timing, including countdown timers and intervals that control
-                  mole appearance, bomb handling, and sound playback.
+                  <span className="pink-text">Timers and Intervals:</span> Event
+                  listeners are used to manage game timing, including{" "}
+                  <span className="highlighter-green-text">
+                    countdown timers
+                  </span>{" "}
+                  and <span className="highlighter-green-text">intervals</span>{" "}
+                  that control object appearances and sounds. For instance, a 'teasing' sound plays during the
+                  first 10 seconds to engage players from the start, while
+                  a distinct countdown sound intensifies the final 10 seconds,
+                  increasing the urgency.
                 </div>
               </div>
 
