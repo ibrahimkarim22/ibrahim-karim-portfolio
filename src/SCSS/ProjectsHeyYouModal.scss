@@ -5,79 +5,6 @@
 // }
 
 /*==========================
-            HEADER
-============================*/
-
-.hey-you-modal-header {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: 1fr;
-  align-items: center;
-  z-index: 3;
-  height: 5%;
-  background-color: rgb(255, 255, 255);
-  transform-origin: 10% 0%;
-  // box-shadow: rgb(0, 157, 255) 0px 0px 700px;
-  animation: heyYouModalHeaderStartup 5s ease-in-out forwards;
-}
-
-.hey-you-modal-header .modal-title,
-.hey-you-modal-main-title {
-  grid-column: 1 / 4;
-  grid-row: 1 / 3;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 40px;
-  font-family: "Raleway", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 300;
-  font-style: normal;
-  color: rgb(0, 8, 255);
-  animation: heyYouModalTitleStartup 5s ease-in-out forwards;
-}
-
-.hey-you-modal-header-text-two {
-  color: rgb(0, 8, 255);
-  margin: 30px;
-  font-size: 22px;
-  font-family: "Raleway", system-ui;
-  font-weight: 300;
-  font-style: normal;
-  animation: heyYouModalTitleStartup 5s ease-in-out forwards;
-}
-
-.hey-you-modal-header .btn-close {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  scale: 1.5;
-  background-color: rgb(255, 255, 255);
-  grid-column: 3 / 4;
-  grid-row: 1 / 3;
-}
-
-@media (min-width: 2500px) {
-  .hey-you-modal-header .modal-title {
-    font-size: 80px;
-  }
-
-  .hey-you-modal-header-text-two {
-    font-size: 42px;
-  }
-
-  .hey-you-modal-header .btn-close {
-    scale: 2;
-  }
-
-  // .hey-you-request-apk-btn,
-  // .hey-you-modal-close-btn,
-  // .hey-you-modal-github-btn {
-  //   font-size: 40px;
-
-  // }
-}
-/*==========================
         BODY MAIN
 ============================*/
 
@@ -124,10 +51,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 40px;
+  font-family: "Raleway", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
   color: rgb(0, 255, 255);
   text-shadow: rgb(69, 73, 73) 0px 100px 1000px;
   border-radius: 220px;
-  font-size: 100px;
   animation: heyYouModalMainTitleStartup 4s ease-in-out forwards infinite;
 }
 .hey-you-honors-title-container {
@@ -197,34 +128,14 @@
   .hey-you-honors-title {
     font-size: 20px;
   }
-
-  // .hey-you-modal-close-btn,
-  // .hey-you-moodal-github-btn,
-  // .hey-you-request-apk-btn {
-  //   font-size: 20px;
-  // }
 }
 
 @media (max-width: 1080px) {
-  .hey-you-modal-header .modal-title {
-    font-size: 28px;
-  }
-  .hey-you-modal-header .btn-close {
-    scale: 1;
-  }
-  .hey-you-modal-header-text-two {
-    font-size: 15px;
-  }
-
   .hey-you-honors-title {
     font-size: 15px;
   }
 
-  .hey-you-modal-close-btn,
-  .hey-you-modal-github-btn,
-  .hey-you-request-apk-btn {
-    font-size: 10px;
-  }
+
   .hey-you-modal-main-title {
     font-size: 33px;
   }
@@ -254,104 +165,29 @@
 }
 
 @media (max-width: 701px) {
-  .hey-you-modal-header .modal-title {
-    font-size: 25px;
-  }
-  .hey-you-modal-header .btn-close {
-    scale: 1;
-  }
-  .hey-you-modal-header-text-two {
-    font-size: 12px;
-  }
-
-  // .hey-you-modal-close-btn,
-  // .hey-you-modal-github-btn,
-  // .hey-you-request-apk-btn {
-  //   font-size: 7px;
-  //   width: 90%;
-  // }
   .hey-you-modal-main-title {
     font-size: 33px;
-  }
-
-  .hey-you-modal-header {
-    height: 8%;
   }
 }
 
 @media (max-height: 700px) and (orientation: landscape) {
-  // .hey-you-modal-header .modal-title {
-  //   font-size: 12px;
-  // }
-  // .hey-you-modal-header .btn-close {
-  //   scale: .8;
-  // }
-  .hey-you-modal-header-text-two {
-    font-size: 14px;
-  }
-
-  .hey-you-modal-header {
-    height: 12%;
-  }
-
   .hey-you-modal-main-title {
     font-size: 33px;
   }
 }
 
-@media (max-height: 1100px) {
-  .hey-you-modal-header {
-    height: 8%;
-  }
-}
-
 @media (max-width: 360px) {
-  .hey-you-modal-header .modal-title {
-    font-size: 15px;
-  }
-  .hey-you-modal-header .btn-close {
-    scale: 0.5;
-  }
-  .hey-you-modal-header-text-two {
-    font-size: 9px;
-  }
-
-  .hey-you-modal-close-btn,
-  .hey-you-modal-github-btn,
-  .hey-you-request-apk-btn {
-    font-size: 7px;
-    width: 90%;
-  }
   .hey-you-modal-main-title {
     font-size: 33px;
   }
 }
 
 @media (max-height: 450px) {
-  .hey-you-modal-header {
-    height: 8%;
-  }
-  .hey-you-modal-close-btn,
-  .hey-you-modal-github-btn,
-  .hey-you-request-apk-btn {
-    font-size: 5px;
-    width: 90%;
-  }
   .hey-you-modal-realtime-paragraph {
     font-size: 10px;
   }
   .socket-io-logo-two {
     width: 30px;
-  }
-
-  .hey-you-modal-header .modal-title {
-    font-size: 15px;
-  }
-  .hey-you-modal-header .btn-close {
-    scale: 0.5;
-  }
-  .hey-you-modal-header-text-two {
-    font-size: 9px;
   }
 }
 
@@ -1471,13 +1307,7 @@
   }
 }
 
-// @media (min-height: 200px) {
-//   .hey-you-modal-close-btn,
-//   .hey-you-request-apk-btn,
-//   .hey-you-modal-github-btn {
-//     font-size: 10px;
-//   }
-// }
+
 
 /*==========================
            PROJECT VIDEO PAGE
@@ -1539,76 +1369,3 @@
  color: black;
  font-size: 12;
 }
-
-/*==========================
-            FOOTER
-============================*/
-
-.hey-you-modal-footer {
-  display: grid;
-  height: 5%;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(3, 1fr);
-  background-color: rgb(255, 255, 255);
-  border: solid 1px rgb(0, 0, 0);
-  transform-origin: -100% -100%;
-  box-shadow: rgb(0, 106, 255) 0px 0px 20px;
-  animation: heyYouModalFooterStartup 5s ease-in-out forwards;
-}
-
-.hey-you-modal-footer > button {
-  width: 80%;
-  font-size: 30px;
-  border: solid 1px rgb(0, 0, 0);
-  color: rgb(0, 0, 0);
-  letter-spacing: 2px;
-  background-color: rgb(255, 255, 255);
-}
-
-.hey-you-modal-close-btn {
-  grid-column: 2 / 3;
-  grid-row: 1 / 4;
-  background-color: rgba(184, 184, 184, 0.735);
-  color: rgb(0, 0, 0);
-}
-
-.hey-you-request-apk-btn {
-  grid-column: 3 / 4;
-  grid-row: 1 / 4;
-  background-color: rgb(255, 255, 255);
-}
-
-.hey-you-modal-github-btn {
-  grid-column: 5;
-  grid-row: 1 / 4;
-  background-color: rgba(184, 184, 184, 0.735);
-  color: rgb(0, 0, 0);
-}
-
-@media (max-height: 655px) {
-  .hey-you-modal-footer {
-    height: 12%;
-  }
-  .hey-you-modal-footer > button {
-    font-size: 12px;
-  }
-  .hey-you-modal-header {
-    height: 12%;
-  }
-}
-@media (min-height: 655px) {
-  .hey-you-modal-footer {
-    height: 8%;
-  }
-  .hey-you-modal-footer > button {
-    font-size: 10px;
-  }
-  .hey-you-modal-header {
-    height: 8%;
-  }
-}
-// @media (max-height: 1280px) {
-//   .hey-you-modal-footer {
-//     height: 10%;
-// }
-// }

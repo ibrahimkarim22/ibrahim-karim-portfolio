@@ -1,59 +1,4 @@
-/*==========================
-  HEADER 
-  grid
-============================*/
-
-.this-portfolio-modal-header {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: 1fr;
-  align-items: center;
-  background-color: rgb(0, 94, 255);
-  border: solid 1px rgb(0, 0, 0);
-  height: 5%;
-}
-
-.this-portfolio-modal-header .modal-title {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  grid-column: 1 / 4;
-  grid-row: 1 / 3;
-  font-size: 44px;
-  color: rgb(255, 255, 255);
-  font-family: "Cinzel", serif;
-  font-weight: 400;
-  word-wrap: nowrap;
-}
-
-.this-portfolio-modal-header .btn-close {
-  scale: 1;
-  background-color: rgb(255, 255, 255);
-  grid-column: 3;
-  grid-row: 1 / 3;
-}
-
-@media (max-width: 2500px) {
-  .this-portfolio-modal-header .modal-title {
-    font-size: 50px;
-  }
-}
-
-//   .bard-modal-header .btn-close {
-//     scale: 2;
-//   }
-// }
-@media (max-width: 1900px) {
-  .this-portfolio-modal-header .modal-title {
-    font-size: 30px;
-  }
-
-  .this-portfolio-modal-header .btn-close {
-    scale: 0.8;
-  }
-}
-
-/*==========================
+/*=========================
   MAIN
   /*===========================*/
 
@@ -899,8 +844,6 @@
   height: auto;
 }
 
-
-
 .this-portfolio-copyright-container {
   display: flex;
   justify-content: center;
@@ -911,7 +854,6 @@
   font-size: 12px;
 }
 
-
 @media (max-width: 1600px) {
   .java-script-progress-paragraph-one,
   .java-script-progress-paragraph-two,
@@ -920,7 +862,7 @@
   .java-script-scroll-paragraph-two,
   .java-script-scroll-paragraph-three,
   .lazy-load-info,
-  .this-portfolio-firebase-title{
+  .this-portfolio-firebase-title {
     font-size: 20px;
   }
   .java-script-title-text {
@@ -989,92 +931,4 @@
   font-family: "Montserrat", serif;
   font-weight: 300;
   font-style: normal;
-}
-
-/*==========================
-FOOOTER
-============================*/
-
-.this-portfolio-modal-footer {
-  display: grid;
-  height: 5%;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(3, 1fr);
-  background-color: rgb(0, 94, 255);
-  border: solid 1px rgb(0, 0, 0);
-}
-
-.this-portfolio-modal-close-btn,
-.this-portfolio-site-btn,
-.this-portfolio-modal-github-btn {
-  width: 80%;
-
-  border: solid 1px rgb(0, 0, 0);
-  color: rgb(0, 0, 0);
-
-  background-color: rgb(255, 255, 255);
-}
-
-.this-portfolio-modal-close-btn {
-  grid-column: 2 / 3;
-  grid-row: 1 / -1;
-  background-color: rgb(255, 255, 255);
-  color: rgb(255, 0, 0);
-}
-
-.this-portfolio-site-btn {
-  grid-column: 3 / 4;
-  grid-row: 1 / -1;
-  background-color: rgb(255, 255, 255);
-}
-
-.this-portfolio-modal-github-btn {
-  grid-column: 5;
-  grid-row: 1 / -1;
-  background-color: rgb(255, 255, 255);
-}
-@media (max-height: 655px) {
-  .this-portfolio-modal-footer {
-    height: 12%;
-  }
-  .this-portfolio-modal-footer > button {
-    font-size: 12px;
-  }
-  .this-portfolio-modal-header {
-    height: 12%;
-  }
-}
-@media (min-height: 655px) {
-  .this-portfolio-modal-footer {
-    height: 5%;
-  }
-  .this-portfolio-modal-footer > button {
-    font-size: 12px;
-  }
-
-  .this-portfolio-modal-header {
-    height: 5%;
-  }
-}
-@media (max-width: 680px) {
-  .this-portfolio-modal-footer {
-    height: 8%;
-  }
-  // .this-portfolio-modal-footer > button {
-  //   font-size: 18px;
-  // }
-  .this-portfolio-modal-header {
-    height: 8%;
-  }
-}
-@media (max-width: 320px) {
-  .this-portfolio-modal-footer {
-    height: 8%;
-  }
-  .this-portfolio-modal-footer > button {
-    font-size: 10px;
-  }
-  .this-portfolio-modal-header {
-    height: 8%;
-  }
 }

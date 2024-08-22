@@ -1,60 +1,10 @@
+/*=================
+main
+==================*/
 .whacka-modal-main-div {
   background-color: #000000;
   animation: WhackaModalFadeInBackground 3s ease-in-out forwards;
 }
-
-/*=================
-HEADER grid main
-==================*/
-.whacka-modal-header {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: 1fr;
-  align-items: center;
-  background-color: rgb(255, 0, 0);
-  height: 5%;
-
-  box-shadow: 0px 0px 100px rgb(0, 0, 0);
-  border: rgb(0, 0, 0) 1px solid;
-  position: relative;
-  animation: WhackaModalHeaderStartup 3s ease-in-out forwards;
-}
-
-.whacka-modal-header .modal-title,
-.whacka-modal-header .btn-close .whacka-modal-header-text-two {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.whacka-modal-header .modal-title {
-  grid-column: 1 / 4;
-  grid-row: 1 / 3;
-  color: rgb(0, 255, 255);
-  font-size: 120px;
-  font-family: "Bangers", system-ui;
-  font-weight: 400;
-  font-style: normal;
-  animation: WhackaModalHeaderStartup 6s ease-in-out forwards;
-}
-
-.whacka-modal-header .whacka-modal-header-text-two {
-  color: rgb(0, 255, 255);
-  margin: 30px;
-  font-size: 70px;
-  font-family: "Raleway", system-ui;
-  font-weight: 100;
-  font-style: normal;
-  animation: WhackaModalHeaderStartup 6s ease-in-out forwards;
-}
-.whacka-modal-header .btn-close {
-  scale: 2;
-  background-color: rgb(255, 255, 255);
-  grid-column: 2 / 4;
-  grid-row: 1 / 3;
-}
-/*=================
-main
-==================*/
 
 .whacka-modal-main {
   padding: 0%;
@@ -285,269 +235,11 @@ main
 }
 
 /*==========================
-            FOOTER 
-            grid main
-============================*/
 
-.whacka-modal-footer {
-  display: grid;
-  height: 5%;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(3, 1fr);
-  animation: modalFooterStartup 3s ease-in-out forwards;
-  background-color: rgb(255, 0, 0);
-  border: solid 1px rgb(0, 0, 0);
-}
-
-.whacka-play-btn,
-.modal-close-btn,
-.whacka-modal-github-btn {
-  width: 80%;
-  font-family: "Press Start 2P", system-ui;
-  font-size: 40px;
-  border: solid 1px rgb(0, 0, 0);
-  color: rgb(0, 0, 0);
-  font-weight: 200;
-  letter-spacing: 2px;
-  // margin: 50px;
-  // padding: 20px;
-}
-
-.modal-close-btn {
-  grid-column: 2 / 3;
-  grid-row: 1 / 4;
-  background-color: rgb(255, 255, 255);
-  color: rgb(255, 0, 0);
-}
-.whacka-play-btn {
-  grid-column: 3 / 4;
-  grid-row: 1 / 4;
-  background-color: rgb(25, 125, 255);
-}
-
-.whacka-modal-github-btn {
-  grid-column: 5;
-  grid-row: 1 / 4;
-  background-color: rgb(255, 242, 0);
-}
-
-@media (max-width: 4300px) {
-
-  .whacka-modal-header .btn-close {
-    scale: 2;
-  }
-
-  .whacka-play-btn,
-  .modal-close-btn,
-  .whacka-modal-github-btn {
-    font-size: 50px;
-  }
-
-  .whacka-modal-info {
-    font-size: 40px;
-  }
-
-  .event-listeners-title {
-    font-size: 90px;
-  }
-
-  .whacka-gif {
-    scale: 1;
-  }
-
-  .whacka-code-image {
-    scale: 2;
-  }
-
-  .button-clicks-text,
-  .grid-interactions-text,
-  .sound-text,
-  .timers-text {
-    font-size: 44px;
-  }
-}
-@media (max-width: 3500px) {
-
-
-  .whacka-modal-header .btn-close {
-    scale: 1.5;
-  }
-
-  .whacka-play-btn,
-  .modal-close-btn,
-  .whacka-modal-github-btn {
-    font-size: 35px;
-  }
-
-  .whacka-modal-info {
-    font-size: 40px;
-  }
-
-  .event-listeners-title {
-    font-size: 70px;
-  }
-
-  .whacka-gif {
-    scale: 0.8;
-  }
-
-  .whacka-code-image-container {
-    grid-row: 2 / 9;
-  }
-  .whacka-code-image {
-    scale: 1.5;
-  }
-
-  .button-clicks-text,
-  .grid-interactions-text,
-  .sound-text,
-  .timers-text {
-    font-size: 33px;
-  }
-
-  .button-clicks-text-container {
-    grid-row: 4 / 5;
-  }
-
-  .sound-text-container {
-    grid-row: 5 / 7;
-  }
-
-  .timers-text-container {
-    grid-row: 7 / 8;
-  }
-}
-
-@media (max-width: 3000px) {
-  .whacka-modal-page-one {
-    height: 80vh;
-  }
-
-  .whacka-modal-info {
-    font-size: 28px;
-  }
-
-  .event-listeners-title {
-    font-size: 70px;
-  }
-
-  .whacka-gif {
-    scale: 0.7;
-  }
-
-  .whacka-modal-page-three {
-    height: 170vh;
-  }
-
-  .whacka-code-image-container {
-    grid-row: 1 / 12;
-  }
-  .whacka-code-image {
-    scale: 1.2;
-  }
-
-  .button-clicks-text,
-  .grid-interactions-text,
-  .sound-text,
-  .timers-text {
-    font-size: 27px;
-  }
-
-  .grid-interactions-text-container {
-    grid-row: 3 / 4;
-  }
-
-  .button-clicks-text-container {
-    grid-row: 4 / 6;
-  }
-
-  .sound-text-container {
-    grid-row: 5 / 8;
-  }
-
-  .timers-text-container {
-    grid-row: 7 / 9;
-  }
-}
-
-@media (max-width: 3000px) {
-  .whacka-modal-info-container {
-    grid-column: 4 / 10;
-    grid-row: 6 / 9;
-  }
-  .whacka-modal-page-one {
-    height: 80vh;
-  }
-
-  .whacka-modal-info {
-    font-size: 35px;
-  }
-
-  .whacka-modal-js-image,
-  .whacka-modal-html-image,
-  .whacka-modal-sass-image {
-    scale: 0.8;
-  }
-
-  .event-listeners-title {
-    font-size: 70px;
-  }
-
-  .whacka-gif {
-    scale: 0.7;
-  }
-
-  .whacka-modal-page-three {
-    height: 170vh;
-  }
-
-  .whacka-code-image-container {
-    grid-row: 1 / 12;
-  }
-  .whacka-code-image {
-    scale: 1.2;
-  }
-
-  .button-clicks-text,
-  .grid-interactions-text,
-  .sound-text,
-  .timers-text {
-    font-size: 27px;
-  }
-
-  .grid-interactions-text-container {
-    grid-row: 3 / 4;
-  }
-
-  .button-clicks-text-container {
-    grid-row: 4 / 6;
-  }
-
-  .sound-text-container {
-    grid-row: 5 / 8;
-  }
-
-  .timers-text-container {
-    grid-row: 7 / 9;
-  }
-}
+MEDIA QUERIES
+===========================*/
 
 @media (max-width: 2560px) {
-  .whacka-modal-header .modal-title {
-    font-size: 70px;
-  }
-  .whacka-modal-header .whacka-modal-header-text-two {
-    font-size: 40px;
-  }
-  .whacka-modal-header .btn-close {
-    scale: 1.4;
-  }
-
-  .whacka-play-btn,
-  .modal-close-btn,
-  .whacka-modal-github-btn {
-    font-size: 28px;
-  }
 
   .whacka-modal-info {
     font-size: 20px;
@@ -555,40 +247,20 @@ main
 
   .whacka-modal-js-image,
   .whacka-modal-html-image,
-  .whacka-modal-sass-image {
-    scale: 0.6;
-  }
-
-  .whacka-modal-html-logo-container,
+  .whacka-modal-sass-image .whacka-modal-html-logo-container,
   .whacka-modal-sass-logo-container,
-  .whacka-modal-js-logo-container {
-    grid-row: 2 / 8;
-  }
-  .whacka-paragraph-two-container {
+  .whacka-modal-js-logo-container .whacka-paragraph-two-container {
     font-size: 20px;
   }
 
-  .event-listeners-title-container {
-    grid-column: 2 / 4;
-    grid-row: 1 / 3;
-  }
-
-  .event-listeners-title {
+  .event-listeners-title-container .event-listeners-title {
     font-size: 30px;
   }
 
-  .whacka-gif {
-    scale: 0.35;
-  }
-
-  .whacka-code-image-container {
-    grid-row: 1 / 12;
-  }
-  .whacka-code-image {
-    scale: 0.7;
-  }
-
-  .button-clicks-text,
+  .whacka-gif
+    .whacka-code-image-container
+    .whacka-code-image
+    .button-clicks-text,
   .grid-interactions-text,
   .sound-text,
   .timers-text {
@@ -599,27 +271,9 @@ main
     font-size: 12px;
     z-index: 55;
   }
-  .timers-text-container {
-    grid-row: 7 / 9;
-  }
 }
 
 @media (max-width: 1600px) {
-  .whacka-modal-header .modal-title {
-    font-size: 50px;
-  }
-  .whacka-modal-header .whacka-modal-header-text-two {
-    font-size: 30px;
-  }
-  .whacka-modal-header .btn-close {
-    scale: 1;
-  }
-
-  .whacka-play-btn,
-  .modal-close-btn,
-  .whacka-modal-github-btn {
-    font-size: 20px;
-  }
 
   .whacka-modal-info {
     font-size: 18px;
@@ -627,237 +281,109 @@ main
 
   .whacka-modal-js-image,
   .whacka-modal-html-image,
-  .whacka-modal-sass-image {
-    scale: 0.7;
-  }
-
-  .whacka-paragraph-two-container {
+  .whacka-modal-sass-image .whacka-paragraph-two-container {
     font-size: 15px;
   }
 
-  .event-listeners-title-container {
-    grid-column: 2 / 4;
-    grid-row: 1 / 3;
-  }
-
-  .event-listeners-title {
+  .event-listeners-title-container .event-listeners-title {
     font-size: 22px;
   }
 
-  .whacka-gif {
-    scale: 0.3;
-  }
-
-  .whacka-modal-page-three {
-    height: 120vh;
-  }
-
-  .whacka-code-image {
-    scale: 0.5;
-  }
-
-  .button-clicks-text,
+  .whacka-gif
+    .whacka-modal-page-three
+    .whacka-modal-page-two
+    .whacka-code-image
+    .button-clicks-text,
   .grid-interactions-text,
   .sound-text,
   .timers-text {
     font-size: 10px;
   }
-
-  .whacka-modal-page-two {
-    height: 70vh;
-  }
 }
 
 @media (max-width: 1000px) {
-  .whacka-modal-header .modal-title {
-    font-size: 30px;
-  }
-  .whacka-modal-header .whacka-modal-header-text-two {
-    font-size: 20px;
-  }
-  .whacka-modal-header .btn-close {
-    scale: 0.8;
-  }
-
-  .whacka-play-btn,
-  .modal-close-btn,
-  .whacka-modal-github-btn {
-    font-size: 11px; 
-  }
 
   .whacka-modal-info {
     font-size: 11px;
   }
 
-  .whacka-modal-info-container {
-    grid-row: 4 / 10;
-  }
-
-  .whacka-modal-html-logo-container,
+  .whacka-modal-info-container .whacka-modal-html-logo-container,
   .whacka-modal-sass-logo-container,
-  .whacka-modal-js-logo-container {
-    grid-row: 3 / 5;
-  }
-  .whacka-paragraph-two-container {
+  .whacka-modal-js-logo-container .whacka-paragraph-two-container {
     font-size: 8px;
   }
 
-  .event-listeners-title {
-    font-size: 12px;
-  }
-
-  .whacka-gif {
-    scale: 0.24;
-  }
-
-  .whacka-modal-page-two {
-    height: 40vh;
-  }
-
-  .whacka-modal-page-three {
-    height: 100vh;
-  }
-
-  .whacka-code-image {
-    scale: 0.4;
-  }
-
-  .button-clicks-text,
+  .whacka-gif
+    .whacka-modal-page-two
+    .whacka-modal-page-three
+    .whacka-code-image
+    .button-clicks-text,
   .grid-interactions-text,
   .sound-text,
-  .timers-text {
-    font-size: 8px;
-  }
-
-  .timers-text-container {
-    grid-row: 6 / 9;
+  .timers-text .timers-text-container .event-listeners-title {
+    font-size: 12px;
   }
 }
 
 @media (max-width: 700px) {
-
   .whacka-modal-info {
     font-size: 7px;
   }
 
-  .whacka-modal-info-container {
-    grid-column: 2 / 12;
-    grid-row: 3 / 15;
-  }
-
-  .whacka-modal-page-one {
-    height: 50vh;
-  }
-
-  .whacka-modal-js-image,
+  .whacka-modal-info-container .whacka-modal-page-one .whacka-modal-js-image,
   .whacka-modal-html-image,
-  .whacka-modal-sass-image {
-    scale: 0.3;
-  }
-
-  .whacka-modal-html-logo-container,
+  .whacka-modal-sass-image .whacka-modal-html-logo-container,
   .whacka-modal-sass-logo-container,
-  .whacka-modal-js-logo-container {
-    grid-row: 4 / 6;
-  }
-
-  .whacka-paragraph-two-container {
-    font-size: 8px;
-    grid-column: 2 / 12;
-    grid-row: 1 / 2;
-    text-align: center;
-  }
-
-  .whacka-gif-container {
-    grid-column: 2 / 12;
-  }
-
-  .whacka-gif {
-    scale: 0.18;
-  }
-  .event-listeners-title {
+  .whacka-modal-js-logo-container .whacka-paragraph-two-container {
     font-size: 8px;
   }
 
-  .whacka-modal-page-three {
-    height: 120vh;
+  .whacka-gif-container .whacka-gif .event-listeners-title {
+    font-size: 8px;
   }
 
-  .whacka-code-image {
-    scale: 0.3;
-  }
-
-  .button-clicks-text,
+  .whacka-modal-page-three .whacka-code-image .button-clicks-text,
   .grid-interactions-text,
   .sound-text,
   .timers-text {
     font-size: 6px;
   }
 
-  .timers-text-container {
-    grid-row: 6 / 9;
-  }
-  .timers-text-container {
+  .timers-text-container .timers-text-container {
     z-index: 20;
   }
 }
 @media (max-width: 500px) {
-    .whacka-modal-header .modal-title {
-    font-size: 20px;
-    text-wrap: nowrap;
-    grid-column: 1 / 5;
-  }
-  .whacka-modal-header .whacka-modal-header-text-two {
-    font-size: 15px;
-    grid-row: 3 / 4;
-    text-wrap: nowrap;
-    margin: 5px;
-  }
-
-  .whacka-modal-header .btn-close {
-    scale: .4;
-    grid-column: 4;
-  }
-
-  .whacka-play-btn,
-  .modal-close-btn,
-  .whacka-modal-github-btn {
-    font-size: 8px;
-    // font-family: "Arial", sans-serif;
-    margin: 10px;
-  }
-
-  .whacka-modal-page-one {
-    height: 45vh;
-  }
-
-  // .whacka-modal-info {
-  //   font-size: 9px;
-  // }
-
-  // .whacka-modal-info-container {
-  //   grid-column: 2 / 12;
-  //   grid-row: 3 / 15;
-  // }
 
 
-  .whacka-modal-js-image,
-  .whacka-modal-html-image,
-  .whacka-modal-sass-image {
-    scale: 0.4;
-  }
 
-  .whacka-modal-html-logo-container,
-  .whacka-modal-sass-logo-container,
-  .whacka-modal-js-logo-container {
-    grid-row: 3 / 4;
-  }
+
+
+
+
+  // .whacka-modal-page-one 
+
+  // // .whacka-modal-info {
+  // //   font-size: 9px;
+  // // }
+
+  // // .whacka-modal-info-container {
+  // //   grid-column: 2 / 12;
+  // //   grid-row: 3 / 15;
+  // // }
+
+
+  // .whacka-modal-js-image,
+  // .whacka-modal-html-image,
+  // .whacka-modal-sass-image 
+
+  // .whacka-modal-html-logo-container,
+  // .whacka-modal-sass-logo-container,
+  // .whacka-modal-js-logo-container
+  // .whacka-gif 
 
   .whacka-paragraph-two-container {
     font-size: 7px;
-    grid-column: 2 / 12;
-    grid-row: 1 / 2;
-    text-align: center;
   }
 
   // .event-listeners-title-container {
@@ -868,70 +394,28 @@ main
   // .whacka-gif-container {
   //   grid-column: 2 / 12;
   // }
-
-  .whacka-gif {
-    scale: 0.18;
-  }
-
 }
 
 @media (max-width: 450px) {
-
   .whacka-paragraph-two-container {
     font-size: 5px;
     z-index: 20;
   }
-  .event-listeners-title-container {
-    grid-column: 2 / 12;
-    grid-row: 1 / 2;
-  }
-  .event-listeners-title {
+  .event-listeners-title-container .event-listeners-title {
     font-size: 10px;
-    text-align: center;
   }
 
-  .whacka-modal-page-three {
-    height: 180vh;
-  }
-
-  .whacka-code-image-container {
-  grid-row: 5 / 11;
-  grid-column: 2 / 12;
-  }
-  
-  
-  .whacka-code-image {
-
-    scale: 0.3;
-    transform: perspective(0px) rotateY(0deg);
-  }
-
-  .button-clicks-text,
+  .whacka-modal-page-three
+    .whacka-code-image-container
+    .whacka-code-image
+    .grid-interactions-text-container
+    .button-clicks-text-container
+    .sound-text-container
+    .timers-text-container
+    .button-clicks-text,
   .grid-interactions-text,
   .sound-text,
   .timers-text {
     font-size: 7px;
   }
-
-  .grid-interactions-text-container {
-    grid-column: 2 / 12;
-    grid-row: 1 / 3;
-  }
-
-  .button-clicks-text-container {
-    grid-column: 2 / 12;
-    grid-row: 2 / 4;
-  }
-
-  .sound-text-container {
-    grid-column: 2 / 12;
-    grid-row: 3 / 5;
-  }
-
-  .timers-text-container {
-    grid-column: 2 / 12;
-    grid-row: 3 / 6;
-    z-index: 20;
-  }
-
 }

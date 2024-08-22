@@ -25,6 +25,8 @@
   transform: translateX(-50%);
   box-shadow: 0px 0px 100px rgb(0, 128, 255);
   animation: projectsPageBgStartUp 5s ease-in-out forwards;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 /* ================================== *
@@ -44,7 +46,7 @@
   background-color: rgba(0, 15, 82, 0.774);
   // border: rgba(0, 0, 0, 0.6) 1px solid;
   box-shadow: 0px 0px 100px rgb(0, 0, 0);
-  animation: navDivStartup 5s ease-in-out;
+  animation: navDivStartup 8s ease-in-out;
 }
 
 .nav-home-btn,
@@ -177,6 +179,7 @@
   z-index: 28;
   display: none;
   background-color: rgb(204, 179, 96);
+  animation: projectDivStartup .2s ease-in-out forwards;
 }
 
 .profile-div-main-mobile,
@@ -224,7 +227,7 @@
   grid-row: 1 / 11;
   background-color: rgb(255, 0, 0);
   border-radius: 53px 0px 0px 53px;
-  animation: projectDivStartup 2s ease-in-out forwards;
+  animation: projectDivStartup 7s ease-in-out forwards;
 }
 
 .whacka-div-main:hover,
@@ -242,21 +245,21 @@
   grid-column: 3 / 5;
   grid-row: 1 / 11;
   background-color: rgb(31, 0, 80);
-  animation: projectDivStartup 3s ease-in-out forwards;
+  animation: projectDivStartup 6s ease-in-out forwards;
 }
 
 .hey-you-div-main {
   grid-column: 5 / 7;
   grid-row: 1 / 11;
   background-color: rgb(0, 139, 139);
-  animation: projectDivStartup 4s ease-in-out forwards;
+  animation: projectDivStartup 5s ease-in-out forwards;
 }
 
 .bard-div-main {
   grid-column: 7 / 9;
   grid-row: 1 / 11;
   background-color: rgb(107, 7, 0);
-  animation: projectDivStartup 5s ease-in-out forwards;
+  animation: projectDivStartup 4s ease-in-out forwards;
 }
 
 .this-portfolio-div-main {
@@ -264,7 +267,7 @@
   grid-row: 1 / 11;
   background-color: rgb(0, 17, 255);
   border-radius: 0px 53px 53px 0px;
-  animation: projectDivStartup 6s ease-in-out forwards;
+  animation: projectDivStartup 3s ease-in-out forwards;
 }
 
 .whacka-text,
@@ -419,7 +422,7 @@ FOOTER
   background-color: rgba(0, 15, 82, 0.774);
   // border: rgba(0, 0, 0, 0.6) 1px solid;
   box-shadow: 0px 0px 100px rgb(0, 0, 0);
-  animation: navDivStartup 3s ease-in-out;
+  animation: navDivStartup 2s ease-in-out;
 }
 
 .projects-copyright-container {
@@ -1140,7 +1143,11 @@ MEDIA QUERIES
 }
 
 @media (max-height: 650px) and (orientation: landscape) {
-    .nav-div-main,
+  
+  .projects-div-main {
+    overflow-y: auto;
+  }
+  .nav-div-main,
     .footer-div-main {
     height: 22vh;
     
@@ -1154,6 +1161,7 @@ MEDIA QUERIES
   .bard-div-main {
     height:  50vh;
   }
+  
 
 }
 @media (max-height: 480px) and (orientation: landscape) {

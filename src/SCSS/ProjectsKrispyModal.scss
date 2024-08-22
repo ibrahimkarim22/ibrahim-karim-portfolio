@@ -1,49 +1,4 @@
 /*=================
-HEADER grid main
-==================*/
-.krispy-modal-header {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: 1fr;
-  align-items: center;
-  background-color: gold;
-  height: 5%;
-  border: solid 1px rgb(0, 0, 0);
-  z-index: 5;
-  // box-shadow: gold 0px 0px 30px 10px;
-  animation: krispyModalHeaderStartup 5s ease;
-}
-
-.krispy-modal-header .modal-title {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  grid-column: 1 / 4;
-  grid-row: 1 / 3;
-  font-size: 70px;
-  color: rgb(255, 137, 214);
-  text-shadow: black 0px 0px 1.8px;
-  animation: krispyModalHeaderSlideInLeft 5s ease-in-out;
-}
-
-.krispy-modal-header .krispy-modal-header-text-two {
-  color: rgb(12, 12, 12);
-  margin: 30px;
-  font-size: 50px;
-  font-family: "Raleway", system-ui;
-  font-weight: 300;
-  font-style: normal;
-  animation: krispyModalHeaderSlideInLeft 5s ease-in-out;
-}
-
-.krispy-modal-header .btn-close {
-  scale: 2;
-  background-color: rgb(255, 255, 255);
-  grid-column: 2 / 3;
-  grid-row: 1 / 3;
-  grid-column: 3 / 4;
-}
-/*=================
 main
 ==================*/
 .krispy-modal-main-div {
@@ -69,10 +24,6 @@ main
 /*=================
 PAGE 1
 ==================*/
-
-// .krispy-modal-header-text {
-//   animation: krispyModalHeaderSLideInLeft 5s ease-in-out;
-// }
 
 .krispy-modal-page-one {
   order: 1;
@@ -482,51 +433,6 @@ PAGE 6
 FOOTER
 ==========*/
 
-.krispy-modal-footer {
-  display: grid;
-  height: 5%;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(3, 1fr);
-  background-color: gold;
-  border: solid 1px gold;
-  z-index: 5;
-  // box-shadow: gold 0px 0px 30px 10px;
-  animation: krispyModalFooterStartup 7s ease;
-}
-
-.krispy-modal-close-btn,
-.krispy-site-btn,
-.krispy-modal-github-btn {
-  width: 80%;
-  border: solid 1px rgb(0, 0, 0);
-  font-size: 40px;
-  // letter-spacing: 2px;
-  background-color: rgb(255, 255, 255);
-  animation: krispyModalBtnStartup 7s ease-in-out;
-}
-
-.krispy-modal-close-btn {
-  grid-column: 2 / 3;
-  grid-row: 1 / 4;
-  background-color: rgb(255, 255, 255);
-  color: rgb(255, 0, 0);
-}
-
-.krispy-site-btn {
-  grid-column: 3 / 4;
-  grid-row: 1 / 4;
-  background-color: rgb(255, 0, 0);
-  color: rgb(255, 255, 255);
-  // text-shadow: 1px 1px 1 #ffffff, 1px 1px 0 #ffffff, 1px 1px 100 #ffffff;
-}
-
-.krispy-modal-github-btn {
-  grid-column: 5;
-  grid-row: 1 / 4;
-  background-color: rgb(16, 0, 61);
-  color: rgb(255, 255, 255);
-}
-
 /*==========================
             MEDIA QUERIES
 ============================*/
@@ -573,24 +479,9 @@ FOOTER
   .routing-code {
     scale: 0.7;
   }
-  .krispy-modal-close-btn,
-  .krispy-site-btn,
-  .krispy-modal-github-btn {
-    font-size: 50px;
-  }
 }
 
 @media (max-width: 3000px) {
-  .krispy-modal-header .modal-title {
-    font-size: 45px;
-  }
-  .krispy-modal-header .krispy-modal-header-text-two {
-    font-size: 30px;
-  }
-  .krispy-modal-header .btn-close {
-    scale: 1;
-  }
-
   .krispy-modal-info {
     font-size: 50px;
   }
@@ -618,22 +509,8 @@ FOOTER
   .routing-code {
     scale: 0.6;
   }
-  .krispy-modal-close-btn,
-  .krispy-site-btn,
-  .krispy-modal-github-btn {
-    font-size: 30px;
-  }
 }
 @media (max-width: 2500px) {
-  // .krispy-modal-header .modal-title {
-  //   font-size: 45px;
-  // }
-  // .krispy-modal-header .krispy-modal-header-text-two {
-  //   font-size: 30px;
-  // }
-  // .krispy-modal-header .btn-close {
-  //   scale: 1;
-  // }
   .krispy-modal-page-two {
     height: 140vh;
   }
@@ -668,12 +545,6 @@ FOOTER
 
   .routing-code {
     scale: 0.6;
-  }
-
-  .krispy-modal-close-btn,
-  .krispy-site-btn,
-  .krispy-modal-github-btn {
-    font-size: 20px;
   }
 
   .krispy-copyright-container .copyright-text {
@@ -720,12 +591,6 @@ FOOTER
 
   .routing-code {
     scale: 0.6;
-  }
-
-  .krispy-modal-close-btn,
-  .krispy-site-btn,
-  .krispy-modal-github-btn {
-    font-size: 15px;
   }
 }
 @media (max-width: 1450px) {
@@ -930,40 +795,9 @@ FOOTER
     grid-column: 1 / -1;
     grid-row: 10 / 11;
   }
-  .krispy-modal-header .modal-title {
-    font-size: 20px;
-  }
-  .krispy-modal-header .krispy-modal-header-text-two {
-    font-size: 15px;
-    margin-left: 5px;
-  }
-  .krispy-modal-header .btn-close {
-    scale: 0.7;
-  }
-  .krispy-modal-close-btn,
-  .krispy-site-btn,
-  .krispy-modal-github-btn {
-    font-size: 10px;
-  }
 }
 
 @media (max-width: 450px) {
-  .krispy-modal-header .modal-title {
-    font-size: 12px;
-  }
-  .krispy-modal-header .krispy-modal-header-text-two {
-    font-size: 10px;
-    margin-left: 5px;
-  }
-  .krispy-modal-header .btn-close {
-    scale: 0.4;
-  }
-  .krispy-modal-close-btn,
-  .krispy-site-btn,
-  .krispy-modal-github-btn {
-    font-size: 5px;
-  }
-
   .film-container {
     scale: 1.5;
   }
@@ -1043,19 +877,9 @@ FOOTER
   .krispy-page-six {
     height: 180vh;
   }
-  .krispy-modal-close-btn,
-  .krispy-site-btn,
-  .krispy-modal-github-btn {
-    font-size: 4px;
-  }
 }
 
 @media (min-height: 100px) and (orientation: landscape) {
-  .krispy-modal-header,
-  .krispy-modal-footer {
-    height: 5%;
-  }
-
   .krispy-modal-page-one {
     height: 300vh;
   }
@@ -1080,11 +904,6 @@ FOOTER
 }
 
 @media (max-height: 500px) and (orientation: landscape) {
-  .krispy-modal-header,
-  .krispy-modal-footer {
-    height: 13%;
-  }
-
   .krispy-modal-page-one {
     height: 100vh;
   }

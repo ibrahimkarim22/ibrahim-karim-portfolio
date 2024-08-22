@@ -1,0 +1,238 @@
+.whacka-modal-footer,
+.krispy-modal-footer,
+.hey-you-modal-footer,
+.bard-modal-footer,
+.this-portfolio-modal-footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+  gap: 1vw;
+  height: 5vh;
+  width: 100vw;
+  z-index: 22;
+}
+
+.whacka-modal-footer button,
+.krispy-modal-footer button,
+.hey-you-modal-footer button,
+.bard-modal-footer button,
+.this-portfolio-modal-footer button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 10vw;
+  height: auto;
+  font-family: "Press Start 2P", system-ui;
+  font-size: 12px;
+  border: solid 1px rgb(0, 0, 0);
+  color: rgb(0, 0, 0);
+  font-weight: 200;
+}
+
+@media (max-width: 1000px) {
+  .whacka-modal-footer, 
+  .krispy-modal-footer, 
+  .hey-you-modal-footer,
+  .bard-modal-footer,
+  .this-portfolio-modal-footer {
+    gap: 50px;
+  }
+  .whacka-modal-footer button,
+.krispy-modal-footer button,
+.hey-you-modal-footer button,
+.bard-modal-footer button,
+.this-portfolio-modal-footer button {
+  width: 22vw;
+}
+}
+@media (max-width: 700px) {
+  .whacka-modal-footer, 
+  .krispy-modal-footer, 
+  .hey-you-modal-footer,
+  .bard-modal-footer,
+  .this-portfolio-modal-footer {
+    gap: 0px;
+  }
+  .whacka-modal-footer button,
+.krispy-modal-footer button,
+.hey-you-modal-footer button,
+.bard-modal-footer button,
+.this-portfolio-modal-footer button {
+  width: 25vw;
+  font-size: 10px;
+}
+
+}
+@media (max-width: 300px) {
+  .whacka-modal-footer button,
+.krispy-modal-footer button,
+.hey-you-modal-footer button,
+.bard-modal-footer button,
+.this-portfolio-modal-footer button {
+  font-size: 10px;
+}
+}
+
+@media (max-height: 750px) {
+  .whacka-modal-footer button,
+  .krispy-modal-footer button,
+  .hey-you-modal-footer button,
+  .bard-modal-footer button,
+  .this-portfolio-modal-footer button {
+    height: 3vh;
+    font-size: 8px;
+  }
+}
+/////////////////
+//whacka//
+///////////////////
+
+.whacka-modal-footer {
+  background-color: rgb(255, 0, 0);
+  border: solid .1vw rgb(0, 0, 0);
+}
+
+.modal-close-btn {
+  background-color: rgb(255, 255, 255);
+  color: rgb(255, 0, 0);
+}
+.whacka-play-btn {
+  background-color: rgb(25, 125, 255);
+}
+
+.whacka-modal-github-btn {
+  background-color: rgb(255, 242, 0);
+}
+@keyframes whackaPlay {
+    0% {
+      background-color: rgb(0, 42, 255);
+    }
+    50% {
+      background-color: rgb(0, 255, 55);
+    }
+    100% {
+      background-color: rgb(208, 255, 0);
+    } 
+  }
+  
+  .whacka-play-btn {
+    animation: whackaPlay 7s ease-in-out infinite;
+  }
+
+/*=================
+  Krispy
+  ===================*/
+.krispy-modal-footer {
+  background-color: gold;
+  border: solid 1px gold;
+  z-index: 5;
+  // box-shadow: gold 0px 0px 30px 10px;
+  animation: krispyModalFooterStartup 7s ease;
+}
+
+.krispy-modal-footer button {
+  background-color: rgb(255, 255, 255);
+  animation: krispyModalBtnStartup 7s ease-in-out;
+}
+
+.krispy-modal-close-btn {
+  background-color: rgb(255, 255, 255);
+  color: rgb(255, 0, 0);
+}
+
+.krispy-site-btn {
+  background-color: rgb(255, 0, 0);
+  color: rgb(255, 255, 255);
+}
+
+.krispy-modal-github-btn {
+  background-color: rgb(16, 0, 61);
+  color: rgb(255, 255, 255);
+}
+
+/*=================
+  Hey You
+
+  ===================*/
+.hey-you-modal-footer {
+  background-color: rgb(255, 255, 255);
+  border: solid 1px rgb(0, 0, 0);
+  box-shadow: rgb(0, 106, 255) 0px 0px 20px;
+  animation: heyYouModalFooterStartup 5s ease-in-out forwards;
+}
+
+.hey-you-modal-footer > button {
+  border: solid 1px rgb(0, 0, 0);
+  color: rgb(0, 0, 0);
+  background-color: rgb(255, 255, 255);
+}
+
+.hey-you-modal-close-btn {
+  background-color: rgba(184, 184, 184, 0.735);
+  color: rgb(0, 0, 0);
+}
+
+.hey-you-request-apk-btn {
+  background-color: rgb(255, 255, 255);
+}
+
+.hey-you-modal-github-btn {
+  background-color: rgba(184, 184, 184, 0.735);
+  color: rgb(0, 0, 0);
+}
+
+/*=================
+  Bard
+
+  ===================*/
+.bard-modal-footer {
+  background-color: rgb(12, 0, 31);
+  border: solid 1px rgb(0, 0, 0);
+}
+
+.bard-modal-footer button {
+  border: solid 1px rgb(0, 0, 0);
+  color: rgb(0, 0, 0);
+  background-color: rgb(255, 255, 255);
+}
+
+.bard-modal-close-btn {
+  background-color: rgb(0, 0, 0);
+  color: rgb(255, 0, 0);
+}
+
+.bard-apk-download-btn {
+  background-color: rgb(122, 35, 0);
+}
+
+.bard-modal-github-btn {
+  background-color: rgb(91, 0, 0);
+}
+
+////////////////
+/// this portfolio
+/// /////////////
+.this-portfolio-modal-footer {
+  background-color: rgb(0, 94, 255);
+  border: solid 1px rgb(0, 0, 0);
+}
+
+.this-portfolio-modal-footer button {
+  border: solid 1px rgb(0, 0, 0);
+  color: rgb(0, 0, 0);
+  background-color: rgb(255, 255, 255);
+}
+
+.this-portfolio-modal-close-btn {
+  background-color: rgb(255, 255, 255);
+  color: rgb(255, 0, 0);
+}
+
+.this-portfolio-site-btn {
+  background-color: rgb(255, 255, 255);
+}
+
+.this-portfolio-modal-github-btn {
+  background-color: rgb(255, 255, 255);
+}
