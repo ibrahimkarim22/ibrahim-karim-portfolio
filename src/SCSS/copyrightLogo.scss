@@ -1,0 +1,38 @@
+
+.bard-copyright-container,
+.hey-you-copyright-container,
+.whacka-copyright-container,
+.krispy-copyright-container,
+.this-portfolio-copyright-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  grid-column: 1 / -1;
+  grid-row: auto;
+}
+
+.bard-copyright-container .copyright-text,
+.whacka-copyright-container .copyright-text,
+.hey-you-copyright-container .copyright-text,
+.krispy-copyright-container .copyright-text,
+.this-portfolio-copyright-container .copyright-text {
+  padding: 100px 0px 100px 0px;
+  font-size: 12px;
+  z-index: 55;
+  font-family: "Arial", system-ui;
+  letter-spacing: .01vw;
+}
+
+.krispy-copyright-container .copyright-text {
+    color: black;
+}
+
+@media (min-width: 2500px) {
+  .bard-copyright-container .copyright-text,
+  .whacka-copyright-container .copyright-text,
+  .hey-you-copyright-container .copyright-text,
+  .krispy-copyright-container .copyright-text,
+  .this-portfolio-copyright-container .copyright-text {
+    font-size: 15px;
+  }
+}

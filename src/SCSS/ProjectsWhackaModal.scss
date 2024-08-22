@@ -243,18 +243,6 @@ main
   border-radius: 22px;
 }
 
-.whacka-copyright-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  grid-column: 1 / -1;
-  grid-row: auto;
-}
-
-.whacka-copyright-container .copyright-text {
-  font-size: 20px;
-}
-
 /*==========================
 
 MEDIA QUERIES
@@ -277,13 +265,7 @@ MEDIA QUERIES
     font-size: 50px;
   }
 
-  .whacka-copyright-container .copyright-text {
-    padding: 50px;
-    font-size: 12px;
-    z-index: 55;
-    font-family: "Arial", system-ui;
-    letter-spacing: .01vw;
-  }
+
 }
 @media (max-width: 1920px) {
   .event-listeners-title {

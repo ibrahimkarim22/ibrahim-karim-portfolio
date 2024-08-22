@@ -29,14 +29,14 @@ function WhackaModal({ isOpen, closeModal }) {
                 <div className="whacka-modal-info">
                   <span className="red-text">Whack a Mole</span> is an online
                   game developed collaboratively by my colleagues,
-                  <span className="higlighter-green-text">
+                  <span className="highlighter-green-text">
                     {" "}
                     Brandon O'Shea
                   </span>{" "}
-                  and <span className="higlighter-green-text">
+                  and <span className="highlighter-green-text">
                     Sam Golshan
                   </span>{" "}
-                  , and <span className="higlighter-green-text">myself</span>.
+                  , and <span className="highlighter-green-text">myself</span>.
                   The project emphasized teamwork, utilizing{" "}
                   <span className="blue-text">Git</span>,{" "}
                   <span className="blue-text"> GitHub</span>, and{" "}

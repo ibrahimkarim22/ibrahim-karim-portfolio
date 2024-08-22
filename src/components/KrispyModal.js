@@ -98,10 +98,16 @@ function KrispyModal({ isOpen, closeModal }) {
 
               <div className="krispy-modal-info-container">
                 <div className="krispy-modal-info">
-                  Krispy is a streaming service I created with React, Redux,
-                  firebase, Bootstrap and SCSS. Watch live TV streams, live
-                  feeds from the globe, and a collection of Charlie Chaplin's
-                  public domain films.
+                  Krispy is a streaming service I created with{" "}
+                  <span className="red-text">JavaScript</span>,{" "}
+                  <span className="red-text">React</span>,{" "}
+                  <span className="red-text">Redux</span>,{" "}
+                  <span className="red-text">Firebase</span>,{" "}
+                  <span className="red-text">Firestore</span>,{" "}
+                  <span className="red-text">Bootstrap</span> and{" "}
+                  <span className="red-text">SCSS</span> Watch live TV streams,
+                  live feeds from the globe, and a collection of Charlie
+                  Chaplin's public domain films.
                 </div>
               </div>
               <div className="film-container">
@@ -119,32 +125,6 @@ function KrispyModal({ isOpen, closeModal }) {
                 </div>
 
                 <div
-                  className="chaplin-behind-the-screen-container"
-                  onClick={() =>
-                    window.open("https://krispy22.web.app/movie/6", "_blank")
-                  }
-                >
-                  <img
-                    className="chaplin-behind-the-screen"
-                    src={chaplinBehindTheScreen}
-                    alt="charlie chaplin behind the screen"
-                  />
-                </div>
-
-                <div
-                  className="chaplin-in-the-park-container"
-                  onClick={() =>
-                    window.open("https://krispy22.web.app/movie/12", "_blank")
-                  }
-                >
-                  <img
-                    className="chaplin-in-the-park"
-                    src={chaplinInThePark}
-                    alt="charlie chaplin in the park"
-                  />
-                </div>
-
-                <div
                   className="chaplin-one-am-container"
                   onClick={() =>
                     window.open("https://krispy22.web.app/movie/1", "_blank")
@@ -154,19 +134,6 @@ function KrispyModal({ isOpen, closeModal }) {
                     className="chaplin-one-am"
                     src={chaplinOneAM}
                     alt="charlie chaplin one am"
-                  />
-                </div>
-
-                <div
-                  className="chaplin-a-night-in-the-show-container"
-                  onClick={() =>
-                    window.open("https://krispy22.web.app/movie/14", "_blank")
-                  }
-                >
-                  <img
-                    className="chaplin-a-night-in-the-show"
-                    src={chaplinANightInTheShow}
-                    alt="charlie chaplin a night in the show"
                   />
                 </div>
               </div>
@@ -282,8 +249,8 @@ function KrispyModal({ isOpen, closeModal }) {
                   For the Home page, I decided to use React Scroll Parallax. It
                   was much easier to implement than React Spring Parallax. I
                   just wrapped all the elements with{" "}
-                  <code>&lt;Parallax&gt;</code> and used
-                  <code>&lt;ParallaxLayer&gt;</code> for individual layers.
+                  <code>&lt;Parallax&gt;</code>{" "} and used{" "}
+                  <code>&lt;ParallaxLayer&gt;</code>{" "} for individual layers.
                 </div>
               </div>
               <div className="parallax-code-container">

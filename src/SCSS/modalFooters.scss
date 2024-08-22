@@ -14,7 +14,6 @@
 }
 
 .whacka-modal-footer button,
-.krispy-modal-footer button,
 .hey-you-modal-footer button,
 .bard-modal-footer button,
 .this-portfolio-modal-footer button {
@@ -133,12 +132,11 @@
 }
 
 .krispy-modal-footer button {
-  background-color: rgb(255, 255, 255);
   animation: krispyModalBtnStartup 7s ease-in-out;
 }
 
 .krispy-modal-close-btn {
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(110, 5, 5);
   color: rgb(255, 0, 0);
 }
 

@@ -1356,16 +1356,3 @@
   }
 }
 
-.hey-you-copyright-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  grid-column: 1 / -1;
-  grid-row: 5;
-  z-index: 100;
-}
-
-.hey-you-copyright-container .copyright-text {
- color: black;
- font-size: 12;
-}

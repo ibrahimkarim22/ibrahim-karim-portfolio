@@ -2,7 +2,7 @@
         BODY MAIN 
         main flex contaienr
 ============================*/
-
+// font-family: "Bodoni Moda SC", serif;
 .bard-modal-body-main {
   background-color: rgb(23, 7, 0);
   box-shadow: rgb(0, 0, 0) 0px 0px 60px 70px inset,
@@ -1368,17 +1368,6 @@ grid-column: 1 / -1;
   .bard-modal-honors-title {
     font-size: 20px;
   }
-}
-.bard-copyright-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  grid-column: 1 / -1;
-  grid-row: 5;
-}
-
-.bard-copyright-container .copyright-text {
- color: black;
 }
 
 

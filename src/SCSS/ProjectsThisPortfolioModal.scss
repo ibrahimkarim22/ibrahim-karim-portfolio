@@ -844,16 +844,6 @@
   height: auto;
 }
 
-.this-portfolio-copyright-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  grid-column: 1 / -1;
-}
-.this-portfolio-copyright .copyright-text {
-  font-size: 12px;
-}
-
 @media (max-width: 1600px) {
   .java-script-progress-paragraph-one,
   .java-script-progress-paragraph-two,
