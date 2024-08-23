@@ -1,18 +1,60 @@
+.three-dee-resume-page {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
 .blender-environment {
   cursor: url(https://uploads.codesandbox.io/uploads/user/b3e56831-8b98-4fee-b941-0e27f39883ab/Ad1_-cursor.png)
       39 39,
     auto;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+  flex-direction: column;
+}
+
+@media (min-width: 1024px) {
+  .blender-environment {
+    height: 100%;
+    width: 100%;
+    display: block;
+  }
 }
 
 .orbit-instructions {
- background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 0.8);
   border-radius: 33px;
   padding: 20px;
-  position: relative;
-  top: -550px;
-  right: -550px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
   display: inline-block;
   z-index: 2;
   font-size: 22px;
-  color: red
+  color: rgb(92, 42, 172);
+}
+
+.home-btn {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  padding: 10px 20px;
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  z-index: 3;
+  transition: background-color 0.3s;
+}
+
+.back-button:hover {
+  background-color: #b39800;
 }

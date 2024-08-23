@@ -13,9 +13,7 @@
   z-index: 100;
 }
 
-.whacka-modal-footer button,
-
-.this-portfolio-modal-footer button {
+.whacka-modal-footer button {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -34,7 +32,7 @@
 
 .whacka-modal-footer {
   background-color: rgb(255, 0, 0);
-  border: solid .1vw rgb(0, 0, 0);
+  border: solid 0.1vw rgb(0, 0, 0);
   animation: whackaFooterBody 2s ease;
 }
 
@@ -50,20 +48,20 @@
   background-color: rgb(255, 242, 0);
 }
 @keyframes whackaPlay {
-    0% {
-      background-color: rgb(0, 42, 255);
-    }
-    50% {
-      background-color: rgb(0, 255, 55);
-    }
-    100% {
-      background-color: rgb(208, 255, 0);
-    } 
+  0% {
+    background-color: rgb(0, 42, 255);
   }
-  
-  .whacka-play-btn {
-    animation: whackaPlay 7s ease-in-out infinite;
+  50% {
+    background-color: rgb(0, 255, 55);
   }
+  100% {
+    background-color: rgb(208, 255, 0);
+  }
+}
+
+.whacka-play-btn {
+  animation: whackaPlay 7s ease-in-out infinite;
+}
 
 /*=================
   Krispy
@@ -95,7 +93,7 @@
   color: rgb(255, 255, 255);
 }
 
-.krispy-modal-footer button{
+.krispy-modal-footer button {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -118,9 +116,8 @@
   animation: heyYouModalFooterStartup 5s ease-in-out forwards;
 }
 .hey-you-modal-footer > button {
-  
   display: flex;
- align-items: center;
+  align-items: center;
   justify-content: center;
   width: 10vw;
   height: auto;
@@ -129,11 +126,10 @@
   border: solid 1px rgb(0, 0, 0);
   color: rgb(0, 0, 0);
   font-weight: 300;
- 
 }
 
 .hey-you-request-apk-btn,
-.hey-you-modal-github-btn, 
+.hey-you-modal-github-btn,
 .hey-you-modal-close-btn {
   background-color: rgba(211, 211, 211, 0.735);
   color: rgb(0, 0, 0);
@@ -149,7 +145,6 @@
 .bard-modal-footer {
   background-color: rgb(12, 0, 31);
   border: solid 1px rgb(0, 0, 0);
-  
 }
 
 .bard-modal-footer button {
@@ -168,7 +163,6 @@
 .bard-modal-close-btn {
   background-color: rgb(0, 0, 0);
   color: rgb(255, 0, 0);
-
 }
 
 .bard-apk-download-btn {
@@ -182,79 +176,84 @@
   color: rgb(255, 255, 255);
 }
 
-
 /* this portfolio
 */
+
 .this-portfolio-modal-footer {
-  background-color: rgb(0, 94, 255);
+  background-color: #ffc500;
   border: solid 1px rgb(0, 0, 0);
+  animation: thisPortfolioModalHeader 3s ease-in-out;
 }
 
 .this-portfolio-modal-footer button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 10vw;
+  height: auto;
+  font-family: "Cinzel", system-ui;
+  font-size: 12px;
+  letter-spacing: 1px;
   border: solid 1px rgb(0, 0, 0);
-  color: rgb(0, 0, 0);
-  background-color: rgb(255, 255, 255);
+  font-weight: 700;
 }
 
+// .this-portfolio-modal-footer button {
+//   border: solid 1px rgb(0, 0, 0);
+//   color: rgb(0, 0, 0);
+//   background-color: rgb(255, 255, 255);
+// }
+
+.this-portfolio-site-btn,
+.this-portfolio-modal-github-btn,
 .this-portfolio-modal-close-btn {
-  background-color: rgb(255, 255, 255);
-  color: rgb(255, 0, 0);
+  background-color: #7f0909;
+
+  color: snow;
 }
-
-.this-portfolio-site-btn {
-  background-color: rgb(255, 255, 255);
-}
-
-.this-portfolio-modal-github-btn {
-  background-color: rgb(255, 255, 255);
-}
-
-
-
 
 @media (max-width: 1000px) {
-  .whacka-modal-footer, 
-  .krispy-modal-footer, 
+  .whacka-modal-footer,
+  .krispy-modal-footer,
   .hey-you-modal-footer,
   .bard-modal-footer,
   .this-portfolio-modal-footer {
     gap: 50px;
   }
   .whacka-modal-footer button,
-.krispy-modal-footer button,
-.hey-you-modal-footer button,
-.bard-modal-footer button,
-.this-portfolio-modal-footer button {
-  width: 22vw;
-}
+  .krispy-modal-footer button,
+  .hey-you-modal-footer button,
+  .bard-modal-footer button,
+  .this-portfolio-modal-footer button {
+    width: 22vw;
+  }
 }
 @media (max-width: 700px) {
-  .whacka-modal-footer, 
-  .krispy-modal-footer, 
+  .whacka-modal-footer,
+  .krispy-modal-footer,
   .hey-you-modal-footer,
   .bard-modal-footer,
   .this-portfolio-modal-footer {
     gap: 0px;
   }
   .whacka-modal-footer button,
-.krispy-modal-footer button,
-.hey-you-modal-footer button,
-.bard-modal-footer button,
-.this-portfolio-modal-footer button {
-  width: 25vw;
-  font-size: 18px;
+  .krispy-modal-footer button,
+  .hey-you-modal-footer button,
+  .bard-modal-footer button,
+  .this-portfolio-modal-footer button {
+    width: 25vw;
+    font-size: 18px;
+  }
 }
-}
-
 
 @media (max-width: 300px) {
   .whacka-modal-footer button,
-.krispy-modal-footer button,
-.hey-you-modal-footer button,
-.bard-modal-footer button,
-.this-portfolio-modal-footer button {
-  font-size: 20px;
-}
+  .krispy-modal-footer button,
+  .hey-you-modal-footer button,
+  .bard-modal-footer button,
+  .this-portfolio-modal-footer button {
+    font-size: 20px;
+  }
 }
 
 @media (max-height: 750px) {
@@ -277,8 +276,8 @@
 }
 
 .krispy-modal-footer button:hover {
- color: red;
- font-weight: 700;
+  color: red;
+  font-weight: 700;
 }
 
 .krispy-site-btn:hover {

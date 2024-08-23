@@ -1,5 +1,4 @@
 body {
-  // background-image: url("../../public/moss.jpg");
   background-color: rgb(2, 0, 28);
 }
 
@@ -18,32 +17,9 @@ body {
 @import "ProjectsHeyYouModal";
 @import "ProjectsKrispyModal";
 @import "ProjectsThisPortfolioModal";
-@import "ProjectsWhackaModal"; 
+@import "ProjectsWhackaModal";
 @import "ScrollBars";
 @import "ThreeDeeResume";
 @import "modalHeaders";
 @import "modalFooters";
 @import "copyrightLogo";
-
-
-// .canvas-container {
-//     border: '1px solid black';
-//      width: '70%';
-//      height: '70vh';
-//      left: '15%';
-//      position: 'absolute'
-//   }
-
-//   @media (max-width: 768px) {
-//     .canvas-container {
-//       width: 80%;
-//       left: 30%;
-//     }
-//   }
-
-//   @media (max-width: 480px) {
-//     .canvas-container {
-//       width: 90%;
-//       left: 30%;
-//     }
-//   }

@@ -1,18 +1,6 @@
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import chaplinVagabond from "../images/chaplinVagabond.jpg";
-import chaplinAutoRace from "../images/chaplinAutoRace.jpg";
-import chaplinBehindTheScreen from "../images/chaplinBehindTheScreen.jpg";
-import chaplinInThePark from "../images/chaplinInThePark.jpg";
 import chaplinOneAM from "../images/chaplinOneAM.jpg";
-import chaplinANightInTheShow from "../images/chaplinANightInTheShow.jpg";
-import chaplinTheCure from "../images/chaplinTheCure.webp";
-import chaplinCharlot from "../images/chaplinCharlot.jpg";
-import fox from "../images/fox.png";
-import natGeoWild from "../images/natGeoWild.jpg";
-import nasaTV from "../images/nasaTV.webp";
-import euronews from "../images/euronews.jpg";
-import france from "../images/france.jpg";
-import nbc from "../images/nbc.webp";
 import js from "../images/js.png";
 import reactLogo from "../images/reactLogo.png";
 import sass from "../images/sass.png";
@@ -99,9 +87,9 @@ function KrispyModal({ isOpen, closeModal }) {
                   <span className="red-text bold-text">Firebase</span>,{" "}
                   <span className="red-text bold-text">Firestore</span>,{" "}
                   <span className="red-text bold-text">Bootstrap</span> and{" "}
-                  <span className="red-text bold-text">SCSS</span> Watch live TV streams,
-                  live feeds from the globe, and a collection of Charlie
-                  Chaplin's public domain films.
+                  <span className="red-text bold-text">SCSS</span> Watch live TV
+                  streams, live feeds from the globe, and a collection of
+                  Charlie Chaplin's public domain films.
                 </div>
               </div>
               <div className="film-container">
@@ -141,10 +129,14 @@ function KrispyModal({ isOpen, closeModal }) {
               </div>
               <div className="krispy-modal-redux-info-container">
                 <div className="krispy-modal-redux-info">
-                  In this project, {" "} <span style={{ fontWeight: "900"}}> I used Redux for centralized state
-                  management</span>, specifically handling the addition and removal of
-                  favorites across multiple categories like Movies, TV Channels,
-                  and Globe Locations.
+                  In this project,{" "}
+                  <span style={{ fontWeight: "900" }}>
+                    {" "}
+                    I used Redux for centralized state management
+                  </span>
+                  , specifically handling the addition and removal of favorites
+                  across multiple categories like Movies, TV Channels, and Globe
+                  Locations.
                 </div>
               </div>
               <div className="favorite-code-main-container">
@@ -172,16 +164,22 @@ function KrispyModal({ isOpen, closeModal }) {
               </div>
               <div className="map-info-container">
                 <div className="map-info">
-                  I implemented{" "} <span className="bold-text">dynamic rendering</span> {" "} throughout the application
-                  using JavaScript's {" "}<span className="bold-text" style={{ color: "hotpink"}}>.map({" "})</span>{" "} method to display lists of movies,
-                  TV channels, and globe locations.
+                  I implemented{" "}
+                  <span className="bold-text">dynamic rendering</span>{" "}
+                  throughout the application using JavaScript's{" "}
+                  <span className="bold-text" style={{ color: "hotpink" }}>
+                    .map( )
+                  </span>{" "}
+                  method to display lists of movies, TV channels, and globe
+                  locations.
                 </div>
               </div>
               <div className="map-info-two-container">
                 <div className="map-info-two">
-                  The use of {" "} <span className="bold-text">conditional rendering </span>{" "} allows further improves user
-                  experience by displaying content based on the presence of user
-                  favorites or by selected genre.
+                  The use of{" "}
+                  <span className="bold-text">conditional rendering </span>{" "}
+                  allows further improves user experience by displaying content
+                  based on the presence of user favorites or by selected genre.
                 </div>
               </div>
               <div className="map-code-container">
@@ -194,13 +192,20 @@ function KrispyModal({ isOpen, closeModal }) {
             </div>
             <div className="krispy-page-four">
               <div className="routing-title-container">
-                <div className="routing-title"><span className="bold-text">R</span>outing with {" "}<span className="bold-text">R</span>eact {" "}<span className="bold-text">R</span>outer</div>
+                <div className="routing-title">
+                  <span className="bold-text">R</span>outing with{" "}
+                  <span className="bold-text">R</span>eact{" "}
+                  <span className="bold-text">R</span>outer
+                </div>
               </div>
               <div className="routing-info-container">
                 <div className="routing-info">
                   React Router plays a crucial role in managing the navigation
-                  between pages. With{" "} <span className="red-text" style={{ fontSize: "20px"}}>nested routing and dynamic URL parameters</span>,
-                  users can easily navigate between movies, TV channels, and
+                  between pages. With{" "}
+                  <span className="red-text" style={{ fontSize: "20px" }}>
+                    nested routing and dynamic URL parameters
+                  </span>
+                  , users can easily navigate between movies, TV channels, and
                   live globe streams.
                 </div>
               </div>
@@ -218,11 +223,23 @@ function KrispyModal({ isOpen, closeModal }) {
               </div>
               <div className="bootstrap-info-container">
                 <div className="bootstrap-info">
-                  <span style={{ fontSize: "19px"}}>For a <span className="bold-text">responsive design across various devices</span>, I incorporated </span>{" "}
-                  Bootstrap alongside custom {" "}<span className="bold-text">SCSS</span>{" "} for styling. Using {" "}<span className="bold-text">Bootstrap's</span>{" "} 
-                  responsive utilities and {" "}<span className="bold-text">flex containers</span>, I maintained a consistent design
-                   <span style={{ fontSize: "80px", marginLeft: "40px"}}>regardless of screen
-                  size</span>.
+                  <span style={{ fontSize: "19px" }}>
+                    For a{" "}
+                    <span className="bold-text">
+                      responsive design across various devices
+                    </span>
+                    , I incorporated{" "}
+                  </span>{" "}
+                  Bootstrap alongside custom{" "}
+                  <span className="bold-text">SCSS</span> for styling. Using{" "}
+                  <span className="bold-text">Bootstrap's</span> responsive
+                  utilities and{" "}
+                  <span className="bold-text">flex containers</span>, I
+                  maintained a consistent design
+                  <span style={{ fontSize: "80px", marginLeft: "40px" }}>
+                    regardless of screen size
+                  </span>
+                  .
                 </div>
               </div>
 
@@ -240,11 +257,18 @@ function KrispyModal({ isOpen, closeModal }) {
               </div>
               <div className="parallax-info-container">
                 <div className="parallax-info">
-                  For the Home page, I decided to use <span className="bold-text">React Scroll Parallax</span>. It
+                  For the Home page, I decided to use{" "}
+                  <span className="bold-text">React Scroll Parallax</span>. It
                   was much easier to implement than React Spring Parallax. I
                   just wrapped all the elements with{" "}
-                  <code className="bold-text" style={{ fontSize: "50px"}}>&lt;Parallax&gt;</code>{" "} and used{" "}
-                  <code className="bold-text" style={{ fontSize: "50px"}}>&lt;ParallaxLayer&gt;</code>{" "} for individual layers.
+                  <code className="bold-text" style={{ fontSize: "50px" }}>
+                    &lt;Parallax&gt;
+                  </code>{" "}
+                  and used{" "}
+                  <code className="bold-text" style={{ fontSize: "50px" }}>
+                    &lt;ParallaxLayer&gt;
+                  </code>{" "}
+                  for individual layers.
                 </div>
               </div>
               <div className="parallax-code-container">

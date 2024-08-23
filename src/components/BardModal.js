@@ -88,12 +88,13 @@ function BardModal({ isOpen, closeModal }) {
                 <div className="bard-modal-intro-text">
                   I created an{" "}
                   <span className="online-course-animation">online</span>{" "}
-                  {" "}
                   <span className="online-course-animation">course</span>{" "}
-                  platform for all 38 of {" "}<span className="shakespeare">Shakespeare</span>'s plays. This application
-                  aims to provide an engaging way for users to explore{" "}
-                  <span className="shakespeareTwo">Shakespeare</span>'s works through a combination of reading, quizzes,
-                  and video content.
+                  platform for all 38 of{" "}
+                  <span className="shakespeare">Shakespeare</span>'s plays. This
+                  application aims to provide an engaging way for users to
+                  explore <span className="shakespeareTwo">Shakespeare</span>'s
+                  works through a combination of reading, quizzes, and video
+                  content.
                 </div>
               </div>
               <div className="bard-honors-award-text-container">
@@ -182,8 +183,14 @@ function BardModal({ isOpen, closeModal }) {
               </div>
               <div className="bard-modal-folger-text-container">
                 <div className="bard-modal-folger-text">
-                  Folger Shakespeare Library's official API for fetching the
-                  synopses and character lists of each play.
+                  <span className="api-text">
+                    Folger Shakespeare Library's official API
+                  </span>{" "}
+                  <span className="blue-text">
+                    {" "}
+                    for fetching the synopsis and character lists for each play
+                  </span>
+                  .
                 </div>
               </div>
               <div className="bard-modal-folger-logo-container">
@@ -196,8 +203,11 @@ function BardModal({ isOpen, closeModal }) {
 
               <div className="bard-modal-mit-text-container">
                 <div className="bard-modal-mit-text">
-                  The MIT public domain API for fetching the complete texts of
-                  the plays.
+                  <span className="api-text">MIT public domain API</span>{" "}
+                  <span className="blue-text">
+                    for fetching the complete texts of the plays
+                  </span>
+                  .
                 </div>
               </div>
               <div className="bard-modal-mit-logo-container">
@@ -221,13 +231,19 @@ function BardModal({ isOpen, closeModal }) {
               </div>
               <div className="bard-modal-firebase-text-container">
                 <div className="bard-modal-firebase-text">
-                  Users create accounts, which are securely stored in Google
-                  Firestore. Upon account creation, each user receives a unique
-                  profile that includes their email, password, a default profile
-                  picture (which can be updated), and their progress through the
-                  plays. Upon login the data from firestore is used to update
-                  the redux state of the completed quiz levels and resume user's
-                  progress.
+                  Users create accounts, which are securely stored in{" "}
+                  <span className="blue-text">G</span>
+                  <span className="red-text">o</span>
+                  <span className="yellow-text">o</span>
+                  <span className="blue-text">g</span>
+                  <span className="highlighter-green-text">l</span>
+                  <span className="red-text">e</span>{" "}
+                  <span className="orange-text">Firestore</span>. Upon account
+                  creation, each user receives a unique profile that includes
+                  their email, password, a default profile picture (which can be
+                  updated), and their progress through the plays. Upon login the
+                  data from firestore is used to update the redux state of the
+                  completed quiz levels and resume user's progress.
                 </div>
               </div>
               <div className="bard-modal-firebase-logo-container">
@@ -269,10 +285,10 @@ function BardModal({ isOpen, closeModal }) {
               </div>
               <div className="bard-modal-features-text-one-container">
                 <div className="bard-modal-features-text-one">
-                  Level System: Users progress through the plays in an order
-                  that typically starts with those familiar from high school,
-                  such as "The Tempest." The levels range from easier to more
-                  challenging plays.
+                  <span className="bold-text">Level System</span>: Users
+                  progress through the plays in an order that typically starts
+                  with those familiar from high school, such as "The Tempest."
+                  The levels range from easier to more challenging plays.
                 </div>
               </div>
               <div className="plays-root-container">
@@ -281,12 +297,12 @@ function BardModal({ isOpen, closeModal }) {
 
               <div className="bard-modal-features-text-two-container">
                 <div className="bard-modal-features-text-two">
-                  Synopsis and Quizzes: Each level begins with a synopsis of the
-                  play. Users can choose to take a quiz after reading the
-                  synopsis, with the option to read the entire play before
-                  attempting the quiz. Quizzes consist of 7 questions, and users
-                  must achieve a perfect score to earn a medal and unlock the
-                  next level.
+                  <span className="bold-text">Synopsis & Quizzes</span>: Each
+                  level begins with a synopsis of the play. Users can choose to
+                  take a quiz after reading the synopsis, with the option to
+                  read the entire play before attempting the quiz. Quizzes
+                  consist of 7 questions, and users must achieve a perfect score
+                  to earn a medal and unlock the next level.
                 </div>
               </div>
               <div className="quiz-code-container">
@@ -299,10 +315,13 @@ function BardModal({ isOpen, closeModal }) {
 
               <div className="bard-modal-features-text-three-container">
                 <div className="bard-modal-features-text-three">
-                  Unlocking Plays and Earning Medals: Plays are locked
-                  initially, and users must complete them in sequence to unlock
-                  the next. Successfully completing each play awards a medal,
-                  and collecting all 38 medals grants a certificate.
+                  <span className="bold-text">
+                    Unlocking Plays and Earning Medals
+                  </span>
+                  : Plays are locked initially, and users must complete them in
+                  sequence to unlock the next. Successfully completing each play
+                  awards a medal, and collecting all 38 medals grants a
+                  certificate.
                 </div>
               </div>
               <div className="medals-code-container">
@@ -328,11 +347,11 @@ function BardModal({ isOpen, closeModal }) {
               </div>
               <div className="bard-modal-additional-features-text-one-container">
                 <div className="bard-modal-additional-features-text-one">
-                  Flexible Reading Options: Users can read synopses and take
-                  quizzes in sequence, or they can choose to read the full plays
-                  at their discretion. Additionally, users can explore all
-                  synopses or entire plays in any order without following the
-                  course structure.
+                  <span className="bold-text">Free Read</span>: Users can read
+                  synopsis and attempt quizzes in sequence, or they can choose
+                  to read the full plays at their discretion. Also, users can
+                  explore all synopsis or full texts in any order without
+                  following the course structure.
                 </div>
               </div>
 
@@ -359,9 +378,10 @@ function BardModal({ isOpen, closeModal }) {
               </div>
               <div className="bard-modal-additional-features-text-two-container">
                 <div className="bard-modal-additional-features-text-two">
-                  Video Content: The platform includes sections for watching
-                  'Great Performances' and 'How To' videos on Shakespeare,
-                  sourced from YouTube, enhancing the learning experience.
+                  <span className="bold-text">Video Content</span>: The platform
+                  includes sections for watching 'Great Performances' and 'How
+                  To' videos on Shakespeare, sourced from YouTube, enhancing the
+                  learning experience.
                 </div>
               </div>
               <div className="phone-bard-performance-container">

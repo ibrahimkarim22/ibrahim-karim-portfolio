@@ -3,31 +3,31 @@
 ============================*/
 
 @keyframes WhackaModalHeaderStartup {
-    0% {
-      transform: translate(0px, 0px);
-    }
-    30% {
-      transform: translate(0px, 0px);
-    }
-    50% {
-      scale: 2;
-    }
-    60% {
-      scale: 1;
-    }
-    70% {
-      transform: rotateX(50deg);
-    }
-    80% {
-      transform: rotateX(-50deg);
-    }
-    90% {
-      transform: rotateX(20deg);
-    }
-    100% {
-      transform: rotateX(0deg);
-    }
+  0% {
+    transform: translate(0px, 0px);
   }
+  30% {
+    transform: translate(0px, 0px);
+  }
+  50% {
+    scale: 2;
+  }
+  60% {
+    scale: 1;
+  }
+  70% {
+    transform: rotateX(50deg);
+  }
+  80% {
+    transform: rotateX(-50deg);
+  }
+  90% {
+    transform: rotateX(20deg);
+  }
+  100% {
+    transform: rotateX(0deg);
+  }
+}
 @keyframes whackaTextTwo {
   0% {
     transform: translate(-500px, 0px);
@@ -41,132 +41,118 @@
   BODY
 ============================*/
 
-  @keyframes whackaModalSubtextCyclical {
-    0% {
-      transform: translate(-22x, 0px);
-    }
-    50% {
-      transform: translate(22px, 0px);
-    }
-  
-    100% {
-      color: rgb(0, 0, 0);
-      transform: translate(0px, 10px);
-    }
+@keyframes whackaModalSubtextCyclical {
+  0% {
+    transform: translate(-22x, 0px);
   }
-  
-  @keyframes WhackaModalBodyStartup {
-    0% {
-      transform: translate(0px, 700px);
-    }
-    100% {
-      transform: translate(0px, 0px);
-    }
-  }
-  
-  
-  @keyframes WhackaModalFadeInBackground {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
-  
-  @keyframes whackaModalLogoCyclicalJs {
-    0% {
-      transform: translate(0px, 400px);
-  
-    }
-
-    10% {
-      transform: translate(0px, -200px);
-    
-    }
-  
-    100% {
-      transform: translate(0px, 400px);
-    
-    }
-  }
-  @keyframes whackaModalLogoCyclicalHtml {
-    0% {
-      transform: translate(0px, 400px);
-
-    }
-
-    60% { 
-      transform: translate(0px, 400px);
-    
-    }
-
-    70% {
-      transform: translate(0px, -200px);
-    
-    }
-
-    100% {
-      transform: translate(0px, 400px);
-      
-    }
-  }
-  @keyframes whackaModalLogoCyclicalSass {
-    0% {
-      transform: translate(0px, 400px);
-     
-    }
-    30% {
-      transform: translate(0px, 400px);
-    
-    }
-    40% {
-      transform: translate(0px, -150px);
-      
-    
-    }
-    100% {
-      transform: translate(0px, 400px);
-      
-    }
+  50% {
+    transform: translate(22px, 0px);
   }
 
-  
-  /*==========================
+  100% {
+    color: rgb(0, 0, 0);
+    transform: translate(0px, 10px);
+  }
+}
+
+@keyframes WhackaModalBodyStartup {
+  0% {
+    transform: translate(0px, 700px);
+  }
+  100% {
+    transform: translate(0px, 0px);
+  }
+}
+
+@keyframes WhackaModalFadeInBackground {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes whackaModalLogoCyclicalJs {
+  0% {
+    transform: translate(0px, 400px);
+  }
+
+  10% {
+    transform: translate(0px, -200px);
+  }
+
+  100% {
+    transform: translate(0px, 400px);
+  }
+}
+@keyframes whackaModalLogoCyclicalHtml {
+  0% {
+    transform: translate(0px, 400px);
+  }
+
+  60% {
+    transform: translate(0px, 400px);
+  }
+
+  70% {
+    transform: translate(0px, -200px);
+  }
+
+  100% {
+    transform: translate(0px, 400px);
+  }
+}
+@keyframes whackaModalLogoCyclicalSass {
+  0% {
+    transform: translate(0px, 400px);
+  }
+  30% {
+    transform: translate(0px, 400px);
+  }
+  40% {
+    transform: translate(0px, -150px);
+  }
+  100% {
+    transform: translate(0px, 400px);
+  }
+}
+
+/*==========================
   FOOTER
   ============================*/
-  @keyframes whackaFooterBody {
-    0% {
-      scale: .2;
-    }
-    10% {
-      scale: 3;
-    }
-    20% {
-      scale: .2;
-    }
-    30% {
-      scale: 3;
-    }
-    40% {
-      scale: .2;
-    }
-    50% {
-      scale: 3;
-    }
-    60% {
-      scale: .2;
-    }
-    70% {
-      scale: 3;
-    }
-    80% {
-      scale: .2;
-    }
-    90% {
-      scale: 3;
-    }
-    100% {
-      scale: 1;
-    }
+@keyframes whackaFooterBody {
+  0% {
+    scale: 0.2;
   }
+  10% {
+    scale: 3;
+  }
+  20% {
+    scale: 0.2;
+  }
+  30% {
+    scale: 3;
+  }
+  40% {
+    scale: 0.2;
+  }
+  50% {
+    scale: 3;
+  }
+  60% {
+    scale: 0.2;
+  }
+  70% {
+    scale: 3;
+  }
+  80% {
+    scale: 0.2;
+  }
+  90% {
+    scale: 3;
+  }
+  100% {
+    scale: 1;
+  }
+}

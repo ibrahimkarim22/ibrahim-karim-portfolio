@@ -7,7 +7,6 @@ function ThreeDeeResume() {
   const [loadModel, setLoadModel] = useState(false);
 
   useEffect(() => {
-    // Simulate loading progress
     const interval = setInterval(() => {
       setProgress((prev) => {
         if (prev < 100) {
@@ -19,12 +18,12 @@ function ThreeDeeResume() {
       });
     }, 50);
 
-    return () => clearInterval(interval); 
+    return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {
     if (progress === 100) {
-      setLoadModel(true); 
+      setLoadModel(true);
     }
   }, [progress]);
 
@@ -34,16 +33,22 @@ function ThreeDeeResume() {
         <Progress progress={progress} />
       ) : (
         <div className="blender-environment" align="center">
-          {loadModel && <BlenderEnvironment />} 
+          {loadModel && <BlenderEnvironment />}
           <div className="orbit-instructions">
             <p>
-              <span style={{ color: "blue" }}>RC</span> Pan
+              <span className="red-text">RC</span> Pan
               <br />
-              <span style={{ color: "blue" }}>LC</span> Rotate
+              <span className="red-text">LC</span> Rotate
               <br />
-              <span style={{ color: "blue" }}>MW</span> Zoom
+              <span className="red-text">MW</span> Zoom
             </p>
           </div>
+          <button
+            className="home-btn"
+            onClick={() => (window.location.href = "/")}
+          >
+            Back to Home
+          </button>
         </div>
       )}
     </div>

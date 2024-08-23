@@ -24,18 +24,12 @@ HEY YOU
             BARD
 =====================*/
 
-// .bard-modal-main-flex-container::-webkit-scrollbar-button {
-//   background-color: rgb(77, 0, 0);
-// }
-
 .bard-modal-main-flex-container::-webkit-scrollbar {
   width: 0.2vw;
 }
 
 .bard-modal-main-flex-container::-webkit-scrollbar-track {
   background-color: rgb(0, 0, 0);
-  // border-radius: 0px 0px 27px 27px;
-  
 }
 
 .bard-modal-main-flex-container::-webkit-scrollbar-thumb {
@@ -95,13 +89,11 @@ WHACKA
 
 .whacka-modal-flex-main::-webkit-scrollbar-track {
   background-color: rgb(85, 50, 166);
-
 }
 
 .whacka-modal-flex-main::-webkit-scrollbar-thumb {
   background-color: rgb(255, 0, 0);
   box-shadow: rgb(47, 255, 0) 0px 0px 100px 100px;
-
 }
 .whacka-modal-flex-main::-webkit-scrollbar-thumb:hover {
   background-color: rgb(0, 4, 255);

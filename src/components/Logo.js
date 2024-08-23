@@ -45,24 +45,26 @@ function Logo() {
 
   return (
     <div className="logo-canvas-container">
-    <div className="logo-canvas">
-      <Canvas>
-        <BackgroundColor color="snow" />
-        <LogoInit
-          path={logo}
-          position={[0.5, 0, 0]}
-          setProgress={setProgress}
-        />
-        <PerspectiveCamera
-          ref={cameraRef}
-          makeDefault
-          position={[0.45, 0.4, 2.2]}
-          fov={36}
-        />
-        <ambientLight intensity={0.1} />
-      </Canvas>
-      {progress > 0 && progress < 100 ? <Progress progress={progress} /> : null}
-    </div>
+      <div className="logo-canvas">
+        <Canvas>
+          <BackgroundColor color="snow" />
+          <LogoInit
+            path={logo}
+            position={[0.5, 0, 0]}
+            setProgress={setProgress}
+          />
+          <PerspectiveCamera
+            ref={cameraRef}
+            makeDefault
+            position={[0.45, 0.4, 2.2]}
+            fov={36}
+          />
+          <ambientLight intensity={0.1} />
+        </Canvas>
+        {progress > 0 && progress < 100 ? (
+          <Progress progress={progress} />
+        ) : null}
+      </div>
     </div>
   );
 }

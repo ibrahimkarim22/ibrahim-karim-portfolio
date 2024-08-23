@@ -138,10 +138,7 @@ function HeyYouModal({ isOpen, closeModal }) {
                     alt="phone chat"
                   />
                 </div>
-                
-
               </div>
-           
             </div>
             <div className="hey-you-modal-realtime-page-container hey-you-page">
               <div className="real-time-second-bg-container"></div>

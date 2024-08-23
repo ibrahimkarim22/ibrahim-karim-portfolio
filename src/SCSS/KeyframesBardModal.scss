@@ -3,47 +3,43 @@ HEADER
 ============================*/
 
 @keyframes bardModalHeaderStartup {
-    0% {
-      transform: translate(-300vh, 0px);
-    }
-    100% {
-      transform: translate(0px, 0px);
-    }
+  0% {
+    transform: translate(-300vh, 0px);
   }
+  100% {
+    transform: translate(0px, 0px);
+  }
+}
 
-  /*==========================
+/*==========================
   STAGE CURTAINS
   ============================*/
 
-  @keyframes stageCurtain {
-    0% {
-      transform: translate(0px, -100vh);
-    }
-    100% {
-      transform: translate(0px, 0px);
- 
-    }
+@keyframes stageCurtain {
+  0% {
+    transform: translate(0px, -100vh);
+  }
+  100% {
+    transform: translate(0px, 0px);
+  }
+}
+
+@keyframes honors {
+  0% {
+    opacity: 0;
   }
 
-  @keyframes honors {
-    0% {
-      opacity: 0;
-    }
-  
-    50% {
-      opacity: 1;
-    
-    }
-    100% {
-      opacity: 0;
-      
- 
-    }
+  50% {
+    opacity: 1;
   }
+  100% {
+    opacity: 0;
+  }
+}
 
-  @keyframes onlineCourse {
-    0% {
-      opacity: 0;
+@keyframes onlineCourse {
+  0% {
+    opacity: 0;
   }
   1% {
     opacity: 1;
@@ -81,11 +77,11 @@ HEADER
   100% {
     opacity: 1;
   }
-  }
+}
 
-  @keyframes shakespeare {
-    0% {
-      color: blue;
+@keyframes shakespeare {
+  0% {
+    color: blue;
   }
   25% {
     color: red;
@@ -99,6 +95,4 @@ HEADER
   100% {
     color: blue;
   }
-  }
-
-
+}

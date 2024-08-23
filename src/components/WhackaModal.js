@@ -1,7 +1,6 @@
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import js from "../images/js.png";
 import html from "../images/html.png";
-import css from "../images/css.png";
 import sass from "../images/sass.png";
 import whacka from "../images/whacka.gif";
 import whackaCode from "../images/whackaCode.png";
@@ -33,10 +32,9 @@ function WhackaModal({ isOpen, closeModal }) {
                     {" "}
                     Brandon O'Shea
                   </span>{" "}
-                  and <span className="highlighter-green-text">
-                    Sam Golshan
-                  </span>{" "}
-                  , and <span className="highlighter-green-text">myself</span>.
+                  and{" "}
+                  <span className="highlighter-green-text">Sam Golshan</span> ,
+                  and <span className="highlighter-green-text">myself</span>.
                   The project emphasized teamwork, utilizing{" "}
                   <span className="blue-text">Git</span>,{" "}
                   <span className="blue-text"> GitHub</span>, and{" "}
@@ -134,10 +132,10 @@ function WhackaModal({ isOpen, closeModal }) {
                     countdown timers
                   </span>{" "}
                   and <span className="highlighter-green-text">intervals</span>{" "}
-                  that control object appearances and sounds. For instance, a 'teasing' sound plays during the
-                  first 10 seconds to engage players from the start, while
-                  a distinct countdown sound intensifies the final 10 seconds,
-                  increasing the urgency.
+                  that control object appearances and sounds. For instance, a
+                  'teasing' sound plays during the first 10 seconds to engage
+                  players from the start, while a distinct countdown sound
+                  intensifies the final 10 seconds, increasing the urgency.
                 </div>
               </div>
 

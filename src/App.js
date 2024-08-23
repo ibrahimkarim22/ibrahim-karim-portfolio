@@ -9,11 +9,11 @@ import ThreeDeeResume from "./screens/ThreeDeeResume";
 function App() {
   return (
     <Router>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/projects" element={<Projects />} />
-          <Route path="/threeDeeResume" element={<ThreeDeeResume />} />
-        </Routes>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/projects" element={<Projects />} />
+        <Route path="/threeDeeResume" element={<ThreeDeeResume />} />
+      </Routes>
     </Router>
   );
 }

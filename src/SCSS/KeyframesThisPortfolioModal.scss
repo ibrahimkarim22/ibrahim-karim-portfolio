@@ -1,41 +1,135 @@
 @keyframes thisPortfolioModalHeaderStartup {
-    0% {
-      transform: translate(-700px, 0px);
-    }
-    100% {
-      transform: translate(0px, 0px);
-    }
+  0% {
+    transform: translate(-700px, 0px);
+  }
+  100% {
+    transform: translate(0px, 0px);
+  }
+}
+
+@keyframes designOne {
+  0% {
+    scale: 1;
+    transform: translate(-10vw, 0vh) skew(20deg);
+  }
+  25% {
+    scale: 4;
+    transform: translate(-20vw, -2vh) skew(-20deg);
+  }
+  50% {
+    scale: 1;
+    transform: translate(-20vw, 2vh) skew(20deg);
   }
 
-  @keyframes designOne {
-    0% {
-      scale: 1;
-      transform: translate(0vw, 0vh);
-    }
-    50% {
-      scale: 4;
-      transform: translate(-5vw, -2vh);
-    }
-    100% {
-      scale: 1 ;
-      transform: translate(0vw, 0vh);
-    }
+  75% {
+    scale: 4;
+    transform: translate(-10vw, -2vh) skew(-20deg);
+  }
+  100% {
+    scale: 1;
+    transform: translate(-10vw, 0vh) skew(20deg);
+  }
+}
+
+@keyframes designOneShadow {
+  0% {
+    box-shadow: rgb(255, 94, 0) 0vw 0vw 10vw 10vw;
   }
 
-  @keyframes designTwo {
-    0% {
-      transform: rotateY(0deg) rotateX(89deg);
-    }
-    100% {
-      transform: rotateY(360deg) rotateX(89deg);
-    }
+  2% {
+    box-shadow: rgb(0, 0, 0) 0vw 0vw 10vw 5vw;
   }
 
-  @keyframes designThree {
-    0% {
-      transform: rotateZ(0deg) rotateX(89deg);
-    }
-    100% {
-      transform: rotateZ(360deg) rotateX(89deg);
-    }
+  5% {
+    box-shadow: rgb(255, 255, 255) 0vw 0vw 10vw 4vw;
   }
+
+  7% {
+    box-shadow: rgb(255, 0, 234) 0vw 0vw 10vw 10vw;
+  }
+
+  10% {
+    box-shadow: rgb(0, 255, 34) 0vw 0vw 10vw 3vw;
+  }
+  25% {
+    box-shadow: rgb(0, 238, 255) 0vw 0vw 10vw 10vw;
+  }
+
+  50% {
+    box-shadow: rgb(189, 21, 21) 0vw 0vw 10vw 10vw;
+  }
+
+  75% {
+    box-shadow: rgb(255, 255, 255) 0vw 0vw 10vw 10vw;
+  }
+
+  90% {
+    box-shadow: rgb(255, 0, 0) 0vw 0vw 10vw 10vw;
+  }
+
+  100% {
+    box-shadow: rgb(255, 255, 255) 1 0vw 0vw 10vw 10vw;
+  }
+}
+
+@keyframes designTwo {
+  0% {
+    transform: rotateY(0deg) rotateX(89deg);
+  }
+  100% {
+    transform: rotateY(360deg) rotateX(89deg);
+  }
+}
+
+@keyframes designThree {
+  0% {
+    transform: translate(-30vw, -45vh);
+  }
+  50% {
+    transform: translate(-80vw, -45vh);
+  }
+  100% {
+    transform: translate(-30vw, -45vh);
+  }
+}
+
+@keyframes thisPortfolioModalHeader {
+  0% {
+    box-shadow: #7f0909 0vw 0vw 0vw 00vw;
+  }
+
+  2% {
+    box-shadow: #ffc500 0vw 0vw 0vw 15vw;
+  }
+
+  5% {
+    box-shadow: #7f0909 0vw 0vw 0vw 20vw;
+  }
+
+  7% {
+    box-shadow: #ffc500 0vw 0vw 0vw 22vw;
+  }
+
+  10% {
+    box-shadow: #7f0909 0vw 0vw 0vw 20vw;
+  }
+  25% {
+    box-shadow: #ffc500 0vw 0vw 0vw 18vw;
+  }
+
+  50% {
+    box-shadow: #7f0909 0vw 0vw 0vw 23vw;
+  }
+
+  75% {
+    box-shadow: #ffc500 0vw 0vw 0vw 20vw;
+  }
+
+  90% {
+    box-shadow: #7f0909 0vw 0vw 0vw 15vw;
+  }
+
+  100% {
+    box-shadow: #ffc500 0vw 0vw 0vw 0vw;
+  }
+}

@@ -295,7 +295,8 @@
   color: rgb(163, 163, 163);
   font-size: 40px;
   // white-space: nowrap;
-  font-family: "Archivo Black", serif;
+  font-family: "Ubuntu", sans-serif;
+
   font-weight: 100;
   font-style: normal;
   // letter-spacing: 1px;
@@ -319,8 +320,6 @@
   animation: shakespeare 22s cubic-bezier(0.175, 0.885, 0.32, 5) 8s infinite
     reverse;
 }
-
-
 
 /*==========================
         PAGE 3  
@@ -519,10 +518,11 @@
   color: rgb(255, 255, 255);
   text-align: center;
   font-size: 38px;
-  font-family: "Cormorant Garamond", serif;
-  font-weight: 400;
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 700;
   font-style: normal;
   text-align: justify;
+  text-shadow: black 1px 1px 2px;
   line-height: 1.4;
   padding: 5vh 10vw 5vh 10vw;
   z-index: 10;
@@ -635,14 +635,14 @@
 .bard-modal-firebase-text {
   color: rgb(255, 255, 255);
   font-size: 38px;
-  font-family: "Cormorant Garamond", serif;
+  font-family: "Ubuntu", sans-serif;
   text-shadow: black 1px 1px 2px;
-  font-weight: 400;
+  font-weight: 500;
   font-style: normal;
   text-align: justify;
   line-height: 1.4;
   hyphens: auto;
-  padding: 0vh 7vw 0vh 7vw;
+  padding: 0vh 9vw 0vh 8vw;
 }
 
 .bard-modal-firebase-logo-container {
@@ -704,15 +704,12 @@
 
 .bard-modal-page-six-container {
   order: 6;
-  flex: 0 0 auto;
   width: 100vw;
   height: auto;
   display: grid;
   grid-template-columns: auto;
   grid-template-rows: repeat(9, auto);
   background-color: rgb(255, 255, 255);
-  // border: solid 1px rgb(0, 0, 0);
-  // box-shadow: rgb(0, 0, 0) 0px 0px 100px 100px inset;
 }
 
 .bard-modal-features-text-one-container,
@@ -737,7 +734,7 @@
 .main-features-title {
   font-size: 20vw;
   font-family: "Bodoni Moda SC", serif;
-  text-shadow: black 1px 1px 3px;
+  text-shadow: black 1px 1px 2px;
   font-weight: 100;
   color: rgb(0, 0, 0);
 }
@@ -751,8 +748,8 @@
 .certificate-code-container {
   font-size: 33px;
   text-align: justify;
-  font-family: "Cormorant Garamond", serif;
-  font-weight: 400;
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 200;
   color: rgb(0, 0, 0);
   line-height: 1.4;
   hyphens: auto;
@@ -870,8 +867,8 @@
 .additional-features-title {
   font-size: 12vw;
   font-family: "Bodoni Moda SC", serif;
-  text-shadow: black 1px 1px 3px;
-  font-weight: 100;
+  text-shadow: black 1px 1px 1px;
+  font-weight: 400;
   color: rgb(255, 255, 255);
 }
 
@@ -917,8 +914,8 @@
 .bard-modal-additional-features-text-two {
   font-size: 33px;
   text-align: justify;
-  font-family: "Cormorant Garamond", serif;
-  font-weight: 400;
+  font-family: "Ubuntu", serif;
+  font-weight: 200;
   line-height: 1.4;
   hyphens: auto;
 
@@ -996,7 +993,7 @@
 .bard-modal-honors-title {
   font-size: 10vw;
   font-family: "Bodoni Moda SC", serif;
-  text-shadow: black 1px 1px 3px;
+  text-shadow: rgb(0, 0, 0) 5px 0px 1px;
   font-weight: 100;
   color: rgb(255, 255, 255);
   text-shadow: black 1px 1px 4px;
@@ -1013,10 +1010,7 @@
   height: 50vh;
 }
 
-
-
-
-@media (max-width: 1800px) {    
+@media (max-width: 1800px) {
   // .bard-modal-honors-title,
   // .additional-features-title,
   // .main-features-title,

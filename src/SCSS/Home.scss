@@ -88,7 +88,7 @@
 }
 
 .bio-div-main {
-  font-size: 30px;
+  font-size: 50px;
   padding: 0px 120px 0px 0px;
   font-family: "Raleway", serif;
   font-weight: 400;
@@ -309,7 +309,7 @@
     scale: 1;
   }
   .bio-div-main {
-    font-size:25px;
+    font-size: 22px;
   }
   .linkedin,
   .github,
@@ -342,6 +342,9 @@
 }
 
 @media (max-width: 2500px) {
+  .bio-div-main {
+    font-size: 18px;
+  }
   .logo-canvas {
     width: 70vw;
     height: 60vh;
@@ -378,7 +381,7 @@
     grid-row: 9 / 10;
   }
   .bio-div-main {
- font-size: 15;
+    font-size: 15px;
     z-index: 3;
   }
 }
@@ -388,8 +391,17 @@
     width: 50vw;
     height: 50vh;
   }
+  // .bio-div-main {
+  //   grid-column: 1 / 10;
+  //   font-size: 14px;
+  // }
+  .bio-div-main-container {
+    grid-column: 1 / -1;
+    grid-row: 1 / 4;
+  }
   .bio-div-main {
-    font-size: 12px;
+    padding: 4vh 20vw 0vw 20vw;
+    font-size: 15px;
   }
   .linkedin,
   .github,
@@ -399,8 +411,7 @@
 
   .projects-title-div,
   .pdfResume-title-div,
-  .threeResume-title-div
-   {
+  .threeResume-title-div {
     font-size: 48px;
   }
   .megaracer {
@@ -418,10 +429,10 @@
     height: 20vh;
   }
 
-  .bio-div-main-container {
-    grid-column: 2  / 8;
-  }
-  
+  // .bio-div-main-container {
+  //   grid-column: 2 / 8;
+  // }
+
   .linkedin,
   .github,
   .gmail {
@@ -447,7 +458,6 @@
 }
 
 @media (max-width: 1200px) {
-
   .logo-canvas-container {
     grid-column: 2 / 5;
     grid-row: 5 / 12;
@@ -457,13 +467,13 @@
     width: 60vw;
     height: 50vh;
   }
-  .bio-div-main-container {
-    grid-column: 1 / -1;
-    grid-row: 1 / 4;
-  }
-  .bio-div-main {
-    padding: 100px;
-  }
+  // .bio-div-main-container {
+  //   grid-column: 1 / -1;
+  //   grid-row: 1 / 4;
+  // }
+  // .bio-div-main {
+  //   padding: 4vh 20vw 0vw 20vw;
+  // }
   .menu-items {
     grid-column: 1 / 12;
     grid-row: 8 / 12;
@@ -480,8 +490,7 @@
     letter-spacing: 0px;
   }
 
-  .threeResume-title-div
-  {
+  .threeResume-title-div {
     transform: translate(0%, -20%);
     // font-size: 25px;
   }
@@ -501,12 +510,9 @@
     width: 60vw;
     height: 40vh;
   }
-  .bio-div-main {
-    padding: 40px;
-  }
+
   .full-stack-div {
     grid-column: 13 / 15;
-  
   }
   .projects-title-div,
   .pdfResume-title-div,
@@ -518,7 +524,6 @@
     color: rgb(19, 1, 107);
   }
   .megaracer {
- 
     transform: translate(14%, 0%);
   }
 
@@ -528,22 +533,23 @@
 
   .contact-items {
     grid-row: 9 / 10;
-    
   }
 }
 
 @media (max-width: 800px) {
+  .bio-div-main {
+    font-size: 22px;
+  }
   .logo-canvas {
     width: 60vw;
     height: 30vh;
   }
   .full-stack-div {
     grid-column: 13 / 15;
-    font-size: 15px;    
+    font-size: 15px;
   }
 
   .megaracer {
-    
     font-size: 12px;
     letter-spacing: 0.5px;
     font-weight: 100;
@@ -555,10 +561,8 @@
   }
 
   .contact-items {
-   font-size: 10px;
+    font-size: 10px;
     grid-row: 9 / 11;
-    
- 
   }
   .linkedin,
   .github,
@@ -570,7 +574,6 @@
     margin: -7px;
   }
 
- 
   .home-copyright-container > .copyright-text {
     font-size: 12px;
   }
@@ -581,7 +584,7 @@
 //     width: 60vw;
 //     height: 20vh;
 //   }
-  
+
 //   .full-stack-div {
 //     grid-row: 1 / -1;
 //     font-size: 20px;
@@ -591,7 +594,7 @@
 //     grid-row: 1 / 5;
 //   }
 //   .bio-div-main {
-    
+
 //     font-size: 15px;
 //   }
 // }
@@ -604,19 +607,17 @@
   .full-stack-div {
     font-size: 10px;
   }
-  .bio-div-main {
-    font-size: 12px;
-  }
+
   .contact-items {
-    font-size: 12px;
+    font-size: 18px;
   }
   .threeResume-title-div,
   .pdfResume-title-div,
   .projects-title-div {
-    font-size: 12px;
+    font-size: 18px;
   }
   .megaracer {
-    font-size: 10px;
+    font-size: 15px;
     transform: translate(0%, 20%);
   }
 }
@@ -626,7 +627,6 @@
     width: 60vw;
     height: 10vh;
   }
-
 }
 // @media (max-height: 370px) {
 //   .menu-div-main{
@@ -675,7 +675,7 @@
 //   z-index: 1000;
 // }
 // }
-@media (max-height: 900px) and (orientation: landscape){
+@media (max-height: 900px) and (orientation: landscape) {
   .menu-div-main {
     height: 80vh;
   }
@@ -685,7 +685,6 @@
   }
   .bio-div-main-container {
     grid-column: 1 / -1;
-    
   }
   .full-stack-div {
     font-size: 10px;
