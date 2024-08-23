@@ -45,6 +45,24 @@
   }
 }
 
+
+@keyframes arrow {
+  0% {
+    transform: translate(0vw, 0vh);
+  }
+  25% {
+    transform: translate(-3vw, 0vh);
+  }
+  70% {
+    transform: translate(3vw, 0vh);
+  }
+
+  100% {
+    transform: translate(0vw, 0vh);
+  }
+
+}
+
 /*==========================
             BACKEND PAGE
 ============================*/

@@ -47,6 +47,9 @@ function HeyYouModal({ isOpen, closeModal }) {
                   Nucamp Full-Stack Honors Award
                 </div>
               </div>
+              <div className="hey-you-arrow-container">
+                <i className="fas fa-arrow-right hey-you-arrow"></i>
+              </div>
             </div>
 
             <div className="hey-you-modal-backend-page-container hey-you-page">
@@ -135,7 +138,10 @@ function HeyYouModal({ isOpen, closeModal }) {
                     alt="phone chat"
                   />
                 </div>
+                
+
               </div>
+           
             </div>
             <div className="hey-you-modal-realtime-page-container hey-you-page">
               <div className="real-time-second-bg-container"></div>

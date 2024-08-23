@@ -342,28 +342,28 @@ MEDIA QUERIES
   .grid-interactions-text,
   .sound-text,
   .timers-text{
-    font-size: 20px;
+    font-size: 30px;
   }
 }
 
 @media (max-width: 700px) {
   .whacka-modal-info {
-    font-size: 12px;
+    font-size: 22px;
   }
 
   .whacka-paragraph-two-container {
-    font-size: 12px;
+    font-size: 18px;
   }
 
  .event-listeners-title {
-    font-size: 12px;
+    font-size: 18px;
   }
 
   .button-clicks-text,
   .grid-interactions-text,
   .sound-text,
   .timers-text {
-    font-size: 12px;
+    font-size: 18px;
     letter-spacing: 0px;
   }
 
@@ -373,20 +373,14 @@ MEDIA QUERIES
 }
 @media (max-width: 500px) {
   .whacka-modal-info-container {
-    grid-column: 2 / 12;
+    grid-column: 1 / -1;
   }
 }
 
 @media (max-width: 450px) {
 .event-listeners-title {
-    font-size: 12px;
+    font-size: 18px;
   }
 
-  .button-clicks-text,
-  .grid-interactions-text,
-  .sound-text,
-  .timers-text {
-    font-size: 12px;
-  }
 }
 

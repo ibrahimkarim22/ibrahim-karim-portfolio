@@ -129,6 +129,7 @@
 
 .whacka-modal-header .modal-title {
   color: rgb(0, 255, 255);
+  text-shadow: black 0px 1px 2px;
   font-family: "Bangers", system-ui;
   font-weight: 400;
   font-style: normal;
@@ -136,12 +137,13 @@
 }
 .whacka-modal-header-text-two {
   color: rgb(0, 255, 255);
+  text-shadow: black 0px 1px 2px;
   font-family: "Raleway", system-ui;
   font-weight: 300;
   font-style: normal;
   animation: whackaTextTwo 6s ease-in-out forwards;
   margin: 15px;
-  font-size: 22px;
+  font-size: 30px;
   text-wrap: nowrap;
 }
 @media (max-width: 750px) {
@@ -159,20 +161,23 @@
 .krispy-modal-header {
   background-color: gold;
   border: solid 1px rgb(0, 0, 0);
-  // box-shadow: gold 0px 0px 30px 10px;
   animation: krispyModalHeaderStartup 5s ease;
 }
 
 .krispy-modal-header .modal-title {
   color: rgb(255, 137, 214);
-  text-shadow: black 0px 0px 1.8px;
+  text-shadow: black 0px 1px 2px;
+  font-family: "roboto", system-ui;
+  font-weight: 900;
+  font-style: normal;
   animation: krispyModalHeaderSlideInLeft 5s ease-in-out;
 }
 .krispy-modal-header-text-two {
   margin: 15px;
-  font-size: 15px;
+  font-size: 22px;
   text-wrap: nowrap;
   color: rgb(12, 12, 12);
+  text-shadow: black 0px 1px 2px;
   font-family: "Raleway", system-ui;
   font-weight: 300;
   font-style: normal;
@@ -191,14 +196,13 @@
   // box-shadow: rgb(0, 157, 255) 0px 0px 700px;
   animation: heyYouModalHeaderStartup 5s ease-in-out forwards;
 }
-.hey-you-modal-header .modal-title,
-.hey-you-modal-main-title {
+.hey-you-modal-header .modal-title{
   grid-column: 1 / 4;
   grid-row: 1 / 3;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 15px;
+  font-size: 35px;
   font-family: "Raleway", sans-serif;
   font-optical-sizing: auto;
   font-weight: 300;
@@ -209,7 +213,7 @@
 
 .hey-you-modal-header-text-two {
   margin: 15px;
-  font-size: 15px;
+  font-size: 22px;
   text-wrap: nowrap;
   color: rgb(0, 8, 255);
   font-family: "Raleway", system-ui;
@@ -230,15 +234,21 @@
 .bard-modal-header .modal-title {
   font-size: 40px;
   color: rgb(255, 255, 255);
+  font-family: "Playfair Display", serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: italic;
+  text-shadow: rgb(255, 255, 255) 0px 0px 1px;
 }
 .bard-modal-header-text-two {
   margin: 15px;
-  font-size: 15px;
+  font-size: 22px;
   text-wrap: nowrap;
   color: rgb(255, 255, 255);
   font-family: "Raleway", system-ui;
   font-weight: 300;
   font-style: normal;
+
 }
 .bard-modal-header .btn-close {
   background-color: rgb(255, 255, 255);

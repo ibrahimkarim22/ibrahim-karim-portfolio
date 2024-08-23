@@ -4,7 +4,7 @@ HEADER
 
 @keyframes bardModalHeaderStartup {
     0% {
-      transform: translate(-700px, 0px);
+      transform: translate(-300vh, 0px);
     }
     100% {
       transform: translate(0px, 0px);
@@ -15,12 +15,12 @@ HEADER
   STAGE CURTAINS
   ============================*/
 
-  @keyframes stageLeftCurtain {
+  @keyframes stageCurtain {
     0% {
-      transform: translate(0px, 0px);
+      transform: translate(0px, -100vh);
     }
     100% {
-      transform: translate(0px, -700px);
+      transform: translate(0px, 0px);
  
     }
   }
@@ -40,3 +40,65 @@ HEADER
  
     }
   }
+
+  @keyframes onlineCourse {
+    0% {
+      opacity: 0;
+  }
+  1% {
+    opacity: 1;
+  }
+  2% {
+    opacity: 0;
+  }
+  5% {
+    opacity: 0;
+  }
+  6% {
+    opacity: 1;
+  }
+  7% {
+    opacity: 0;
+  }
+  24% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  26% {
+    opacity: 0;
+  }
+  27% {
+    opacity: 1;
+  }
+  74% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+  }
+
+  @keyframes shakespeare {
+    0% {
+      color: blue;
+  }
+  25% {
+    color: red;
+  }
+  50% {
+    color: blueviolet;
+  }
+  75% {
+    color: rgb(44, 145, 106);
+  }
+  100% {
+    color: blue;
+  }
+  }
+
+

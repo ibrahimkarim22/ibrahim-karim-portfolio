@@ -81,23 +81,19 @@ function BardModal({ isOpen, closeModal }) {
                   <div className="curtain-shadow-ten"></div>
                 </div>
               </div>
-
-              {/* </Parallax> */}
             </div>
-            {/* <div className="bard-modal-header-sub-text-container">
-          <div className="bard-modal-header-sub-text">
-            Shakespeare Online Course: JavaScript, React, Firebase, Firestore, Redux,
-            SCSS, SASS. complete quizzes and earn medals, reach your certrificate!
-          </div>
-        </div> */}
-            {/* <Parallax scale={[1, 1]} rotate={[1, 1]}> */}
+
             <div className="bard-modal-page-two-container">
               <div className="bard-modal-intro-text-container">
                 <div className="bard-modal-intro-text">
-                  I created an online course platform for all 38 of
-                  Shakespeare’s plays. This application aims to provide an
-                  engaging way for users to explore Shakespeare's works through
-                  a combination of reading, quizzes, and video content.
+                  I created an{" "}
+                  <span className="online-course-animation">online</span>{" "}
+                  {" "}
+                  <span className="online-course-animation">course</span>{" "}
+                  platform for all 38 of {" "}<span className="shakespeare">Shakespeare</span>'s plays. This application
+                  aims to provide an engaging way for users to explore{" "}
+                  <span className="shakespeareTwo">Shakespeare</span>'s works through a combination of reading, quizzes,
+                  and video content.
                 </div>
               </div>
               <div className="bard-honors-award-text-container">
@@ -109,37 +105,76 @@ function BardModal({ isOpen, closeModal }) {
 
             <div className="bard-modal-page-three-container">
               <div className="bard-react-native-container">
-                <img src={native} alt="React Native logo" className="bard-react-native-logo" />
+                <img
+                  src={native}
+                  alt="React Native logo"
+                  className="bard-react-native-logo"
+                />
               </div>
               <div className="phone-bard-home-container">
-              <img src={phoneBardHome} alt="Bard app home page" className="phone-bard-home" />
+                <img
+                  src={phoneBardHome}
+                  alt="Bard app home page"
+                  className="phone-bard-home"
+                />
               </div>
               <div className="phone-bard-profile-container">
-              <img src={phoneBardProfile} alt="Bard app profile page" className="phone-bard-profile" />
-              </div>  
+                <img
+                  src={phoneBardProfile}
+                  alt="Bard app profile page"
+                  className="phone-bard-profile"
+                />
+              </div>
               <div className="phone-bard-side-menu-container">
-              <img src={phoneBardSideMenu} alt="Bard app side menu" className="phone-bard-side-menu" />
+                <img
+                  src={phoneBardSideMenu}
+                  alt="Bard app side menu"
+                  className="phone-bard-side-menu"
+                />
               </div>
               <div className="phone-bard-course-container">
-              <img src={phoneBardCourse} alt="Bard app course page" className="phone-bard-course" />
+                <img
+                  src={phoneBardCourse}
+                  alt="Bard app course page"
+                  className="phone-bard-course"
+                />
               </div>
               <div className="phone-bard-quiz-container">
-              <img src={phoneBardQuiz} alt="Bard app quiz page" className="phone-bard-quiz" />
+                <img
+                  src={phoneBardQuiz}
+                  alt="Bard app quiz page"
+                  className="phone-bard-quiz"
+                />
               </div>
               <div className="phone-bard-quiz-one-container">
-              <img src={phoneBardQuizOne} alt="Bard app quiz one page" className="phone-bard-quiz-one" />
+                <img
+                  src={phoneBardQuizOne}
+                  alt="Bard app quiz one page"
+                  className="phone-bard-quiz-one"
+                />
               </div>
               <div className="phone-bard-medals-container">
-              <img src={phoneBardMedals} alt="Bard app medals page" className="phone-bard-medals" />
+                <img
+                  src={phoneBardMedals}
+                  alt="Bard app medals page"
+                  className="phone-bard-medals"
+                />
               </div>
               <div className="phone-bard-synopsis-container">
-              <img src={phoneBardSynopsis} alt="Bard app synopsis page" className="phone-bard-synopsis" />
+                <img
+                  src={phoneBardSynopsis}
+                  alt="Bard app synopsis page"
+                  className="phone-bard-synopsis"
+                />
               </div>
               <div className="phone-bard-info-container">
-              <img src={phoneBardInfo} alt="Bard app info page" className="phone-bard-info" />
+                <img
+                  src={phoneBardInfo}
+                  alt="Bard app info page"
+                  className="phone-bard-info"
+                />
               </div>
             </div>
-
 
             <div className="bard-modal-page-four-container">
               <div className="bard-modal-api-title-container">
@@ -341,12 +376,14 @@ function BardModal({ isOpen, closeModal }) {
                   src={phoneBardHowTo}
                   alt="phone bard how to"
                   className="phone-bard-how-to"
-                />  
+                />
               </div>
             </div>
             <div className="bard-modal-page-eight-container">
               <div className="bard-modal-honors-title-container">
-                <div className="bard-modal-honors-title">Honors Video Submission</div>
+                <div className="bard-modal-honors-title">
+                  Honors Video Submission
+                </div>
               </div>
               <div className="bard-modal-honors-video-container">
                 <iframe
