@@ -47,7 +47,7 @@ function ThreeDeeResume() {
             className="home-btn"
             onClick={() => (window.location.href = "/")}
           >
-            Back to Home
+            Back to Menu
           </button>
         </div>
       )}
