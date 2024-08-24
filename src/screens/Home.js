@@ -89,7 +89,7 @@ function Home() {
                 </div>
               </Link>
               <a
-                href="https://drive.google.com/file/d/1Mc2SdmCu-oop6GbOgkBhhYwq8rDUKLsO/view?usp=sharing"
+                href="https://docs.google.com/document/d/1SrhaOl38FXR0at186piaVMLwN0TuQGOmt9q56TYvaBE/edit?usp=sharing"
                 rel="noopener noreferrer"
                 target="_blank"
                 style={{ textDecoration: "none" }}
