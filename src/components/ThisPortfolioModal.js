@@ -380,6 +380,10 @@ function ThisPortfolioModal({ isOpen, closeModal }) {
               <div className="this-portfolio-copyright-container">
                 <div className="copyright-text">&copy; 2024 Ibrahim Karim.</div>
               </div>
+              <div className="batman">
+
+              <a target="_blank" href="https://icons8.com/icon/RizaLqSJehxS/batman">Batman</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
+              </div>
             </div>
           </div>
         </ModalBody>
