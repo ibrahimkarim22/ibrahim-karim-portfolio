@@ -43,7 +43,7 @@
   border-radius: 53px 53px 0px 0px;
   background-color: rgba(0, 15, 82, 0.774);
   box-shadow: 0px 0px 100px rgb(0, 0, 0);
-  animation: navDivStartup 8s ease-in-out;
+  animation: navDivStartup 3s ease-in-out;
 }
 
 .nav-home-btn,
@@ -765,6 +765,9 @@ MEDIA QUERIES
 }
 
 @media (max-width: 1008px) {
+  .nav-div-main {
+    animation: navDivStartUp 0.5s ease-in-out;
+  }
   .projects-div-main {
     width: 100vw;
     height: 100vh;
@@ -924,7 +927,6 @@ MEDIA QUERIES
   .profile-image-container {
     grid-column: 1 / 7;
     grid-row: 1 / -1;
-
   }
 
   .profile-image {
