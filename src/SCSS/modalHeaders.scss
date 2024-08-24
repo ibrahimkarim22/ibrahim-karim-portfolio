@@ -29,7 +29,6 @@
 .this-portfolio-modal-header .btn-close {
   display: flex;
   align-items: center;
-  //   justify-content: center;
 }
 .whacka-modal-header .modal-title,
 .krispy-modal-header .modal-title,
@@ -118,9 +117,8 @@
   }
 }
 
-/////////////////////////////
-//WHACKA////////////
-/////////////////////////
+/*WHACKA*/
+
 .whacka-modal-header {
   background-color: rgb(255, 0, 0);
   box-shadow: 0px 0px 100px rgb(0, 0, 0);
@@ -155,9 +153,9 @@
 .whacka-modal-header .btn-close {
   background-color: rgb(255, 255, 255);
 }
-//////////////////////
-//KRISPY////////////
-/////////////////////////
+
+/*KRISPY*/
+
 .krispy-modal-header {
   background-color: gold;
   border: solid 1px rgb(0, 0, 0);
@@ -188,12 +186,10 @@
   background-color: rgb(255, 255, 255);
 }
 
-////////////
-//HEYYOU////////////
-////////////
+/*HEY YOU*/
+
 .hey-you-modal-header {
   background-color: rgb(255, 255, 255);
-  // box-shadow: rgb(0, 157, 255) 0px 0px 700px;
   animation: heyYouModalHeaderStartup 5s ease-in-out forwards;
 }
 .hey-you-modal-header .modal-title {
@@ -224,10 +220,10 @@
 .hey-you-modal-header .btn-close {
   background-color: rgb(255, 255, 255);
 }
-//BARD////////////
+
+/*BARD*/
+
 .bard-modal-header {
-  // border: solid 1px rgb(25, 25, 25);
-  // background-color: rgb(0, 0, 0);
   background-color: rgb(12, 0, 31);
   border: solid 1px rgb(0, 0, 0);
 }
@@ -252,7 +248,7 @@
 .bard-modal-header .btn-close {
   background-color: rgb(255, 255, 255);
 }
-//THISPORTFOLIO////////////
+
 .this-portfolio-modal-header {
   background-color: #7f0909;
   border: solid 1px rgb(0, 0, 0);
@@ -263,15 +259,6 @@
   font-family: "Cinzel", serif;
   font-weight: 400;
 }
-// .this-portfolio-modal-header-text-two {
-//   margin: 50px;
-//   font-size: 15px;
-//   text-wrap: nowrap;
-//   color: rgb(255, 255, 255);
-//   font-family: "Raleway", system-ui;
-//   font-weight: 300;
-//   font-style: normal;
-// }
 
 .this-portfolio-modal-header .btn-close {
   scale: 1;

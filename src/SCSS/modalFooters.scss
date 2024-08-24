@@ -20,7 +20,6 @@
   width: 10vw;
   height: auto;
   font-family: "Press Start 2P", system-ui;
-  // font-size: 12px;
   border: solid 1px rgb(0, 0, 0);
   color: rgb(0, 0, 0);
   font-weight: 200;
@@ -70,7 +69,6 @@
   background-color: gold;
   border: solid 1px rgb(0, 0, 0);
   z-index: 5;
-  // box-shadow: gold 0px 0px 30px 10px;
   animation: krispyModalFooterStartup 7s ease;
 }
 
@@ -100,7 +98,6 @@
   width: 10vw;
   height: auto;
   font-family: "Roboto", system-ui;
-  // font-size: 18px;
   border: solid 1px rgb(0, 0, 0);
   color: rgb(255, 255, 255);
   font-weight: 300;
@@ -122,7 +119,6 @@
   width: 10vw;
   height: auto;
   font-family: "Raleway", system-ui;
-  // font-size: 18px;
   border: solid 1px rgb(0, 0, 0);
   color: rgb(0, 0, 0);
   font-weight: 300;
@@ -154,7 +150,6 @@
   width: 10vw;
   height: auto;
   font-family: "Playfair Display", system-ui;
-  // font-size: 12px;
   letter-spacing: 1px;
   border: solid 1px rgb(0, 0, 0);
   font-weight: 400;
@@ -192,17 +187,10 @@
   width: 10vw;
   height: auto;
   font-family: "Cinzel", system-ui;
-  // font-size: 20px;
   letter-spacing: 1px;
   border: solid 1px rgb(0, 0, 0);
   font-weight: 700;
 }
-
-// .this-portfolio-modal-footer button {
-//   border: solid 1px rgb(0, 0, 0);
-//   color: rgb(0, 0, 0);
-//   background-color: rgb(255, 255, 255);
-// }
 
 .this-portfolio-site-btn,
 .this-portfolio-modal-github-btn,
@@ -211,8 +199,6 @@
 
   color: snow;
 }
-
-
 
 @media (max-width: 1000px) {
   .whacka-modal-footer,

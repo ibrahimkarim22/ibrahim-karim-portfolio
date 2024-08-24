@@ -1,5 +1,4 @@
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
-import { Parallax, ParallaxProvider } from "react-scroll-parallax";
 import folger from "../images/folger.jpg";
 import mit from "../images/mit.png";
 import firebase from "../images/firebase.png";
@@ -31,7 +30,6 @@ import native from "../images/native.png";
 
 function BardModal({ isOpen, closeModal }) {
   return (
-    // <ParallaxProvider>
     <Modal
       isOpen={isOpen}
       toggle={closeModal}
@@ -48,7 +46,6 @@ function BardModal({ isOpen, closeModal }) {
         <ModalBody className="bard-modal-body-main">
           <div className="bard-modal-main-flex-container">
             <div className="bard-modal-intro-page-one-container">
-              {/* <Parallax x={[50, -50]} tagOuter="div"> */}
               <div className="curtain-container">
                 <div className="curtain-shadow-one-container">
                   <div className="curtain-shadow-one"></div>
@@ -460,7 +457,6 @@ function BardModal({ isOpen, closeModal }) {
         </ModalFooter>
       )}
     </Modal>
-    // </ParallaxProvider>
   );
 }
 

@@ -2,15 +2,11 @@
         BODY MAIN 
         main flex contaienr
 ============================*/
-// font-family: "Bodoni Moda SC", serif;
+
 .bard-modal-body-main {
   background-color: rgb(23, 7, 0);
   box-shadow: rgb(0, 0, 0) 0px 0px 60px 70px inset,
     rgb(100, 0, 0) 0px -50px 60px 70px inset;
-  // border: solid 1px rgb(0, 0
-  // padding-left: 100px;
-  // padding-right: 100px;
-  // padding-bottom: 20px;
   padding-top: 0px;
 }
 
@@ -41,7 +37,6 @@
   z-index: 20;
   transform-style: preserve-3d;
   transform: perspective(100px);
-  // background-blend-mode: multiply;
 }
 
 /*==========================
@@ -86,15 +81,11 @@
 .curtain-shadow-nine,
 .curtain-shadow-ten {
   padding: 0vh 0vw 150vh 0vh;
-  // border: rgba(0, 0, 0, 0.2) 1px solid;
 }
 
 .curtain-shadow-one-container {
   grid-column: 1;
   grid-row: 1 / 2;
-  // width: 5%;
-  // height: auto;
-  // aspect-ratio: 1 / 1;
 }
 
 .curtain-shadow-one {
@@ -111,7 +102,6 @@
 .curtain-shadow-two {
   background-color: rgba(0, 0, 0, 0.84);
   box-shadow: rgba(0, 0, 0, 0.849) 0px 0px 60px 70px;
-  // border: black 1px solid;
 }
 
 .curtain-shadow-three-container {
@@ -294,12 +284,10 @@
 .bard-modal-intro-text {
   color: rgb(163, 163, 163);
   font-size: 40px;
-  // white-space: nowrap;
   font-family: "Ubuntu", sans-serif;
 
   font-weight: 100;
   font-style: normal;
-  // letter-spacing: 1px;
   text-align: justify;
   line-height: 1.5;
   hyphens: auto;
@@ -434,11 +422,6 @@
   grid-template-columns: auto auto;
   grid-template-rows: auto auto auto auto;
   background-color: rgb(255, 8, 0);
-  // box-shadow: black 0px 0px 60px 70px inset;
-  // z-index: 2;
-  // background-color: rgb(0, 0, 0);
-  // background-blend-mode: multiply;
-  // transform: perspective(100px);
 }
 
 .bard-modal-intro,
@@ -471,16 +454,6 @@
   padding: 5vw;
 }
 
-// .bard-modal-intro-top {
-
-//   border: solid 1px rgb(255, 0, 0);
-//   background-color: rgb(255, 0, 0);
-//   // box-shadow: rgb(164, 164, 164) 0px 0px 60px 70px;
-//   transform: perspective(100px) translateZ(100px) scale(8) rotateY(2deg)
-//   rotateX(-15deg) rotateZ(10deg) translate(2px, 10px);
-//   z-index: 5;
-// }
-
 .bard-modal-folger-logo-container {
   grid-column: 1 / 2;
   grid-row: 2 / 3;
@@ -510,7 +483,6 @@
   width: 30vw;
   height: auto;
   border-radius: 22px;
-  // box-shadow: rgba(145, 145, 145, 0.61) 0px 0px 30px 70px;
 }
 
 .bard-modal-folger-text,
@@ -526,7 +498,6 @@
   line-height: 1.4;
   padding: 5vh 10vw 5vh 10vw;
   z-index: 10;
-  // scale: .5;
 }
 
 .mit-slice-container {
@@ -547,7 +518,6 @@
 .folger-slice {
   width: 43.5vw;
   height: auto;
-  // border-radius: 22px;
 }
 
 .folger-slice {
@@ -597,8 +567,6 @@
   grid-template-rows: auto auto auto auto auto;
   background-color: rgb(152, 152, 151);
   border: solid 1px rgb(0, 0, 0);
-  // box-shadow: rgb(0, 0, 0) 0px 0px 60px 100px inset;
-  // transform: perspective(100px) translateZ(100px) scale(5) rotateY(2deg);
 }
 
 .bard-modal-firebase-text-container,
@@ -841,7 +809,6 @@
   grid-template-rows: auto;
   background-color: rgb(0, 30, 255);
   border: solid 1px rgb(0, 0, 0);
-  // gap: 10vh;
 }
 
 .additional-features-title-container,
@@ -926,7 +893,6 @@
   grid-column: 1 / 2;
   grid-row: 6 / 7;
   z-index: 5;
-  // transform: perspective(800px) rotateX(20deg);
 }
 
 .phone-bard-how-to-container {
@@ -1011,12 +977,6 @@
 }
 
 @media (max-width: 1800px) {
-  // .bard-modal-honors-title,
-  // .additional-features-title,
-  // .main-features-title,
-  // .bard-modal-api-title {
-  //   font-size: 100px;
-  // }
   .bard-modal-additional-features-text-one,
   .bard-modal-additional-features-text-two,
   .bard-modal-firebase-text,
@@ -1031,14 +991,6 @@
 }
 
 @media (max-width: 1400px) {
-  // .bard-modal-honors-title,
-  // .additional-features-title,
-  // .main-features-title,
-  // .bard-modal-user-title,
-  // .bard-modal-api-title {
-  //   font-size: 70px;
-  // }
-
   .bard-modal-additional-features-text-one,
   .bard-modal-additional-features-text-two,
   .bard-modal-features-text-one,
@@ -1054,14 +1006,6 @@
 }
 
 @media (max-width: 1000px) {
-  // .bard-modal-honors-title,
-  // .additional-features-title,
-  // .main-features-title,
-  // .bard-modal-user-title,
-  // .bard-modal-api-title {
-  //   font-size: 50px;
-  // }
-
   .bard-modal-additional-features-text-one,
   .bard-modal-additional-features-text-two,
   .bard-modal-features-text-one,
@@ -1078,14 +1022,6 @@
   }
 }
 @media (max-width: 750px) {
-  // .bard-modal-honors-title,
-  // .additional-features-title,
-  // .main-features-title,
-  // .bard-modal-user-title,
-  // .bard-modal-api-title {
-  //   font-size: 40px;
-  // }
-
   .bard-modal-additional-features-text-one,
   .bard-modal-additional-features-text-two,
   .bard-modal-features-text-one,

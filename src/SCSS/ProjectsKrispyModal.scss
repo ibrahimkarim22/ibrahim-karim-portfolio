@@ -47,9 +47,6 @@ page 1
 .krispy-logos-container {
   display: flex;
   flex-direction: row;
-  // justify-content: center;
-  // align-content: center;
-
   width: 100vw;
   height: auto;
   grid-column: 1 / -1;
@@ -286,7 +283,6 @@ PAGE 3
 .map-info,
 .map-info-two {
   color: aliceblue;
-  // padding: 0vh 30vw 0vw 30vw;
 }
 
 .map-title {

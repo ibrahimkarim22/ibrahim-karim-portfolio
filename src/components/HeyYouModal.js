@@ -9,7 +9,6 @@ import socketCreate from "../images/socketCreate.png";
 import socketLocation from "../images/socketLocation.png";
 import socketMessage from "../images/socketMessage.png";
 import googleMaps from "../images/googleMaps.png";
-import js from "../images/js.png";
 import docker from "../images/docker.png";
 import native from "../images/native.png";
 import run from "../images/run.png";

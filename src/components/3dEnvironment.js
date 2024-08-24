@@ -1,11 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import {
-  OrbitControls,
-  useGLTF,
-  PerspectiveCamera,
-  PresentationControls,
-} from "@react-three/drei";
+import { OrbitControls, useGLTF, PerspectiveCamera } from "@react-three/drei";
 import * as THREE from "three";
 import Progress from "./Progress";
 import landscape from "../models/landscape2.glb";

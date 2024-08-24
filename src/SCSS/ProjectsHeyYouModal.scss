@@ -5,7 +5,6 @@
 .hey-you-modal-body-main {
   background-color: rgb(255, 255, 255);
   padding: 0px;
-  // overflow: hidden;
 }
 
 .hey-you-horizontal-scroll {
@@ -146,7 +145,6 @@
   .hey-you-modal-main-title {
     font-size: 33px;
   }
-  //backend page
   .node-hey-you-modal,
   .mongo-hey-you-modal,
   .express-hey-you-modal {
@@ -360,7 +358,6 @@
 .bg-light-hey-you-modal-three {
   grid-column: 1 / 7;
   grid-row: 1 / 6;
-  // box-shadow: red 0px 0px 100px 100px ;
   background-color: rgba(227, 227, 227, 0.251);
   opacity: 0.3;
   z-index: 2;
@@ -454,7 +451,6 @@
   height: 100vw;
   width: 45vw;
   object-fit: contain;
-  // overflow-x:auto;
 }
 
 .rotate-me {
@@ -479,7 +475,6 @@
 
 @media (max-width: 1000px) and (orientation: portrait) {
   .hey-you-phone-flex-container {
-    // flex-direction: column;
     overflow: auto;
 
     overflow-y: auto;
@@ -780,10 +775,6 @@
     font-size: 12px;
     z-index: 100;
   }
-
-  // .google-maps-api-logos-container {
-  //   grid-row: 9 / 12;
-  // }
   .google-maps-api-logo-one-container {
     scale: 0.1;
   }
@@ -968,7 +959,6 @@
   border-radius: 44% 44% 0 0;
   z-index: 5;
   animation: waterFurther 7s ease-in infinite;
-  // transform: rotate(180deg);
 }
 
 .water-div-at-distance {
@@ -978,13 +968,11 @@
   box-shadow: blue 0px 0px 100px 1px;
   border-radius: 44% 44% 0 0;
   z-index: 4;
-  // animation: waterAtDistance 5s ease-in infinite;
 }
 
 .water-particle-one {
   grid-column: 8 / 9;
   grid-row: 6 / 9;
-  // scale: 2;
   background-color: rgb(0, 106, 255);
   box-shadow: rgb(0, 106, 255) 0 0 100px 77px;
   z-index: 8;
@@ -994,7 +982,6 @@
 .water-particle-two {
   grid-column: 9 / 10;
   grid-row: 6 / 7;
-  // scale: 2;
   background-color: rgb(0, 106, 255);
   box-shadow: rgb(0, 106, 255) 0 0 100px 77px;
   z-index: 8;
@@ -1087,7 +1074,6 @@
 .google-cloud-run-logo {
   width: 20%;
   height: auto;
-  // margin-left: 5vw;
 }
 .google-cloud-run-building-title {
   grid-column: 1 / 4;
