@@ -112,7 +112,7 @@
   justify-content: center;
   align-items: center;
   margin: 10px;
-  font-size: 22px;
+  font-size: 20px;
   color: rgb(255, 255, 255);
   font-family: "Raleway", sans-serif;
   font-weight: 300;
@@ -196,7 +196,7 @@
 }
 
 .profile-div-main-mobile > div {
-  font-size: 15px;
+  font-size: 22px;
 }
 
 .social-container-mobile {
@@ -206,7 +206,7 @@
 }
 
 .social-container-mobile div {
-  font-size: 20px;
+  font-size: 25px;
 }
 
 .whacka-div-main,
@@ -620,15 +620,6 @@ MEDIA QUERIES
     font-size: 35px;
   }
 
-  .social-container div {
-    font-size: 20px;
-  }
-
-  // .profile-image {
-  //   width: 11vw;
-
-  // }
-
   .profile-div-main > div {
     font-size: 18px;
   }
@@ -662,11 +653,13 @@ MEDIA QUERIES
   .nav-home-btn,
   .nav-resume-btn,
   .nav-three-dee-resume-btn {
-    font-size: 28px;
+    font-size: 22px;
   }
 
-  .social-container div {
-    font-size: 18px;
+  .nav-gmail-btn,
+  .nav-linkedin-btn,
+  .nav-github-btn {
+    font-size: 15px;
   }
 
   // .profile-image {
@@ -771,9 +764,9 @@ MEDIA QUERIES
     font-size: 22px;
   }
 
-  .social-container div {
-    font-size: 14px;
-  }
+  // .social-container div {
+  //   font-size: 14px;
+  // }
 
   // .profile-image {
   //   width: 6vw;
@@ -859,9 +852,9 @@ MEDIA QUERIES
     font-size: 15px;
   }
 
-  .social-container div {
-    font-size: 12px;
-  }
+  // .social-container div {
+  //   font-size: 12px;
+  // }
 
   // .profile-image-container {
   //   grid-column: 13 / 15;
@@ -908,6 +901,12 @@ MEDIA QUERIES
     font-size: 7.5px;
   }
 }
+
+// @media (max-height: 1000px) and (orientation: landscape) {
+//   .social-container-mobile {
+//       flex-direction: column;
+// }
+// }
 
 @media (max-width: 1008px) {
   .projects-div-main {
@@ -964,7 +963,7 @@ MEDIA QUERIES
   .hey-you-text,
   .bard-text,
   .this-portfolio-text {
-    font-size: 20px;
+    font-size: 5vw;
     grid-row: 1 / 3;
     grid-column: 2 / 5;
   }
@@ -974,7 +973,7 @@ MEDIA QUERIES
   .hey-you-description-text,
   .bard-description-text,
   .this-portfolio-description-text {
-    font-size: 15px;
+    font-size: 4vw;
     grid-column: 2 / 5;
     grid-row: 2 / 4;
   }
@@ -984,7 +983,7 @@ MEDIA QUERIES
   .hey-you-software-text-container > div,
   .bard-software-text-container > div,
   .this-portfolio-software-text-container > div {
-    font-size: 10px;
+    font-size: 20px;
     margin: 10px;
     text-wrap: nowrap;
   }
@@ -1005,7 +1004,7 @@ MEDIA QUERIES
     display: flex;
   }
   .social-container-mobile div {
-    font-size: 12px;
+    font-size: 18px;
   }
 
   .profile-div-main {
@@ -1025,7 +1024,7 @@ MEDIA QUERIES
   .nav-home-btn,
   .nav-resume-btn,
   .nav-three-dee-resume-btn {
-    font-size: 15px;
+    font-size: 25px;
   }
 
   .nav-div-main,
@@ -1048,7 +1047,7 @@ MEDIA QUERIES
   .krispy-div-main,
   .hey-you-div-main,
   .bard-div-main {
-    height: 50vh;
+    height: 100vh;
   }
 }
 
@@ -1103,7 +1102,7 @@ MEDIA QUERIES
   .nav-home-btn,
   .nav-resume-btn,
   .nav-three-dee-resume-btn {
-    font-size: 15px;
+    font-size: 25px;
     border: black 1px solid;
     background-color: rgba(65, 100, 141, 0.801);
     font-family: "Cormorant Garamond", serif;
@@ -1111,9 +1110,9 @@ MEDIA QUERIES
     font-weight: 200;
     // padding: 10px;
   }
-  .social-container-mobile div {
-    font-size: 12px;
-  }
+  // .social-container-mobile div {
+  //   font-size: 12px;
+  // }
 
   .profile-div-main-mobile div {
     font-size: 15px;
@@ -1124,7 +1123,7 @@ MEDIA QUERIES
   .hey-you-software-text-container > div,
   .bard-software-text-container > div,
   .this-portfolio-software-text-container > div {
-    font-size: 2vw;
+    font-size: 4vw;
   }
 }
 
@@ -1138,9 +1137,7 @@ MEDIA QUERIES
   .profile-image {
     width: 20vw;
   }
-  .social-container-mobile div {
-    font-size: 10px;
-  }
+
   .whacka-software-text-container > div,
   .krispy-software-text-container > div,
   .hey-you-software-text-container > div,
@@ -1151,7 +1148,7 @@ MEDIA QUERIES
   .nav-three-dee-resume-btn,
   .nav-resume-btn,
   .nav-home-btn {
-    font-size: 10px;
+    font-size: 20px;
   }
 }
 

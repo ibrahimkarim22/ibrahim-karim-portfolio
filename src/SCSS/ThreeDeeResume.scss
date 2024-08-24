@@ -19,14 +19,6 @@
   flex-direction: column;
 }
 
-@media (min-width: 1024px) {
-  .blender-environment {
-    height: 100%;
-    width: 100%;
-    display: block;
-  }
-}
-
 .orbit-instructions {
   background-color: rgba(255, 255, 255, 0.8);
   border-radius: 33px;
@@ -57,4 +49,23 @@
 
 .back-button:hover {
   background-color: #b39800;
+}
+@media (min-width: 1024px) {
+  .blender-environment {
+    display: block;
+  }
+  .orbit-instructions {
+    display: inline-block;
+  }
+}
+
+@media (max-width: 1023px) {
+  .blender-environment {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+  }
+  .orbit-instructions {
+    display: none;
+  }
 }

@@ -54,7 +54,7 @@ function ThisPortfolioModal({ isOpen, closeModal }) {
                   and{" "}
                   <span style={{ fontStyle: "italic" }}>loading progress</span>{" "}
                   on launch. <span className="bold-text">Blender</span> and{" "}
-                  <span className="bold-text">React Three Fiber</span>" were
+                  <span className="bold-text">React Three Fiber</span>{" "} were
                   essential for modeling, animating, and rendering 3D objects
                   like the portfolio title, Android phones, and the 3D resume.
                   To optimize for various viewports, I applied modern{" "}
@@ -182,7 +182,7 @@ function ThisPortfolioModal({ isOpen, closeModal }) {
                   and the 3D portfolio using Blender. After creating these
                   models, I exported them as{" "}
                   <span className="bold-text">GLTF files</span> and used{" "}
-                  <span className="bold-text">React Three Fiber</span> to import
+                  <span className="bold-text">React Three Fiber</span>{" "} to import
                   and render them within React. This allowed me to integrate the
                   3D elements into the interactive scene. Since there were many
                   instances of the 3D phone model, I rendered them as images
@@ -262,7 +262,7 @@ function ThisPortfolioModal({ isOpen, closeModal }) {
               </div>
               <div className="java-script-progress-paragraph-one-container">
                 <div className="java-script-progress-paragraph-one">
-                  <span className="bold-text">LOADING SCREEN</span>: for smooth
+                  <span className="bold-text">Loading Screen</span>: for smooth
                   transitions when 3D GLTF models (3D portfolio & name logo) are
                   loading I used a loading screen. This prevents any delays or
                   stuttering when displaying 3D content.
