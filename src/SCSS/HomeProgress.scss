@@ -16,6 +16,17 @@
   filter: brightness(0%);
 }
 
+@keyframes loadingText {
+  0% {
+    scale: .5;
+  }
+  50% {
+    scale: 2;
+  }
+  100% {
+    scale: .5;
+  }
+}
 .progress-text {
   font-family: "Bodoni Moda SC", serif;
   font-size: 5vw;
@@ -23,9 +34,10 @@
   font-style: normal;
   color: white;
   position: absolute;
-  top: 80%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-shadow: black 1px 1px 3px;
   text-align: center;
+  animation: loadingText 7s ease-in-out forwards infinite;
 }

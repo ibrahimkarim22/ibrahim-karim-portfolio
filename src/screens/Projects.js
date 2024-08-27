@@ -75,6 +75,7 @@ const Projects = () => {
             className="profile-image"
             src={karim}
             alt="ibrahim's profile image"
+            onClick={() => window.open(karim, '_blank')}
           />
         </div>
         <div className="profile-div-main">

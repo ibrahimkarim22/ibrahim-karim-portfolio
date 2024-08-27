@@ -39,10 +39,10 @@ function WhackaModal({ isOpen, closeModal }) {
                   <span className="blue-text">Git</span>,{" "}
                   <span className="blue-text"> GitHub</span>, and{" "}
                   <span className="blue-text"> VS Code Live Share</span> for
-                  collaboration. The game itself is a 2D challenge where your
-                  goal is to click as many moles as possible. But be careful—you
-                  only have one life! Avoid hitting empty cells, don't miss the
-                  extra points mole, and definitely steer clear of the Nuke!
+                  collaboration. Players have 60 seconds to score points:
+                  clicking moles earns 5 points, hearts 30 points, empty cells
+                  deduct 5 points, and clicking the Nuke ends the game
+                  instantly.
                 </div>
               </div>
               <div className="whacka-modal-js-logo-container">
