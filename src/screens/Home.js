@@ -55,7 +55,7 @@ function Home() {
                 Github
               </a>
               <a
-                href="mailto:hema-thechamp@yahoo.com"
+                href="mailto:22ibrahimkarim@gmail.com"
                 rel="noopener noreferrer"
                 target="_blank"
                 className="gmail"

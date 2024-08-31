@@ -401,7 +401,7 @@ function ThisPortfolioModal({ isOpen, closeModal }) {
             color="warning"
             className="this-portfolio-site-btn"
             onClick={() =>
-              (window.location.href = "mailto:ib2ra2heem@gmail.com")
+              (window.location.href = "mailto:22ibrahimkarim@gmail.com")
             }
           >
             Email!

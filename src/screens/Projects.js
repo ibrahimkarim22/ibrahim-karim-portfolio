@@ -61,7 +61,7 @@ const Projects = () => {
             Github
           </a>
           <a
-            href="mailto:hema-thechamp@yahoo.com"
+            href="mailto:22ibrahimkarim@gmail.com"
             rel="noopener noreferrer"
             target="_blank"
             className="nav-gmail-btn"
@@ -99,7 +99,7 @@ const Projects = () => {
           >
             <div>GitHub</div>
           </Link>
-          <Link className="nav-gmail-btn" to="mailto:ib2ra2heem@gmail.com">
+          <Link className="nav-gmail-btn" to="mailto:22ibrahimkarim@gmail.com">
             <div> Gmail</div>
           </Link>
         </div>
