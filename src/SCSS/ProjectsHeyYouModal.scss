@@ -84,49 +84,8 @@
   animation: arrow 4s ease-in-out infinite;
 }
 
-@media (max-width: 2500px) {
-  .hey-you-modal-backend-paragraph {
-    font-size: 20px;
-  }
 
-  .hey-you-modal-backend-text,
-  .hey-you-bg-logo-one {
-    font-size: 3rem;
-  }
 
-  .node-hey-you-modal {
-    scale: 0.5;
-  }
-
-  .mongo-hey-you-modal {
-    scale: 0.5;
-  }
-
-  .express-hey-you-modal {
-    scale: 0.5;
-  }
-  .hey-you-modal-backend-logo-names {
-    font-size: 20px;
-  }
-}
-
-@media (max-width: 1200px) {
-  .hey-you-modal-backend-paragraph,
-  .hey-you-modal-backend-logo-names {
-    font-size: 14px;
-  }
-
-  .hey-you-modal-backend-text,
-  .hey-you-bg-logo-one {
-    font-size: 2rem;
-  }
-
-  .node-hey-you-modal,
-  .mongo-hey-you-modal,
-  .express-hey-you-modal {
-    scale: 0.5;
-  }
-}
 
 @media (max-width: 1800px) {
   .hey-you-modal-main-title {
@@ -152,22 +111,7 @@
   }
 }
 
-@media (max-width: 800px) {
-  .hey-you-bg-logo-one {
-    grid-column: 1 / -1;
-    grid-row: 5 / 6;
-  }
 
-  .hey-you-modal-backend-paragraph {
-    grid-column: 2 / 10;
-    grid-row: 6 / 10;
-  }
-  .hey-you-modal-backend {
-    grid-column: 1 / -1;
-    grid-row: 1 / 5;
-    width: 100%;
-  }
-}
 
 @media (max-width: 701px) {
   .hey-you-modal-main-title {
@@ -401,6 +345,56 @@
   font-weight: 300;
   z-index: 3;
 }
+
+
+@media (max-width: 2500px) {
+  .hey-you-modal-backend-paragraph {
+    font-size: 20px;
+  }
+
+  .hey-you-modal-backend-text,
+  .hey-you-bg-logo-one {
+    font-size: 3rem;
+  }
+
+  .node-hey-you-modal,
+  .mongo-hey-you-modal {
+    width: 7rem;
+    height: auto;
+  }
+
+
+  .express-hey-you-modal {
+    width: 11rem;
+    height: auto;
+  }
+  .hey-you-modal-backend-logo-names {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 1200px) {
+  .hey-you-modal-backend-paragraph {
+    font-size: 14px;
+  }
+
+  .hey-you-modal-backend-text,
+  .hey-you-bg-logo-one {
+    font-size: 1rem;
+  }
+
+}
+@media (max-width: 700px) {
+  .hey-you-modal-backend-paragraph {
+    font-size: 1rem;
+  }
+
+  .hey-you-modal-backend-text,
+  .hey-you-bg-logo-one {
+    font-size: .9rem;
+  }
+
+}
 /*==========================
       React Native Page
         grid main
@@ -609,7 +603,7 @@
   }
   .socket-io-create-img,
   .socket-io-join-img {
-    width: 60%;
+    width: 15rem;
   }
   .socket-io-location-img-container {
     grid-column: 4 / 11;
@@ -623,66 +617,26 @@
   .socket-io-message-img {
     width: 100%;
   }
-}
-@media (max-width: 700px) {
   .hey-you-modal-realtime-title {
-    font-size: 20px;
-  }
-
+        font-size: .8rem;
+      }
+    
+      .hey-you-modal-realtime-paragraph {
+        font-size: 0.8rem;
+      }
+    }
+@media (max-height: 450px) {
   .hey-you-modal-realtime-paragraph {
-    font-size: 18px;
-  }
-}
-
-@media (max-width: 470px) {
-  .hey-you-modal-realtime-title {
-    font-size: 18px;
-  }
-
-  .hey-you-modal-realtime-paragraph {
-    font-size: 18px;
+    font-size: 0.5rem;
   }
   .socket-io-create-img,
-  .socket-io-join-img {
-    width: 80%;
-  }
-  .socket-io-message-img {
-    width: 125%;
-  }
+  .socket-io-join-img,
+  .socket-io-message-img,
   .socket-io-location-img {
-    width: 125%;
+    width: 10rem;
   }
 }
 
-@media (max-height: 700px) {
-  .hey-you-modal-realtime-title {
-    font-size: 22px;
-  }
-
-  .hey-you-modal-realtime-paragraph {
-    font-size: 18px;
-  }
-  .socket-io-create-img,
-  .socket-io-join-img {
-    width: 20%;
-  }
-
-  .socket-io-message-img-container {
-    grid-column: 1 / 7;
-    grid-row: 4 / 8;
-  }
-  .socket-io-message-img {
-    width: 75%;
-  }
-
-  .socket-io-location-img-container {
-    grid-column: 8 / 12;
-    grid-row: 4 / 8;
-  }
-  .socket-io-location-img {
-    width: 110%;
-  }
-}
 
 /*==========================
       GOOGLE MAPS API PAGE
@@ -754,11 +708,11 @@
 }
 @media (max-width: 1000px) {
   .google-maps-api-title {
-    font-size: 20px;
+    font-size: 4vw;
   }
 
   .google-maps-api-paragraph {
-    font-size: 22px;
+    font-size: 3vw;
   }
 
   .google-maps-api-logo-one-container {
@@ -802,7 +756,7 @@
 .safety-features-paragraph-two {
   grid-column: 1 / -1;
   grid-row: auto;
-  font-size: 70px;
+  font-size: 2vw;
   font-family: "Raleway", sans-serif;
   font-optical-sizing: auto;
   font-weight: 200;
@@ -817,7 +771,7 @@
 
 .safety-features-paragraph,
 .safety-features-paragraph-two {
-  padding: 0px 100px 0px 100px;
+  padding: 1vh 10vw 1vh 10vw;
 }
 
 .fa-user-secret {
@@ -825,7 +779,7 @@
   grid-row: auto;
   z-index: 3;
   color: rgb(0, 0, 0);
-  font-size: 100px;
+  font-size: 3rem;
   text-shadow: rgb(0, 0, 0) 2px 5px 5px;
   animation: faUser 10s linear infinite;
 }
@@ -840,71 +794,14 @@
   animation: keyHeyYouModal 22s linear 4s infinite;
 }
 
-@media (max-width: 3000px) {
-  .saftey-features-title {
-    font-size: 60px;
-  }
-
-  .safety-features-paragraph {
-    font-size: 30px;
-  }
-
-  .safety-features-paragraph-two {
-    font-size: 30px;
-  }
+@media (max-height: 400px) {
+  
+.saftey-features-title,
+.safety-features-paragraph,
+.safety-features-paragraph-two
+{
+  font-size: .7rem;
 }
-@media (max-width: 2000px) {
-  .saftey-features-title {
-    font-size: 40px;
-  }
-
-  .safety-features-paragraph,
-  .safety-features-paragraph-two {
-    font-size: 28px;
-  }
-}
-@media (max-width: 1000px) {
-  .saftey-features-title {
-    font-size: 40px;
-  }
-
-  .fa-user-secret {
-    font-size: 50px;
-  }
-
-  .fa-key {
-    font-size: 50px;
-  }
-}
-@media (max-width: 500px) {
-  .fa-user-secret,
-  .fa-key {
-    font-size: 30px;
-  }
-}
-
-@media (max-height: 500px) and (orientation: landscape) {
-  .saftey-features-title {
-    font-size: 20px;
-    grid-row: 2 / 6;
-  }
-
-  .safety-features-paragraph {
-    font-size: 20px;
-  }
-
-  .safety-features-paragraph-two {
-    font-size: 20px;
-  }
-
-  .fa-user-secret,
-  .fa-key {
-    font-size: 25px;
-  }
-
-  .fa-user-secret {
-    grid-row: 2 / 6;
-  }
 }
 
 /*==========================
@@ -928,7 +825,7 @@
   font-style: normal;
   grid-column: 2 / 6;
   grid-row: 1 / 6;
-  font-size: 40px;
+  font-size: 1vw;
   font-weight: 500;
   color: snow;
   text-align: start;
@@ -1078,7 +975,7 @@
 .google-cloud-run-building-title {
   grid-column: 1 / 4;
   grid-row: 9 / 11;
-  font-size: 50px;
+  font-size: 3vw;
   transform: perspective(300px) rotateY(30deg);
   z-index: 11;
   font-family: "Raleway", sans-serif;
@@ -1111,7 +1008,7 @@
 .expo-building-title {
   grid-column: 1 / 4;
   grid-row: 11 / 13;
-  font-size: 70px;
+  font-size: 3vw;
   font-family: "Raleway", sans-serif;
   font-optical-sizing: auto;
   font-weight: 200;
@@ -1146,7 +1043,7 @@
 }
 
 .hey-you-modal-deployment-title {
-  font-size: 75px;
+  font-size: 3vw;
   grid-column: 1 / -1;
   grid-row: 10 / 12;
   font-family: "Raleway", sans-serif;
@@ -1157,36 +1054,6 @@
   z-index: 11;
 }
 
-@media (min-width: 2000px) {
-  .google-cloud-run-building-title,
-  .expo-building-title,
-  .hey-you-modal-deployment-title {
-    font-size: 100px;
-  }
-}
-
-@media (max-width: 3000px) {
-  .hey-you-modal-deployment-paragraph-backend,
-  .hey-you-modal-deployment-paragraph-frontend {
-    font-size: 20px;
-  }
-  .google-cloud-run-building-title,
-  .expo-building-title,
-  .hey-you-modal-deployment-title {
-    font-size: 40px;
-  }
-}
-@media (max-height: 1000px) {
-  .hey-you-modal-deployment-paragraph-backend,
-  .hey-you-modal-deployment-paragraph-frontend {
-    font-size: 18px;
-  }
-  .google-cloud-run-building-title,
-  .expo-building-title,
-  .hey-you-modal-deployment-title {
-    font-size: 18px;
-  }
-}
 
 @media (max-height: 500px) {
   .hey-you-modal-deployment-paragraph-frontend {
@@ -1201,15 +1068,16 @@
 }
 
 @media (max-width: 750px) {
-  .google-cloud-run-building-title,
-  .expo-building-title,
-  .hey-you-modal-deployment-title {
-    font-size: 15px;
-  }
+
 
   .hey-you-modal-deployment-paragraph-backend {
     grid-row: 3 / 5;
   }
+  .hey-you-modal-deployment-paragraph-frontend,
+  .hey-you-modal-deployment-paragraph-backend  {
+    font-size: 2vw;
+  }
+  
 }
 
 @media (max-width: 500px) {
@@ -1217,12 +1085,10 @@
     grid-column: 6 / 10;
     grid-row: 3 / 5;
     z-index: 11;
-    font-size: 18px;
   }
 
   .hey-you-modal-deployment-paragraph-backend {
     grid-row: 3 / 5;
-    font-size: 18px;
   }
 }
 

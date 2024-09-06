@@ -221,6 +221,21 @@
   background-color: rgb(255, 255, 255);
 }
 
+@media (max-width: 700px) {
+  .hey-you-modal-header .modal-title {
+
+    font-size: 1rem;
+  }
+  
+  .hey-you-modal-header-text-two {
+    font-size: 0.7rem;
+  }
+  .hey-you-modal-header .btn-close {
+    scale: .5;
+  }
+}
+
+
 /*BARD*/
 
 .bard-modal-header {
