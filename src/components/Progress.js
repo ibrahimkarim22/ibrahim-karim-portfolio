@@ -9,7 +9,10 @@ const Progress = ({ progress }) => {
         style={{ filter: `brightness(${progress}%)` }}
         alt="Loading Image"
       /> */}
-      <div className="progress-text">Loading... {progress}%</div>
+      <div className="progress-info">
+      <div className="progress-text">Loading...</div>
+      <div className="progress-percentage">{progress}%</div>
+    </div>
     </div>
   );
 };

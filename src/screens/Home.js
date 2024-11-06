@@ -46,7 +46,7 @@ function Home() {
                 Linkedin
               </a>
               <a
-                href="https://github.com/ibrahim-karim-22"
+                href="https://github.com/ibrahimkarim22"
                 rel="noopener noreferrer"
                 target="_blank"
                 className="github"

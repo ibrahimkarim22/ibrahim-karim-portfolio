@@ -8,7 +8,13 @@
   overflow: hidden;
 }
 
-.progress-image {
+.progress-info {
+  display: flex;
+  flex-direction: column; 
+  align-items: center;
+}
+
+/*.progress-image {
   width: 80%;
   max-width: 500px;
   height: auto;
@@ -26,18 +32,21 @@
   100% {
     scale: .5;
   }
-}
-.progress-text {
-  font-family: "Bodoni Moda SC", serif;
+}*/
+.progress-text, .progress-percentage {
+  font-family: "Bangers", serif;
   font-size: 5vw;
   font-weight: 100;
   font-style: normal;
-  color: white;
-  position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  color: snow;
   text-shadow: black 1px 1px 3px;
   text-align: center;
-  animation: loadingText 7s ease-in-out forwards infinite;
+  letter-spacing: 1vw;
+  /* animation: loadingText 7s ease-in-out forwards infinite;*/
 }
+
+
+// .progress-percentage {
+//   width: 5em;
+//   text-align: left;
+// }

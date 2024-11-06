@@ -52,7 +52,7 @@ const Projects = () => {
           </a>
 
           <a
-            href="https://github.com/ibrahim-karim-22"
+            href="https://github.com/ibrahimkarim22"
             rel="noopener noreferrer"
             target="_blank"
             className="nav-github-btn"
@@ -95,7 +95,7 @@ const Projects = () => {
           </Link>
           <Link
             className="nav-github-btn"
-            to="https://github.com/ibrahim-karim-22"
+            to="https://github.com/ibrahimkarim22"
           >
             <div>GitHub</div>
           </Link>
