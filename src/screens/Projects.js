@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useLocation, useNavigate} from "react-router-dom";
 import { Link } from "react-router-dom";
 import WhackaModal from "../components/WhackaModal";
 import KrispyModal from "../components/KrispyModal";
@@ -8,17 +9,17 @@ import ThisPortfolioModal from "../components/ThisPortfolioModal";
 import karim from "../images/karim.jpeg";
 
 const Projects = () => {
-  const [modalOpen, setModalOpen] = useState({
-    WhackaModal: false,
-    KrispyModal: false,
-  });
+  const location = useLocation();
+  const navigate = useNavigate();
 
-  const openModal = (modal) => {
-    setModalOpen({ ...modalOpen, [modal]: true });
+  const modalName = location.pathname.split("/")[2]?.toLowerCase();
+
+  const openModal = (modalName) => {
+    navigate(`/projects/${modalName.toLowerCase()}`);
   };
 
-  const closeModal = (modal) => {
-    setModalOpen({ ...modalOpen, [modal]: false });
+  const closeModal = () => {
+    navigate("/projects")
   };
 
   return (
@@ -104,11 +105,8 @@ const Projects = () => {
           </Link>
         </div>
       </div>
-      <div className="whacka-div-main" onClick={() => openModal("WhackaModal")}>
-        <WhackaModal
-          isOpen={modalOpen.WhackaModal}
-          closeModal={() => closeModal("WhackaModal")}
-        />
+      <div className="whacka-div-main" onClick={() => openModal("whackamole")}>
+        <WhackaModal isOpen={modalName === "whackamole"} closeModal={closeModal} />
         <div className="whacka-text">Whack a Mole</div>
         <div className="whacka-software-text-container">
           <div className="whacka-js">JavaScript</div>
@@ -117,11 +115,8 @@ const Projects = () => {
         </div>
         <div className="whacka-description-text">Online Game</div>
       </div>
-      <div className="krispy-div-main" onClick={() => openModal("KrispyModal")}>
-        <KrispyModal
-          isOpen={modalOpen.KrispyModal}
-          closeModal={() => closeModal("KrispyModal")}
-        />
+      <div className="krispy-div-main" onClick={() => openModal("krispy")}>
+      <KrispyModal isOpen={modalName === "krispy"} closeModal={closeModal} />
         <div className="krispy-text">KRISPY</div>
         <div className="krispy-software-text-container">
           <div className="krispy-js">JavaScript</div>
@@ -134,13 +129,8 @@ const Projects = () => {
         <div className="krispy-description-text">Streaming Service</div>
       </div>
       <div
-        className="hey-you-div-main"
-        onClick={() => openModal("HeyYouModal")}
-      >
-        <HeyYouModal
-          isOpen={modalOpen.HeyYouModal}
-          closeModal={() => closeModal("HeyYouModal")}
-        />
+        className="hey-you-div-main" onClick={() => openModal("heyyou")}>
+        <HeyYouModal isOpen={modalName === "heyyou"} closeModal={closeModal} />
         <div className="hey-you-text">HeyYou</div>
         <div className="hey-you-software-text-container">
           <div className="hey-you-js">JavaScript</div>
@@ -153,11 +143,8 @@ const Projects = () => {
         </div>
         <div className="hey-you-description-text">Location & Chat</div>
       </div>
-      <div className="bard-div-main" onClick={() => openModal("BardModal")}>
-        <BardModal
-          isOpen={modalOpen.BardModal}
-          closeModal={() => closeModal("BardModal")}
-        />
+      <div className="bard-div-main" onClick={() => openModal("bard")}>
+      <BardModal isOpen={modalName === "bard"} closeModal={closeModal} />
         <div className="bard-text">BARD</div>
         <div className="bard-software-text-container">
           <div className="bard-js">JavaScript</div>
@@ -169,13 +156,8 @@ const Projects = () => {
         <div className="bard-description-text">Online Course</div>
       </div>
       <div
-        className="this-portfolio-div-main"
-        onClick={() => openModal("ThisPortfolioModal")}
-      >
-        <ThisPortfolioModal
-          isOpen={modalOpen.ThisPortfolioModal}
-          closeModal={() => closeModal("ThisPortfolioModal")}
-        />
+        className="this-portfolio-div-main" onClick={() => openModal("thisportfolio")}>
+        <ThisPortfolioModal isOpen={modalName === "thisportfolio"} closeModal={closeModal} />
         <div className="this-portfolio-text">Portfolio</div>
         <div className="this-portfolio-software-text-container">
           <div className="this-portfolio-js">JavaScript </div>
