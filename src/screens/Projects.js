@@ -6,6 +6,7 @@ import KrispyModal from "../components/KrispyModal";
 import HeyYouModal from "../components/HeyYouModal";
 import BardModal from "../components/BardModal";
 import ThisPortfolioModal from "../components/ThisPortfolioModal";
+import KanbanBoardModal from "../components/KanbanBoardModal";
 import karim from "../images/karim.jpeg";
 
 const Projects = () => {
@@ -25,7 +26,7 @@ const Projects = () => {
   return (
     <div className="projects-div-main">
       <div className="nav-div-main">
-        <div className="ibrahim-karim-mobile">Ibrahim Karim</div>
+        {/* <div className="ibrahim-karim-mobile">Ibrahim Karim</div> */}
         <Link className="nav-home-btn" to="/">
           <div>Home</div>
         </Link>
@@ -78,14 +79,14 @@ const Projects = () => {
             alt="ibrahim's profile image"
             onClick={() => window.open(karim, '_blank')}
           />
-        </div>
         <div className="profile-div-main">
           <div className="ibrahim-karim">Ibrahim Karim</div>
           <div className="location">Livonia, Michigan</div>
-          <div className="phone">(248) 499-2327</div>
+        </div>
+          
         </div>
       </div>
-      <div className="profile-main-mobile">
+      {/* <div className="profile-main-mobile">
         <div className="profile-div-main-mobile">
           <div className="location">Livonia, Michigan</div>
           <div className="phone">(248) 499-2327</div>
@@ -104,7 +105,7 @@ const Projects = () => {
             <div> Gmail</div>
           </Link>
         </div>
-      </div>
+      </div> */}
       <div className="whacka-div-main" onClick={() => openModal("whackamole")}>
         <WhackaModal isOpen={modalName === "whackamole"} closeModal={closeModal} />
         <div className="whacka-text">Whack a Mole</div>
@@ -168,6 +169,18 @@ const Projects = () => {
           <div className="this-portfolio-react-fiber">React Three</div>
         </div>
         <div className="this-portfolio-description-text">This Portfolio</div>
+      </div>
+      <div className="kanban-div-main" onClick={() => openModal("kanban")}>
+        <KanbanBoardModal isOpen={modalName === "kanban"} closeModal={closeModal} />
+        <div className="kanban-text">Kanban Board</div>
+        <div className="kanban-software-text-container">
+          <div className="kanban-js">Java Script</div>
+          <div className="kanban-react">React</div>
+          <div className="kanban-scss">SCSS</div>
+          <div className="kanban-firebase">Firebase</div>
+          <div className="kanban-firestore">Firestore</div>
+        </div>
+        <div className="kanban-description-text">To Do List</div>
       </div>
 
       <div className="footer-div-main">

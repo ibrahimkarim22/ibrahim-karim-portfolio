@@ -3,29 +3,29 @@
                MAIN GRID         
 /* ================================== */
 
-.projects-div-main-container {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-}
 
 .projects-div-main {
   display: grid;
-  grid-template-columns: repeat(10, 1fr);
-  grid-template-rows: repeat(10, 1fr);
-  gap: 0px;
-  width: 80%;
-  height: 80%;
-  background-color: rgb(255, 255, 255);
-  border-radius: 55px;
-  position: absolute;
-  top: 10%;
-  left: 50%;
-  transform: translateX(-50%);
-  box-shadow: 0px 0px 100px rgb(0, 128, 255);
+  grid-template-areas: 
+  'n n n n n'
+  'a b c d e'
+  'f g h i j'
+  'fo fo fo fo fo'
+  ;
+  grid-template-columns: 20vw 20vw 20vw 20vw 20vw;
+  grid-template-rows: 20vh 50vh 50vh 20vh;
+  // gap: 0px;
+  // width: 0%;
+  // height: 80%;
+  background-color: rgb(0, 0, 0);
+  // border-radius: 55px;
+  // position: absolute;
+  // top: 10%;
+  // left: 50%;
+  // transform: translateX(-50%);
   animation: projectsPageBgStartUp 5s ease-in-out forwards;
   overflow-x: hidden;
-  overflow-y: hidden;
+  // overflow-y: hidden;
 }
 
 /* ================================== *
@@ -33,14 +33,15 @@
 /* ================================== */
 
 .nav-div-main {
-  width: 100%;
-  grid-column: 1 / 11;
-  grid-row: 1 / 3;
+  // width: 100%;
+  grid-area: n;
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(3, 1fr);
+  grid-template-areas: 
+  'home resume pro info imageinfo'
+  ;
+  // grid-template-columns: 20vw 20vw 20vw 20vw 15vw;
   z-index: 50;
-  border-radius: 53px 53px 0px 0px;
+  // border-radius: 53px 53px 0px 0px;
   background-color: rgba(0, 15, 82, 0.774);
   box-shadow: 0px 0px 100px rgb(0, 0, 0);
   animation: navDivStartup 3s ease-in-out;
@@ -51,7 +52,9 @@
 .nav-three-dee-resume-btn,
 .nav-linkedin-btn,
 .nav-github-btn,
-.nav-gmail-btn {
+.nav-gmail-btn,
+.social-container,
+.profile-image-container {
   text-decoration: none;
   display: flex;
   justify-content: center;
@@ -83,25 +86,18 @@
 }
 
 .nav-home-btn {
-  grid-column: 1 / 2;
-  grid-row: 1 / -1;
+ grid-area: home;
 }
 .nav-resume-btn {
-  grid-column: 2 / 3;
-  grid-row: 1 / -1;
+  grid-area: resume;
 }
 
 .nav-three-dee-resume-btn {
-  grid-column: 3 / 4;
-  grid-row: 1 / -1;
+  grid-area: pro
 }
 
 .social-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  grid-column: 4 / 5;
-  grid-row: 1 / -1;
+  grid-area: info;
   flex-direction: row;
 }
 
@@ -121,29 +117,22 @@
 }
 
 .profile-image-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  grid-column: 5 / 6;
-  grid-row: 1 / -1;
-  transform: translate(20px, 0px);
-  margin-left: 40%;
+ grid-area: imageinfo;
 }
 
 .profile-image {
   width: 5vw;
   height: auto;
   border-radius: 50%;
+  margin-right: 2vw;
 }
 
 .profile-div-main {
-  margin-right: 40%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  grid-column: 5 / 6;
-  grid-row: 1 / -1;
+ 
 }
 
 .ibrahim-karim,
@@ -165,67 +154,69 @@
   PROJECTS
 /* ================================== */
 
-.ibrahim-karim-mobile {
-  display: none;
-}
+// .ibrahim-karim-mobile {
+//   display: none;
+// }
 
-.profile-main-mobile {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(4, 1fr);
-  grid-column: 1 / 16;
-  grid-row: 3 / 4;
-  z-index: 28;
-  display: none;
-  background-color: rgb(204, 179, 96);
-  animation: projectDivStartup 0.2s ease-in-out forwards;
-}
+// .profile-main-mobile {
+//   display: grid;
+//   grid-template-columns: repeat(5, 1fr);
+//   grid-template-rows: repeat(4, 1fr);
+//   grid-column: 1 / 16;
+//   grid-row: 3 / 4;
+//   z-index: 28;
+//   display: none;
+//   background-color: rgb(204, 179, 96);
+//   animation: projectDivStartup 0.2s ease-in-out forwards;
+// }
 
-.profile-div-main-mobile,
-.social-container-mobile {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+// .profile-div-main-mobile,
+// .social-container-mobile {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+// }
 
-.profile-div-main-mobile {
-  grid-column: 4 / 6;
-  grid-row: 1 / 5;
-  flex-direction: column;
-}
+// .profile-div-main-mobile {
+//   grid-column: 4 / 6;
+//   grid-row: 1 / 5;
+//   flex-direction: column;
+// }
 
-.profile-div-main-mobile > div {
-  font-size: 22px;
-}
+// .profile-div-main-mobile > div {
+//   font-size: 22px;
+// }
 
-.social-container-mobile {
-  grid-column: 1 / 4;
-  grid-row: 1 / 5;
-  flex-direction: row;
-}
+// .social-container-mobile {
+//   grid-column: 1 / 4;
+//   grid-row: 1 / 5;
+//   flex-direction: row;
+// }
 
-.social-container-mobile div {
-  font-size: 25px;
-}
+// .social-container-mobile div {
+//   font-size: 25px;
+// }
 
 .whacka-div-main,
 .bard-div-main,
 .krispy-div-main,
 .hey-you-div-main,
-.this-portfolio-div-main {
+.this-portfolio-div-main,
+.kanban-div-main {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(4, 1fr);
+  grid-template-areas: 
+  'title tech des'
+  ;
+  grid-template-columns: 7vw 7vw 5vw;
+  // height: 50vh;
   align-items: center;
   justify-items: center;
   cursor: pointer;
 }
 
 .whacka-div-main {
-  grid-column: 1 / 3;
-  grid-row: 1 / 11;
+  grid-area: a;
   background-color: rgb(255, 0, 0);
-  border-radius: 53px 0px 0px 53px;
   animation: projectDivStartup 1s ease-in-out forwards;
 }
 
@@ -233,40 +224,42 @@
 .bard-div-main:hover,
 .krispy-div-main:hover,
 .hey-you-div-main:hover,
-.this-portfolio-div-main:hover {
+.this-portfolio-div-main:hover,
+.kanban-div-main:hover {
   scale: 1.05;
-  border-radius: 4%;
   box-shadow: rgba(0, 0, 0, 0.397) 0px 0px 10px 10px;
   z-index: 22;
 }
 
 .krispy-div-main {
-  grid-column: 3 / 5;
-  grid-row: 1 / 11;
+  grid-area: b;
   background-color: rgb(31, 0, 80);
   animation: projectDivStartup 2s ease-in-out forwards;
 }
 
 .hey-you-div-main {
-  grid-column: 5 / 7;
-  grid-row: 1 / 11;
+  grid-area: c;
   background-color: rgb(0, 139, 139);
   animation: projectDivStartup 3s ease-in-out forwards;
 }
 
 .bard-div-main {
-  grid-column: 7 / 9;
-  grid-row: 1 / 11;
+  grid-area: d;
   background-color: rgb(107, 7, 0);
   animation: projectDivStartup 4s ease-in-out forwards;
 }
 
 .this-portfolio-div-main {
-  grid-column: 9 / 11;
-  grid-row: 1 / 11;
+  grid-area: e;
   background-color: rgb(0, 17, 255);
-  border-radius: 0px 53px 53px 0px;
   animation: projectDivStartup 5s ease-in-out forwards;
+}
+
+.kanban-div-main {
+  grid-area: f;
+  background-color: aqua;
+  animation: projectDivStartup 2s ease-in-out forwards;
+  
 }
 
 .whacka-text,
@@ -278,7 +271,9 @@
 .bard-text,
 .bard-description-text,
 .this-portfolio-text,
-.this-portfolio-description-text {
+.this-portfolio-description-text,
+.kanban-text,
+.kanban-description-text {
   text-wrap: nowrap;
   transform: rotate(-90deg);
 }
@@ -287,9 +282,9 @@
 .krispy-software-text-container,
 .hey-you-software-text-container,
 .bard-software-text-container,
-.this-portfolio-software-text-container {
-  grid-column: 1 / 6;
-  grid-row: 1 / 5;
+.this-portfolio-software-text-container,
+.kanban-software-text-container {
+  grid-area: tech;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -322,7 +317,12 @@
 .this-portfolio-react-fiber,
 .this-portfolio-firebase,
 .this-portfolio-scss,
-.this-portfolio-blender {
+.this-portfolio-blender,
+.kanban-js,
+.kanban-react,
+.kanban-scss,
+.kanban-firebase,
+.kanban-firestore {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -332,16 +332,16 @@
   font-optical-sizing: auto;
   font-weight: 500;
   font-style: normal;
-  border-radius: 1000px;
+  
 }
 
 .whacka-description-text,
 .krispy-description-text,
 .hey-you-description-text,
 .bard-description-text,
-.this-portfolio-description-text {
-  grid-column: 4 / 6;
-  grid-row: 1 / 5;
+.this-portfolio-description-text,
+.kanban-description-text {
+  grid-area: des;
   font-size: 44px;
   font-family: "Raleway", sans-serif;
   font-optical-sizing: auto;
@@ -363,8 +363,7 @@
 .hey-you-text,
 .bard-text,
 .this-portfolio-text {
-  grid-column: 1 / 3;
-  grid-row: 2 / 4;
+  grid-area: title;
 }
 
 .krispy-text {
@@ -401,17 +400,25 @@
   font-family: "Cinzel", serif;
   font-weight: 400;
 }
+
+.kanban-text {
+  font-size: 48px;
+  color: rgb(17, 76, 178);
+  font-family: "Cinzel", serif;
+  font-weight: 400;
+}
+
+
 /*=========
 FOOTER
 =========*/
 
 .footer-div-main {
   width: 100%;
-  grid-column: 1 / 11;
-  grid-row: 9 / 11;
+  grid-area: fo;
   display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  grid-template-rows: repeat(1, 1fr);
+  // grid-template-columns: repeat(1, 1fr);
+  // grid-template-rows: repeat(1, 1fr);
   z-index: 25;
   border-radius: 0px 0px 53px 53px;
   background-color: rgba(0, 15, 82, 0.774);
@@ -420,8 +427,8 @@ FOOTER
 }
 
 .projects-copyright-container {
-  grid-column: 1 / -1;
-  grid-row: 1 / -1;
+  // grid-column: 1 / -1;
+  // grid-row: 1 / -1;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -437,581 +444,583 @@ FOOTER
   font-style: normal;
 }
 
+
+
 /*========
 MEDIA QUERIES
 ========*/
 
-@media (min-width: 3000px) {
-  .whacka-software-text-container > div,
-  .krispy-software-text-container > div,
-  .hey-you-software-text-container > div,
-  .bard-software-text-container > div,
-  .this-portfolio-software-text-container > div {
-    font-size: 28px;
-  }
-
-  .whacka-description-text,
-  .krispy-description-text,
-  .hey-you-description-text,
-  .bard-description-text,
-  .this-portfolio-description-text {
-    font-size: 80px;
-  }
-
-  .whacka-text,
-  .krispy-text,
-  .hey-you-text,
-  .bard-text,
-  .this-portfolio-text {
-    font-size: 150px;
-  }
-}
-
-@media (max-width: 3200px) {
-  .whacka-text,
-  .krispy-text,
-  .hey-you-text,
-  .bard-text,
-  .this-portfolio-text {
-    font-size: 100px;
-  }
-
-  .whacka-description-text,
-  .krispy-description-text,
-  .hey-you-description-text,
-  .bard-description-text,
-  .this-portfolio-description-text {
-    font-size: 70px;
-  }
-
-  .whacka-software-text-container > div,
-  .krispy-software-text-container > div,
-  .hey-you-software-text-container > div,
-  .bard-software-text-container > div,
-  .this-portfolio-software-text-container > div {
-    font-size: 28px;
-  }
-}
-
-@media (max-width: 2800px) {
-  .whacka-text,
-  .krispy-text,
-  .hey-you-text,
-  .bard-text,
-  .this-portfolio-text {
-    font-size: 90px;
-  }
-
-  .whacka-description-text,
-  .krispy-description-text,
-  .hey-you-description-text,
-  .bard-description-text,
-  .this-portfolio-description-text {
-    font-size: 55px;
-  }
-  .profile-div-main > div {
-    font-size: 25px;
-  }
-}
-
-@media (max-width: 2500px) {
-  .whacka-text,
-  .krispy-text,
-  .hey-you-text,
-  .bard-text,
-  .this-portfolio-text {
-    font-size: 80px;
-  }
-
-  .whacka-description-text,
-  .krispy-description-text,
-  .hey-you-description-text,
-  .bard-description-text,
-  .this-portfolio-description-text {
-    font-size: 50px;
-  }
-
-  .whacka-software-text-container > div,
-  .krispy-software-text-container > div,
-  .hey-you-software-text-container > div,
-  .bard-software-text-container > div,
-  .this-portfolio-software-text-container > div {
-    font-size: 22px;
-  }
-
-  .projects-copyright-container > div {
-    font-size: 12px;
-  }
-}
-
-@media (max-width: 2300px) {
-  .nav-home-btn,
-  .nav-resume-btn,
-  .nav-three-dee-resume-btn {
-    font-size: 35px;
-  }
-
-  .profile-div-main > div {
-    font-size: 18px;
-  }
-
-  .whacka-text,
-  .krispy-text,
-  .hey-you-text,
-  .bard-text,
-  .this-portfolio-text {
-    font-size: 67px;
-  }
-
-  .whacka-description-text,
-  .krispy-description-text,
-  .hey-you-description-text,
-  .bard-description-text,
-  .this-portfolio-description-text {
-    font-size: 47px;
-  }
-
-  .whacka-software-text-container > div,
-  .krispy-software-text-container > div,
-  .hey-you-software-text-container > div,
-  .bard-software-text-container > div,
-  .this-portfolio-software-text-container > div {
-    font-size: 15px;
-  }
-}
-
-@media (max-width: 1800px) {
-  .nav-home-btn,
-  .nav-resume-btn,
-  .nav-three-dee-resume-btn {
-    font-size: 22px;
-  }
-
-  .nav-gmail-btn,
-  .nav-linkedin-btn,
-  .nav-github-btn {
-    font-size: 15px;
-  }
-
-  .profile-div-main > div {
-    font-size: 15px;
-  }
-
-  .whacka-text,
-  .krispy-text,
-  .hey-you-text,
-  .bard-text,
-  .this-portfolio-text {
-    font-size: 50px;
-  }
-
-  .whacka-description-text,
-  .krispy-description-text,
-  .hey-you-description-text,
-  .bard-description-text,
-  .this-portfolio-description-text {
-    font-size: 37px;
-  }
-
-  .whacka-software-text-container > div,
-  .krispy-software-text-container > div,
-  .hey-you-software-text-container > div,
-  .bard-software-text-container > div,
-  .this-portfolio-software-text-container > div {
-    font-size: 15px;
-  }
-}
-
-@media (max-width: 1600px) {
-  .whacka-text,
-  .krispy-text,
-  .hey-you-text,
-  .bard-text,
-  .this-portfolio-text {
-    font-size: 50px;
-  }
-
-  .whacka-description-text,
-  .krispy-description-text,
-  .hey-you-description-text,
-  .bard-description-text,
-  .this-portfolio-description-text {
-    font-size: 37px;
-  }
-
-  .whacka-software-text-container > div,
-  .krispy-software-text-container > div,
-  .hey-you-software-text-container > div,
-  .bard-software-text-container > div,
-  .this-portfolio-software-text-container > div {
-    font-size: 12px;
-  }
-}
-
-@media (max-width: 1400px) {
-  .projects-div-main {
-    width: 100%;
-    border-radius: 0px;
-    border: 0px;
-    left: 50%;
-  }
-
-  .footer-div-main,
-  .nav-div-main {
-    border-radius: 0px 0px 0px 0px;
-    box-shadow: 0px 0px 0px 0px;
-  }
-
-  .whacka-div-main,
-  .this-portfolio-div-main {
-    border-radius: 0px 0px 0px 0px;
-  }
-
-  .nav-home-btn,
-  .nav-resume-btn,
-  .nav-three-dee-resume-btn {
-    font-size: 22px;
-  }
-
-  .profile-div-main > div {
-    font-size: 12px;
-  }
-
-  .whacka-text,
-  .krispy-text,
-  .hey-you-text,
-  .bard-text,
-  .this-portfolio-text {
-    font-size: 50px;
-  }
-
-  .whacka-description-text,
-  .krispy-description-text,
-  .hey-you-description-text,
-  .bard-description-text,
-  .this-portfolio-description-text {
-    font-size: 37px;
-  }
-
-  .whacka-software-text-container > div,
-  .krispy-software-text-container > div,
-  .hey-you-software-text-container > div,
-  .bard-software-text-container > div,
-  .this-portfolio-software-text-container > div {
-    font-size: 12px;
-  }
-}
-
-@media (max-width: 1250px) {
-  .whacka-text,
-  .krispy-text,
-  .hey-you-text,
-  .bard-text,
-  .this-portfolio-text {
-    font-size: 40px;
-  }
-
-  .whacka-description-text,
-  .krispy-description-text,
-  .hey-you-description-text,
-  .bard-description-text,
-  .this-portfolio-description-text {
-    font-size: 27px;
-  }
-
-  .whacka-software-text-container > div,
-  .krispy-software-text-container > div,
-  .hey-you-software-text-container > div,
-  .bard-software-text-container > div,
-  .this-portfolio-software-text-container > div {
-    font-size: 10px;
-  }
-}
-
-@media (max-width: 1100px) {
-  .nav-home-btn,
-  .nav-resume-btn,
-  .nav-three-dee-resume-btn {
-    font-size: 15px;
-  }
-
-  .profile-div-main > div {
-    font-size: 10px;
-  }
-  .social-container {
-    flex-direction: column;
-  }
-
-  .whacka-text,
-  .krispy-text,
-  .hey-you-text,
-  .bard-text,
-  .this-portfolio-text {
-    font-size: 30px;
-  }
-
-  .whacka-description-text,
-  .krispy-description-text,
-  .hey-you-description-text,
-  .bard-description-text,
-  .this-portfolio-description-text {
-    font-size: 17px;
-  }
-
-  .whacka-software-text-container > div,
-  .krispy-software-text-container > div,
-  .hey-you-software-text-container > div,
-  .bard-software-text-container > div,
-  .this-portfolio-software-text-container > div {
-    font-size: 7.5px;
-  }
-}
-
-@media (max-width: 1008px) {
-  .nav-div-main {
-    animation: navDivStartUp 0.5s ease-in-out;
-  }
-  .projects-div-main {
-    width: 100vw;
-    height: 100vh;
-    top: 0px;
-  }
-
-  .whacka-div-main {
-    grid-column: 1 / 16;
-    grid-row: 4 / 5;
-    border-radius: 0px;
-  }
-
-  .krispy-div-main {
-    grid-column: 1 / 16;
-    grid-row: 5 / 6;
-  }
-
-  .hey-you-div-main {
-    grid-column: 1 / 16;
-    grid-row: 6 / 7;
-  }
-
-  .bard-div-main {
-    grid-column: 1 / 16;
-    grid-row: 7 / 8;
-  }
-
-  .this-portfolio-div-main {
-    grid-column: 1 / 16;
-    grid-row: 8 / 9;
-
-    border-radius: 0px;
-  }
-  .whacka-text,
-  .whacka-description-text,
-  .krispy-text,
-  .krispy-description-text,
-  .hey-you-text,
-  .hey-you-description-text,
-  .bard-text,
-  .bard-description-text,
-  .this-portfolio-text,
-  .this-portfolio-description-text {
-    text-wrap: nowrap;
-    transform: rotate(0deg);
-  }
-  .whacka-text,
-  .krispy-text,
-  .hey-you-text,
-  .bard-text,
-  .this-portfolio-text {
-    font-size: 5vw;
-    grid-row: 1 / 3;
-    grid-column: 2 / 5;
-  }
-
-  .whacka-description-text,
-  .krispy-description-text,
-  .hey-you-description-text,
-  .bard-description-text,
-  .this-portfolio-description-text {
-    font-size: 4vw;
-    grid-column: 2 / 5;
-    grid-row: 2 / 4;
-  }
-
-  .whacka-software-text-container > div,
-  .krispy-software-text-container > div,
-  .hey-you-software-text-container > div,
-  .bard-software-text-container > div,
-  .this-portfolio-software-text-container > div {
-    font-size: 20px;
-    margin: 10px;
-    text-wrap: nowrap;
-  }
-  .whacka-software-text-container,
-  .krispy-software-text-container,
-  .hey-you-software-text-container,
-  .bard-software-text-container,
-  .this-portfolio-software-text-container {
-    flex-direction: row;
-    grid-column: 1 / -1;
-    grid-row: 3 / -1;
-  }
-
-  .social-container {
-    display: none;
-  }
-  .social-container-mobile {
-    display: flex;
-  }
-  .social-container-mobile div {
-    font-size: 12px;
-  }
-
-  .profile-div-main {
-    display: none;
-  }
-  .profile-main-mobile {
-    display: grid;
-  }
-  .profile-image-container {
-    grid-column: 4 / 5;
-  }
-
-  .profile-image {
-    width: 7vw;
-  }
-
-  .nav-home-btn,
-  .nav-resume-btn,
-  .nav-three-dee-resume-btn {
-    font-size: 18px;
-  }
-
-  .nav-div-main,
-  .footer-div-main {
-    background-color: rgb(0, 3, 49);
-  }
-}
-
-@media (max-height: 650px) and (orientation: landscape) {
-  .projects-div-main {
-    overflow-y: auto;
-  }
-  .nav-div-main,
-  .footer-div-main {
-    height: 22vh;
-  }
-  .profile-div-main-mobile,
-  .this-portfolio-div-main,
-  .whacka-div-main,
-  .krispy-div-main,
-  .hey-you-div-main,
-  .bard-div-main {
-    height: 100vh;
-  }
-}
-
-@media (max-width: 555px) {
-  .ibrahim-karim-mobile {
-    font-size: 22px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: "Raleway", sans-serif;
-    font-weight: 300;
-    font-style: normal;
-    color: rgb(255, 255, 255);
-    text-decoration: none;
-    grid-column: 1 / 4;
-    grid-row: 1 / -1;
-    text-wrap: nowrap;
-    transform: translate(0%, -65%);
-  }
-
-  .profile-image-container {
-    grid-column: 1 / 7;
-    grid-row: 1 / -1;
-  }
-
-  .profile-image {
-    width: 12vw;
-    z-index: 1;
-    overflow: hidden;
-  }
-  .nav-div-main {
-    grid-template-rows: repeat(10, 1fr);
-  }
-  .nav-home-btn {
-    grid-column: 1 / 2;
-    grid-row: 1 / -1;
-  }
-  .nav-resume-btn {
-    grid-column: 2 / 3;
-    grid-row: 1 / -1;
-  }
-
-  .nav-three-dee-resume-btn {
-    grid-column: 3 / 4;
-    grid-row: 1 / -1;
-  }
-
-  .nav-home-btn,
-  .nav-resume-btn,
-  .nav-three-dee-resume-btn {
-    font-size: 20px;
-    font-family: "Cormorant Garamond", serif;
-    border-radius: 0px;
-    font-weight: 200;
-  }
-
-  .profile-div-main-mobile div {
-    font-size: 12px;
-  }
-
-  .whacka-software-text-container > div,
-  .krispy-software-text-container > div,
-  .hey-you-software-text-container > div,
-  .bard-software-text-container > div,
-  .this-portfolio-software-text-container > div {
-    font-size: 2vw;
-  }
-}
-
-@media (max-height: 485px) {
-  .profile-image {
-    width: 7vw;
-  }
-}
-
-@media (max-width: 400px) {
-  .profile-image {
-    width: 20vw;
-  }
-
-  .whacka-software-text-container > div,
-  .krispy-software-text-container > div,
-  .hey-you-software-text-container > div,
-  .bard-software-text-container > div,
-  .this-portfolio-software-text-container > div {
-    margin: 2px;
-  }
-  .nav-three-dee-resume-btn,
-  .nav-resume-btn,
-  .nav-home-btn {
-    font-size: 18px;
-  }
-}
-
-@media (max-height: 480px) and (orientation: landscape) {
-  .nav-div-main,
-  .footer-div-main {
-    height: 50vh;
-  }
-
-  .whacka-software-text-container > div,
-  .krispy-software-text-container > div,
-  .hey-you-software-text-container > div,
-  .bard-software-text-container > div,
-  .this-portfolio-software-text-container > div {
-    font-size: 1vw;
-  }
-}
+// @media (min-width: 3000px) {
+//   .whacka-software-text-container > div,
+//   .krispy-software-text-container > div,
+//   .hey-you-software-text-container > div,
+//   .bard-software-text-container > div,
+//   .this-portfolio-software-text-container > div {
+//     font-size: 28px;
+//   }
+
+//   .whacka-description-text,
+//   .krispy-description-text,
+//   .hey-you-description-text,
+//   .bard-description-text,
+//   .this-portfolio-description-text {
+//     font-size: 80px;
+//   }
+
+//   .whacka-text,
+//   .krispy-text,
+//   .hey-you-text,
+//   .bard-text,
+//   .this-portfolio-text {
+//     font-size: 150px;
+//   }
+// }
+
+// @media (max-width: 3200px) {
+//   .whacka-text,
+//   .krispy-text,
+//   .hey-you-text,
+//   .bard-text,
+//   .this-portfolio-text {
+//     font-size: 100px;
+//   }
+
+//   .whacka-description-text,
+//   .krispy-description-text,
+//   .hey-you-description-text,
+//   .bard-description-text,
+//   .this-portfolio-description-text {
+//     font-size: 70px;
+//   }
+
+//   .whacka-software-text-container > div,
+//   .krispy-software-text-container > div,
+//   .hey-you-software-text-container > div,
+//   .bard-software-text-container > div,
+//   .this-portfolio-software-text-container > div {
+//     font-size: 28px;
+//   }
+// }
+
+// @media (max-width: 2800px) {
+//   .whacka-text,
+//   .krispy-text,
+//   .hey-you-text,
+//   .bard-text,
+//   .this-portfolio-text {
+//     font-size: 90px;
+//   }
+
+//   .whacka-description-text,
+//   .krispy-description-text,
+//   .hey-you-description-text,
+//   .bard-description-text,
+//   .this-portfolio-description-text {
+//     font-size: 55px;
+//   }
+//   .profile-div-main > div {
+//     font-size: 25px;
+//   }
+// }
+
+// @media (max-width: 2500px) {
+//   .whacka-text,
+//   .krispy-text,
+//   .hey-you-text,
+//   .bard-text,
+//   .this-portfolio-text {
+//     font-size: 80px;
+//   }
+
+//   .whacka-description-text,
+//   .krispy-description-text,
+//   .hey-you-description-text,
+//   .bard-description-text,
+//   .this-portfolio-description-text {
+//     font-size: 50px;
+//   }
+
+//   .whacka-software-text-container > div,
+//   .krispy-software-text-container > div,
+//   .hey-you-software-text-container > div,
+//   .bard-software-text-container > div,
+//   .this-portfolio-software-text-container > div {
+//     font-size: 22px;
+//   }
+
+//   .projects-copyright-container > div {
+//     font-size: 12px;
+//   }
+// }
+
+// @media (max-width: 2300px) {
+//   .nav-home-btn,
+//   .nav-resume-btn,
+//   .nav-three-dee-resume-btn {
+//     font-size: 35px;
+//   }
+
+//   .profile-div-main > div {
+//     font-size: 18px;
+//   }
+
+//   .whacka-text,
+//   .krispy-text,
+//   .hey-you-text,
+//   .bard-text,
+//   .this-portfolio-text {
+//     font-size: 67px;
+//   }
+
+//   .whacka-description-text,
+//   .krispy-description-text,
+//   .hey-you-description-text,
+//   .bard-description-text,
+//   .this-portfolio-description-text {
+//     font-size: 47px;
+//   }
+
+//   .whacka-software-text-container > div,
+//   .krispy-software-text-container > div,
+//   .hey-you-software-text-container > div,
+//   .bard-software-text-container > div,
+//   .this-portfolio-software-text-container > div {
+//     font-size: 15px;
+//   }
+// }
+
+// @media (max-width: 1800px) {
+//   .nav-home-btn,
+//   .nav-resume-btn,
+//   .nav-three-dee-resume-btn {
+//     font-size: 22px;
+//   }
+
+//   .nav-gmail-btn,
+//   .nav-linkedin-btn,
+//   .nav-github-btn {
+//     font-size: 15px;
+//   }
+
+//   .profile-div-main > div {
+//     font-size: 15px;
+//   }
+
+//   .whacka-text,
+//   .krispy-text,
+//   .hey-you-text,
+//   .bard-text,
+//   .this-portfolio-text {
+//     font-size: 50px;
+//   }
+
+//   .whacka-description-text,
+//   .krispy-description-text,
+//   .hey-you-description-text,
+//   .bard-description-text,
+//   .this-portfolio-description-text {
+//     font-size: 37px;
+//   }
+
+//   .whacka-software-text-container > div,
+//   .krispy-software-text-container > div,
+//   .hey-you-software-text-container > div,
+//   .bard-software-text-container > div,
+//   .this-portfolio-software-text-container > div {
+//     font-size: 15px;
+//   }
+// }
+
+// @media (max-width: 1600px) {
+//   .whacka-text,
+//   .krispy-text,
+//   .hey-you-text,
+//   .bard-text,
+//   .this-portfolio-text {
+//     font-size: 50px;
+//   }
+
+//   .whacka-description-text,
+//   .krispy-description-text,
+//   .hey-you-description-text,
+//   .bard-description-text,
+//   .this-portfolio-description-text {
+//     font-size: 37px;
+//   }
+
+//   .whacka-software-text-container > div,
+//   .krispy-software-text-container > div,
+//   .hey-you-software-text-container > div,
+//   .bard-software-text-container > div,
+//   .this-portfolio-software-text-container > div {
+//     font-size: 12px;
+//   }
+// }
+
+// @media (max-width: 1400px) {
+//   .projects-div-main {
+//     width: 100%;
+//     border-radius: 0px;
+//     border: 0px;
+//     left: 50%;
+//   }
+
+//   .footer-div-main,
+//   .nav-div-main {
+//     border-radius: 0px 0px 0px 0px;
+//     box-shadow: 0px 0px 0px 0px;
+//   }
+
+//   .whacka-div-main,
+//   .this-portfolio-div-main {
+//     border-radius: 0px 0px 0px 0px;
+//   }
+
+//   .nav-home-btn,
+//   .nav-resume-btn,
+//   .nav-three-dee-resume-btn {
+//     font-size: 22px;
+//   }
+
+//   .profile-div-main > div {
+//     font-size: 12px;
+//   }
+
+//   .whacka-text,
+//   .krispy-text,
+//   .hey-you-text,
+//   .bard-text,
+//   .this-portfolio-text {
+//     font-size: 50px;
+//   }
+
+//   .whacka-description-text,
+//   .krispy-description-text,
+//   .hey-you-description-text,
+//   .bard-description-text,
+//   .this-portfolio-description-text {
+//     font-size: 37px;
+//   }
+
+//   .whacka-software-text-container > div,
+//   .krispy-software-text-container > div,
+//   .hey-you-software-text-container > div,
+//   .bard-software-text-container > div,
+//   .this-portfolio-software-text-container > div {
+//     font-size: 12px;
+//   }
+// }
+
+// @media (max-width: 1250px) {
+//   .whacka-text,
+//   .krispy-text,
+//   .hey-you-text,
+//   .bard-text,
+//   .this-portfolio-text {
+//     font-size: 40px;
+//   }
+
+//   .whacka-description-text,
+//   .krispy-description-text,
+//   .hey-you-description-text,
+//   .bard-description-text,
+//   .this-portfolio-description-text {
+//     font-size: 27px;
+//   }
+
+//   .whacka-software-text-container > div,
+//   .krispy-software-text-container > div,
+//   .hey-you-software-text-container > div,
+//   .bard-software-text-container > div,
+//   .this-portfolio-software-text-container > div {
+//     font-size: 10px;
+//   }
+// }
+
+// @media (max-width: 1100px) {
+//   .nav-home-btn,
+//   .nav-resume-btn,
+//   .nav-three-dee-resume-btn {
+//     font-size: 15px;
+//   }
+
+//   .profile-div-main > div {
+//     font-size: 10px;
+//   }
+//   .social-container {
+//     flex-direction: column;
+//   }
+
+//   .whacka-text,
+//   .krispy-text,
+//   .hey-you-text,
+//   .bard-text,
+//   .this-portfolio-text {
+//     font-size: 30px;
+//   }
+
+//   .whacka-description-text,
+//   .krispy-description-text,
+//   .hey-you-description-text,
+//   .bard-description-text,
+//   .this-portfolio-description-text {
+//     font-size: 17px;
+//   }
+
+//   .whacka-software-text-container > div,
+//   .krispy-software-text-container > div,
+//   .hey-you-software-text-container > div,
+//   .bard-software-text-container > div,
+//   .this-portfolio-software-text-container > div {
+//     font-size: 7.5px;
+//   }
+// }
+
+// @media (max-width: 1008px) {
+//   .nav-div-main {
+//     animation: navDivStartUp 0.5s ease-in-out;
+//   }
+//   .projects-div-main {
+//     width: 100vw;
+//     height: 100vh;
+//     top: 0px;
+//   }
+
+//   .whacka-div-main {
+//     grid-column: 1 / 16;
+//     grid-row: 4 / 5;
+//     border-radius: 0px;
+//   }
+
+//   .krispy-div-main {
+//     grid-column: 1 / 16;
+//     grid-row: 5 / 6;
+//   }
+
+//   .hey-you-div-main {
+//     grid-column: 1 / 16;
+//     grid-row: 6 / 7;
+//   }
+
+//   .bard-div-main {
+//     grid-column: 1 / 16;
+//     grid-row: 7 / 8;
+//   }
+
+//   .this-portfolio-div-main {
+//     grid-column: 1 / 16;
+//     grid-row: 8 / 9;
+
+//     border-radius: 0px;
+//   }
+//   .whacka-text,
+//   .whacka-description-text,
+//   .krispy-text,
+//   .krispy-description-text,
+//   .hey-you-text,
+//   .hey-you-description-text,
+//   .bard-text,
+//   .bard-description-text,
+//   .this-portfolio-text,
+//   .this-portfolio-description-text {
+//     text-wrap: nowrap;
+//     transform: rotate(0deg);
+//   }
+//   .whacka-text,
+//   .krispy-text,
+//   .hey-you-text,
+//   .bard-text,
+//   .this-portfolio-text {
+//     font-size: 5vw;
+//     grid-row: 1 / 3;
+//     grid-column: 2 / 5;
+//   }
+
+//   .whacka-description-text,
+//   .krispy-description-text,
+//   .hey-you-description-text,
+//   .bard-description-text,
+//   .this-portfolio-description-text {
+//     font-size: 4vw;
+//     grid-column: 2 / 5;
+//     grid-row: 2 / 4;
+//   }
+
+//   .whacka-software-text-container > div,
+//   .krispy-software-text-container > div,
+//   .hey-you-software-text-container > div,
+//   .bard-software-text-container > div,
+//   .this-portfolio-software-text-container > div {
+//     font-size: 20px;
+//     margin: 10px;
+//     text-wrap: nowrap;
+//   }
+//   .whacka-software-text-container,
+//   .krispy-software-text-container,
+//   .hey-you-software-text-container,
+//   .bard-software-text-container,
+//   .this-portfolio-software-text-container {
+//     flex-direction: row;
+//     grid-column: 1 / -1;
+//     grid-row: 3 / -1;
+//   }
+
+//   .social-container {
+//     display: none;
+//   }
+//   .social-container-mobile {
+//     display: flex;
+//   }
+//   .social-container-mobile div {
+//     font-size: 12px;
+//   }
+
+//   .profile-div-main {
+//     display: none;
+//   }
+//   .profile-main-mobile {
+//     display: grid;
+//   }
+//   .profile-image-container {
+//     grid-column: 4 / 5;
+//   }
+
+//   .profile-image {
+//     width: 7vw;
+//   }
+
+//   .nav-home-btn,
+//   .nav-resume-btn,
+//   .nav-three-dee-resume-btn {
+//     font-size: 18px;
+//   }
+
+//   .nav-div-main,
+//   .footer-div-main {
+//     background-color: rgb(0, 3, 49);
+//   }
+// }
+
+// @media (max-height: 650px) and (orientation: landscape) {
+//   .projects-div-main {
+//     overflow-y: auto;
+//   }
+//   .nav-div-main,
+//   .footer-div-main {
+//     height: 22vh;
+//   }
+//   .profile-div-main-mobile,
+//   .this-portfolio-div-main,
+//   .whacka-div-main,
+//   .krispy-div-main,
+//   .hey-you-div-main,
+//   .bard-div-main {
+//     height: 100vh;
+//   }
+// }
+
+// @media (max-width: 555px) {
+//   .ibrahim-karim-mobile {
+//     font-size: 22px;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     font-family: "Raleway", sans-serif;
+//     font-weight: 300;
+//     font-style: normal;
+//     color: rgb(255, 255, 255);
+//     text-decoration: none;
+//     grid-column: 1 / 4;
+//     grid-row: 1 / -1;
+//     text-wrap: nowrap;
+//     transform: translate(0%, -65%);
+//   }
+
+//   .profile-image-container {
+//     grid-column: 1 / 7;
+//     grid-row: 1 / -1;
+//   }
+
+//   .profile-image {
+//     width: 12vw;
+//     z-index: 1;
+//     overflow: hidden;
+//   }
+//   .nav-div-main {
+//     grid-template-rows: repeat(10, 1fr);
+//   }
+//   .nav-home-btn {
+//     grid-column: 1 / 2;
+//     grid-row: 1 / -1;
+//   }
+//   .nav-resume-btn {
+//     grid-column: 2 / 3;
+//     grid-row: 1 / -1;
+//   }
+
+//   .nav-three-dee-resume-btn {
+//     grid-column: 3 / 4;
+//     grid-row: 1 / -1;
+//   }
+
+//   .nav-home-btn,
+//   .nav-resume-btn,
+//   .nav-three-dee-resume-btn {
+//     font-size: 20px;
+//     font-family: "Cormorant Garamond", serif;
+//     border-radius: 0px;
+//     font-weight: 200;
+//   }
+
+//   .profile-div-main-mobile div {
+//     font-size: 12px;
+//   }
+
+//   .whacka-software-text-container > div,
+//   .krispy-software-text-container > div,
+//   .hey-you-software-text-container > div,
+//   .bard-software-text-container > div,
+//   .this-portfolio-software-text-container > div {
+//     font-size: 2vw;
+//   }
+// }
+
+// @media (max-height: 485px) {
+//   .profile-image {
+//     width: 7vw;
+//   }
+// }
+
+// @media (max-width: 400px) {
+//   .profile-image {
+//     width: 20vw;
+//   }
+
+//   .whacka-software-text-container > div,
+//   .krispy-software-text-container > div,
+//   .hey-you-software-text-container > div,
+//   .bard-software-text-container > div,
+//   .this-portfolio-software-text-container > div {
+//     margin: 2px;
+//   }
+//   .nav-three-dee-resume-btn,
+//   .nav-resume-btn,
+//   .nav-home-btn {
+//     font-size: 18px;
+//   }
+// }
+
+// @media (max-height: 480px) and (orientation: landscape) {
+//   .nav-div-main,
+//   .footer-div-main {
+//     height: 50vh;
+//   }
+
+//   .whacka-software-text-container > div,
+//   .krispy-software-text-container > div,
+//   .hey-you-software-text-container > div,
+//   .bard-software-text-container > div,
+//   .this-portfolio-software-text-container > div {
+//     font-size: 1vw;
+//   }
+// }
