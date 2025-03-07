@@ -72,18 +72,18 @@ const Projects = () => {
             Gmail
           </a>
         </div>
-        <div className="profile-image-container">
+        <div className="profile-div-main">
+          <div className="ibrahim-karim">Ibrahim Karim</div>
+          <div className="location">Livonia, Michigan</div>
+        </div>
+        <div className='image-div-main'>
+
           <img
             className="profile-image"
             src={karim}
             alt="ibrahim's profile image"
             onClick={() => window.open(karim, '_blank')}
           />
-        <div className="profile-div-main">
-          <div className="ibrahim-karim">Ibrahim Karim</div>
-          <div className="location">Livonia, Michigan</div>
-        </div>
-          
         </div>
       </div>
       {/* <div className="profile-main-mobile">
