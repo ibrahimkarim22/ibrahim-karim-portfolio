@@ -213,18 +213,18 @@
   animation: projectDivStartup 4s ease-in-out forwards;
 }
 
-.this-portfolio-div-main {
+.kanban-div-main {
   grid-area: f;
+  background-color: rgb(0, 41, 108);
+  animation: projectDivStartup 2s ease-in-out forwards;
+  
+}
+.this-portfolio-div-main {
+  grid-area: g;
   background-color: rgb(0, 17, 255);
   animation: projectDivStartup 5s ease-in-out forwards;
 }
 
-.kanban-div-main {
-  grid-area: g;
-  background-color: rgb(0, 255, 225);
-  animation: projectDivStartup 2s ease-in-out forwards;
-  
-}
 
 .whacka-text,
 .whacka-description-text,
@@ -320,7 +320,6 @@
   font-family: "Bangers", system-ui;
   font-weight: 400;
   font-style: normal;
-  color: rgb(255, 255, 255);
 }
 
 .whacka-text,
@@ -331,6 +330,7 @@
 .kanban-text {
   grid-area: title;
   font-size: 10vw;
+  color: snow;
 }
 
 .krispy-text {
@@ -338,7 +338,7 @@
   font-optical-sizing: auto;
   font-weight: 700;
   font-style: normal;
-  color: whitesmoke;
+
 }
 
 .hey-you-text {
@@ -346,15 +346,12 @@
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
-  color: snow;
 }
 
 .bard-text {
   font-family: "Playfair Display", serif;
   font-optical-sizing: auto;
   font-weight: 700;
-  color: rgb(255, 255, 255);
-
   font-style: italic;
 }
 
@@ -365,7 +362,6 @@
 }
 
 .kanban-text {
-  color: rgb(17, 76, 178);
   font-family: "Cinzel", serif;
   font-weight: 400;
 }
@@ -400,7 +396,7 @@ FOOTER
 
 .copyright-text {
   color: rgb(255, 255, 255);
-  font-size: 12px;
+  font-size: 1.5vw;
   font-family: "Arial", sans-serif;
   font-optical-sizing: auto;
   font-weight: 500;

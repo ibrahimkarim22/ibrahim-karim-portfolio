@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useRef } from "react";
+import { Parallax, ParallaxLayer, IParallax } from '@react-spring/parallax'
 import { useLocation, useNavigate} from "react-router-dom";
 import { Link } from "react-router-dom";
 import WhackaModal from "../components/WhackaModal";
@@ -15,6 +16,8 @@ const Projects = () => {
 
   const modalName = location.pathname.split("/")[2]?.toLowerCase();
 
+  const parallax = useRef(null);
+
   const openModal = (modalName) => {
     navigate(`/projects/${modalName.toLowerCase()}`);
   };
@@ -24,9 +27,13 @@ const Projects = () => {
   };
 
   return (
+            <Parallax ref={parallax} pages={6} className="parallax-container">
     <div className="projects-div-main">
+
+
+            <ParallaxLayer offset={0.3} speed={-0.3}>
+
       <div className="nav-div-main">
-        {/* <div className="ibrahim-karim-mobile">Ibrahim Karim</div> */}
         <Link className="nav-home-btn" to="/">
           <div>Home</div>
         </Link>
@@ -72,10 +79,12 @@ const Projects = () => {
             Gmail
           </a>
         </div>
+
         <div className="profile-div-main">
           <div className="ibrahim-karim">Ibrahim Karim</div>
           <div className="location">Livonia, Michigan</div>
         </div>
+
         <div className='image-div-main'>
 
           <img
@@ -86,26 +95,9 @@ const Projects = () => {
           />
         </div>
       </div>
-      {/* <div className="profile-main-mobile">
-        <div className="profile-div-main-mobile">
-          <div className="location">Livonia, Michigan</div>
-          <div className="phone">(248) 499-2327</div>
-        </div>
-        <div className="social-container-mobile">
-          <Link className="nav-linkedin-btn" to="/">
-            <div>Linkedin</div>
-          </Link>
-          <Link
-            className="nav-github-btn"
-            to="https://github.com/ibrahimkarim22"
-          >
-            <div>GitHub</div>
-          </Link>
-          <Link className="nav-gmail-btn" to="mailto:22ibrahimkarim@gmail.com">
-            <div> Gmail</div>
-          </Link>
-        </div>
-      </div> */}
+        </ParallaxLayer>
+
+      <ParallaxLayer offset={0.3} speed={-0.3}>
       <div className="whacka-div-main" onClick={() => openModal("whackamole")}>
         <WhackaModal isOpen={modalName === "whackamole"} closeModal={closeModal} />
         <div className="whacka-text">Whack a Mole</div>
@@ -116,6 +108,9 @@ const Projects = () => {
         </div>
         <div className="whacka-description-text">Online Game</div>
       </div>
+      </ParallaxLayer>
+
+      <ParallaxLayer offset={0.3} speed={-0.3}>
       <div className="krispy-div-main" onClick={() => openModal("krispy")}>
       <KrispyModal isOpen={modalName === "krispy"} closeModal={closeModal} />
         <div className="krispy-text">KRISPY</div>
@@ -129,6 +124,9 @@ const Projects = () => {
         </div>
         <div className="krispy-description-text">Streaming Service</div>
       </div>
+</ParallaxLayer>
+
+      <ParallaxLayer offset={0.3} speed={-0.3}>
       <div
         className="hey-you-div-main" onClick={() => openModal("heyyou")}>
         <HeyYouModal isOpen={modalName === "heyyou"} closeModal={closeModal} />
@@ -144,6 +142,9 @@ const Projects = () => {
         </div>
         <div className="hey-you-description-text">Location & Chat</div>
       </div>
+      </ParallaxLayer>
+
+      <ParallaxLayer offset={0.3} speed={-0.3}>
       <div className="bard-div-main" onClick={() => openModal("bard")}>
       <BardModal isOpen={modalName === "bard"} closeModal={closeModal} />
         <div className="bard-text">BARD</div>
@@ -156,6 +157,9 @@ const Projects = () => {
         </div>
         <div className="bard-description-text">Online Course</div>
       </div>
+      </ParallaxLayer>
+
+      <ParallaxLayer offset={0.3} speed={-0.3}>
       <div
         className="this-portfolio-div-main" onClick={() => openModal("thisportfolio")}>
         <ThisPortfolioModal isOpen={modalName === "thisportfolio"} closeModal={closeModal} />
@@ -170,6 +174,9 @@ const Projects = () => {
         </div>
         <div className="this-portfolio-description-text">This Portfolio</div>
       </div>
+      </ParallaxLayer>
+
+      <ParallaxLayer offset={0.3} speed={-0.3}>
       <div className="kanban-div-main" onClick={() => openModal("kanban")}>
         <KanbanBoardModal isOpen={modalName === "kanban"} closeModal={closeModal} />
         <div className="kanban-text">Kanban Board</div>
@@ -182,13 +189,18 @@ const Projects = () => {
         </div>
         <div className="kanban-description-text">To Do List</div>
       </div>
+      </ParallaxLayer>
 
+      <ParallaxLayer offset={0.3} speed={-0.3}>
       <div className="footer-div-main">
         <div className="projects-copyright-container">
           <div className="copyright-text">&copy; 2024 Ibrahim Karim. </div>
         </div>
       </div>
+      </ParallaxLayer>
+
     </div>
+      </Parallax>
   );
 };
 
