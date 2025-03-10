@@ -3,7 +3,6 @@
                MAIN GRID         
 /* ================================== */
 
-
 .projects-div-main {
   display: grid;
   grid-template-areas: 
@@ -25,25 +24,32 @@
   animation: projectsPageBgStartUp 5s ease-in-out forwards;
   overflow-x: hidden;
   overflow-y: hidden;
+
+}
+
+.parallax-container {
+  background-color: rgb(0, 0, 0);
 }
 
 /* ================================== *
   NAVBAR
 /* ================================== */
 
+
 .nav-div-main {
-  // width: 100%;
-  grid-area: a;
   display: grid;
   grid-template-areas: 
   'home resume pro info im name'
   ;
+
+  width: 100%;
   grid-template-columns: repeat(5, auto);
   z-index: 50;
   // border-radius: 53px 53px 0px 0px;
-  background-color: rgba(0, 15, 82, 0.774);
+  background-color: rgb(0, 15, 82);
   box-shadow: 0px 0px 100px rgb(0, 0, 0);
   animation: navDivStartup 3s ease-in-out;
+
 }
 
 .nav-home-btn,
@@ -59,6 +65,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  pointer-events: auto;
 }
 
 .nav-home-btn,
@@ -180,6 +187,7 @@
 
 .whacka-div-main {
   grid-area: b;
+  pointer-events: auto;
   background-color: rgb(255, 0, 0);
   animation: projectDivStartup 1s ease-in-out forwards;
 }
