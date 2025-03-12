@@ -28,8 +28,7 @@ const Projects = () => {
 
   return (
     <>
-            <Parallax ref={parallax} pages={3} className="parallax-container">
-            <ParallaxLayer sticky={{ start: 0, end: 1 }} style={{ pointerEvents: "none" }}>
+           
     <div className="nav-div-main">
         <Link className="nav-home-btn" to="/">
           <div>Home</div>
@@ -92,10 +91,8 @@ const Projects = () => {
           />
         </div>
       </div>
-      </ParallaxLayer>
     <div className="projects-div-main">
 
-      <ParallaxLayer offset={0.2} speed={10}>
       <div className="whacka-div-main" onClick={() => openModal("whackamole")}>
         <WhackaModal isOpen={modalName === "whackamole"} closeModal={closeModal} />
         <div className="whacka-text">Whack a Mole</div>
@@ -106,9 +103,8 @@ const Projects = () => {
         </div>
         <div className="whacka-description-text">Online Game</div>
       </div>
-      </ParallaxLayer>
 
-      <ParallaxLayer offset={0.98} speed={10}>
+  
       <div className="krispy-div-main" onClick={() => openModal("krispy")}>
       <KrispyModal isOpen={modalName === "krispy"} closeModal={closeModal} />
         <div className="krispy-text">KRISPY</div>
@@ -122,9 +118,9 @@ const Projects = () => {
         </div>
         <div className="krispy-description-text">Streaming Service</div>
       </div>
-</ParallaxLayer>
 
-      <ParallaxLayer offset={1.1} speed={10}>
+
+   
       <div
         className="hey-you-div-main" onClick={() => openModal("heyyou")}>
         <HeyYouModal isOpen={modalName === "heyyou"} closeModal={closeModal} />
@@ -140,9 +136,9 @@ const Projects = () => {
         </div>
         <div className="hey-you-description-text">Location & Chat</div>
       </div>
-      </ParallaxLayer>
+   
 
-      <ParallaxLayer offset={0.99} speed={10}> 
+  
       <div className="bard-div-main" onClick={() => openModal("bard")}>
       <BardModal isOpen={modalName === "bard"} closeModal={closeModal} />
         <div className="bard-text">BARD</div>
@@ -155,9 +151,9 @@ const Projects = () => {
         </div>
         <div className="bard-description-text">Online Course</div>
       </div>
-      </ParallaxLayer>
+  
 
-      <ParallaxLayer offset={1.3} speed={10}>
+   
       <div
         className="this-portfolio-div-main" onClick={() => openModal("thisportfolio")}>
         <ThisPortfolioModal isOpen={modalName === "thisportfolio"} closeModal={closeModal} />
@@ -172,9 +168,9 @@ const Projects = () => {
         </div>
         <div className="this-portfolio-description-text">This Portfolio</div>
       </div>
-      </ParallaxLayer>
+  
 
-      <ParallaxLayer offset={1.4} speed={10}>
+  
       <div className="kanban-div-main" onClick={() => openModal("kanban")}>
         <KanbanBoardModal isOpen={modalName === "kanban"} closeModal={closeModal} />
         <div className="kanban-text">Kanban Board</div>
@@ -187,18 +183,18 @@ const Projects = () => {
         </div>
         <div className="kanban-description-text">To Do List</div>
       </div>
-      </ParallaxLayer>
 
-      <ParallaxLayer offset={1.5} speed={10}>
+
+   
+  
+
+    </div>
       <div className="footer-div-main">
         <div className="projects-copyright-container">
           <div className="copyright-text">&copy; 2024 Ibrahim Karim. </div>
         </div>
       </div>
-      </ParallaxLayer>
-
-    </div>
-      </Parallax>
+ 
       </>
   );
 };

@@ -6,30 +6,25 @@
 .projects-div-main {
   display: grid;
   grid-template-areas: 
-  'a'
-  'b'
-  'c'
-  'd'
-  'e'
-  'f'
-  'g'
-  'h'
+  'a a'
+  'b c'
+  'd e'
+  'f g'
+
+  
 
   ;
-  grid-template-columns: repeat(1, auto);
-  grid-template-rows: repeat(8, auto);
+  grid-template-columns: repeat(2, 1fr);
+  // grid-template-rows: repeat(8, auto);
   width: auto;
   height: auto;
-  background-color: rgb(0, 0, 0);
+  background-color: rgb(255, 255, 255);
   animation: projectsPageBgStartUp 5s ease-in-out forwards;
   overflow-x: hidden;
   overflow-y: hidden;
 
 }
 
-.parallax-container {
-  background-color: rgb(0, 0, 0);
-}
 
 /* ================================== *
   NAVBAR
@@ -46,7 +41,7 @@
   grid-template-columns: repeat(5, auto);
   z-index: 50;
   // border-radius: 53px 53px 0px 0px;
-  background-color: rgb(0, 15, 82);
+  background-color: rgb(0, 0, 0);
   box-shadow: 0px 0px 100px rgb(0, 0, 0);
   animation: navDivStartup 3s ease-in-out;
 
@@ -183,15 +178,10 @@
   align-items: center;
   justify-items: center;
   cursor: pointer;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 22px;
 }
-
-.whacka-div-main {
-  grid-area: b;
-  pointer-events: auto;
-  background-color: rgb(255, 0, 0);
-  animation: projectDivStartup 1s ease-in-out forwards;
-}
-
 .whacka-div-main:hover,
 .bard-div-main:hover,
 .krispy-div-main:hover,
@@ -202,35 +192,44 @@
   box-shadow: rgba(0, 0, 0, 0.397) 0px 0px 10px 10px;
   z-index: 22;
 }
+.this-portfolio-div-main {
+  grid-area: b;
+  background-color: rgb(0, 17, 255);
+  animation: projectDivStartup 6s ease-in-out forwards;
+}
+
+
+.whacka-div-main {
+  grid-area: c;
+  pointer-events: auto;
+  background-color: rgb(255, 0, 0);
+  animation: projectDivStartup 5s ease-in-out forwards;
+}
+
 
 .krispy-div-main {
-  grid-area: c;
+  grid-area: d;
   background-color: rgb(31, 0, 80);
-  animation: projectDivStartup 2s ease-in-out forwards;
+  animation: projectDivStartup 4s ease-in-out forwards;
 }
 
 .hey-you-div-main {
-  grid-area: d;
+  grid-area: e;
   background-color: rgb(0, 139, 139);
   animation: projectDivStartup 3s ease-in-out forwards;
 }
 
 .bard-div-main {
-  grid-area: e;
+  grid-area: f;
   background-color: rgb(107, 7, 0);
-  animation: projectDivStartup 4s ease-in-out forwards;
+  animation: projectDivStartup 2s ease-in-out forwards;
 }
 
 .kanban-div-main {
-  grid-area: f;
-  background-color: rgb(0, 41, 108);
-  animation: projectDivStartup 2s ease-in-out forwards;
-  
-}
-.this-portfolio-div-main {
   grid-area: g;
-  background-color: rgb(0, 17, 255);
-  animation: projectDivStartup 5s ease-in-out forwards;
+  background-color: rgb(0, 41, 108);
+  animation: projectDivStartup 1s ease-in-out forwards;
+  
 }
 
 
@@ -301,7 +300,7 @@
   align-items: center;
 
   color: rgb(255, 255, 255);
-  font-size: 2vw;
+  font-size: 1vw;
   font-family: "Raleway", sans-serif;
   font-optical-sizing: auto;
   font-weight: 500;
@@ -316,7 +315,7 @@
 .this-portfolio-description-text,
 .kanban-description-text {
   grid-area: des;
-  font-size: 10vw;
+  font-size: 2vw;
   font-family: "Raleway", sans-serif;
   font-optical-sizing: auto;
   font-weight: 300;
@@ -337,7 +336,7 @@
 .this-portfolio-text,
 .kanban-text {
   grid-area: title;
-  font-size: 10vw;
+  font-size: 2vw;
   color: snow;
 }
 
@@ -380,35 +379,35 @@ FOOTER
 =========*/
 
 .footer-div-main {
-  width: 100%;
-  height: 20vh;
-  grid-area: h;
-  display: grid;
-  // grid-template-columns: repeat(1, 1fr);
-  // grid-template-rows: repeat(1, 1fr);
-  z-index: 25;
-  border-radius: 0px 0px 53px 53px;
-  background-color: rgba(0, 15, 82, 0.774);
-  box-shadow: 0px 0px 100px rgb(0, 0, 0);
-  animation: navDivStartup 2s ease-in-out;
-}
-
-.projects-copyright-container {
-  // grid-column: 1 / -1;
-  // grid-row: 1 / -1;
-  display: flex;
-  justify-content: center;
+  display: flex; 
+  justify-content: center; 
   align-items: center;
-  flex-direction: column;
+  width: 100%;
+  height: 14vh;
+  position: fixed;
+  bottom: 0; 
+  z-index: 25;
+  background-color: rgba(0, 0, 0, 0.774);
+  box-shadow: 0px 0px 20px rgb(0, 0, 0);
+  animation: navDivStartup 0.5s ease-in-out;
 }
+// .projects-copyright-container {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+
+// }
 
 .copyright-text {
   color: rgb(255, 255, 255);
-  font-size: 1.5vw;
+  font-size: 1vw;
   font-family: "Arial", sans-serif;
   font-optical-sizing: auto;
   font-weight: 500;
   font-style: normal;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 
