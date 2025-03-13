@@ -10,6 +10,7 @@
   'b c'
   'd e'
   'f g'
+  'h h'
 
   
 
@@ -17,7 +18,7 @@
   grid-template-columns: repeat(2, 1fr);
   // grid-template-rows: repeat(8, auto);
   width: auto;
-  height: auto;
+  height: 100vh;
   background-color: rgb(255, 255, 255);
   animation: projectsPageBgStartUp 5s ease-in-out forwards;
   overflow-x: hidden;
@@ -41,7 +42,7 @@
   grid-template-columns: repeat(5, auto);
   z-index: 50;
   // border-radius: 53px 53px 0px 0px;
-  background-color: rgb(0, 0, 0);
+  background-color: rgb(255, 255, 255);
   box-shadow: 0px 0px 100px rgb(0, 0, 0);
   animation: navDivStartup 3s ease-in-out;
 
@@ -67,7 +68,7 @@
 .nav-resume-btn,
 .nav-three-dee-resume-btn {
   font-size: 2vw;
-  color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
   font-family: "Raleway", sans-serif;
   font-weight: 300;
   font-style: normal;
@@ -95,7 +96,7 @@
 }
 
 .nav-three-dee-resume-btn {
-  grid-area: pro
+  grid-area: pro;
 }
 
 .social-container {
@@ -111,7 +112,7 @@
   align-items: center;
   margin: 1vw;
   font-size: 1.5vw;
-  color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
   font-family: "Raleway", sans-serif;
   font-weight: 300;
   font-style: normal;
@@ -178,9 +179,13 @@
   align-items: center;
   justify-items: center;
   cursor: pointer;
-  padding: 20px;
-  margin: 20px;
-  border-radius: 22px;
+  padding: 0px;
+  margin: 10px;
+  // border-radius: 100px;
+  box-shadow:  rgb(126, 126, 126) 10px 10px 50px;
+  background-color: rgba(215, 215, 215, 0.326);
+  backdrop-filter: blur(100px);
+  // border: black solid 1px;
 }
 .whacka-div-main:hover,
 .bard-div-main:hover,
@@ -189,12 +194,12 @@
 .this-portfolio-div-main:hover,
 .kanban-div-main:hover {
   scale: 1.05;
-  box-shadow: rgba(0, 0, 0, 0.397) 0px 0px 10px 10px;
+  // box-shadow: rgba(0, 0, 0, 0.397) 0px 0px 10px 10px;
   z-index: 22;
+
 }
 .this-portfolio-div-main {
   grid-area: b;
-  background-color: rgb(0, 17, 255);
   animation: projectDivStartup 6s ease-in-out forwards;
 }
 
@@ -202,32 +207,27 @@
 .whacka-div-main {
   grid-area: c;
   pointer-events: auto;
-  background-color: rgb(255, 0, 0);
   animation: projectDivStartup 5s ease-in-out forwards;
 }
 
 
 .krispy-div-main {
   grid-area: d;
-  background-color: rgb(31, 0, 80);
   animation: projectDivStartup 4s ease-in-out forwards;
 }
 
 .hey-you-div-main {
   grid-area: e;
-  background-color: rgb(0, 139, 139);
   animation: projectDivStartup 3s ease-in-out forwards;
 }
 
 .bard-div-main {
   grid-area: f;
-  background-color: rgb(107, 7, 0);
   animation: projectDivStartup 2s ease-in-out forwards;
 }
 
 .kanban-div-main {
   grid-area: g;
-  background-color: rgb(0, 41, 108);
   animation: projectDivStartup 1s ease-in-out forwards;
   
 }
@@ -299,7 +299,7 @@
   justify-content: center;
   align-items: center;
 
-  color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
   font-size: 1vw;
   font-family: "Raleway", sans-serif;
   font-optical-sizing: auto;
@@ -320,14 +320,10 @@
   font-optical-sizing: auto;
   font-weight: 300;
   font-style: normal;
-  color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
 }
 
-.whacka-text {
-  font-family: "Bangers", system-ui;
-  font-weight: 400;
-  font-style: normal;
-}
+
 
 .whacka-text,
 .krispy-text,
@@ -337,40 +333,59 @@
 .kanban-text {
   grid-area: title;
   font-size: 2vw;
-  color: snow;
+  color: rgb(0, 0, 0);
+}
+
+
+.whacka-text {
+  font-family: "Bangers", system-ui;
+  font-weight: 800;
+  font-style: normal;
+  color: red;
+  text-shadow: black 1px 0px 1px;
+
 }
 
 .krispy-text {
   font-family: "Montserrat", sans-serif;
   font-optical-sizing: auto;
-  font-weight: 700;
+  font-weight: 800;
   font-style: normal;
-
+  color: pink;
+  text-shadow: black 1px 0px 1px;
 }
 
 .hey-you-text {
   font-family: "Raleway", sans-serif;
   font-optical-sizing: auto;
-  font-weight: 400;
+  font-weight: 800;
   font-style: normal;
+  color: aqua;
+  text-shadow: black 1px 0px 1px;
 }
 
 .bard-text {
   font-family: "Playfair Display", serif;
   font-optical-sizing: auto;
-  font-weight: 700;
+  font-weight: 800;
   font-style: italic;
+  color: rgb(189, 85, 0);
+  text-shadow: black 1px 0px 1px;
 }
 
 .this-portfolio-text {
-  color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
   font-family: "Cinzel", serif;
-  font-weight: 400;
+  font-weight: 800;
+  color: rgb(0, 76, 255);
+  text-shadow: black 1px 0px 1px;
 }
 
 .kanban-text {
   font-family: "Cinzel", serif;
-  font-weight: 400;
+  font-weight: 800;
+  color: rgb(0, 105, 243);
+  text-shadow: black 1px 0px 1px;
 }
 
 
@@ -382,13 +397,14 @@ FOOTER
   display: flex; 
   justify-content: center; 
   align-items: center;
-  width: 100%;
-  height: 14vh;
-  position: fixed;
+  margin-top: 22px;
+  // width: 100%;
+  // height: 14vh;
+ grid-area: h;
   bottom: 0; 
   z-index: 25;
-  background-color: rgba(0, 0, 0, 0.774);
-  box-shadow: 0px 0px 20px rgb(0, 0, 0);
+  background-color: rgb(255, 255, 255);
+
   animation: navDivStartup 0.5s ease-in-out;
 }
 // .projects-copyright-container {
@@ -399,7 +415,7 @@ FOOTER
 // }
 
 .copyright-text {
-  color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
   font-size: 1vw;
   font-family: "Arial", sans-serif;
   font-optical-sizing: auto;

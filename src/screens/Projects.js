@@ -10,6 +10,7 @@ import ThisPortfolioModal from "../components/ThisPortfolioModal";
 import KanbanBoardModal from "../components/KanbanBoardModal";
 import karim from "../images/karim.jpeg";
 
+
 const Projects = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -188,12 +189,12 @@ const Projects = () => {
    
   
 
-    </div>
       <div className="footer-div-main">
         <div className="projects-copyright-container">
-          <div className="copyright-text">&copy; 2024 Ibrahim Karim. </div>
+          <div className="copyright-text">&copy; 2025 Ibrahim Karim. </div>
         </div>
       </div>
+    </div>
  
       </>
   );
