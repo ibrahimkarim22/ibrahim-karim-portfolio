@@ -16,10 +16,10 @@
 
   ;
   grid-template-columns: repeat(2, 1fr);
-  // grid-template-rows: repeat(8, auto);
+  grid-template-rows: repeat(5, 1fr);
   width: auto;
   height: 100vh;
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(0, 6, 58);
   animation: projectsPageBgStartUp 5s ease-in-out forwards;
   overflow-x: hidden;
   overflow-y: hidden;
@@ -33,16 +33,16 @@
 
 
 .nav-div-main {
+  grid-area: a;
   display: grid;
   grid-template-areas: 
-  'home resume pro info im name'
+  'home resume pro info name im'
   ;
 
   width: 100%;
-  grid-template-columns: repeat(5, auto);
-  z-index: 50;
+  grid-template-columns: repeat(6, 1fr);
   // border-radius: 53px 53px 0px 0px;
-  background-color: rgb(255, 255, 255);
+  background-color: 	#FFD700;
   box-shadow: 0px 0px 100px rgb(0, 0, 0);
   animation: navDivStartup 3s ease-in-out;
 
@@ -56,21 +56,24 @@
 .nav-gmail-btn,
 .social-container,
 .profile-div-main,
-.image-div-main  {
+.image-div-main,
+.profile-image  {
   text-decoration: none;
   display: flex;
   justify-content: center;
   align-items: center;
   pointer-events: auto;
+  
 }
 
 .nav-home-btn,
 .nav-resume-btn,
 .nav-three-dee-resume-btn {
   font-size: 2vw;
-  color: rgb(0, 0, 0);
+  color: 	#003366;
+  text-shadow: 	#8A2BE2 0px 0px 5px;
   font-family: "Raleway", sans-serif;
-  font-weight: 300;
+  font-weight: 500;
   font-style: normal;
   transition: 0.3s ease-in-out;
 }
@@ -85,7 +88,8 @@
 .nav-linkedin-btn:hover,
 .nav-github-btn:hover,
 .profile-image:hover {
-  scale: 1.2;
+  scale: 1.05;
+  color: rgb(255, 0, 0);
 }
 
 .nav-home-btn {
@@ -112,9 +116,10 @@
   align-items: center;
   margin: 1vw;
   font-size: 1.5vw;
-  color: rgb(0, 0, 0);
+  color: 	#003366;
+  text-shadow: 	#8A2BE2 0px 0px 3px;
   font-family: "Raleway", sans-serif;
-  font-weight: 300;
+  font-weight: 500;
   font-style: normal;
   text-decoration: none;
 }
@@ -130,8 +135,7 @@
 .profile-image {
   width: 5vw;
   height: auto;
-  border-radius: 50%;
-  margin-right: 2vw;
+  border-radius: 10%;
 }
 
 .profile-div-main {
@@ -150,9 +154,10 @@
   justify-content: center;
   align-items: center;
   font-family: "Raleway", sans-serif;
-  font-weight: 300;
+  font-weight: 500;
   font-style: normal;
-  color: rgb(255, 255, 255);
+  color: 	#003366;
+  text-shadow: black 1px 1px 2px;
   text-decoration: none;
   cursor: default;
 }
@@ -181,9 +186,9 @@
   cursor: pointer;
   padding: 0px;
   margin: 10px;
-  // border-radius: 100px;
-  box-shadow:  rgb(126, 126, 126) 10px 10px 50px;
-  background-color: rgba(215, 215, 215, 0.326);
+  
+  // box-shadow:  rgb(126, 126, 126) 10px 10px 50px;
+  background-color: rgba(215, 215, 215, 0.126);
   backdrop-filter: blur(100px);
   // border: black solid 1px;
 }
@@ -193,7 +198,7 @@
 .hey-you-div-main:hover,
 .this-portfolio-div-main:hover,
 .kanban-div-main:hover {
-  scale: 1.05;
+  scale: 1.02;
   // box-shadow: rgba(0, 0, 0, 0.397) 0px 0px 10px 10px;
   z-index: 22;
 
@@ -201,6 +206,8 @@
 .this-portfolio-div-main {
   grid-area: b;
   animation: projectDivStartup 6s ease-in-out forwards;
+  border: rgb(0, 76, 255) solid 1px;
+  border-radius: 10px;
 }
 
 
@@ -208,27 +215,37 @@
   grid-area: c;
   pointer-events: auto;
   animation: projectDivStartup 5s ease-in-out forwards;
+  border: red solid 1px;
+  border-radius: 10px;
 }
 
 
 .krispy-div-main {
   grid-area: d;
   animation: projectDivStartup 4s ease-in-out forwards;
+  border: pink solid 1px;
+  border-radius: 10px;
 }
 
 .hey-you-div-main {
   grid-area: e;
   animation: projectDivStartup 3s ease-in-out forwards;
+  border: aqua solid 1px;
+  border-radius: 10px;
 }
 
 .bard-div-main {
   grid-area: f;
   animation: projectDivStartup 2s ease-in-out forwards;
+  border: rgb(189, 85, 0) solid 1px;
+  border-radius: 10px;
 }
 
 .kanban-div-main {
   grid-area: g;
   animation: projectDivStartup 1s ease-in-out forwards;
+  border: rgb(0, 105, 243) solid 1px;
+  border-radius: 10px;
   
 }
 
@@ -299,7 +316,7 @@
   justify-content: center;
   align-items: center;
 
-  color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
   font-size: 1vw;
   font-family: "Raleway", sans-serif;
   font-optical-sizing: auto;
@@ -307,6 +324,9 @@
   font-style: normal;
   
 }
+
+
+
 
 .whacka-description-text,
 .krispy-description-text,
@@ -320,7 +340,7 @@
   font-optical-sizing: auto;
   font-weight: 300;
   font-style: normal;
-  color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
 }
 
 
@@ -333,7 +353,7 @@
 .kanban-text {
   grid-area: title;
   font-size: 2vw;
-  color: rgb(0, 0, 0);
+
 }
 
 
@@ -389,6 +409,73 @@
 }
 
 
+.bard-js,
+.kanban-js,
+.krispy-js,
+.whacka-js,
+.hey-you-js,
+.this-portfolio-js {
+  color: yellow;
+}
+
+.kanban-react,
+.krispy-react,
+.this-portfolio-react,
+.hey-you-react,
+.bard-react-native {
+  color: aqua;
+}
+
+.bard-firebase,
+.kanban-firebase,
+.krispy-firebase,
+.this-portfolio-firebase,
+.bard-firestore,
+.kanban-firestore {
+  color: rgb(255, 157, 0);
+}
+
+.kanban-scss,
+.krispy-scss,
+.whacka-scss,
+.this-portfolio-scss {
+  color: rgb(255, 63, 134);
+}
+
+.bard-redux,
+.krispy-redux {
+  color: rgb(179, 0, 255);
+}
+
+.this-portfolio-blender {
+  color: rgb(138, 138, 255);
+}
+
+.whacka-html {
+  color: rgb(255, 202, 103);
+}
+
+.krispy-bootstrap {
+  color: rgb(186, 133, 255);
+}
+
+.hey-you-socketio {
+  color: rgb(132, 132, 132); 
+}
+
+.hey-you-mongodb {
+  color: rgb(118, 255, 118);
+}
+
+.hey-you-nodejs {
+   color: green;
+}
+
+.hey-you-docker {
+  color: rgb(0, 102, 255);
+}
+
+
 /*=========
 FOOTER
 =========*/
@@ -397,13 +484,12 @@ FOOTER
   display: flex; 
   justify-content: center; 
   align-items: center;
-  margin-top: 22px;
   // width: 100%;
   // height: 14vh;
  grid-area: h;
   bottom: 0; 
   z-index: 25;
-  background-color: rgb(255, 255, 255);
+  background-color: 	#FFD700;
 
   animation: navDivStartup 0.5s ease-in-out;
 }
@@ -460,4 +546,77 @@ MEDIA QUERIES
 .profile-image {
   width: 12vw;
 }
+
+.projects-div-main {
+  grid-template-areas: 
+  'a'
+  'b'
+  'c'
+  'd'
+  'e'
+  'f'
+  'g'
+  'h'
+  ;
+
+}
+.whacka-div-main,
+.bard-div-main,
+.krispy-div-main,
+.hey-you-div-main,
+.this-portfolio-div-main,
+.kanban-div-main {
+  width: 100vw;
+
+}
+.whacka-text,
+.whacka-description-text,
+.krispy-text,
+.krispy-description-text,
+.hey-you-text,
+.hey-you-description-text,
+.bard-text,
+.bard-description-text,
+.this-portfolio-text,
+.this-portfolio-description-text,
+.kanban-text,
+.kanban-description-text {
+  font-size: 5vw;
+}
+
+.whacka-js,
+.whacka-html,
+.whacka-scss,
+.krispy-js,
+.krispy-react,
+.krispy-firebase,
+.krispy-redux,
+.krispy-bootstrap,
+.krispy-scss,
+.hey-you-js,
+.hey-you-react,
+.hey-you-socketio,
+.hey-you-mongodb,
+.hey-you-nodejs,
+.hey-you-docker,
+.hey-you-googlecloud,
+.bard-js,
+.bard-react-native,
+.bard-redux,
+.bard-firebase,
+.bard-firestore,
+.this-portfolio-js,
+.this-portfolio-react,
+.this-portfolio-react-fiber,
+.this-portfolio-firebase,
+.this-portfolio-scss,
+.this-portfolio-blender,
+.kanban-js,
+.kanban-react,
+.kanban-scss,
+.kanban-firebase,
+.kanban-firestore {
+  font-size: 2.5vw;
+}
+
 }

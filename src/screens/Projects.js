@@ -30,6 +30,7 @@ const Projects = () => {
   return (
     <>
            
+    <div className="projects-div-main">
     <div className="nav-div-main">
         <Link className="nav-home-btn" to="/">
           <div>Home</div>
@@ -92,7 +93,6 @@ const Projects = () => {
           />
         </div>
       </div>
-    <div className="projects-div-main">
 
       <div className="whacka-div-main" onClick={() => openModal("whackamole")}>
         <WhackaModal isOpen={modalName === "whackamole"} closeModal={closeModal} />
@@ -133,7 +133,17 @@ const Projects = () => {
           <div className="hey-you-mongodb">MongoDB</div>
           <div className="hey-you-nodejs">Node.js</div>
           <div className="hey-you-docker">Docker</div>
-          <div className="hey-you-googlecloud">Google Cloud</div>
+          <div className="hey-you-googlecloud">
+            <span style={{color: 'rgb(132, 167, 255)'}}>G</span>
+            <span style={{ color: 'red'}}>o</span>
+            <span style={{ color: 'yellow'}}>o</span>
+            <span style={{ color: 'rgb(132, 167, 255)'}}>g</span>
+            <span style={{ color: 'green'}}>l</span>
+            <span style={{ color: 'red'}}>e</span>
+            <span style={{color: 'rgba(215, 215, 215, 0.126)'}}>-</span>
+            <span style={{color: 'white'}}>Cloud</span>
+            </div>
+           
         </div>
         <div className="hey-you-description-text">Location & Chat</div>
       </div>
@@ -164,8 +174,8 @@ const Projects = () => {
           <div className="this-portfolio-react">React</div>
           <div className="this-portfolio-firebase">Firebase</div>
           <div className="this-portfolio-scss">SCSS</div>
-          <div className="this-portfolio-blender">Blender</div>
-          <div className="this-portfolio-react-fiber">React Three</div>
+          <div className="this-portfolio-blender">Blender 3D</div>
+          <div className="this-portfolio-react-fiber">React Three Fiber</div>
         </div>
         <div className="this-portfolio-description-text">This Portfolio</div>
       </div>
