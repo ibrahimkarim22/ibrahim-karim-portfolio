@@ -19,7 +19,10 @@
   grid-template-rows: repeat(5, 1fr);
   width: auto;
   height: 100vh;
-  background-color: rgb(0, 6, 58);
+  // background-image: url(../images/static1.png);
+  background-repeat: no-repeat;
+  background-size: 100vw 100vh;
+  // background-color: rgb(0, 6, 58);
   animation: projectsPageBgStartUp 5s ease-in-out forwards;
   overflow-x: hidden;
   overflow-y: hidden;
@@ -189,7 +192,7 @@
   
   // box-shadow:  rgb(126, 126, 126) 10px 10px 50px;
   background-color: rgba(215, 215, 215, 0.126);
-  backdrop-filter: blur(100px);
+  backdrop-filter: blur(22px);
   // border: black solid 1px;
 }
 .whacka-div-main:hover,
@@ -206,7 +209,7 @@
 .this-portfolio-div-main {
   grid-area: b;
   animation: projectDivStartup 6s ease-in-out forwards;
-  border: rgb(0, 76, 255) solid 1px;
+  // border: rgb(0, 76, 255) solid 1px;
   border-radius: 10px;
 }
 
@@ -215,7 +218,7 @@
   grid-area: c;
   pointer-events: auto;
   animation: projectDivStartup 5s ease-in-out forwards;
-  border: red solid 1px;
+  // border: red solid 1px;
   border-radius: 10px;
 }
 
@@ -223,28 +226,28 @@
 .krispy-div-main {
   grid-area: d;
   animation: projectDivStartup 4s ease-in-out forwards;
-  border: pink solid 1px;
+  // border: pink solid 1px;
   border-radius: 10px;
 }
 
 .hey-you-div-main {
   grid-area: e;
   animation: projectDivStartup 3s ease-in-out forwards;
-  border: aqua solid 1px;
+  // border: aqua solid 1px;
   border-radius: 10px;
 }
 
 .bard-div-main {
   grid-area: f;
   animation: projectDivStartup 2s ease-in-out forwards;
-  border: rgb(189, 85, 0) solid 1px;
+  // border: rgb(189, 85, 0) solid 1px;
   border-radius: 10px;
 }
 
 .kanban-div-main {
   grid-area: g;
   animation: projectDivStartup 1s ease-in-out forwards;
-  border: rgb(0, 105, 243) solid 1px;
+  // border: rgb(0, 105, 243) solid 1px;
   border-radius: 10px;
   
 }

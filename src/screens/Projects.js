@@ -1,5 +1,4 @@
-import { useRef } from "react";
-import { Parallax, ParallaxLayer, IParallax } from '@react-spring/parallax'
+
 import { useLocation, useNavigate} from "react-router-dom";
 import { Link } from "react-router-dom";
 import WhackaModal from "../components/WhackaModal";
@@ -9,6 +8,9 @@ import BardModal from "../components/BardModal";
 import ThisPortfolioModal from "../components/ThisPortfolioModal";
 import KanbanBoardModal from "../components/KanbanBoardModal";
 import karim from "../images/karim.jpeg";
+import { useEffect, useState } from "react";
+import static1 from '../images/static1.png';
+import static2 from '../images/static2.png';
 
 
 const Projects = () => {
@@ -17,7 +19,6 @@ const Projects = () => {
 
   const modalName = location.pathname.split("/")[2]?.toLowerCase();
 
-  const parallax = useRef(null);
 
   const openModal = (modalName) => {
     navigate(`/projects/${modalName.toLowerCase()}`);
@@ -27,10 +28,27 @@ const Projects = () => {
     navigate("/projects")
   };
 
+  const [bgImage, setBgImage] = useState(static1);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setBgImage(static2);
+
+      setTimeout(() => {
+        setBgImage(static1);
+      }, 100)
+    }, 10000)
+    return () => clearInterval(interval);
+  }, [])
+
   return (
     <>
            
-    <div className="projects-div-main">
+    <div className="projects-div-main" style={{
+            backgroundImage: `url(${bgImage})`,
+            backgroundRepeat: 'no-repeat',
+            backgroundSize: '100vw 100vh'
+        }}>
     <div className="nav-div-main">
         <Link className="nav-home-btn" to="/">
           <div>Home</div>
@@ -88,7 +106,7 @@ const Projects = () => {
           <img
             className="profile-image"
             src={karim}
-            alt="ibrahim's profile image"
+            alt="ibrahim's profile"
             onClick={() => window.open(karim, '_blank')}
           />
         </div>
