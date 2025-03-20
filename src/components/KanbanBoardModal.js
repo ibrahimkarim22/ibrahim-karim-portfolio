@@ -18,7 +18,7 @@ function KanbanBoardModal({ isOpen, closeModal }) {
                     </ModalHeader>
                 )}
                 {isOpen && (
-                    <ModalBody className='kanband-modal-main'>
+                    <ModalBody className='kanban-modal-main'>
 
                     </ModalBody>
                 )}
