@@ -28,16 +28,16 @@ const Projects = () => {
     navigate("/projects")
   };
 
-  const [bgImage, setBgImage] = useState(static1);
+  const [bgImage, setBgImage] = useState(static2);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setBgImage(static2);
+      setBgImage(static1);
 
       setTimeout(() => {
-        setBgImage(static1);
-      }, 100)
-    }, 10000)
+        setBgImage(static2);
+      }, 300)
+    }, 5000)
     return () => clearInterval(interval);
   }, [])
 

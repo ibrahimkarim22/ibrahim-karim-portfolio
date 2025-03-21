@@ -16,7 +16,7 @@
 
   ;
   grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(5, 1fr);
+  grid-template-rows: 7vw 14vw 14vw 14vw 7vw;
   width: auto;
   height: 100vh;
   // background-image: url(../images/static1.png);
@@ -25,7 +25,7 @@
   // background-color: rgb(0, 6, 58);
   animation: projectsPageBgStartUp 5s ease-in-out forwards;
   overflow-x: hidden;
-  overflow-y: hidden;
+  // overflow-y: hidden;
 
 }
 
@@ -45,7 +45,7 @@
   width: 100%;
   grid-template-columns: repeat(6, 1fr);
   // border-radius: 53px 53px 0px 0px;
-  background-color: 	#FFD700;
+  background-color: 	#000000;
   box-shadow: 0px 0px 100px rgb(0, 0, 0);
   animation: navDivStartup 3s ease-in-out;
 
@@ -73,8 +73,8 @@
 .nav-resume-btn,
 .nav-three-dee-resume-btn {
   font-size: 2vw;
-  color: 	#003366;
-  text-shadow: 	#8A2BE2 0px 0px 5px;
+  color: 	#ffffff;
+  // text-shadow: 	#8A2BE2 0px 0px 5px;
   font-family: "Raleway", sans-serif;
   font-weight: 500;
   font-style: normal;
@@ -119,8 +119,8 @@
   align-items: center;
   margin: 1vw;
   font-size: 1.5vw;
-  color: 	#003366;
-  text-shadow: 	#8A2BE2 0px 0px 3px;
+  color: 	#ffffff;
+  // text-shadow: 	#8A2BE2 0px 0px 3px;
   font-family: "Raleway", sans-serif;
   font-weight: 500;
   font-style: normal;
@@ -159,8 +159,8 @@
   font-family: "Raleway", sans-serif;
   font-weight: 500;
   font-style: normal;
-  color: 	#003366;
-  text-shadow: black 1px 1px 2px;
+  color: 	#ffffff;
+  // text-shadow: black 1px 1px 2px;
   text-decoration: none;
   cursor: default;
 }
@@ -192,7 +192,7 @@
   
   // box-shadow:  rgb(126, 126, 126) 10px 10px 50px;
   background-color: rgba(0, 0, 0, 0.126);
-  backdrop-filter: blur(50px);
+  backdrop-filter: blur(11px);
   // border: black solid 1px;
 }
 .whacka-div-main:hover,
@@ -266,6 +266,10 @@
 .kanban-text,
 .kanban-description-text {
   text-wrap: nowrap;
+  letter-spacing: 2px;
+  // background-color: #000000;
+  // border-radius: 11px;
+  // padding: 5px;
 }
 
 .whacka-software-text-container,
@@ -318,14 +322,17 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
   color: rgb(255, 255, 255);
-  font-size: 1vw;
+  font-size: 1.1vw;
   font-family: "Raleway", sans-serif;
   font-optical-sizing: auto;
   font-weight: 500;
   font-style: normal;
-  
+  // background-color: rgb(0, 0, 0);
+  // box-shadow: black 0px 0px 10px;
+  // padding: 5px;
+  // border-radius: 11px;
+  // text-shadow: black 0px 0px 2px;
 }
 
 
@@ -344,6 +351,7 @@
   font-weight: 300;
   font-style: normal;
   color: rgb(255, 255, 255);
+
 }
 
 
@@ -355,7 +363,7 @@
 .this-portfolio-text,
 .kanban-text {
   grid-area: title;
-  font-size: 2vw;
+  font-size: 3vw;
 
 }
 
@@ -463,7 +471,7 @@
 }
 
 .hey-you-socketio {
-  color: rgb(132, 132, 132); 
+  color: rgb(255, 255, 255); 
 }
 
 .hey-you-mongodb {
@@ -492,7 +500,7 @@ FOOTER
  grid-area: h;
   bottom: 0; 
   z-index: 25;
-  background-color: 	#FFD700;
+  background-color: 	#000000;
 
   animation: navDivStartup 0.5s ease-in-out;
 }
@@ -504,7 +512,7 @@ FOOTER
 // }
 
 .copyright-text {
-  color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
   font-size: 1vw;
   font-family: "Arial", sans-serif;
   font-optical-sizing: auto;
