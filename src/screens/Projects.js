@@ -1,6 +1,7 @@
 
 import { useLocation, useNavigate} from "react-router-dom";
 import { Link } from "react-router-dom";
+import Sky from "../components/Sky";
 import WhackaModal from "../components/WhackaModal";
 import KrispyModal from "../components/KrispyModal";
 import HeyYouModal from "../components/HeyYouModal";
@@ -11,6 +12,7 @@ import karim from "../images/karim.jpeg";
 import { useEffect, useState } from "react";
 import static1 from '../images/static1.png';
 import static2 from '../images/static2.png';
+
 
 
 const Projects = () => {
@@ -27,29 +29,33 @@ const Projects = () => {
   const closeModal = () => {
     navigate("/projects")
   };
+  
+  const [bgImage, setBgImage] = useState('black');
 
-  const [bgImage, setBgImage] = useState(static2);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setBgImage(static1);
+        setBgImage(static2); 
+        setTimeout(() => {
+            setBgImage('black'); 
+        }, 300);
+    }, 7000); 
 
-      setTimeout(() => {
-        setBgImage(static2);
-      }, 300)
-    }, 5000)
     return () => clearInterval(interval);
-  }, [])
+}, []);
+
 
   return (
     <>
            
     <div className="projects-div-main" style={{
             backgroundImage: `url(${bgImage})`,
+            backgroundColor: 'black',
             backgroundRepeat: 'no-repeat',
             backgroundSize: '100vw 100vh'
         }}>
     <div className="nav-div-main">
+      <Sky />
         <Link className="nav-home-btn" to="/">
           <div>Home</div>
         </Link>
