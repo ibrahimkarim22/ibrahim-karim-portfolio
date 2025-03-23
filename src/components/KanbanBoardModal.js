@@ -19,7 +19,8 @@ function KanbanBoardModal({ isOpen, closeModal }) {
                 )}
                 {isOpen && (
                     <ModalBody className='kanban-modal-main'>
-
+                        <h1>Page Under Construction</h1>
+                        <h3>Kanban Board can be accssed from <a href='https://kanbanboardtodolist.web.app/'>here</a></h3>
                     </ModalBody>
                 )}
             </Modal>
