@@ -190,24 +190,36 @@
 .kanban-modal-header {
   background-color: blue;
   border: solid 1px red;
+  display: grid;
+  grid-template-areas: 
+  'a b c'
+  ;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(1, 1fr);
 }
 
 .kanban-modal-header .modal-title {
   font-size: 40px;
+  grid-area: a;
   color: whitesmoke;
   font-family: 'Playfair Display', serif;
   font-optical-sizing: auto;
   font-weight: 700;
+  text-wrap: nowrap;
 }
 
 .kanban-modal-header-text-two {
+  grid-area: b;
   font-size: 30px;
   margin-left: 20px;
+  text-wrap: nowrap;
 }
 
 .kanban-modal-header .btn-close {
+  grid-area: c;
   background-color: white;
   margin-left: 12px;
+  
 }
 
 
