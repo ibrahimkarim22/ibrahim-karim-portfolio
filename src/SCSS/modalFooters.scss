@@ -2,6 +2,7 @@
 .krispy-modal-footer,
 .hey-you-modal-footer,
 .bard-modal-footer,
+.kanban-modal-footer,
 .this-portfolio-modal-footer {
   display: flex;
   flex-direction: row;
@@ -12,6 +13,10 @@
   width: 100vw;
   z-index: 100;
 }
+
+/*=================
+  Whacka
+  ===================*/
 
 .whacka-modal-footer button {
   display: flex;
@@ -24,10 +29,6 @@
   color: rgb(0, 0, 0);
   font-weight: 200;
 }
-
-/*=================
-  Whacka
-  ===================*/
 
 .whacka-modal-footer {
   background-color: rgb(255, 0, 0);
@@ -171,6 +172,42 @@
   color: rgb(255, 255, 255);
 }
 
+/*kanban board*/
+
+.kanban-modal-footer {
+  background-color: rgb(72, 0, 188);
+  border: solid 1px rgb(0, 0, 0);
+}
+
+.kanban-modal-footer button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 10vw;
+  height: auto;
+  font-family: "Playfair Display", system-ui;
+  letter-spacing: 1px;
+  border: solid 1px rgb(0, 0, 0);
+  font-weight: 400;
+}
+
+.kanban-modal-close-btn {
+  background-color: rgb(0, 153, 255);
+  color: rgb(255, 255, 255);
+}
+
+.kanban-site-btn{
+  background-color: rgb(0, 153, 255);
+  color: rgb(255, 255, 255);
+}
+
+.kanban-modal-github-btn {
+  background-color: rgb(0, 153, 255);
+
+  color: rgb(255, 255, 255);
+}
+
+
 /* this portfolio
 */
 
@@ -205,6 +242,7 @@
   .krispy-modal-footer,
   .hey-you-modal-footer,
   .bard-modal-footer,
+  .kanban-modal-footer,
   .this-portfolio-modal-footer {
     gap: 50px;
   }
@@ -212,6 +250,7 @@
   .krispy-modal-footer button,
   .hey-you-modal-footer button,
   .bard-modal-footer button,
+  .kanban-modal-footer button,
   .this-portfolio-modal-footer button {
     width: 22vw;
   }
@@ -221,6 +260,7 @@
   .krispy-modal-footer,
   .hey-you-modal-footer,
   .bard-modal-footer,
+  .kanban-modal-footer,
   .this-portfolio-modal-footer {
     gap: 0px;
   }
@@ -228,6 +268,7 @@
   .krispy-modal-footer button,
   .hey-you-modal-footer button,
   .bard-modal-footer button,
+  .kanban-modal-footer button,
   .this-portfolio-modal-footer button {
     width: 25vw;
     font-size: 12px;
@@ -239,6 +280,7 @@
   .krispy-modal-footer button,
   .hey-you-modal-footer button,
   .bard-modal-footer button,
+  .kanban-modal-footer button,
   .this-portfolio-modal-footer button {
     font-size: 12px;
   }
@@ -249,6 +291,7 @@
   .krispy-modal-footer button,
   .hey-you-modal-footer button,
   .bard-modal-footer button,
+  .kanban-modal-footer button,
   .this-portfolio-modal-footer button {
     height: 3vh;
     font-size: 12px;
@@ -259,6 +302,7 @@
 .krispy-modal-footer button:hover,
 .hey-you-modal-footer button:hover,
 .bard-modal-footer button:hover,
+.kanban-modal-footer button:hover,
 .this-portfolio-modal-footer button:hover {
   scale: 1.1;
 }
@@ -270,4 +314,7 @@
 
 .krispy-site-btn:hover {
   background-color: rgb(8, 0, 255);
+}
+.kanban-modal-footer button:hover {
+  background-color: #ffc500;
 }

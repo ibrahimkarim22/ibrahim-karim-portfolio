@@ -23,6 +23,37 @@ function KanbanBoardModal({ isOpen, closeModal }) {
                         <h3>Kanban Board can be accssed from <a href='https://kanbanboardtodolist.web.app/'>here</a></h3>
                     </ModalBody>
                 )}
+                 {isOpen && (
+        <ModalFooter className="kanban-modal-footer">
+          <Button
+            color="danger"
+            className="kanban-modal-close-btn"
+            onClick={closeModal}
+          >
+            Close
+          </Button>
+          <Button
+           
+            className="kanban-site-btn"
+            onClick={(src) =>
+              window.open("https://kanbanboardtodolist.web.app/", "_blank")
+            }
+          >
+            Board
+          </Button>
+          <Button
+            color="info"
+            className="kanban-modal-github-btn"
+            onClick={(src) =>
+              window.open(
+                "https://github.com/ibrahimkarim22/kanbanboard"
+              )
+            }
+          >
+            GitHub
+          </Button>
+        </ModalFooter>
+      )}
             </Modal>
     )
 }
