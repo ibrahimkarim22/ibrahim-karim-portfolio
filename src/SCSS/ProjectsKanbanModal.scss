@@ -1,36 +1,8 @@
-// .kanban-modal-header {
-//     // display: grid;
-//     // grid-template-areas: 
-//     // 'a b c'
-//     // ;
-//     // grid-template-columns: repeat(3, 1fr);
-//     // grid-template-rows: repeat(1, 1fr);
-//      display: flex;
-     
-    
-// }
-
-// .kanban-modal-header-text,
-// .kanban-modal-header-text-two,
-// .kanban-modal-header .btn-close {
-//     display: flex;
-//     flex-direction: column;
-//     justify-content: center;
-//     align-items: center;
-// }
-
-// .kanban-modal-header-text {
-//     font-size: 50px;
-//     // grid-area: a;
-// }
-
-// .kanban-modal-header-text-two {
-//     font-size: 40px;
-//     // grid-area: b;
-// }
-
-// .kanban-modal-header .btn-close {
-//     // grid-area: c;
-
-// }
+.kanban-modal-main {
+    background-color: aquamarine;
+    display: grid;
+    grid-template-areas: 
+    ''
+    ;
+}
 
