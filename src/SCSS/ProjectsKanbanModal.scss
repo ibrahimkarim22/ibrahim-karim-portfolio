@@ -11,7 +11,7 @@
     grid-template-rows: repeat(4, 1fr);
 }
 
-.kanban-software,
+
 .kanban-js,
 .kanban-sass,
 .kanban-react,
@@ -20,6 +20,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
 }
 
 .kanban-software {
@@ -28,28 +29,68 @@
     grid-template-areas: 
         'a b c d e'
     ;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(1, 1fr);
-    background-color: aliceblue;
+    // background-color: aliceblue;
+    width: 100vw;
+    padding: 100px;
 }
 
 .kanban-js {
     grid-area: a;
-    width: 11vw;
+    width: 150px;
 }
 
 .kanban-sass {
     grid-area: b;
+    width: 220px;
 }
 
 .kanban-react {
     grid-area: c;
+    width: 210px;
 }
 
 .kanban-firebase {
     grid-area: d;
+    width: 150px;
 }
 
 .kanban-firestore {
     grid-area: e;
+    width: 175px;
+}
+
+@media (max-width: 1110px) {
+    .kanban-software {
+        grid-template-areas: 
+        'a'
+        'b'
+        'c'
+        'd'
+        'e'
+        ;
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-rows: repeat(5, 1fr);
+        padding: 50px;
+    }
+
+    .kanban-js {
+        width: 100px;
+    }
+    .kanban-sass {
+        width: 129px;
+    }
+    .kanban-react {
+        width: 129px;
+    }
+    .kanban-firebase {
+        width: 80px;
+    }
+    .kanban-firestore {
+        width: 95px;
+    }
 }
