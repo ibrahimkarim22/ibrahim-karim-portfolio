@@ -29,6 +29,16 @@ function KanbanBoardModal({ isOpen, closeModal }) {
             <img src={firestore} alt="firestore" className="kanban-firestore" />
 
           </div>
+          
+          <div className="kanban-react-section">
+          <div className="kanban-react-section-title">React</div>
+          <div className="kanban-react-section-paragraph">I used React.JS to create this 
+            kanban board. I used app.jsx to pass props to the signup and login components, 
+            task input and droppable area components
+          </div>
+
+          </div>
+          
         
         </ModalBody>}
       {isOpen && (
