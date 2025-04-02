@@ -1,11 +1,11 @@
 .kanban-modal-main {
     background-color: aquamarine;
     display: grid;
-    grid-template-areas: 
-    'a'
-    'b'
-    'c'
-    'd'
+    grid-template-areas:
+        'a'
+        'b'
+        'c'
+        'd'
     ;
     grid-template-columns: repeat(1, 1fr);
     grid-template-rows: repeat(4, 1fr);
@@ -20,7 +20,19 @@
 .kanban-firestore,
 .kanban-react-section,
 .kanban-react-section-title,
-.kanban-react-section-paragraph {
+.kanban-react-section-paragraph,
+.kanban-js-section,
+.kanban-js-section-title,
+.kanban-js-section-paragraph,
+.kanban-firebase-section,
+.kanban-firebase-section-title,
+.kanban-firebase-section-paragraph,
+.kanban-firestore-section,
+.kanban-firestore-section-title,
+.kanban-firestore-section-paragraph,
+.kanban-sass-section,
+.kanban-sass-section-title,
+.kanban-sass-section-paragraph {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -32,8 +44,8 @@
 .kanban-software {
     grid-area: a;
     display: grid;
-    grid-template-areas: 
-    'a b c d e'
+    grid-template-areas:
+        'a b c d e'
     ;
     justify-content: center;
     align-items: center;
@@ -70,26 +82,39 @@
     width: 175px;
 }
 
-.kanban-react-section {
+.kanban-react-section,
+.kanban-js-section,
+.kanban-firebase-section,
+.kanban-firestore-section,
+.kanban-sass-section {
     flex-direction: column;
 }
 
-.kanban-react-section-title {
+.kanban-react-section-title,
+.kanban-js-section-title,
+.kanban-firebase-section-title,
+.kanban-firestore-section-title,
+.kanban-sass-section-title {
     font-size: 100px;
 }
 
-.kanban-react-section-paragraph {
+.kanban-react-section-paragraph,
+.kanban-js-section-paragraph,
+.kanban-firebase-section-paragraph,
+.kanban-firestore-section-paragraph,
+.kanban-sass-section-paragraph {
     font-size: 50px;
     padding: 50px;
 }
+
 @media (max-width: 1110px) {
     .kanban-software {
-        grid-template-areas: 
-        'a'
-        'b'
-        'c'
-        'd'
-        'e'
+        grid-template-areas:
+            'a'
+            'b'
+            'c'
+            'd'
+            'e'
         ;
         grid-template-columns: repeat(1, 1fr);
         grid-template-rows: repeat(5, 1fr);
@@ -99,15 +124,19 @@
     .kanban-js {
         width: 100px;
     }
+
     .kanban-sass {
         width: 129px;
     }
+
     .kanban-react {
         width: 129px;
     }
+
     .kanban-firebase {
         width: 80px;
     }
+
     .kanban-firestore {
         width: 95px;
     }

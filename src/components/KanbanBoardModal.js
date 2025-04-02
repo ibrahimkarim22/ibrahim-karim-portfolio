@@ -46,9 +46,9 @@ function KanbanBoardModal({ isOpen, closeModal }) {
           </div>
 
           <div className="kanban-js-section">
-            <div className="kanban-js-section-title">
-              <div className="kanban-js-section-paragraph">JavaScript</div>I
-              used JavaScript for core logic such as managing task arrays,
+            <div className="kanban-js-section-title">JavaScript</div>
+            <div className="kanban-js-section-paragraph">
+              I used JavaScript for core logic such as managing task arrays,
               filtering, and handling asynchronous data fetching. Key features
               like map, filter, destructuring, and async/await are used
               throughout the app—for example, to add or delete tasks and update
@@ -58,9 +58,10 @@ function KanbanBoardModal({ isOpen, closeModal }) {
 
           <div className="kanban-firebase-section">
             <div className="kanban-firebase-section-title">
-              <div className="kanban-firebase-section-paragraph">
-                Firebase authentication
-              </div>
+              {" "}
+              Firebase authentication
+            </div>
+            <div className="kanban-firebase-section-paragraph">
               I integrated Firebase Authentication to allow users to sign up and
               log in securely. The Signup.jsx component uses
               createUserWithEmailAndPassword, while Login.jsx uses
@@ -72,9 +73,9 @@ function KanbanBoardModal({ isOpen, closeModal }) {
 
           <div className="kanban-firestore-section">
             <div className="kanban-firestore-section-title">
-              <div className="kanban-firestore-section-paragraph">
-                Firebase Firestore
-              </div>
+              Firebase Firestore
+            </div>
+            <div className="kanban-firestore-section-paragraph">
               All user-specific data (tasks, in-progress items, completed items,
               and theme preference) are saved in Firestore under the user’s UID.
               I used Firebase’s setDoc and getDoc functions to read and write
@@ -85,8 +86,8 @@ function KanbanBoardModal({ isOpen, closeModal }) {
           </div>
 
           <div className="kanban-sass-section">
-            <div className="kanban-sass-section-title">
-              <div className="kanban-sass-section-paragraph">Sass (SCSS)</div>I
+            <div className="kanban-sass-section-title">Sass (SCSS)</div>I
+            <div className="kanban-sass-section-paragraph">
               used Sass to organize the app’s styling into clean,
               component-based blocks. Variables and nested rules made it easier
               to maintain and tweak the visual theme. The app includes a toggle
