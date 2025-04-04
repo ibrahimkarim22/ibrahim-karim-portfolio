@@ -140,4 +140,22 @@
     .kanban-firestore {
         width: 95px;
     }
+    .kanban-react-section-title,
+.kanban-js-section-title,
+.kanban-firebase-section-title,
+.kanban-firestore-section-title,
+.kanban-sass-section-title {
+    font-size: 30px;
+}
+
+.kanban-react-section-paragraph,
+.kanban-js-section-paragraph,
+.kanban-firebase-section-paragraph,
+.kanban-firestore-section-paragraph,
+.kanban-sass-section-paragraph {
+    font-size: 20px;
+    padding: 30px;
+    overflow-wrap: break-word;
+   
+}
 }
