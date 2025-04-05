@@ -96,7 +96,7 @@
 .kanban-firestore-section-title,
 .kanban-sass-section-title {
     font-size: 100px;
-    color: snow;
+    color: rgb(0, 0, 0);
 }
 
 .kanban-react-section-paragraph,
@@ -106,7 +106,8 @@
 .kanban-sass-section-paragraph {
     font-size: 50px;
     padding: 50px;
-    color: beige;
+    color: rgb(0, 0, 0);
+    // text-shadow: rgb(255, 255, 255) 1px 0px 1px;
 }
 
 @media (max-width: 1110px) {
