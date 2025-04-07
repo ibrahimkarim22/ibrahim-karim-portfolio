@@ -5,6 +5,7 @@ import sass from "../images/sass.png";
 import js from "../images/js.png";
 import reactLogo from "../images/reactLogo.png";
 import kanbanReact from "../images/kanbanReact.png";
+import kanbanReactTwo from "../images/kanbanReactTwo.png";
 
 function KanbanBoardModal({ isOpen, closeModal }) {
   return (
@@ -44,7 +45,9 @@ function KanbanBoardModal({ isOpen, closeModal }) {
               drag-and-drop system is implemented using the native HTML Drag API
               and custom logic in DroppableArea.jsx.
             </div>
+            <img src={kanbanReactTwo} alt="kanban react code" />
             <img src={kanbanReact} alt="kanban react code" />
+
           </div>
 
           <div className="kanban-js-section">
