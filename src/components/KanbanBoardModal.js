@@ -6,6 +6,13 @@ import js from "../images/js.png";
 import reactLogo from "../images/reactLogo.png";
 import kanbanReact from "../images/kanbanReact.png";
 import kanbanReactTwo from "../images/kanbanReactTwo.png";
+import kanbanJS from "../images/kanbanJS.png";
+import kanbanFirebase from "../images/kanbanFirebase.png";
+import kanbanFirebaseLogin from "../images/kanbanFirebaseLogin.png";
+import kanbanFirestore from "../images/kanbanFirestore.png";
+import kanbanSass1 from "../images/kanbanSass1.png";
+import kanbanSass2 from "../images/kanbanSass2.png";
+import kanbanSass3 from "../images/kanbanSass3.png";
 
 function KanbanBoardModal({ isOpen, closeModal }) {
   return (
@@ -59,6 +66,7 @@ function KanbanBoardModal({ isOpen, closeModal }) {
               throughout the app—for example, to add or delete tasks and update
               the UI in real time.
             </div>
+            <img src={kanbanJS} alt="kanban javascript" />
           </div>
 
           <div className="kanban-firebase-section">
@@ -74,6 +82,8 @@ function KanbanBoardModal({ isOpen, closeModal }) {
               the user’s UID is used to store and retrieve their data in
               Firestore.
             </div>
+            <img src={kanbanFirebase} alt="kanban firebase signup" />
+            <img src={kanbanFirebaseLogin} alt="kanban firebase login" />
           </div>
 
           <div className="kanban-firestore-section">
@@ -88,6 +98,7 @@ function KanbanBoardModal({ isOpen, closeModal }) {
               logs in, and updates are saved using a useEffect that triggers
               every time the task state changes.
             </div>
+            <img src={kanbanFirestore} alt="kanban firestore" />
           </div>
 
           <div className="kanban-sass-section">
@@ -101,6 +112,9 @@ function KanbanBoardModal({ isOpen, closeModal }) {
               board (.droppable-areas-container) uses CSS Grid to lay out the
               three droppable areas: "To Do", "In Progress", and "Completed".
             </div>
+            <img src={kanbanSass1} alt="kanban sass 1" />
+            <img src={kanbanSass2} alt="kanban sass 2" />
+            <img src={kanbanSass3} alt="kanban sass 2" />
           </div>
         </ModalBody>
       )}
