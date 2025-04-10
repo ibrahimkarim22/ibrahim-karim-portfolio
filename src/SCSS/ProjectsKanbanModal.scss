@@ -1,5 +1,5 @@
 .kanban-modal-main {
-    background-color: aquamarine;
+    background-color: rgb(127, 129, 255);
     display: grid;
     grid-template-areas:
         'a'
@@ -32,7 +32,17 @@
 .kanban-firestore-section-paragraph,
 .kanban-sass-section,
 .kanban-sass-section-title,
-.kanban-sass-section-paragraph {
+.kanban-sass-section-paragraph,
+.kanban-js-board,
+.kanban-react-code,
+.kanban-react-two-code,
+.kanban-firebase-code,
+.kanban-firebase-login-code,
+.kanban-firestore-code,
+.kanban-sass1-code,
+.kanban-sass2-code,
+.kanban-sass3-code
+ {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -108,6 +118,20 @@
     padding: 50px;
     color: rgb(0, 0, 0);
     // text-shadow: rgb(255, 255, 255) 1px 0px 1px;
+}
+
+.kanban-react-code,
+.kanban-react-two-code,
+.kanban-js-code,
+.kanban-react-code
+.kanban-firebase-code,
+.kanban-firebase-login-code,
+.kanban-firestore-code,
+.kanban-sass1-code,
+.kanban-sass2-code,
+.kanban-sass3-code {
+    width: 70vw;
+    padding: 100px;
 }
 
 @media (max-width: 1110px) {

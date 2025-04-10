@@ -52,8 +52,8 @@ function KanbanBoardModal({ isOpen, closeModal }) {
               drag-and-drop system is implemented using the native HTML Drag API
               and custom logic in DroppableArea.jsx.
             </div>
-            <img src={kanbanReactTwo} alt="kanban react code" />
-            <img src={kanbanReact} alt="kanban react code" />
+            <img src={kanbanReactTwo} alt="kanban react code" className="kanban-react-two-code"/>
+            <img src={kanbanReact} alt="kanban react code" className="kanban-react-code"/>
 
           </div>
 
@@ -66,7 +66,7 @@ function KanbanBoardModal({ isOpen, closeModal }) {
               throughout the app—for example, to add or delete tasks and update
               the UI in real time.
             </div>
-            <img src={kanbanJS} alt="kanban javascript" />
+            <img src={kanbanJS} alt="kanban javascript" className="kanban-js-code"/>
           </div>
 
           <div className="kanban-firebase-section">
@@ -82,8 +82,8 @@ function KanbanBoardModal({ isOpen, closeModal }) {
               the user’s UID is used to store and retrieve their data in
               Firestore.
             </div>
-            <img src={kanbanFirebase} alt="kanban firebase signup" />
-            <img src={kanbanFirebaseLogin} alt="kanban firebase login" />
+            <img src={kanbanFirebase} alt="kanban firebase signup" className="kanban-firebase-code" />
+            <img src={kanbanFirebaseLogin} alt="kanban firebase login" className="kanban-firebase-login-code"/>
           </div>
 
           <div className="kanban-firestore-section">
@@ -98,7 +98,7 @@ function KanbanBoardModal({ isOpen, closeModal }) {
               logs in, and updates are saved using a useEffect that triggers
               every time the task state changes.
             </div>
-            <img src={kanbanFirestore} alt="kanban firestore" />
+            <img src={kanbanFirestore} alt="kanban firestore" className="kanban-firestore-code"/>
           </div>
 
           <div className="kanban-sass-section">
@@ -112,9 +112,9 @@ function KanbanBoardModal({ isOpen, closeModal }) {
               board (.droppable-areas-container) uses CSS Grid to lay out the
               three droppable areas: "To Do", "In Progress", and "Completed".
             </div>
-            <img src={kanbanSass1} alt="kanban sass 1" />
-            <img src={kanbanSass2} alt="kanban sass 2" />
-            <img src={kanbanSass3} alt="kanban sass 2" />
+            <img src={kanbanSass1} alt="kanban sass 1" className="kanban-sass1-code"/>
+            <img src={kanbanSass2} alt="kanban sass 2"  className="kanban-sass2-code"/>
+            <img src={kanbanSass3} alt="kanban sass 2"  className="kanban-sass3-code"/>
           </div>
         </ModalBody>
       )}
