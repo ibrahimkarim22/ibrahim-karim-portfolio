@@ -1,5 +1,5 @@
 .kanban-modal-main {
-    background-color: rgb(127, 129, 255);
+    background-color: rgb(255, 255, 255);
     display: grid;
     grid-template-areas:
         'a'
@@ -132,6 +132,7 @@
 .kanban-sass3-code {
     width: 70vw;
     padding: 100px;
+    border-radius: 22px;
 }
 
 @media (max-width: 1110px) {
