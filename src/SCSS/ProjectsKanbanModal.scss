@@ -123,14 +123,18 @@
 .kanban-react-code,
 .kanban-react-two-code,
 .kanban-js-code,
-.kanban-react-code
-.kanban-firestore-code,
-.kanban-firebase-login-code,
+.kanban-react-code,
 .kanban-firebase-code,
+.kanban-firestore-code,
 .kanban-sass1-code,
 .kanban-sass2-code,
 .kanban-sass3-code {
-    width: 70vw;
+    width: 100vw;
+    padding: 100px;
+    border-radius: 22px;
+}
+.kanban-firebase-login-code {
+    width: 100vw;
     padding: 100px;
     border-radius: 22px;
 }
@@ -147,6 +151,8 @@
         grid-template-columns: repeat(1, 1fr);
         grid-template-rows: repeat(5, 1fr);
         padding: 50px;
+        width: 100vw;
+
     }
 
     .kanban-js {

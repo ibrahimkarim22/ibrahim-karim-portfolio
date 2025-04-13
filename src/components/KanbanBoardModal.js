@@ -98,7 +98,7 @@ function KanbanBoardModal({ isOpen, closeModal }) {
               logs in, and updates are saved using a useEffect that triggers
               every time the task state changes.
             </div>
-            <img src={kanbanFirestore} alt="kanban firestore" className="kanban-firestore-code"/>
+                <img src={kanbanFirestore} className="kanban-firestore-code" />
           </div>
 
           <div className="kanban-sass-section">
