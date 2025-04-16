@@ -107,6 +107,30 @@
 .kanban-sass-section-title {
     font-size: 100px;
     color: rgb(0, 0, 0);
+    font-family: "Poetsen One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    text-shadow: black 0px 0px 1px;
+    
+}
+
+.kanban-react-section-title {
+    color: aqua;
+}
+
+.kanban-js-section-title {
+    color: gold;
+
+}
+
+.kanban-firestore-section-title,
+.kanban-firebase-section-title {
+    color: orangered;
+ 
+}
+
+.kanban-sass-section-title {
+    color: hotpink;
 }
 
 .kanban-react-section-paragraph,
@@ -115,8 +139,11 @@
 .kanban-firestore-section-paragraph,
 .kanban-sass-section-paragraph {
     font-size: 30px;
-    padding: 50px;
+    padding: 100px;
     color: rgb(0, 0, 0);
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
     // text-shadow: rgb(255, 255, 255) 1px 0px 1px;
 }
 
