@@ -116,6 +116,9 @@ function KanbanBoardModal({ isOpen, closeModal }) {
             <img src={kanbanSass2} alt="kanban sass 2"  className="kanban-sass2-code"/>
             <img src={kanbanSass3} alt="kanban sass 2"  className="kanban-sass3-code"/>
           </div>
+          <div className="kanban-copyright-container">
+                <div className="copyright-text">&copy; 2025 Ibrahim Karim.</div>
+              </div>
         </ModalBody>
       )}
       {isOpen && (
