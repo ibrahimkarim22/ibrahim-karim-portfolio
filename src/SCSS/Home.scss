@@ -17,6 +17,8 @@
   transform: translateX(-50%);
   box-shadow: 0px 0px 100px rgb(0, 128, 255);
   animation: menuPageBgStartUp 22s ease-in-out forwards;
+  justify-content: center;
+  align-items: center;
 }
 
 .linkedin,
@@ -42,15 +44,6 @@
   border-radius: 1000px;
 }
 
-.contact-items {
-  display: flex;
- 
-  justify-content: center;
-  align-items: center;
-  font-size: 15px;
-
- grid-area: c;
-}
 
 .linkedin:hover,
 .github:hover,
@@ -77,7 +70,7 @@
 }
 
 .bio-div-main-container {
- grid-area: a;
+  grid-area: a;
   z-index: 100;
 }
 
@@ -95,7 +88,7 @@
 }
 
 .menu-items {
- 
+  
   flex-direction: column;
   grid-area: c;
   animation: menuItemsStartUp 30s ease-in-out forwards;
@@ -103,18 +96,6 @@
   left: 15%;
 }
 
-.full-stack-div {
-  padding: 0px;
-  margin: 0px;
-  font-size: 50px;
-grid-area: c;
-  text-wrap: nowrap;
-  transform: rotate(-90deg);
-  font-family: "Raleway", serif;
-  font-weight: 200;
-  font-style: normal;
-  animation: fullStackStartUp 10s ease-in-out forwards;
-}
 .projects-title-div-container,
 .pdfResume-title-div-container,
 .threeResume-title-div-container,
@@ -130,9 +111,10 @@ grid-area: c;
   'b'
   'c'
   'd'
+  'e'
   ;
-  grid-template-columns: repeat(1, 1fr);
-  grid-template-rows: repeat(4, 1fr);
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(5, 1fr);
   grid-row: c;
 }
 
@@ -149,6 +131,27 @@ grid-area: c;
   grid-area: d;
 }
 
+.contact-items {
+  display: flex;
+  
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+  
+  grid-area: e;
+}
+.full-stack-div {
+  padding: 0px;
+  margin: 0px;
+  font-size: 50px;
+  grid-area: a;
+  text-wrap: nowrap;
+  transform: rotate(-90deg);
+  font-family: "Raleway", serif;
+  font-weight: 200;
+  font-style: normal;
+  animation: fullStackStartUp 10s ease-in-out forwards;
+}
 .projects-title-div,
 .pdfResume-title-div,
 .threeResume-title-div {
@@ -167,17 +170,17 @@ grid-area: c;
 }
 
 .projects-title-div {
-  transform: perspective(500px) rotateY(33deg) translate(0%, -50%);
+  transform: perspective(500px) rotateY(33deg);
   animation: projectsStartUp 5s ease-in-out forwards;
 }
 
 .pdfResume-title-div {
-  transform: perspective(500px) rotateY(-33deg) translate(-10%, -50%);
+  transform: perspective(500px) rotateY(-33deg);
   animation: projectsStartUp 10s ease-in-out forwards;
 }
 
 .threeResume-title-div {
-  transform: perspective(500px) rotateY(33deg) translate(6%, -50%);
+  transform: perspective(500px) rotateY(33deg) ;
   animation: projectsStartUp 15s ease-in-out forwards,
     letterspacing 10s ease-in-out infinite;
 }
@@ -194,7 +197,7 @@ grid-area: c;
   text-shadow: -20px -20px 0 #fb0000, 20px -20px 0 #4dff00, -20px 20px 0 #04ff00,
     30px 30px 0 #ff0000;
 
-  transform: perspective(500px) rotateY(33deg) translate(6%, -50%) skew(60deg);
+  transform: perspective(500px) rotateY(33deg) skew(60deg);
 }
 
 .projects-title-div::before {
@@ -232,7 +235,7 @@ grid-area: c;
     1px 1px 0 #000000;
   z-index: 11;
   cursor: default;
-  transform: perspective(500px) rotateX(0deg) rotateY(0deg) translate(0%, -50%);
+  transform: perspective(500px) rotateX(0deg) rotateY(0deg)  ;
 }
 
 .megaracer:hover {

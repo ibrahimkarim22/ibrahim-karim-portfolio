@@ -35,35 +35,6 @@ function Home() {
       ) : (
         <>
           <div className="menu-div-main">
-            <div className="contact-items">
-              <a
-                href="https://www.linkedin.com/in/ibrahim-karim-abaa952a7/"
-                rel="noopener noreferrer"
-                target="_blank"
-                className="linkedin"
-                style={{ textDecoration: "none" }}
-              >
-                Linkedin
-              </a>
-              <a
-                href="https://github.com/ibrahimkarim22"
-                rel="noopener noreferrer"
-                target="_blank"
-                className="github"
-                style={{ textDecoration: "none" }}
-              >
-                Github
-              </a>
-              <a
-                href="mailto:22ibrahimkarim@gmail.com"
-                rel="noopener noreferrer"
-                target="_blank"
-                className="gmail"
-                style={{ textDecoration: "none" }}
-              >
-                Gmail
-              </a>
-            </div>
             <div className="bio-div-main-container">
               <div className="bio-div-main">
                 Hey You! I'm a developer who loves turning ideas into reality,
@@ -81,7 +52,6 @@ function Home() {
               <Logo className="logo-div" setProgress={setProgress} />
             </div>
 
-            <div className="full-stack-div">Full-Stack Developer</div>
             <div className="menu-items">
               <Link to="/projects" style={{ textDecoration: "none" }}>
                 <div className="projects-title-div-container">
@@ -118,6 +88,36 @@ function Home() {
                   />
                 </a>
               </div>
+            <div className="contact-items">
+              <a
+                href="https://www.linkedin.com/in/ibrahim-karim-abaa952a7/"
+                rel="noopener noreferrer"
+                target="_blank"
+                className="linkedin"
+                style={{ textDecoration: "none" }}
+              >
+                Linkedin
+              </a>
+              <a
+                href="https://github.com/ibrahimkarim22"
+                rel="noopener noreferrer"
+                target="_blank"
+                className="github"
+                style={{ textDecoration: "none" }}
+              >
+                Github
+              </a>
+              <a
+                href="mailto:22ibrahimkarim@gmail.com"
+                rel="noopener noreferrer"
+                target="_blank"
+                className="gmail"
+                style={{ textDecoration: "none" }}
+              >
+                Gmail
+              </a>
+            </div>
+            <div className="full-stack-div">Full-Stack Developer</div>
             </div>
             <div className="home-copyright-container">
               <div className="copyright-text">&copy; 2025 Ibrahim Karim.</div>
