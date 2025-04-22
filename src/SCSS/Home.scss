@@ -5,7 +5,7 @@
   // 'd e f'
   
   // ;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr 2fr 1fr 50px;
   grid-template-rows: repeat(3, 1fr);
   width: 80vw;
   height: 80vh;
@@ -138,18 +138,20 @@
 
 .contact-items {
   display: flex;
-  
+  grid-row: 3;
+  grid-column: 2;
   justify-content: center;
   align-items: center;
   font-size: 15px;
   
-  grid-area: e;
+
 }
 .full-stack-div {
   padding: 0px;
   margin: 0px;
   font-size: 50px;
-  grid-area: a;
+  grid-column: 4;
+  grid-row: 1/-1;
   text-wrap: nowrap;
   transform: rotate(-90deg);
   font-family: "Raleway", serif;
@@ -260,19 +262,26 @@
 }
 
 // .logo-canvas-container {
-//   width: 300px;
-//   height: 300px;
+//   width: 500px;
+//   height: 50vh;
 // }
+
+.logo-canvas-container canvas {
+  height: 500px;
+  width: 500px;
+  // display: block;
+}
 
 .logo-div-container {
 grid-row:1/-1;
 grid-column: 2;
-transform: scale(2);
+// transform: scale(2);
   animation: logoStartUp 15s ease-in-out forwards;
 }
 
 .home-copyright-container {
-grid-area: b;
+grid-row: 3;
+grid-column: 2/3;
   display: flex;
   justify-content: center;
   align-items: center;

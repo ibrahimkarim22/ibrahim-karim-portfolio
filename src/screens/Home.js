@@ -52,7 +52,7 @@ function Home() {
               <Logo className="logo-div" setProgress={setProgress} />
             </div>
 
-            {/* <div className="menu-items">
+            <div className="menu-items">
               <Link to="/projects" style={{ textDecoration: "none" }}>
                 <div className="projects-title-div-container">
                   <div className="projects-title-div">Projects</div>
@@ -88,6 +88,9 @@ function Home() {
                   />
                 </a>
               </div>
+  
+            
+            </div>
             <div className="contact-items">
               <a
                 href="https://www.linkedin.com/in/ibrahim-karim-abaa952a7/"
@@ -118,10 +121,9 @@ function Home() {
               </a>
             </div>
             <div className="full-stack-div">Full-Stack Developer</div>
-            </div>
             <div className="home-copyright-container">
               <div className="copyright-text">&copy; 2025 Ibrahim Karim.</div>
-            </div> */}
+            </div>
           </div>
         </>
       )}

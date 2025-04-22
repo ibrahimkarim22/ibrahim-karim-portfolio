@@ -47,18 +47,18 @@ function Logo() {
     <div className="logo-canvas-container">
       <div className="logo-canvas">
         <Canvas>
-          <BackgroundColor color="snow" />
+          <BackgroundColor color="gold" />
           <LogoInit
             path={logo}
             position={[0.5, 0, 0]}
             setProgress={setProgress}
-         
+            
             />
           <PerspectiveCamera
             ref={cameraRef}
             makeDefault
-            position={[0.45, 0.4, 1.2]}
-        
+            position={[0.45, 0.4, 2]}
+             
             fov={30}
           />
           <ambientLight intensity={0.1} />
