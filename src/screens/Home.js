@@ -52,7 +52,7 @@ function Home() {
               <Logo className="logo-div" setProgress={setProgress} />
             </div>
 
-            <div className="menu-items">
+            {/* <div className="menu-items">
               <Link to="/projects" style={{ textDecoration: "none" }}>
                 <div className="projects-title-div-container">
                   <div className="projects-title-div">Projects</div>
@@ -121,7 +121,7 @@ function Home() {
             </div>
             <div className="home-copyright-container">
               <div className="copyright-text">&copy; 2025 Ibrahim Karim.</div>
-            </div>
+            </div> */}
           </div>
         </>
       )}

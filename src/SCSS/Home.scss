@@ -1,11 +1,12 @@
 .menu-div-main {
   display: grid;
-  grid-template-areas:
-  'a b c'
+  // grid-template-areas:
+  // 'a b c'
+  // 'd e f'
   
-  ;
+  // ;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(1, 1fr);
+  grid-template-rows: repeat(3, 1fr);
   width: 80vw;
   height: 80vh;
   background-color: snow;
@@ -70,13 +71,15 @@
 }
 
 .bio-div-main-container {
-  grid-area: a;
+  
+  grid-row: 1/-1;
+  grid-column: 1/2;
   z-index: 100;
 }
 
 .bio-div-main {
   font-size: 20px;
-  padding: 0px 120px 0px 0px;
+  padding: 40px;
   font-family: "Raleway", serif;
   font-weight: 400;
   font-style: normal;
@@ -90,7 +93,8 @@
 .menu-items {
   
   flex-direction: column;
-  grid-area: c;
+  grid-column: 3;
+  grid-row: 1/-1;
   animation: menuItemsStartUp 30s ease-in-out forwards;
   position: relative;
   left: 15%;
@@ -115,7 +119,8 @@
   ;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(5, 1fr);
-  grid-row: c;
+  grid-row: 1/-1;
+  grid-column: 3;
 }
 
 .projects-title-div-container{
@@ -254,8 +259,15 @@
   display: block;
 }
 
+// .logo-canvas-container {
+//   width: 300px;
+//   height: 300px;
+// }
+
 .logo-div-container {
-grid-area: b;
+grid-row:1/-1;
+grid-column: 2;
+transform: scale(2);
   animation: logoStartUp 15s ease-in-out forwards;
 }
 
