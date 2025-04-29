@@ -267,7 +267,7 @@ z-index: 100;
 @media (max-width: 1250px) { 
   .menu-div-main {
     grid-template-columns: repeat(1, 1fr);
-    grid-template-rows: repeat(5, 1fr);
+    grid-template-rows: 50vh 50vh 20vh 20vh 20vh;
     height: 100% ;
     grid-template-areas: 
     'a'
@@ -297,6 +297,10 @@ z-index: 100;
   }
   .home-copyright-container {
     grid-area: e;
+    }
+
+    .logo-canvas-container canvas {
+      width: 50px;
     }
 
 } 
