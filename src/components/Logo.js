@@ -47,7 +47,7 @@ function Logo() {
     <div className="logo-canvas-container">
       <div className="logo-canvas">
         <Canvas>
-          <BackgroundColor color="gold" />
+          <BackgroundColor color="snow" />
           <LogoInit
             path={logo}
             position={[0.5, 0, 0]}

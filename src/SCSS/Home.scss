@@ -267,8 +267,8 @@ z-index: 100;
 @media (max-width: 1250px) { 
   .menu-div-main {
     grid-template-columns: repeat(1, 1fr);
-    grid-template-rows: 50vh 50vh 20vh 20vh 20vh;
-    height: 100% ;
+    grid-template-rows: 65vh 59vh 30vh 30vh 20vh;
+    height: 80% ;
     grid-template-areas: 
     'a'
     'b'
@@ -289,6 +289,9 @@ z-index: 100;
   .bio-div-main-container {
     grid-area: b;
   }
+  .bio-div-main {
+    padding: 70px;
+  }
   .menu-items {
     grid-area: c;
   }
@@ -300,7 +303,7 @@ z-index: 100;
     }
 
     .logo-canvas-container canvas {
-      width: 50px;
+      width: 100%;
     }
 
 } 
