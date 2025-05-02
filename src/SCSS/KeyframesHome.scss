@@ -33,6 +33,14 @@
     transform: translate(0%, 5%) rotate(-90deg);
   }
 }
+@keyframes fullStackStartUpPhone {
+  0% {
+    transform: translate(0%, -400%);
+  }
+  100% {
+    transform: translate(0%, 400%);
+  }
+}
 
 @keyframes menuItemsStartUp {
   0% {
