@@ -42,6 +42,15 @@ function LogoInit({ path, position, setProgress }) {
 function Logo() {
   const [progress, setProgress] = useState(0);
   const cameraRef = useRef();
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const cameraPosition = windowWidth <= 1250 ? [0.5, 0.5, 4] : [0.45, 0.4, 2];
 
   return (
     <div className="logo-canvas-container">
@@ -57,8 +66,7 @@ function Logo() {
           <PerspectiveCamera
             ref={cameraRef}
             makeDefault
-            position={[0.45, 0.4, 2]}
-             
+            position={cameraPosition}
             fov={30}
           />
           <ambientLight intensity={0.1} />
