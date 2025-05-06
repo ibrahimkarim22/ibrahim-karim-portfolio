@@ -244,7 +244,20 @@
 .logo-canvas-container canvas {
   height: 500px;
 }
+// }
+// .logo-canvas-container {
+//   width: 100%;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   overflow: hidden;
+// }
 
+// .logo-canvas {
+//   width: 100%;
+//   height: 400px; 
+//   max-width: 800px;
+// }
 .logo-div-container {
 grid-area: b;
   animation: logoStartUp 15s ease-in-out forwards;
@@ -302,8 +315,8 @@ z-index: 100;
     grid-area: e;
     }
 
-    .logo-canvas-container canvas {
-      width: 100%;
-    }
+    // .logo-canvas-container canvas {
+      
+    // }
 
 } 
