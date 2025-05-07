@@ -243,6 +243,8 @@
 
 .logo-canvas-container canvas {
   height: 500px;
+  // width: 100px;
+  // width: 100vw;
 }
 // }
 // .logo-canvas-container {
@@ -279,7 +281,7 @@ z-index: 100;
 
 @media (max-width: 1250px) { 
   .menu-div-main {
-    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: 100vw;
     grid-template-rows: 50vh 59vh 30vh 30vh 20vh;
     height: 80% ;
     grid-template-areas: 
@@ -303,7 +305,7 @@ z-index: 100;
     grid-area: b;
   }
   .bio-div-main {
-    padding: 250px;
+    padding: 50px;
   }
   .menu-items {
     grid-area: c;
