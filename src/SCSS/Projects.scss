@@ -230,7 +230,7 @@
   justify-items: center;
   cursor: pointer;
   padding: 0px;
-  margin: 10px;
+  margin-bottom: 18px;
   
   // box-shadow:  rgb(126, 126, 126) 10px 10px 50px;
   background-color: rgba(0, 0, 0, 0.126);
@@ -324,7 +324,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: row;
+  flex-direction: column;
   gap: 1vw;
   text-wrap: nowrap;
 }
@@ -619,8 +619,42 @@ MEDIA QUERIES
   'g'
   'h'
   ;
+  grid-template-columns: 100vw;
+  grid-template-rows: repeat(8, 1fr);
 
 }
+.nav-div-main {
+  grid-area: a;
+}
+
+.this-portfolio-div-main {
+  grid-area: b;
+}
+
+.whacka-div-main {
+  grid-area: c;
+}
+
+.krispy-div-main {
+  grid-area: d;
+}
+
+.hey-you-div-main {
+  grid-area: e;
+}
+
+.bard-div-main {
+  grid-area: f;
+}
+
+.kanban-div-main {
+  grid-area: g;
+}
+
+.copyright-text {
+  grid-area: h;
+}
+.bard-description-text
 .whacka-div-main,
 .bard-div-main,
 .krispy-div-main,
@@ -679,6 +713,23 @@ MEDIA QUERIES
 .kanban-firestore {
   font-size: 2.5vw;
 }
+
+@keyframes snow {
+  0% {
+      transform: translateY(0px);
+      opacity: 1; 
+  }
+
+  90% {
+      transform: translateY(1250px);
+      opacity: 0.7; 
+  }
+  100% {
+      transform: translateY(1280px);
+      opacity: 0; 
+  }
+}
+
 .copyright-text {
   margin-top: 40px;
   margin-bottom: 40px;
