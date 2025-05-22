@@ -219,7 +219,7 @@ const Projects = () => {
         <div className="kanban-description-text">To Do List</div>
       </div>
 
-
+        <div className="above-footer"></div>
    
   
 
@@ -228,6 +228,7 @@ const Projects = () => {
           <div className="copyright-text">&copy; 2025 Ibrahim Karim. </div>
         </div>
       </div>
+      
     </div>
  
       </>
