@@ -1,18 +1,19 @@
 .projects-div-main::-webkit-scrollbar {
   height: 10px;
+  width: auto;
 }
 
 .projects-div-main::-webkit-scrollbar-track {
-  background-color: rgb(0, 0, 0);
+  background-color: rgb(255, 255, 255);
 }
 
 .projects-div-main::-webkit-scrollbar-thumb {
-  background-color: rgb(255, 255, 255);
-  border-radius: 2px;
+  background-color: goldenrod;
+  border-radius: 3px;
 }
 
 .projects-div-main:-webkit-scrollbar-thumb:hover {
-  background-color: rgb(0, 0, 0);
+  background-color: rgb(255, 255, 255);
 }
 
 

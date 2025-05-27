@@ -1,5 +1,4 @@
-
-import { useLocation, useNavigate} from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Sky from "../components/Sky";
 import WhackaModal from "../components/WhackaModal";
@@ -10,10 +9,8 @@ import ThisPortfolioModal from "../components/ThisPortfolioModal";
 import KanbanBoardModal from "../components/KanbanBoardModal";
 import karim from "../images/karim.jpeg";
 import { useEffect, useState } from "react";
-import static1 from '../images/static1.png';
-import static2 from '../images/static2.png';
-
-
+import static1 from "../images/static1.png";
+import static2 from "../images/static2.png";
 
 const Projects = () => {
   const location = useLocation();
@@ -21,217 +18,285 @@ const Projects = () => {
 
   const modalName = location.pathname.split("/")[2]?.toLowerCase();
 
-
   const openModal = (modalName) => {
     navigate(`/projects/${modalName.toLowerCase()}`);
   };
 
   const closeModal = () => {
-    navigate("/projects")
+    navigate("/projects");
   };
-  
-  const [bgImage, setBgImage] = useState('black');
 
+  const [bgImage, setBgImage] = useState("black");
 
   useEffect(() => {
     const interval = setInterval(() => {
-        setBgImage(static2); 
-        setTimeout(() => {
-            setBgImage('black'); 
-        }, 300);
-    }, 7000); 
+      setBgImage(static2);
+      setTimeout(() => {
+        setBgImage("black");
+      }, 300);
+    }, 7000);
 
     return () => clearInterval(interval);
-}, []);
-
+  }, []);
 
   return (
     <>
-           
-    <div className="projects-div-main" style={{
-            backgroundImage: `url(${bgImage})`,
-            backgroundColor: 'black',
-            backgroundRepeat: 'no-repeat',
-            backgroundSize: '100vw 100vh'
-        }}>
-    <div className="nav-div-main">
-      <Sky />
-        <Link className="nav-home-btn" to="/">
-          <div>Home</div>
-        </Link>
-        <a
-          href="https://docs.google.com/document/d/1SrhaOl38FXR0at186piaVMLwN0TuQGOmt9q56TYvaBE/edit?usp=sharing"
-          className="nav-resume-btn"
-          rel="noopener noreferrer"
-          target="_blank"
-          style={{ textDecoration: "none" }}
+      <div
+        className="projects-div-main"
+        style={{
+          backgroundImage: `url(${bgImage})`,
+          backgroundColor: "black",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "100vw 100vh",
+        }}
+      >
+        <div className="nav-div-main">
+          <Sky />
+          <Link className="nav-home-btn" to="/">
+            <div>Home</div>
+          </Link>
+          <a
+            href="https://docs.google.com/document/d/1SrhaOl38FXR0at186piaVMLwN0TuQGOmt9q56TYvaBE/edit?usp=sharing"
+            className="nav-resume-btn"
+            rel="noopener noreferrer"
+            target="_blank"
+            style={{ textDecoration: "none" }}
+          >
+            Resume
+          </a>
+          <Link className="nav-three-dee-resume-btn" to="/threeDeeResume">
+            <div>3D Profile</div>
+          </Link>
+          <div className="social-container">
+            <a
+              href="https://www.linkedin.com/in/ibrahim-karim-abaa952a7/"
+              target="_blank"
+              className="nav-linkedin-btn"
+              style={{ textDecoration: "none" }}
+              rel="noopener noreferrer"
+            >
+              Linkedin
+            </a>
+
+            <a
+              href="https://github.com/ibrahimkarim22"
+              rel="noopener noreferrer"
+              target="_blank"
+              className="nav-github-btn"
+              style={{ textDecoration: "none" }}
+            >
+              Github
+            </a>
+            <a
+              href="mailto:22ibrahimkarim@gmail.com"
+              rel="noopener noreferrer"
+              target="_blank"
+              className="nav-gmail-btn"
+              style={{ textDecoration: "none" }}
+            >
+              Gmail
+            </a>
+          </div>
+
+          <div className="profile-div-main">
+            <div className="ibrahim-karim">Ibrahim Karim</div>
+            <div className="location">Livonia, Michigan</div>
+          </div>
+
+          <div className="image-div-main">
+            <img
+              className="profile-image"
+              src={karim}
+              alt="ibrahim's profile"
+              onClick={() => window.open(karim, "_blank")}
+            />
+          </div>
+        </div>
+
+        <div
+          className="whacka-div-main"
+          onClick={() => openModal("whackamole")}
         >
-          Resume
-        </a>
-        <Link className="nav-three-dee-resume-btn" to="/threeDeeResume">
-          <div>3D Profile</div>
-        </Link>
-        <div className="social-container">
-          <a
-            href="https://www.linkedin.com/in/ibrahim-karim-abaa952a7/"
-            target="_blank"
-            className="nav-linkedin-btn"
-            style={{ textDecoration: "none" }}
-            rel="noopener noreferrer"
-          >
-            Linkedin
-          </a>
-
-          <a
-            href="https://github.com/ibrahimkarim22"
-            rel="noopener noreferrer"
-            target="_blank"
-            className="nav-github-btn"
-            style={{ textDecoration: "none" }}
-          >
-            Github
-          </a>
-          <a
-            href="mailto:22ibrahimkarim@gmail.com"
-            rel="noopener noreferrer"
-            target="_blank"
-            className="nav-gmail-btn"
-            style={{ textDecoration: "none" }}
-          >
-            Gmail
-          </a>
-        </div>
-
-        <div className="profile-div-main">
-          <div className="ibrahim-karim">Ibrahim Karim</div>
-          <div className="location">Livonia, Michigan</div>
-        </div>
-
-        <div className='image-div-main'>
-
-          <img
-            className="profile-image"
-            src={karim}
-            alt="ibrahim's profile"
-            onClick={() => window.open(karim, '_blank')}
+          <WhackaModal
+            isOpen={modalName === "whackamole"}
+            closeModal={closeModal}
           />
+          <div className="whacka-text">Whack a Mole</div>
+          <div className="whacka-software-text-container">
+            <div className="whacka-js">JavaScript</div>
+            <div className="whacka-html">HTML</div>
+            <div className="whacka-scss">SCSS</div>
+          </div>
+          <div className="whacka-description-text">Online Game</div>
         </div>
-      </div>
 
-      <div className="whacka-div-main" onClick={() => openModal("whackamole")}>
-        <WhackaModal isOpen={modalName === "whackamole"} closeModal={closeModal} />
-        <div className="whacka-text">Whack a Mole</div>
-        <div className="whacka-software-text-container">
-          <div className="whacka-js">JavaScript</div>
-          <div className="whacka-html">HTML</div>
-          <div className="whacka-scss">SCSS</div>
+        <div className="krispy-div-main" onClick={() => openModal("krispy")}>
+          <KrispyModal
+            isOpen={modalName === "krispy"}
+            closeModal={closeModal}
+          />
+          <div className="krispy-text">KRISPY</div>
+          <div className="krispy-software-text-container">
+            <div className="krispy-js">JavaScript</div>
+            <div className="krispy-react">React</div>
+            <div className="krispy-firebase">Firebase</div>
+            <div className="krispy-redux">Redux</div>
+            <div className="krispy-bootstrap">Bootstrap</div>
+            <div className="krispy-scss">SCSS</div>
+          </div>
+          <div className="krispy-description-text">Streaming Service</div>
         </div>
-        <div className="whacka-description-text">Online Game</div>
-      </div>
 
-  
-      <div className="krispy-div-main" onClick={() => openModal("krispy")}>
-      <KrispyModal isOpen={modalName === "krispy"} closeModal={closeModal} />
-        <div className="krispy-text">KRISPY</div>
-        <div className="krispy-software-text-container">
-          <div className="krispy-js">JavaScript</div>
-          <div className="krispy-react">React</div>
-          <div className="krispy-firebase">Firebase</div>
-          <div className="krispy-redux">Redux</div>
-          <div className="krispy-bootstrap">Bootstrap</div>
-          <div className="krispy-scss">SCSS</div>
-        </div>
-        <div className="krispy-description-text">Streaming Service</div>
-      </div>
-
-
-   
-      <div
-        className="hey-you-div-main" onClick={() => openModal("heyyou")}>
-        <HeyYouModal isOpen={modalName === "heyyou"} closeModal={closeModal} />
-        <div className="hey-you-text">HeyYou</div>
-        <div className="hey-you-software-text-container">
-          <div className="hey-you-js">JavaScript</div>
-          <div className="hey-you-react">React Native</div>
-          <div className="hey-you-socketio">Socket.io</div>
-          <div className="hey-you-mongodb">MongoDB</div>
-          <div className="hey-you-nodejs">Node.js</div>
-          <div className="hey-you-docker">Docker</div>
-          <div className="hey-you-googlecloud">
-            <span style={{color: 'rgb(132, 167, 255)'}}>G</span>
-            <span style={{ color: 'red'}}>o</span>
-            <span style={{ color: 'yellow'}}>o</span>
-            <span style={{ color: 'rgb(132, 167, 255)'}}>g</span>
-            <span style={{ color: 'green'}}>l</span>
-            <span style={{ color: 'red'}}>e</span>
-            <span style={{color: 'rgba(215, 215, 215, 0.126)'}}>-</span>
-            <span style={{color: 'white'}}>Cloud</span>
+        <div className="hey-you-div-main" onClick={() => openModal("heyyou")}>
+          <HeyYouModal
+            isOpen={modalName === "heyyou"}
+            closeModal={closeModal}
+          />
+          <div className="hey-you-text">HeyYou</div>
+          <div className="hey-you-software-text-container">
+            <div className="hey-you-js">JavaScript</div>
+            <div className="hey-you-react">React Native</div>
+            <div className="hey-you-socketio">Socket.io</div>
+            <div className="hey-you-mongodb">MongoDB</div>
+            <div className="hey-you-nodejs">Node.js</div>
+            <div className="hey-you-docker">Docker</div>
+            <div className="hey-you-googlecloud">
+              <span style={{ color: "rgb(132, 167, 255)" }}>G</span>
+              <span style={{ color: "red" }}>o</span>
+              <span style={{ color: "yellow" }}>o</span>
+              <span style={{ color: "rgb(132, 167, 255)" }}>g</span>
+              <span style={{ color: "green" }}>l</span>
+              <span style={{ color: "red" }}>e</span>
+              <span style={{ color: "rgba(215, 215, 215, 0.126)" }}>-</span>
+              <span style={{ color: "white" }}>Cloud</span>
             </div>
-           
+          </div>
+          <div className="hey-you-description-text">Location & Chat</div>
         </div>
-        <div className="hey-you-description-text">Location & Chat</div>
-      </div>
-   
 
-  
-      <div className="bard-div-main" onClick={() => openModal("bard")}>
-      <BardModal isOpen={modalName === "bard"} closeModal={closeModal} />
-        <div className="bard-text">BARD</div>
-        <div className="bard-software-text-container">
-          <div className="bard-js">JavaScript</div>
-          <div className="bard-react-native">React Native</div>
-          <div className="bard-redux">Redux</div>
-          <div className="bard-firebase">Firebase</div>
-          <div className="bard-firestore">Firestore</div>
+        <div className="bard-div-main" onClick={() => openModal("bard")}>
+          <BardModal isOpen={modalName === "bard"} closeModal={closeModal} />
+          <div className="bard-text">BARD</div>
+          <div className="bard-software-text-container">
+            <div className="bard-js">JavaScript</div>
+            <div className="bard-react-native">React Native</div>
+            <div className="bard-redux">Redux</div>
+            <div className="bard-firebase">Firebase</div>
+            <div className="bard-firestore">Firestore</div>
+          </div>
+          <div className="bard-description-text">Online Course</div>
         </div>
-        <div className="bard-description-text">Online Course</div>
-      </div>
-  
 
-   
-      <div
-        className="this-portfolio-div-main" onClick={() => openModal("thisportfolio")}>
-        <ThisPortfolioModal isOpen={modalName === "thisportfolio"} closeModal={closeModal} />
-        <div className="this-portfolio-text">Portfolio</div>
-        <div className="this-portfolio-software-text-container">
-          <div className="this-portfolio-js">JavaScript </div>
-          <div className="this-portfolio-react">React</div>
-          <div className="this-portfolio-firebase">Firebase</div>
-          <div className="this-portfolio-scss">SCSS</div>
-          <div className="this-portfolio-blender">Blender 3D</div>
-          <div className="this-portfolio-react-fiber">React Three Fiber</div>
+        <div
+          className="this-portfolio-div-main"
+          onClick={() => openModal("thisportfolio")}
+        >
+          <ThisPortfolioModal
+            isOpen={modalName === "thisportfolio"}
+            closeModal={closeModal}
+          />
+          <div className="this-portfolio-text">Portfolio</div>
+          <div className="this-portfolio-software-text-container">
+            <div className="this-portfolio-js">JavaScript </div>
+            <div className="this-portfolio-react">React</div>
+            <div className="this-portfolio-firebase">Firebase</div>
+            <div className="this-portfolio-scss">SCSS</div>
+            <div className="this-portfolio-blender">Blender 3D</div>
+            <div className="this-portfolio-react-fiber">React Three Fiber</div>
+          </div>
+          <div className="this-portfolio-description-text">This Portfolio</div>
         </div>
-        <div className="this-portfolio-description-text">This Portfolio</div>
-      </div>
-  
 
-  
-      <div className="kanban-div-main" onClick={() => openModal("kanban")}>
-        <KanbanBoardModal isOpen={modalName === "kanban"} closeModal={closeModal} />
-        <div className="kanban-text">Kanban Board</div>
-        <div className="kanban-software-text-container">
-          <div className="kanban-js">Java Script</div>
-          <div className="kanban-react">React</div>
-          <div className="kanban-scss">SCSS</div>
-          <div className="kanban-firebase">Firebase</div>
-          <div className="kanban-firestore">Firestore</div>
+        <div className="kanban-div-main" onClick={() => openModal("kanban")}>
+          <KanbanBoardModal
+            isOpen={modalName === "kanban"}
+            closeModal={closeModal}
+          />
+          <div className="kanban-text">Kanban Board</div>
+          <div className="kanban-software-text-container">
+            <div className="kanban-js">Java Script</div>
+            <div className="kanban-react">React</div>
+            <div className="kanban-scss">SCSS</div>
+            <div className="kanban-firebase">Firebase</div>
+            <div className="kanban-firestore">Firestore</div>
+          </div>
+          <div className="kanban-description-text">To Do List</div>
         </div>
-        <div className="kanban-description-text">To Do List</div>
-      </div>
-
+        <div className="above-footer2"></div>
+        <div className="above-footer1"></div>
         <div className="above-footer"></div>
-   
-  
 
-      <div className="footer-div-main">
-        <div className="projects-copyright-container">
-          <div className="copyright-text">&copy; 2025 Ibrahim Karim. </div>
+        <div className="footer-div-main">
+          <div className="socials-icons">
+            <a
+              href="https://www.instagram.com/iiibrahimkarim/"
+              target="_blank"
+              rel="noopener noreferrer"
+              
+            >
+              <i className="fa-brands fa-instagram instagram-link"></i>
+            </a>
+            <a
+              href="https://github.com/ibrahimkarim22"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <i className="fa-brands fa-square-github github-link"></i>
+            </a>
+            <a
+              href="https://www.linkedin.com/in/ibrahim-karim-abaa952a7/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <i className="fa-brands fa-linkedin linkedin-link"></i>
+            </a>
+            <a href="mailto:22ibrahimkarim@gmail.com">
+              <i className="fa-solid fa-square-envelope gmail-link"></i>
+            </a>
+            <a
+              href="https://www.youtube.com/@iiibrahimKarim"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <i className="fa-brands fa-square-youtube youtube-link"></i>
+            </a>
+          </div>
+
+          <div className="pages-links">
+            <a href="https://ibrahimkarim-34158.web.app/" className="home-link">
+              Home
+            </a>
+            <a
+              href="https://docs.google.com/document/d/1SrhaOl38FXR0at186piaVMLwN0TuQGOmt9q56TYvaBE/edit?tab=t.0"
+              className="resume-link"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              Resume
+            </a>
+            <a
+              href="https://ibrahimkarim-34158.web.app/threeDeeResume"
+              className="profile-link"
+              rel="noopener noreferrer"
+            >
+              3D Profile
+            </a>
+            <a
+              href="https://data.typeracer.com/pit/profile?user=ib_ra_heem_22&ref=badge"
+              className="megaracer-link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Megaracer
+            </a>
+          </div>
+
+          <div className="projects-copyright-container">
+            <div className="copyright-text">&copy; 2025 Ibrahim Karim. </div>
+          </div>
         </div>
       </div>
-      
-    </div>
- 
-      </>
+    </>
   );
 };
 
