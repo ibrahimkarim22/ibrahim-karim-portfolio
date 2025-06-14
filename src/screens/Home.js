@@ -59,7 +59,7 @@ function Home() {
                 </div>
               </Link>
               <a
-                href="https://docs.google.com/document/d/1SrhaOl38FXR0at186piaVMLwN0TuQGOmt9q56TYvaBE/edit?usp=sharing"
+                href="https://docs.google.com/document/d/1WG92jYd5XDt1nloZyuQvcS0ih_0wK6c4oY8u4rhxwUM/edit?usp=sharing"
                 rel="noopener noreferrer"
                 target="_blank"
                 style={{ textDecoration: "none" }}
@@ -88,8 +88,6 @@ function Home() {
                   />
                 </a>
               </div>
-  
-            
             </div>
             <div className="contact-items">
               <a
