@@ -212,6 +212,7 @@ const Projects = () => {
             isOpen={modalName === "kanban"}
             closeModal={closeModal}
           />
+          <div className="kanban-text tuh-doo">Tuh-Doo</div>
           <div className="kanban-text">Kanban Board</div>
           <div className="kanban-software-text-container">
             <div className="kanban-js">Java Script</div>
