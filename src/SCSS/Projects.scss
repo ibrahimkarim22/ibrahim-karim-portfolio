@@ -136,12 +136,41 @@
 .nav-home-btn:hover,
 .nav-resume-btn:hover,
 .nav-three-dee-resume-btn:hover,
-.nav-gmail-btn:hover,
-.nav-linkedin-btn:hover,
-.nav-github-btn:hover,
 .profile-image:hover {
   scale: 1.05;
   color: rgb(255, 0, 0);
+}
+.nav-linkedin-btn:hover
+ {
+  color: #0077B5;
+}
+
+.nav-github-btn:hover {
+  color: rgb(187, 187, 187);
+  // text-shadow: snow 0px 0px 7px;
+  // box-shadow:snow 0px -70px 100px;
+  // border-radius: 5%;
+  background-color: rgb(255, 255, 255);
+}
+
+.gg:hover {
+  color: rgb(51, 116, 255);
+}
+
+.gm:hover {
+  color: rgb(255, 0, 0);
+}
+
+.ga:hover {
+  color: rgb(255, 221, 0);
+}
+
+.gi:hover {
+  color: rgb(14, 91, 255);
+}
+
+.gl:hover {
+  color: rgb(13, 193, 0);
 }
 
 .nav-home-btn {

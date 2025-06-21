@@ -85,7 +85,7 @@ const Projects = () => {
               className="nav-github-btn"
               style={{ textDecoration: "none" }}
             >
-              Github
+              GitHub
             </a>
             <a
               href="mailto:22ibrahimkarim@gmail.com"
@@ -94,7 +94,11 @@ const Projects = () => {
               className="nav-gmail-btn"
               style={{ textDecoration: "none" }}
             >
-              Gmail
+              <span className="gg">G</span>
+              <span className="gm">m</span>
+              <span className="ga">a</span>
+              <span className="gi">i</span>
+              <span className="gl">l</span>
             </a>
           </div>
 
