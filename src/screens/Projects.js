@@ -160,6 +160,7 @@ const Projects = () => {
           <div className="hey-you-software-text-container">
             <div className="hey-you-js">JavaScript</div>
             <div className="hey-you-react">React Native</div>
+            <div className="hey-you-studio">Android Studio</div>
             <div className="hey-you-socketio">Socket.io</div>
             <div className="hey-you-mongodb">MongoDB</div>
             <div className="hey-you-nodejs">Node.js</div>
@@ -184,6 +185,7 @@ const Projects = () => {
           <div className="bard-software-text-container">
             <div className="bard-js">JavaScript</div>
             <div className="bard-react-native">React Native</div>
+            <div className="bard-studio">Android Studio</div>
             <div className="bard-redux">Redux</div>
             <div className="bard-firebase">Firebase</div>
             <div className="bard-firestore">Firestore</div>
