@@ -6,9 +6,12 @@
         'b'
         'c'
         'd'
+        'e'
+        'f'
+        'g'
     ;
     grid-template-columns: repeat(1, auto);
-    grid-template-rows: repeat(4, 1fr);
+    grid-template-rows: repeat(6, 1fr);
     overflow-x: hidden;
 }
 
@@ -41,8 +44,11 @@
 .kanban-firestore-code,
 .kanban-sass1-code,
 .kanban-sass2-code,
-.kanban-sass3-code
- {
+.kanban-sass3-code,
+.tuhdoo-screenshots,
+.tuhdoo-1,
+.tuhdoo-2,
+.tuhdoo-3 {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -92,6 +98,27 @@
     width: 175px;
 }
 
+.tuhdoo-screenshots {
+    display: grid;
+    grid-template-areas: 
+    'a'
+    'b'
+    'c';
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-area: b;
+}
+
+.tuhdoo-1 {
+    grid-area: a;
+}
+.tuhdoo-2 {
+    grid-area: b;
+}
+.tuhdoo-3 {
+    grid-area: c;
+}
+
 .kanban-react-section,
 .kanban-js-section,
 .kanban-firebase-section,
@@ -100,6 +127,25 @@
     flex-direction: column;
 }
 
+.kanban-react-section {
+    grid-area: c;
+}
+
+.kanban-js-section {
+    grid-area: d;
+}
+
+.kanban-firebase-section {
+grid-area: e;
+}
+
+.kanban-firestore-section {
+    grid-area: f;
+}
+
+.kanban-sass-section {
+    grid-area: g;
+}
 .kanban-react-section-title,
 .kanban-js-section-title,
 .kanban-firebase-section-title,
@@ -151,11 +197,15 @@
 .kanban-react-two-code,
 .kanban-js-code,
 .kanban-react-code,
+.kanban-firebase-login-code,
 .kanban-firebase-code,
 .kanban-firestore-code,
 .kanban-sass1-code,
 .kanban-sass2-code,
-.kanban-sass3-code {
+.kanban-sass3-code,
+.tuhdoo-1,
+.tuhdoo-2,
+.tuhdoo-3 {
     width: 100vw;
     padding: 100px;
     border-radius: 22px;
@@ -207,6 +257,7 @@
 .kanban-firestore-section-title,
 .kanban-sass-section-title {
     font-size: 30px;
+    padding-top: 100px;
 }
 
 .kanban-react-section-paragraph,
@@ -218,5 +269,22 @@
     padding: 30px;
     overflow-wrap: break-word;
    
+}
+.kanban-react-code,
+.kanban-react-two-code,
+.kanban-js-code,
+.kanban-react-code,
+.kanban-firebase-login-code,
+.kanban-firestore-code,
+.kanban-firebase-code,
+.kanban-sass1-code,
+.kanban-sass2-code,
+.kanban-sass3-code,
+.tuhdoo-1,
+.tuhdoo-2,
+.tuhdoo-3 {
+    width: 100vw;
+    padding: 0px;
+    border-radius: 0px;
 }
 }

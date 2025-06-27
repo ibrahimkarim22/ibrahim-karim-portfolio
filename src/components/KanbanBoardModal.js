@@ -13,6 +13,9 @@ import kanbanFirestore from "../images/kanbanFirestore.png";
 import kanbanSass1 from "../images/kanbanSass1.png";
 import kanbanSass2 from "../images/kanbanSass2.png";
 import kanbanSass3 from "../images/kanbanSass3.png";
+import tuhdoo1 from "../images/tuhdoo1.png";
+import tuhdoo2 from "../images/tuhdoo2.png";
+import tuhdoo3 from "../images/tuhdoo3.png";
 
 function KanbanBoardModal({ isOpen, closeModal }) {
   return (
@@ -30,6 +33,13 @@ function KanbanBoardModal({ isOpen, closeModal }) {
       )}
       {isOpen && (
         <ModalBody className="kanban-modal-main">
+
+        <div className="tuhdoo-screenshots">
+          <img src={tuhdoo1} alt="screenshot 1" className="tuhdoo-1" />
+          <img src={tuhdoo2} alt="screenshot 2" className="tuhdoo-2"/>
+          <img src={tuhdoo3} alt="screenshot 3" className="tuhdoo-3"/>
+
+        </div>
           <div className="kanban-software">
             <img src={js} alt="javaScript" className="kanban-js" />
             <img src={sass} alt="sass" className="kanban-sass" />
