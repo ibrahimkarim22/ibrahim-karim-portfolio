@@ -102,11 +102,6 @@ const Projects = () => {
             </a>
           </div>
 
-          <div className="profile-div-main">
-            <div className="ibrahim-karim">Ibrahim Karim</div>
-            <div className="location">Livonia, Michigan</div>
-          </div>
-
           <div className="image-div-main">
             <img
               className="profile-image"
@@ -116,7 +111,10 @@ const Projects = () => {
             />
           </div>
         </div>
-
+   {/* <div className="profile-div-main">
+            <div className="ibrahim-karim">Ibrahim Karim</div>
+            <div className="location">Livonia, Michigan</div>
+          </div> */}
         <div
           className="whacka-div-main"
           onClick={() => openModal("whackamole")}
