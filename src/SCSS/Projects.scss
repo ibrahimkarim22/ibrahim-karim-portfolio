@@ -7,6 +7,7 @@
   display: grid;
   grid-template-areas:
     'a a'
+    'x x'
     'b c'
     'd e'
     'f g'
@@ -19,6 +20,8 @@
   ;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(5, auto);
+  gap: 50px;
+  
   width: auto;
   height: 100vh;
   // background-image: url(../images/static1.png);
@@ -41,42 +44,42 @@
   grid-area: a;
   display: grid;
   grid-template-areas:
-    'home resume pro info im'
-    's s s s s'
+    'pages info'
 
   ;
 
-  width: 100vw;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: 1fr 5vh;
+  width: 100%;
+  // padding: 20px;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(1, 1fr);
   // border-radius: 53px 53px 0px 0px;
-  background-color: #000000;
-  box-shadow: 0px 0px 100px rgb(0, 0, 0);
+  background-color: snow;
+  border-bottom: solid rgba(0, 0, 0, 0.068) 0.01px;
+  // box-shadow: 0px 0px 100px rgb(255, 217, 0);
   animation: navDivStartup 3s ease-in-out;
   margin-bottom: 100px;
-  padding-right: 40px;
-  padding-left: 40px;
+  position:fixed;
+  z-index: 100;
 }
 
 .sky {
-  grid-area: s;
+  grid-area: x;
   display: grid;
   grid-template-columns: repeat(8, 1fr);
   grid-template-rows: repeat(1, 1fr);
   justify-content: center;
   align-items: center;
-  // width: 100vw;
-
+  width: 100vw;
   background-color: snow;
   box-shadow: snow 0px 0px 150px;
-  height: 10px;
+  height: 0px;
 }
 
 .snow {
 
   width: 10px;
   height: 10px;
-  background-color: snow;
+  background-color: rgb(255, 255, 255);
   box-shadow: snow 0px 0px 20px;
   border-radius: 50%;
 
@@ -108,6 +111,7 @@
 .nav-github-btn,
 .nav-gmail-btn,
 .social-container,
+.pages-container,
 .profile-div-main,
 .image-div-main,
 .profile-image {
@@ -122,26 +126,29 @@
 .nav-home-btn,
 .nav-resume-btn,
 .nav-three-dee-resume-btn {
-  font-size: 2vw;
-  color: #ffffff;
+  font-size: 1vw;
+  color: #d6d6d6;
   // text-shadow: 	#8A2BE2 0px 0px 5px;
   font-family: "Raleway", sans-serif;
-  font-weight: 500;
+  font-weight: 200;
   font-style: normal;
   transition: 0.3s ease-in-out;
+  cursor: pointer;
+  // display: inline;
 }
 
-.profile-image {
-  cursor: pointer;
-}
+// .profile-image {
+//   cursor: pointer;
+// }
 
 .nav-home-btn:hover,
 .nav-resume-btn:hover,
 .nav-three-dee-resume-btn:hover,
 .profile-image:hover {
-scale: 1.001;
-  color: rgb(255, 0, 0);
-    box-shadow: #ff0000 0px 0px 0px 1px;
+// scale: 1.001;
+  color: rgb(0, 0, 0);
+    // box-shadow: #7a7a7a 0px 0px 0px 1px;
+    cursor: pointer;
 }
 .nav-linkedin-btn:hover
  {
@@ -150,9 +157,6 @@ scale: 1.001;
 
 .nav-github-btn:hover {
   color: rgb(187, 187, 187);
-  // text-shadow: snow 0px 0px 7px;
-  // box-shadow:snow 0px -70px 100px;
-  // border-radius: 5%;
   background-color: rgb(255, 255, 255);
 }
 
@@ -176,16 +180,21 @@ scale: 1.001;
   color: rgb(13, 193, 0);
 }
 
-.nav-home-btn {
-  grid-area: home;
-}
+// .nav-home-btn {
+//   grid-area: home;
+// }
 
-.nav-resume-btn {
-  grid-area: resume;
-}
+// .nav-resume-btn {
+//   grid-area: resume;
+// }
 
-.nav-three-dee-resume-btn {
-  grid-area: pro;
+// .nav-three-dee-resume-btn {
+//   grid-area: pro;
+// }
+
+.pages-container {
+  grid-area: pages;
+  flex-direction: row;
 }
 
 .social-container {
@@ -193,6 +202,9 @@ scale: 1.001;
   flex-direction: row;
 }
 
+.nav-home-btn,
+.nav-resume-btn,
+.nav-three-dee-resume-btn,
 .nav-gmail-btn,
 .nav-linkedin-btn,
 .nav-github-btn {
@@ -200,8 +212,8 @@ scale: 1.001;
   justify-content: center;
   align-items: center;
   margin: 1vw;
-  font-size: 1.5vw;
-  color: #ffffff;
+  font-size: 0.7vw;
+  color: #797979;
   // text-shadow: 	#8A2BE2 0px 0px 3px;
   font-family: "Raleway", sans-serif;
   font-weight: 500;
@@ -209,21 +221,20 @@ scale: 1.001;
   text-decoration: none;
 }
 
-/*
-.profile-div-main {
-  grid-area: name;
-}
-  */
+// .profile-div-main {
+//   grid-area: info;
+// }
+
 
 .image-div-main {
-  grid-area: im;
+  grid-area: info;
   padding: 1vw;
 }
 
 .profile-image {
-  width: 5vw;
+  width: 2vw;
   height: auto;
-  border-radius: 10%;
+  border-radius: 50%;
 }
 
 .profile-div-main {
@@ -273,13 +284,39 @@ scale: 1.001;
   justify-items: center;
   cursor: pointer;
   padding: 0px;
+  margin-right: 40px;
+  margin-left: 40px;
   margin-bottom: 18px;
 
   // box-shadow:  rgb(126, 126, 126) 10px 10px 50px;
-  background-color: rgba(0, 0, 0, 0.126);
+  background-color: rgba(0, 0, 0, 0.041);
   backdrop-filter: blur(11px);
   // border: black solid 1px;
 }
+
+.whacka-div-main {
+    background-color: rgba(255, 0, 0, 0.070);
+}
+
+.this-portfolio-div-main {
+  background-color: rgba(17, 0, 255, 0.07);
+}
+
+.krispy-div-main {
+  background-color: rgba(255, 0, 234, 0.096);
+}
+.hey-you-div-main {
+  background-color: rgba(0, 204, 255, 0.07);
+}
+
+.bard-div-main {
+  background-color: rgba(255, 94, 0, 0.07);
+}
+
+.kanban-div-main {
+  background-color: rgba(0, 0, 0, 0.315);
+}
+
 
 .whacka-div-main:hover,
 .bard-div-main:hover,

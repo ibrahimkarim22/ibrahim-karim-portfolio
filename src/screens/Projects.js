@@ -26,13 +26,13 @@ const Projects = () => {
     navigate("/projects");
   };
 
-  const [bgImage, setBgImage] = useState("black");
+  const [bgImage, setBgImage] = useState("snow");
 
   useEffect(() => {
     const interval = setInterval(() => {
       setBgImage(static2);
       setTimeout(() => {
-        setBgImage("black");
+        setBgImage("snow");
       }, 300);
     }, 7000);
 
@@ -45,16 +45,16 @@ const Projects = () => {
         className="projects-div-main"
         style={{
           backgroundImage: `url(${bgImage})`,
-          backgroundColor: "black",
+          backgroundColor: "snow",
           backgroundRepeat: "no-repeat",
           backgroundSize: "100vw 100vh",
         }}
       >
+           <Sky />
         <div className="nav-div-main">
-          <Sky />
-          <Link className="nav-home-btn" to="/">
-            <div>Home</div>
-          </Link>
+          <div className="pages-container">
+            
+          <Link className="nav-home-btn" to="/">Home</Link>
           <a
             href="https://docs.google.com/document/d/1WG92jYd5XDt1nloZyuQvcS0ih_0wK6c4oY8u4rhxwUM/edit?usp=sharing"
             className="nav-resume-btn"
@@ -64,9 +64,9 @@ const Projects = () => {
           >
             Resume
           </a>
-          <Link className="nav-three-dee-resume-btn" to="/threeDeeResume">
-            <div>3D Profile</div>
-          </Link>
+          <Link className="nav-three-dee-resume-btn" to="/threeDeeResume">3D Profile</Link>
+          </div>
+
           <div className="social-container">
             <a
               href="https://www.linkedin.com/in/ibrahim-karim-abaa952a7/"
@@ -100,21 +100,23 @@ const Projects = () => {
               <span className="gi">i</span>
               <span className="gl">l</span>
             </a>
+            <div className="image-div-main">
+            <img
+            className="profile-image"
+            src={karim}
+            alt="ibrahim's profile"
+            onClick={() => window.open(karim, "_blank")}
+            />
+            </div>
           </div>
 
-          <div className="image-div-main">
-            <img
-              className="profile-image"
-              src={karim}
-              alt="ibrahim's profile"
-              onClick={() => window.open(karim, "_blank")}
-            />
-          </div>
+          
         </div>
    {/* <div className="profile-div-main">
             <div className="ibrahim-karim">Ibrahim Karim</div>
             <div className="location">Livonia, Michigan</div>
-          </div> */}
+            </div> */}
+         
         <div
           className="whacka-div-main"
           onClick={() => openModal("whackamole")}
