@@ -230,10 +230,10 @@ const Projects = () => {
           <div className="kanban-description-text">To Do List</div>
         </div>
       </div>
+
         <div className="above-footer2"></div>
         <div className="above-footer1"></div>
         <div className="above-footer"></div>
-
         <div className="footer-div-main">
           <div className="socials-icons">
             <a

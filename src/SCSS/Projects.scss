@@ -11,15 +11,9 @@
     'b c'
     'd e'
     'f g'
-    'h h'
-    'i i'
-    'j j'
-    'k k'
-
-
   ;
   grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(9, auto);
+  grid-template-rows: repeat(5, 1fr);
   // gap: 50px;
   width: auto;
   height: 100vh;
@@ -30,7 +24,7 @@
   animation: projectsPageBgStartUp 5s ease-in-out forwards;
   overflow-x: hidden;
   // overflow-y: hidden;
-  // gap: 50px;
+  gap: 70px;
 
 }
 
@@ -686,10 +680,25 @@ FOOTER
   }
 }
 
+.footer-main {
+  display: grid;
+  grid-template-areas: 
+  'a'
+  'b'
+  'c'
+  'd'
+  ;
+  grid-template-columns: repeat(1, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  justify-content: center;
+  align-items: center;
+
+}
+
 .above-footer2 {
   background-color: color-mix(in srgb, rgb(255, 255, 255, 0.95) 90%, rgba(255, 255, 255, 0.5) 10%);
   backdrop-filter: blur(11px);
-  grid-area: h;
+  grid-area: a;
   z-index: 10;
   display: flex;
   justify-content: center;
@@ -702,7 +711,7 @@ FOOTER
 .above-footer1 {
   background-color: color-mix(in srgb, rgb(255, 255, 255, 0.95) 90%, rgba(255, 255, 255, 0.5) 10%);
   backdrop-filter: blur(11px);
-  grid-area: i;
+  grid-area: b;
   z-index: 22;
   display: flex;
   justify-content: center;
@@ -715,7 +724,7 @@ FOOTER
 .above-footer {
   background-color: color-mix(in srgb, rgba(255, 255, 255, 0.957) 90%, rgba(255, 255, 255, 0.5) 10%);
   backdrop-filter: blur(100px);
-  grid-area: j;
+  grid-area: c;
   z-index: 100;
   display: flex;
   justify-content: center;
@@ -724,6 +733,7 @@ FOOTER
   box-shadow: 0px 0px 40px rgba(0, 200, 255, 0.463);
   animation: FOOTER 5s infinite;
 }
+
 
 .footer-div-main,
 .socials-icons,
@@ -738,7 +748,7 @@ FOOTER
 
 .footer-div-main {
   display: grid;
-  grid-area: k;
+  grid-area: d;
   grid-template-columns: repeat(1, 1fr);
   grid-template-rows: repeat(3, 1fr);
   grid-template-areas:
