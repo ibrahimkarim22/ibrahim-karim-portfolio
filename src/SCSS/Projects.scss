@@ -7,7 +7,6 @@
   display: grid;
   grid-template-areas:
     'a a'
-    'x x'
     'b c'
     'd e'
     'f g'
@@ -48,54 +47,50 @@
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(1, 1fr);
   // border-radius: 53px 53px 0px 0px;
-  background-color: snow;
+  background-color: rgb(0, 0, 0);
   border-bottom: solid rgba(0, 0, 0, 0.068) 0.01px;
   // box-shadow: 0px 0px 100px rgb(255, 217, 0);
   animation: navDivStartup 3s ease-in-out;
   // margin-bottom: 500px;
   position:fixed;
   z-index: 1000;
+  
 }
 
 .sky {
-  grid-area: x;
-  display: grid;
-  grid-template-columns: repeat(8, 1fr);
-  grid-template-rows: repeat(1, 1fr);
-  justify-content: center;
-  align-items: center;
+   position: fixed; 
+  top: 0;
+  left: 0;
+  // grid-area: x;
+  // display: grid;
+  // grid-template-columns: repeat(8, 1fr);
+  // grid-template-rows: repeat(1, 1fr);
+  // justify-content: center;
+  // align-items: center;
   width: 100vw;
   background-color: snow;
   box-shadow: snow 0px 0px 150px;
   height: 0px;
+  pointer-events: none;
+  // z-index: 3000;
 }
 
 .snow {
-
-  width: 10px;
-  height: 10px;
-  background-color: rgb(255, 255, 255);
-  box-shadow: snow 0px 0px 20px;
+  width: 5px;
   border-radius: 50%;
-
-  // animation: snow 11s infinite;
+  opacity: 0.8;
 
 }
 
 @keyframes snow {
   0% {
-    transform: translateY(0px);
-    opacity: 0;
-  }
-
-  20% {
-    transform: translateY(0px);
-    opacity: 1;
+    transform: translateY(1000px);
+ 
   }
 
   100% {
-    transform: translateY(1700px);
-    opacity: 0;
+    transform: translateY(-1000px);
+ 
   }
 }
 
@@ -287,6 +282,7 @@
   background-color: rgba(0, 0, 0, 0.041);
   backdrop-filter: blur(11px);
   // border: black solid 1px;
+  margin-top: 100px;
 }
 
 .whacka-div-main {
@@ -694,13 +690,14 @@ FOOTER
   grid-template-rows: repeat(20px, 40px, 60px, 80px);
   justify-content: center;
   align-items: center;
+  background-color: rgb(0, 0, 0);
 }
 
 .above-footer2 {
-  background-color: color-mix(in srgb, rgb(255, 255, 255, 0.95) 90%, rgba(255, 255, 255, 0.5) 10%);
+background-color: black;
   backdrop-filter: blur(11px);
   grid-area: a;
-  z-index: 10;
+  z-index: 2999;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -710,28 +707,28 @@ FOOTER
 }
 
 .above-footer1 {
-  background-color: color-mix(in srgb, rgb(255, 255, 255, 0.95) 90%, rgba(255, 255, 255, 0.5) 10%);
+  background-color: black;
   backdrop-filter: blur(11px);
   grid-area: b;
-  z-index: 22;
+  z-index: 3002;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 30px;
-  box-shadow: 0px 0px 30px rgba(0, 200, 255, 0.463);
+  box-shadow: 0px 0px 30px rgba(0, 17, 255, 0.463);
   animation: FOOTER1 5s infinite;
 }
 
 .above-footer {
-  background-color: color-mix(in srgb, rgba(255, 255, 255, 0.957) 90%, rgba(255, 255, 255, 0.5) 10%);
+  background-color: black;
   backdrop-filter: blur(100px);
   grid-area: c;
-  z-index: 100;
+  z-index: 3003;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 50px;
-  box-shadow: 0px 0px 40px rgba(0, 200, 255, 0.463);
+  box-shadow: 0px 0px 40px rgba(25, 0, 255, 0.463);
   animation: FOOTER 5s infinite;
 }
 
@@ -758,12 +755,13 @@ FOOTER
     'c'
   ;
   bottom: 0;
-  z-index: 101;
-  background-color: #fffffff0;
+  z-index: 3004;
+  background-color: #000000;
   padding: 100px;
   animation: navDivStartup 0.5s ease-in-out;
-  box-shadow: 0px 0px 70px rgba(0, 200, 255, 0.463);
+  box-shadow: 0px 0px 70px rgba(0, 17, 255, 0.463);
   animation: FOOTERmain 5s infinite;
+  margin-top: 50px;
 }
 
 .socials-icons {

@@ -26,15 +26,15 @@ const Projects = () => {
     navigate("/projects");
   };
 
-  const [bgImage, setBgImage] = useState("snow");
+  const [bgImage, setBgImage] = useState('');
 
   useEffect(() => {
     const interval = setInterval(() => {
       setBgImage(static2);
       setTimeout(() => {
-        setBgImage("snow");
-      }, 300);
-    }, 7000);
+        setBgImage('');
+      }, 100);
+    }, 5000);
 
     return () => clearInterval(interval);
   }, []);
@@ -45,7 +45,7 @@ const Projects = () => {
         className="projects-div-main"
         style={{
           backgroundImage: `url(${bgImage})`,
-          backgroundColor: "snow",
+          backgroundColor: "black",
           backgroundRepeat: "no-repeat",
           backgroundSize: "100vw 100vh",
         }}
