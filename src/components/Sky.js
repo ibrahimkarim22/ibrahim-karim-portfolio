@@ -1,3 +1,4 @@
+import React from "react";
 import { useEffect, useState } from "react";
 const Sky = () => {
   const [delays, setDelays] = useState([]);
@@ -53,4 +54,4 @@ const Sky = () => {
   );
 };
 
-export default Sky;
+export default React.memo(Sky);

@@ -8,7 +8,7 @@ import BardModal from "../components/BardModal";
 import ThisPortfolioModal from "../components/ThisPortfolioModal";
 import KanbanBoardModal from "../components/KanbanBoardModal";
 import karim from "../images/karim.jpeg";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import static1 from "../images/static1.png";
 import static2 from "../images/static2.png";
 
@@ -33,11 +33,44 @@ const Projects = () => {
       setBgImage(static2);
       setTimeout(() => {
         setBgImage('');
-      }, 100);
+      }, 200);
     }, 5000);
 
     return () => clearInterval(interval);
   }, []);
+
+
+  const mouseXRef = useRef(0);
+  const prevXRef = useRef(0);
+
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      mouseXRef.current = e.clientX;
+    }
+
+    window.addEventListener("mousemove", handleMouseMove);
+
+      const dist = 100;
+      const interval = setInterval(() => {
+        const delta = Math.abs(mouseXRef.current - prevXRef.current);
+        if (delta >= dist) {
+          prevXRef.current = mouseXRef.current;
+
+          const navShadowColor = `hsl(${Math.random() * 360}, 100%, 80%)`;
+          const navShadowSize = `${Math.random() * 200 + 70}px`;
+
+          const nav = document.getElementById('nav-lights');
+          if (nav) {
+            nav.style.boxShadow = `0 0 ${navShadowSize} ${navShadowColor}`
+          }
+      }
+  }, 100);
+
+  return () => {
+    window.removeEventListener('mousemove', handleMouseMove);
+    clearInterval(interval);
+  };
+}, []);
 
   return (
     <>
@@ -51,7 +84,8 @@ const Projects = () => {
         }}
       >
            <Sky />
-        <div className="nav-div-main">
+
+        <div className="nav-div-main" id="nav-lights">
           <div className="pages-container">
             
           <Link className="nav-home-btn" to="/">Home</Link>
