@@ -1,7 +1,12 @@
 import React from "react";
 import { useEffect, useState } from "react";
 const Sky = () => {
+  
   const [delays, setDelays] = useState([]);
+  const [startSnow, setStartSnow] = useState(false);
+  const [snowProps, setSnowProps] = useState([]);
+
+
   const snow = [
     // { id: "snow1", gridColumn: "1 / 2" },
     // { id: "snow2", gridColumn: "2 / 4" },
@@ -20,17 +25,44 @@ const Sky = () => {
   ];
 
   const zIndex = Math.random() < 0.5 ? -1 : 3000;
+
   useEffect(() => {
     setDelays(snow.map(() => `${Math.random() * 5}s`));
   }, []);
 
-  return (
-    <div className="sky" style={{zIndex: zIndex}}>
-      {snow.map((i, index) => {
-        const rayColor = `hsl(${Math.random() * 360}, 100%, 80%)`;
-        const height = `${Math.random() * 500 + 100}px`;
-        const left = `${Math.random() * 100}vw`;
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setStartSnow(true);
+    }, 4000);
 
+    return () => clearTimeout(timeout);
+  }, []);
+
+  useEffect(() => {
+    const generateProps = () => {
+      return snow.map(() => ({
+        rayColor: `hsl(${Math.random() * 360}, 100%, 80%)`,
+        height: `${Math.random() * 500 + 100}px`,
+        left: `${Math.random() * 100}vw`,
+      }));
+    };
+      
+setSnowProps(generateProps());
+
+const interval = setInterval(() => {
+  setSnowProps(generateProps());
+}, 10000)
+
+return () => clearInterval(interval);
+    }, [snow]);
+
+    return (
+    <div className="sky" style={{zIndex: zIndex}}>
+      {startSnow && 
+        snowProps.length > 0 &&
+        snow.map((i, index) => {
+          const { rayColor, height, left } = snowProps[index] || {};
+          
         return (
           <div
             key={i.id}

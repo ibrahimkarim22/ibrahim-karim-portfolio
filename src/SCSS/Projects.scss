@@ -65,14 +65,9 @@
 
 .sky {
   position: fixed;
-  top: 0;
+  top: 1000px;
   left: 0;
-  // grid-area: x;
-  // display: grid;
-  // grid-template-columns: repeat(8, 1fr);
-  // grid-template-rows: repeat(1, 1fr);
-  // justify-content: center;
-  // align-items: center;
+  // transform: translateY(1000px);
   width: 100vw;
   background-color: snow;
   box-shadow: snow 0px 0px 150px;
@@ -90,12 +85,12 @@
 
 @keyframes snow {
   0% {
-    transform: translateY(1000px);
+    transform: translateY(120vh);
 
   }
 
   100% {
-    transform: translateY(-1000px);
+    transform: translateY(-180vh);
 
   }
 }
