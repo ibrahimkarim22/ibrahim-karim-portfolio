@@ -42,29 +42,33 @@ const Projects = () => {
 
   const mouseXRef = useRef(0);
   const prevXRef = useRef(0);
+  const mouseYRef = useRef(0);
+  const prevYRef = useRef(0);
 
   useEffect(() => {
     const handleMouseMove = (e) => {
       mouseXRef.current = e.clientX;
+      mouseYRef.current = e.clientY;
     }
 
     window.addEventListener("mousemove", handleMouseMove);
 
-      const dist = 100;
+      const dist = 50;
       const interval = setInterval(() => {
-        const delta = Math.abs(mouseXRef.current - prevXRef.current);
-        if (delta >= dist) {
+        const deltaX = Math.abs(mouseXRef.current - prevXRef.current);
+        const deltaY = Math.abs(mouseYRef.current - prevYRef.current);
+        if (deltaX >= dist || deltaY >= dist) {
           prevXRef.current = mouseXRef.current;
+          prevYRef.current = mouseYRef.current;
 
           const navShadowColor = `hsl(${Math.random() * 360}, 100%, 80%)`;
-          const navShadowSize = `${Math.random() * 200 + 70}px`;
-
+          const navShadowSize = `${Math.random() * 7000 + 1000}px`;
           const nav = document.getElementById('nav-lights');
           if (nav) {
             nav.style.boxShadow = `0 0 ${navShadowSize} ${navShadowColor}`
           }
       }
-  }, 100);
+  }, 50);
 
   return () => {
     window.removeEventListener('mousemove', handleMouseMove);

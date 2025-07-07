@@ -59,13 +59,13 @@
 }
 
 #nav-lights {
-  transition: box-shadow 0.8s ease-in-out;
+  transition: box-shadow 0.8s ease;
 
 }
 
-.sky {
+.base {
   position: fixed;
-  top: 1000px;
+  top: 120vw;
   left: 0;
   // transform: translateY(1000px);
   width: 100vw;
@@ -73,24 +73,24 @@
   box-shadow: snow 0px 0px 150px;
   height: 0px;
   pointer-events: none;
-  // z-index: 3000;
+  z-index: 4000;
 }
 
-.snow {
+.ray {
   width: 5px;
   border-radius: 50%;
   opacity: 0.8;
-
+  
 }
 
-@keyframes snow {
+@keyframes ray {
   0% {
     transform: translateY(120vh);
 
   }
 
   100% {
-    transform: translateY(-180vh);
+    transform: translateY(-380vh);
 
   }
 }
