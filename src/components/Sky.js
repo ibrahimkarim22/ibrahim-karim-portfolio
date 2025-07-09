@@ -2,43 +2,65 @@ import React from "react";
 import { useEffect, useState } from "react";
 
 const Sky = () => {
-  const rayCount = 20;
-  const [rayProps, setRayProps] = useState(
-    Array.from({ length: rayCount }, () => generateRayStyle())
-  );
-
-  function generateRayStyle() {
-    return {
+  const [rayStyles, setRayStyles] = useState([]);
+  
+  const generateRayStyle = () => ({
       color: `hsl(${Math.random() * 360}, 100%, 80%)`,
       height: `${Math.random() * 500 + 100}px`,
       left: `${Math.random() * 100}vw`,
       delay: `${Math.random() * 5}s`,
       // zIndex: `${Math.random() < 0.5 ? -1 : 4000}`,
-    };
-  }
+    });
 
-  useEffect(() => {
+    
+
+  /* useEffect(() => {
     const interval = setInterval(() => {
-      setRayProps((prev) => prev.map(() => generateRayStyle()));
-    }, 5000);
+      setRayStyle((prev) => prev.map(() => generateRayStyle()));
+    }, 4000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, []); */
+
+
+  useEffect(() => {
+    const updateRayStyles = () => {
+      const rayCount = window.innerWidth <= 1100 ? 7 : 22;
+      const newStyles = Array.from({ length: rayCount }, generateRayStyle);
+      setRayStyles(newStyles);
+    }
+
+    updateRayStyles();
+
+    const handleResize = () => {
+      updateRayStyles();
+    }
+    window.addEventListener("resize", handleResize);
+
+    const interval = setInterval(() => {
+      updateRayStyles();
+    }, 5000);
+
+    return () => {
+      clearInterval(interval);
+      window.removeEventListener("resize", handleResize);
+    }
+  }, [])
 
   return (
     <div className="base">
-      {rayProps.map((props, index) => (
+      {rayStyles.map((styles, index) => (
         <div
           key={`ray-${index}`}
           className="ray"
           style={{
             animation: `ray 2s infinite`,
-            animationDelay: props.delay,
-            height: props.height,
-            backgroundColor: props.color,
-            boxShadow: `0 0 50px 10px ${props.color}`,
+            animationDelay: styles.delay,
+            height: styles.height,
+            backgroundColor: styles.color,
+            boxShadow: `0 0 50px 10px ${styles.color}`,
             position: "absolute",
-            left: props.left,
+            left: styles.left,
             top: 0,
             width: "4px",
             borderRadius: "2px",

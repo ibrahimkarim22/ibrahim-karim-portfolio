@@ -40,11 +40,12 @@
   width: 100%;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(1, 1fr);
-  background-color: rgb(0, 0, 0);
+  background-color: rgb(255, 255, 255);
   border-bottom: solid rgba(0, 0, 0, 0.068) 0.01px;
   animation: navDivStartup 3s ease-in-out;
   position: fixed;
   z-index: 10000;
+  border-bottom: #a3a3a35e 5px solid;
 }
 
 #nav-lights {
@@ -115,7 +116,7 @@
 .nav-resume-btn:hover,
 .nav-three-dee-resume-btn:hover,
 .profile-image:hover {
-  color: rgb(255, 255, 255);
+  color: rgb(155, 155, 155);
   cursor: pointer;
 }
 
@@ -169,7 +170,7 @@
   align-items: center;
   margin: 1vw;
   font-size: 0.8vw;
-  color: #d8d8d8;
+  color: #000000;
   font-family: "Raleway", sans-serif;
   font-weight: 500;
   font-style: normal;
@@ -237,7 +238,8 @@
   background-color: rgba(0, 0, 0, 0.041);
   backdrop-filter: blur(7px);
   margin-top: 200px;
-  border-radius: 2px;
+  border-radius: 3px;
+  border: #00000007 7px solid;
 
 }
 

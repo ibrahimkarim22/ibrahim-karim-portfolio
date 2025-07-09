@@ -26,19 +26,18 @@ const Projects = () => {
     navigate("/projects");
   };
 
-  const [bgImage, setBgImage] = useState('');
+  const [bgImage, setBgImage] = useState("");
 
   useEffect(() => {
     const interval = setInterval(() => {
       setBgImage(static2);
       setTimeout(() => {
-        setBgImage('');
-      }, 200);
+        setBgImage("");
+      }, 700);
     }, 5000);
 
     return () => clearInterval(interval);
   }, []);
-
 
   const mouseXRef = useRef(0);
   const prevXRef = useRef(0);
@@ -49,32 +48,76 @@ const Projects = () => {
     const handleMouseMove = (e) => {
       mouseXRef.current = e.clientX;
       mouseYRef.current = e.clientY;
-    }
+    };
 
     window.addEventListener("mousemove", handleMouseMove);
 
-      const dist = 50;
-      const interval = setInterval(() => {
-        const deltaX = Math.abs(mouseXRef.current - prevXRef.current);
-        const deltaY = Math.abs(mouseYRef.current - prevYRef.current);
-        if (deltaX >= dist || deltaY >= dist) {
-          prevXRef.current = mouseXRef.current;
-          prevYRef.current = mouseYRef.current;
+    const dist = 50;
+    const interval = setInterval(() => {
+      const deltaX = Math.abs(mouseXRef.current - prevXRef.current);
+      const deltaY = Math.abs(mouseYRef.current - prevYRef.current);
+      if (deltaX >= dist || deltaY >= dist) {
+        prevXRef.current = mouseXRef.current;
+        prevYRef.current = mouseYRef.current;
 
-          const navShadowColor = `hsl(${Math.random() * 360}, 100%, 80%)`;
-          const navShadowSize = `${Math.random() * 7000 + 1000}px`;
-          const nav = document.getElementById('nav-lights');
-          if (nav) {
-            nav.style.boxShadow = `0 0 ${navShadowSize} ${navShadowColor}`
-          }
+        const navShadowColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+        const navShadowSize = `${Math.random() * 100 + 7000}px`;
+        const nav = document.getElementById("nav-lights");
+        if (nav) {
+          nav.style.boxShadow = `0 0 ${navShadowSize} ${navShadowColor}`;
+        }
       }
-  }, 50);
+    }, 50);
 
-  return () => {
-    window.removeEventListener('mousemove', handleMouseMove);
-    clearInterval(interval);
-  };
-}, []);
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      clearInterval(interval);
+    };
+  }, []);
+
+  // useEffect(() => {
+  //   const nav = document.getElementById("nav-lights");
+
+  //   let lastScrollY = window.scrollY;
+  //   let isScrolling = false;
+
+  //   const handleTouchScroll = () => {
+  //     const currentScrollY = window.scrollY;
+  //     const isScrollingDown = currentScrollY > lastScrollY;
+
+  //     const navShadowColor = isScrollingDown
+  //       ? `hsl(${Math.random() * 360}, 100%, 50%)`
+  //       : `hsl(${Math.random() * 360}, 100%, 50%)`;
+    
+
+  //   const navShadowSize = isScrollingDown
+  //     ? `${Math.random() * 100 + 6000}px`
+  //     : `${Math.random() * 100 + 8000}px`;
+
+  //     if (nav) {
+  //       nav.style.boxShadow = `0 0 ${navShadowSize} ${navShadowColor}`;
+  //     }
+      
+  //     lastScrollY = currentScrollY;
+  //   };
+
+  //   const handleScroll = () => {
+  //     isScrolling = true;
+  //   }
+
+  //   const interval = setInterval(() => {
+  //     if (isScrolling) {
+  //       handleTouchScroll()
+  //     }
+  //   }, 100)
+
+  //     window.addEventListener("scroll", handleScroll);
+
+  //     return () => {
+  //       window.removeEventListener("scroll", handleScroll);
+  //       clearInterval(interval)
+  //     };
+  // }, []);
 
   return (
     <>
@@ -87,22 +130,29 @@ const Projects = () => {
           backgroundSize: "100vw 100vh",
         }}
       >
-           <Sky />
+        <Sky />
 
         <div className="nav-div-main" id="nav-lights">
           <div className="pages-container">
-            
-          <Link className="nav-home-btn" to="/">Home</Link>
-          <a
-            href="https://docs.google.com/document/d/1WG92jYd5XDt1nloZyuQvcS0ih_0wK6c4oY8u4rhxwUM/edit?usp=sharing"
-            className="nav-resume-btn"
-            rel="noopener noreferrer"
-            target="_blank"
-            style={{ textDecoration: "none" }}
-          >
-            Resume
-          </a>
-          <Link className="nav-three-dee-resume-btn" to="/threeDeeResume">3D Profile</Link>
+            <Link className="nav-home-btn" to="/">
+              Home
+            </Link>
+            <a
+              href="https://docs.google.com/document/d/1WG92jYd5XDt1nloZyuQvcS0ih_0wK6c4oY8u4rhxwUM/edit?usp=sharing"
+              className="nav-resume-btn"
+              rel="noopener noreferrer"
+              target="_blank"
+              style={{ textDecoration: "none" }}
+            >
+              Resume
+            </a>
+            <Link
+              className="nav-three-dee-resume-btn"
+              to="/threeDeeResume"
+              target="_blank"
+            >
+              3D Profile
+            </Link>
           </div>
 
           <div className="social-container">
@@ -139,22 +189,20 @@ const Projects = () => {
               <span className="gl">l</span>
             </a>
             <div className="image-div-main">
-            <img
-            className="profile-image"
-            src={karim}
-            alt="ibrahim's profile"
-            onClick={() => window.open(karim, "_blank")}
-            />
+              <img
+                className="profile-image"
+                src={karim}
+                alt="ibrahim's profile"
+                onClick={() => window.open(karim, "_blank")}
+              />
             </div>
           </div>
-
-          
         </div>
-   {/* <div className="profile-div-main">
+        {/* <div className="profile-div-main">
             <div className="ibrahim-karim">Ibrahim Karim</div>
             <div className="location">Livonia, Michigan</div>
             </div> */}
-         
+
         <div
           className="whacka-div-main"
           onClick={() => openModal("whackamole")}
@@ -268,86 +316,83 @@ const Projects = () => {
           <div className="kanban-description-text">To Do List</div>
         </div>
 
+        <div className="footer-main">
+          <div className="above-footer2"></div>
+          <div className="above-footer1"></div>
+          <div className="above-footer"></div>
+          <div className="footer-div-main">
+            <div className="socials-icons">
+              <a
+                href="https://www.instagram.com/iiibrahimkarim/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <i className="fa-brands fa-instagram instagram-link"></i>
+              </a>
+              <a
+                href="https://github.com/ibrahimkarim22"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <i className="fa-brands fa-square-github github-link"></i>
+              </a>
+              <a
+                href="https://www.linkedin.com/in/ibrahim-karim-abaa952a7/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <i className="fa-brands fa-linkedin linkedin-link"></i>
+              </a>
+              <a href="mailto:22ibrahimkarim@gmail.com">
+                <i className="fa-solid fa-square-envelope gmail-link"></i>
+              </a>
+              <a
+                href="https://www.youtube.com/@iiibrahimKarim"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <i className="fa-brands fa-square-youtube youtube-link"></i>
+              </a>
+            </div>
 
-         <div className="footer-main">
+            <div className="pages-links">
+              <a
+                href="https://ibrahimkarim-34158.web.app/"
+                className="home-link"
+              >
+                Home
+              </a>
+              <a
+                href="https://docs.google.com/document/d/1WG92jYd5XDt1nloZyuQvcS0ih_0wK6c4oY8u4rhxwUM/edit?usp=sharing"
+                className="resume-link"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                Resume
+              </a>
+              <a
+                href="https://ibrahimkarim-34158.web.app/threeDeeResume"
+                className="profile-link"
+                rel="noopener noreferrer"
+              >
+                3D Profile
+              </a>
+              <a
+                href="https://data.typeracer.com/pit/profile?user=ib_ra_heem_22&ref=badge"
+                className="megaracer-link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Megaracer
+              </a>
+            </div>
 
-        <div className="above-footer2"></div>
-        <div className="above-footer1"></div>
-        <div className="above-footer"></div>
-        <div className="footer-div-main">
-          <div className="socials-icons">
-            <a
-              href="https://www.instagram.com/iiibrahimkarim/"
-              target="_blank"
-              rel="noopener noreferrer"
-              
-            >
-              <i className="fa-brands fa-instagram instagram-link"></i>
-            </a>
-            <a
-              href="https://github.com/ibrahimkarim22"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <i className="fa-brands fa-square-github github-link"></i>
-            </a>
-            <a
-              href="https://www.linkedin.com/in/ibrahim-karim-abaa952a7/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <i className="fa-brands fa-linkedin linkedin-link"></i>
-            </a>
-            <a href="mailto:22ibrahimkarim@gmail.com">
-              <i className="fa-solid fa-square-envelope gmail-link"></i>
-            </a>
-            <a
-              href="https://www.youtube.com/@iiibrahimKarim"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <i className="fa-brands fa-square-youtube youtube-link"></i>
-            </a>
+            <div className="projects-copyright-container">
+              <div className="copyright-text">&copy; 2025 Ibrahim Karim. </div>
+            </div>
           </div>
-
-          <div className="pages-links">
-            <a href="https://ibrahimkarim-34158.web.app/" className="home-link">
-              Home
-            </a>
-            <a
-              href="https://docs.google.com/document/d/1WG92jYd5XDt1nloZyuQvcS0ih_0wK6c4oY8u4rhxwUM/edit?usp=sharing"
-              className="resume-link"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              Resume
-            </a>
-            <a
-              href="https://ibrahimkarim-34158.web.app/threeDeeResume"
-              className="profile-link"
-              rel="noopener noreferrer"
-            >
-              3D Profile
-            </a>
-            <a
-              href="https://data.typeracer.com/pit/profile?user=ib_ra_heem_22&ref=badge"
-              className="megaracer-link"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Megaracer
-            </a>
-          </div>
-
-          <div className="projects-copyright-container">
-            <div className="copyright-text">&copy; 2025 Ibrahim Karim. </div>
-          </div>
-      </div>
         </div>
-
-        
       </div>
-     
     </>
   );
 };

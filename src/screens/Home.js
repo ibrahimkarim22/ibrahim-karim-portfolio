@@ -68,7 +68,7 @@ function Home() {
                   <div className="pdfResume-title-div">Resume</div>
                 </div>
               </a>
-              <Link to="/threeDeeResume" style={{ textDecoration: "none" }}>
+              <Link to="/threeDeeResume" style={{ textDecoration: "none" }} target="_blank">
                 <div className="threeResume-title-div-container">
                   <div className="threeResume-title-div">3D Profile</div>
                 </div>
