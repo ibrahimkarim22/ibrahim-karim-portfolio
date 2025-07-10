@@ -45,7 +45,7 @@
   animation: navDivStartup 3s ease-in-out;
   position: fixed;
   z-index: 10000;
-  border-bottom: #a3a3a35e 5px solid;
+  border: rgb(0, 0, 0) 1px solid;
 }
 
 #nav-lights {
@@ -613,7 +613,7 @@ FOOTER
   }
 
   50% {
-    transform: translateY(7px);
+    transform: translateY(44px);
   }
 
   100% {
@@ -635,6 +635,7 @@ FOOTER
   justify-content: center;
   align-items: center;
   background-color: rgb(0, 0, 0);
+  transition: cubic-bezier(0.6, -0.28, 0.735, 0.045);
 }
 
 .above-footer2 {
@@ -727,6 +728,14 @@ FOOTER
 .youtube-link {
   display: flex;
   font-size: 50px;
+}
+
+.instagram-link:hover,
+.github-link:hover,
+.linkedin-link:hover,
+.gmail-link:hover,
+.youtube-link:hover {
+  scale: 1.1;
 }
 
 .instagram-link {
