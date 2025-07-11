@@ -43,6 +43,7 @@ const Projects = () => {
   const prevXRef = useRef(0);
   const mouseYRef = useRef(0);
   const prevYRef = useRef(0);
+  const navRef = useRef(null);
 
   useEffect(() => {
     const handleMouseMove = (e) => {
@@ -75,49 +76,29 @@ const Projects = () => {
     };
   }, []);
 
-  // useEffect(() => {
-  //   const nav = document.getElementById("nav-lights");
+useEffect(() => {
+  if (!navRef.current) return;
 
-  //   let lastScrollY = window.scrollY;
-  //   let isScrolling = false;
+  let lastScrollY = window.scrollY;
 
-  //   const handleTouchScroll = () => {
-  //     const currentScrollY = window.scrollY;
-  //     const isScrollingDown = currentScrollY > lastScrollY;
+  const interval = setInterval(() => {
+    const currentScrollY = window.scrollY;
+    if (currentScrollY !== lastScrollY) {
+      const isScrollingDown = currentScrollY > lastScrollY;
 
-  //     const navShadowColor = isScrollingDown
-  //       ? `hsl(${Math.random() * 360}, 100%, 50%)`
-  //       : `hsl(${Math.random() * 360}, 100%, 50%)`;
-    
+      const navShadowColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+      const navShadowSize = isScrollingDown
+        ? `${Math.random() * 100 + 6000}px`
+        : `${Math.random() * 100 + 8000}px`;
 
-  //   const navShadowSize = isScrollingDown
-  //     ? `${Math.random() * 100 + 6000}px`
-  //     : `${Math.random() * 100 + 8000}px`;
+      navRef.current.style.boxShadow = `0 0 ${navShadowSize} ${navShadowColor}`;
+      lastScrollY = currentScrollY;
+    }
+  }, 100);
 
-  //     if (nav) {
-  //       nav.style.boxShadow = `0 0 ${navShadowSize} ${navShadowColor}`;
-  //     }
-      
-  //     lastScrollY = currentScrollY;
-  //   };
+  return () => clearInterval(interval);
+}, []);
 
-  //   const handleScroll = () => {
-  //     isScrolling = true;
-  //   }
-
-  //   const interval = setInterval(() => {
-  //     if (isScrolling) {
-  //       handleTouchScroll()
-  //     }
-  //   }, 100)
-
-  //     window.addEventListener("scroll", handleScroll);
-
-  //     return () => {
-  //       window.removeEventListener("scroll", handleScroll);
-  //       clearInterval(interval)
-  //     };
-  // }, []);
 
   return (
     <>
@@ -129,10 +110,11 @@ const Projects = () => {
           backgroundRepeat: "no-repeat",
           backgroundSize: "100vw 100vh",
         }}
+        
       >
         <Sky />
 
-        <div className="nav-div-main" id="nav-lights">
+        <div className="nav-div-main" id="nav-lights" ref={navRef}>
           <div className="pages-container">
             <Link className="nav-home-btn" to="/">
               Home
