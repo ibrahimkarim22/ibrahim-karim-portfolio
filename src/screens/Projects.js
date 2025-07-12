@@ -77,11 +77,20 @@ const Projects = () => {
   }, []);
 
 useEffect(() => {
-  if (!navRef.current) return;
+  const nav = navRef.current;
+  if (!nav) return;
 
   let lastScrollY = window.scrollY;
+  let isScrolling = false;
+
+  const handleScroll = () => {
+    isScrolling = true;
+  }
 
   const interval = setInterval(() => {
+
+    if (!isScrolling) return;
+
     const currentScrollY = window.scrollY;
     if (currentScrollY !== lastScrollY) {
       const isScrollingDown = currentScrollY > lastScrollY;
@@ -91,12 +100,19 @@ useEffect(() => {
         ? `${Math.random() * 100 + 6000}px`
         : `${Math.random() * 100 + 8000}px`;
 
-      navRef.current.style.boxShadow = `0 0 ${navShadowSize} ${navShadowColor}`;
+      nav.style.boxShadow = `0 0 ${navShadowSize} ${navShadowColor}`;
       lastScrollY = currentScrollY;
     }
-  }, 100);
 
-  return () => clearInterval(interval);
+    isScrolling = false
+  }, 100);
+  
+  window.addEventListener("scroll", handleScroll);
+
+  return () => {
+    window.removeEventListener("scroll", handleScroll);
+    clearInterval(interval);
+  };
 }, []);
 
 
