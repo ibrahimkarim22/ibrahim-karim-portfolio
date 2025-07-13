@@ -8,7 +8,7 @@ import BardModal from "../components/BardModal";
 import ThisPortfolioModal from "../components/ThisPortfolioModal";
 import KanbanBoardModal from "../components/KanbanBoardModal";
 import karim from "../images/karim.jpeg";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import static1 from "../images/static1.png";
 import static2 from "../images/static2.png";
 
@@ -27,7 +27,7 @@ const Projects = () => {
   };
 
   const [bgImage, setBgImage] = useState("");
-
+  
   useEffect(() => {
     const interval = setInterval(() => {
       setBgImage(static2);
@@ -35,84 +35,21 @@ const Projects = () => {
         setBgImage("");
       }, 700);
     }, 5000);
-
+    
     return () => clearInterval(interval);
   }, []);
-
-  const mouseXRef = useRef(0);
-  const prevXRef = useRef(0);
-  const mouseYRef = useRef(0);
-  const prevYRef = useRef(0);
-  const navRef = useRef(null);
-
-  useEffect(() => {
-    const handleMouseMove = (e) => {
-      mouseXRef.current = e.clientX;
-      mouseYRef.current = e.clientY;
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-
-    const dist = 50;
-    const interval = setInterval(() => {
-      const deltaX = Math.abs(mouseXRef.current - prevXRef.current);
-      const deltaY = Math.abs(mouseYRef.current - prevYRef.current);
-      if (deltaX >= dist || deltaY >= dist) {
-        prevXRef.current = mouseXRef.current;
-        prevYRef.current = mouseYRef.current;
-
-        const navShadowColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
-        const navShadowSize = `${Math.random() * 100 + 7000}px`;
-        const nav = document.getElementById("nav-lights");
-        if (nav) {
-          nav.style.boxShadow = `0 0 ${navShadowSize} ${navShadowColor}`;
-        }
-      }
-    }, 50);
-
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-      clearInterval(interval);
-    };
-  }, []);
-
-useEffect(() => {
-  const nav = navRef.current;
-  if (!nav) return;
-
-  let lastScrollY = window.scrollY;
-  let isScrolling = false;
-
-  const handleScroll = () => {
-    isScrolling = true;
-  }
-
-  const interval = setInterval(() => {
-
-    if (!isScrolling) return;
-
-    const currentScrollY = window.scrollY;
-    if (currentScrollY !== lastScrollY) {
-      const isScrollingDown = currentScrollY > lastScrollY;
-
-      const navShadowColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
-      const navShadowSize = isScrollingDown
-        ? `${Math.random() * 100 + 6000}px`
-        : `${Math.random() * 100 + 8000}px`;
-
-      nav.style.boxShadow = `0 0 ${navShadowSize} ${navShadowColor}`;
-      lastScrollY = currentScrollY;
-    }
-
-    isScrolling = false
-  }, 100);
   
-  window.addEventListener("scroll", handleScroll);
+  useEffect(() => {
+  const interval = setInterval(() => {
+    const nav = document.getElementById("nav-lights");
+    if (nav) {
+      const randomColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+      const randomSize = `${Math.random() * 100 + 7000}px`;
+      nav.style.boxShadow = `0 0 ${randomSize} ${randomColor}`;
+    }
+  }, 777);
 
-  return () => {
-    window.removeEventListener("scroll", handleScroll);
-    clearInterval(interval);
-  };
+  return () => clearInterval(interval);
 }, []);
 
 
@@ -126,11 +63,10 @@ useEffect(() => {
           backgroundRepeat: "no-repeat",
           backgroundSize: "100vw 100vh",
         }}
-        
       >
         <Sky />
 
-        <div className="nav-div-main" id="nav-lights" ref={navRef}>
+        <div className="nav-div-main" id="nav-lights">
           <div className="pages-container">
             <Link className="nav-home-btn" to="/">
               Home
