@@ -86,9 +86,11 @@
 .nav-home-btn,
 .nav-resume-btn,
 .nav-three-dee-resume-btn,
-.nav-linkedin-btn,
-.nav-github-btn,
-.nav-gmail-btn,
+.nav-linkedin-link,
+.nav-github-link,
+.nav-gmail-link,
+.nav-instagram-link,
+.nav-youtube-link,
 .social-container,
 .pages-container,
 .profile-div-main,
@@ -112,59 +114,15 @@
   cursor: pointer;
 }
 
-.nav-home-btn:hover,
-.nav-resume-btn:hover,
-.nav-three-dee-resume-btn:hover,
-.profile-image:hover {
-  color: rgb(155, 155, 155);
-  cursor: pointer;
-}
-
-.nav-linkedin-btn:hover {
-  color: #0077B5;
-}
-
-.nav-github-btn:hover {
-  color: rgb(187, 187, 187);
-  background-color: rgb(255, 255, 255);
-}
-
-.gg:hover {
-  color: rgb(51, 116, 255);
-}
-
-.gm:hover {
-  color: rgb(255, 0, 0);
-}
-
-.ga:hover {
-  color: rgb(255, 221, 0);
-}
-
-.gi:hover {
-  color: rgb(14, 91, 255);
-}
-
-.gl:hover {
-  color: rgb(13, 193, 0);
-}
-
 .pages-container {
   grid-area: pages;
   flex-direction: row;
 }
 
-.social-container {
-  grid-area: info;
-  flex-direction: row;
-}
 
 .nav-home-btn,
 .nav-resume-btn,
-.nav-three-dee-resume-btn,
-.nav-gmail-btn,
-.nav-linkedin-btn,
-.nav-github-btn {
+.nav-three-dee-resume-btn {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -177,6 +135,28 @@
   text-decoration: none;
 }
 
+
+
+.social-container {
+  grid-area: info;
+  gap: 7px;
+  flex-direction: row;
+}
+
+.social-container a {
+  text-decoration: none;
+}
+
+.nav-gmail-link,
+.nav-github-link,
+.nav-linkedin-link,
+.nav-instagram-link,
+.nav-youtube-link {
+  font-size: 50px;
+  text-decoration: none;
+}
+
+
 .image-div-main {
   grid-area: info;
   padding: 1vw;
@@ -188,12 +168,55 @@
   border-radius: 50%;
 }
 
-.profile-div-main {
+/* --------------NAV HOVER------------------- */
+
+.nav-home-btn:hover,
+.nav-resume-btn:hover,
+.nav-three-dee-resume-btn:hover,
+.nav-gmail-link:hover,
+.nav-github-link:hover,
+.nav-linkedin-link:hover,
+.nav-instagram-link:hover,
+.nav-youtube-link:hover,
+.profile-image:hover
+{
+  cursor: pointer;
+}
+
+.nav-home-btn:hover,
+.nav-resume-btn:hover,
+.nav-three-dee-resume-btn:hover
+{
+  color: hotpink;
+  /* text-shadow: rgb(0, 255, 191) 0px 5px 22px; */
+}
+
+.nav-gmail-link:hover {
+  color: blue;
+}
+.nav-github-link:hover {
+  color: rgb(187, 187, 187);
+}
+.nav-linkedin-link:hover {
+  color: #421500;
+}
+.nav-instagram-link:hover {
+  color: gold;
+}
+.nav-youtube-link:hover {
+  color: #421500;
+}
+
+
+
+
+
+/*.profile-div-main {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
+  
 }
 
 .ibrahim-karim,
@@ -210,9 +233,12 @@
   text-decoration: none;
   cursor: default;
 }
+*/
+
+
 
 /* ================================== *
-  PROJECTS
+PROJECTS
 /* ================================== */
 
 
@@ -738,22 +764,27 @@ FOOTER
   scale: 1.1;
 }
 
+.nav-instagram-link,
 .instagram-link {
   color: #E1306C;
 }
 
+.nav-github-link,
 .github-link {
   color: #333;
 }
 
+.nav-linkedin-link,
 .linkedin-link {
   color: #0077B5;
 }
 
+.nav-gmail-link,
 .gmail-link {
   color: #D44638;
 }
 
+.nav-youtube-link,
 .youtube-link {
   color: #FF0000;
 }
@@ -832,10 +863,7 @@ MEDIA QUERIES
   .phone,
   .nav-home-btn,
   .nav-resume-btn,
-  .nav-three-dee-resume-btn,
-  .nav-gmail-btn,
-  .nav-linkedin-btn,
-  .nav-github-btn {
+  .nav-three-dee-resume-btn {
     font-size: 4vw;
   }
 

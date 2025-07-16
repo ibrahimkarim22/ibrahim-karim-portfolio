@@ -27,7 +27,7 @@ const Projects = () => {
   };
 
   const [bgImage, setBgImage] = useState("");
-  
+
   useEffect(() => {
     const interval = setInterval(() => {
       setBgImage(static2);
@@ -35,23 +35,22 @@ const Projects = () => {
         setBgImage("");
       }, 700);
     }, 5000);
-    
+
     return () => clearInterval(interval);
   }, []);
-  
+
   useEffect(() => {
-  const interval = setInterval(() => {
-    const nav = document.getElementById("nav-lights");
-    if (nav) {
-      const randomColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
-      const randomSize = `${Math.random() * 100 + 7000}px`;
-      nav.style.boxShadow = `0 0 ${randomSize} ${randomColor}`;
-    }
-  }, 777);
+    const interval = setInterval(() => {
+      const nav = document.getElementById("nav-lights");
+      if (nav) {
+        const randomColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+        const randomSize = `${Math.random() * 100 + 7000}px`;
+        nav.style.boxShadow = `0 0 ${randomSize} ${randomColor}`;
+      }
+    }, 777);
 
-  return () => clearInterval(interval);
-}, []);
-
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <>
@@ -90,77 +89,45 @@ const Projects = () => {
           </div>
 
           <div className="social-container">
-            {/* <a
-              href="https://www.linkedin.com/in/ibrahim-karim-abaa952a7/"
+            <a href="mailto:22ibrahimkarim@gmail.com">
+              <i className="fa-solid fa-square-envelope nav-gmail-link"></i>
+            </a>
+            <a
+              href="https://github.com/ibrahimkarim22"
               target="_blank"
-              className="nav-linkedin-btn"
-              style={{ textDecoration: "none" }}
               rel="noopener noreferrer"
             >
-              Linkedin
+              <i className="fa-brands fa-square-github nav-github-link"></i>
+            </a>
+            <a
+              href="https://www.linkedin.com/in/ibrahim-karim-abaa952a7/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <i className="fa-brands fa-linkedin nav-linkedin-link"></i>
             </a>
 
             <a
-              href="https://github.com/ibrahimkarim22"
-              rel="noopener noreferrer"
+              href="https://www.instagram.com/iiibrahimkarim/"
               target="_blank"
-              className="nav-github-btn"
-              style={{ textDecoration: "none" }}
+              rel="noopener noreferrer"
             >
-              GitHub
+              <i className="fa-brands fa-instagram nav-instagram-link"></i>
             </a>
             <a
-              href="mailto:22ibrahimkarim@gmail.com"
-              rel="noopener noreferrer"
+              href="https://www.youtube.com/@iiibrahimKarim"
               target="_blank"
-              className="nav-gmail-btn"
-              style={{ textDecoration: "none" }}
+              rel="noopener noreferrer"
             >
-              <span className="gg">G</span>
-              <span className="gm">m</span>
-              <span className="ga">a</span>
-              <span className="gi">i</span>
-              <span className="gl">l</span>
+              <i className="fa-brands fa-square-youtube nav-youtube-link"></i>
             </a>
-            <div className="image-div-main">
-              <img
-                className="profile-image"
-                src={karim}
-                alt="ibrahim's profile"
-                onClick={() => window.open(karim, "_blank")}
-              />
-            </div> */}
-             <a
-                href="https://www.instagram.com/iiibrahimkarim/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <i className="fa-brands fa-instagram instagram-link"></i>
-              </a>
-              <a
-                href="https://github.com/ibrahimkarim22"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <i className="fa-brands fa-square-github github-link"></i>
-              </a>
-              <a
-                href="https://www.linkedin.com/in/ibrahim-karim-abaa952a7/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <i className="fa-brands fa-linkedin linkedin-link"></i>
-              </a>
-              <a href="mailto:22ibrahimkarim@gmail.com">
-                <i className="fa-solid fa-square-envelope gmail-link"></i>
-              </a>
-              <a
-                href="https://www.youtube.com/@iiibrahimKarim"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <i className="fa-brands fa-square-youtube youtube-link"></i>
-              </a>
+            {/* <div className="image-div-main"> */}
+            <img
+              src={karim}
+              alt="Ibrahim Karim's profile image"
+              className="profile-image"
+            />
+            {/* </div> */}
           </div>
         </div>
         {/* <div className="profile-div-main">
@@ -287,12 +254,8 @@ const Projects = () => {
           <div className="above-footer"></div>
           <div className="footer-div-main">
             <div className="socials-icons">
-              <a
-                href="https://www.instagram.com/iiibrahimkarim/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <i className="fa-brands fa-instagram instagram-link"></i>
+              <a href="mailto:22ibrahimkarim@gmail.com">
+                <i className="fa-solid fa-square-envelope gmail-link"></i>
               </a>
               <a
                 href="https://github.com/ibrahimkarim22"
@@ -308,8 +271,12 @@ const Projects = () => {
               >
                 <i className="fa-brands fa-linkedin linkedin-link"></i>
               </a>
-              <a href="mailto:22ibrahimkarim@gmail.com">
-                <i className="fa-solid fa-square-envelope gmail-link"></i>
+              <a
+                href="https://www.instagram.com/iiibrahimkarim/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <i className="fa-brands fa-instagram instagram-link"></i>
               </a>
               <a
                 href="https://www.youtube.com/@iiibrahimKarim"
