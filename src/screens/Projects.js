@@ -90,7 +90,7 @@ const Projects = () => {
           </div>
 
           <div className="social-container">
-            <a
+            {/* <a
               href="https://www.linkedin.com/in/ibrahim-karim-abaa952a7/"
               target="_blank"
               className="nav-linkedin-btn"
@@ -129,7 +129,38 @@ const Projects = () => {
                 alt="ibrahim's profile"
                 onClick={() => window.open(karim, "_blank")}
               />
-            </div>
+            </div> */}
+             <a
+                href="https://www.instagram.com/iiibrahimkarim/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <i className="fa-brands fa-instagram instagram-link"></i>
+              </a>
+              <a
+                href="https://github.com/ibrahimkarim22"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <i className="fa-brands fa-square-github github-link"></i>
+              </a>
+              <a
+                href="https://www.linkedin.com/in/ibrahim-karim-abaa952a7/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <i className="fa-brands fa-linkedin linkedin-link"></i>
+              </a>
+              <a href="mailto:22ibrahimkarim@gmail.com">
+                <i className="fa-solid fa-square-envelope gmail-link"></i>
+              </a>
+              <a
+                href="https://www.youtube.com/@iiibrahimKarim"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <i className="fa-brands fa-square-youtube youtube-link"></i>
+              </a>
           </div>
         </div>
         {/* <div className="profile-div-main">
