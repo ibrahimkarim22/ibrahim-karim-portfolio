@@ -40,7 +40,7 @@
   width: 100%;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(1, 1fr);
-  background-color: rgb(255, 255, 255);
+  background-color: #ebebeb;
   border-bottom: solid rgba(0, 0, 0, 0.068) 0.01px;
   animation: navDivStartup 3s ease-in-out;
   position: fixed;
@@ -152,7 +152,7 @@
 .nav-linkedin-link,
 .nav-instagram-link,
 .nav-youtube-link {
-  font-size: 50px;
+  font-size: 40px;
   text-decoration: none;
 }
 
@@ -163,7 +163,7 @@
 }
 
 .profile-image {
-  width: 2vw;
+  width: 2.2vw;
   height: auto;
   border-radius: 50%;
 }
@@ -187,7 +187,7 @@
 .nav-resume-btn:hover,
 .nav-three-dee-resume-btn:hover
 {
-  color: hotpink;
+  color: blue;
   /* text-shadow: rgb(0, 255, 191) 0px 5px 22px; */
 }
 
@@ -207,7 +207,9 @@
   color: #421500;
 }
 
-
+.profile-image:hover {
+  scale: 1.05;
+}
 
 
 
@@ -1025,9 +1027,21 @@ MEDIA QUERIES
     font-size: 20px;
   }
 
+  .profile-image {
+    width: 5vw;
+  }
+
 }
 
 @media (max-width: 500px) {
+
+  .nav-gmail-link,
+  .nav-github-link,
+  .nav-linkedin-link,
+  .nav-instagram-link,
+  .nav-youtube-link {
+    font-size: 8vw;
+  }
 
   .tuh-doo {
     margin-bottom: 20px;
