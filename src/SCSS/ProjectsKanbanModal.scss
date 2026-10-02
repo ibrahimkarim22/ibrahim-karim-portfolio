@@ -288,3 +288,60 @@ grid-area: e;
     border-radius: 0px;
 }
 }
+
+@media (max-width: 1110px) {
+    .kanban-modal-main {
+        padding: 0;
+        grid-template-rows: auto;
+    }
+
+    .kanban-software {
+        width: 100%;
+        max-width: 100%;
+        padding: clamp(2rem, 8vw, 4rem) 1rem;
+    }
+
+    .kanban-react-section-paragraph,
+    .kanban-js-section-paragraph,
+    .kanban-firebase-section-paragraph,
+    .kanban-firestore-section-paragraph,
+    .kanban-sass-section-paragraph {
+        box-sizing: border-box;
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        text-align: left;
+        hyphens: none;
+        overflow-wrap: anywhere;
+        word-break: normal;
+        line-height: 1.55;
+    }
+
+    .kanban-react-section-title,
+    .kanban-js-section-title,
+    .kanban-firebase-section-title,
+    .kanban-firestore-section-title,
+    .kanban-sass-section-title {
+        padding-right: 1rem;
+        padding-left: 1rem;
+        text-align: center;
+        overflow-wrap: break-word;
+    }
+
+    .kanban-react-code,
+    .kanban-react-two-code,
+    .kanban-js-code,
+    .kanban-firebase-login-code,
+    .kanban-firestore-code,
+    .kanban-firebase-code,
+    .kanban-sass1-code,
+    .kanban-sass2-code,
+    .kanban-sass3-code,
+    .tuhdoo-1,
+    .tuhdoo-2,
+    .tuhdoo-3 {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+    }
+}

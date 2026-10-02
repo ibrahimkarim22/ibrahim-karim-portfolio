@@ -15,6 +15,8 @@
   overflow-x: auto;
   overflow-y: hidden;
   scroll-behavior: smooth;
+  overscroll-behavior-inline: contain;
+  -webkit-overflow-scrolling: touch;
 }
 
 /*==========================
@@ -1142,5 +1144,66 @@
 @media (max-width: 700px) {
   .hey-you-modal-project-video-title {
     font-size: 20px;
+  }
+}
+
+@media (max-width: 700px) {
+  .hey-you-modal-backend-paragraph,
+  .hey-you-modal-realtime-paragraph,
+  .google-maps-api-paragraph,
+  .saftey-features-title,
+  .safety-features-paragraph,
+  .safety-features-paragraph-two,
+  .hey-you-modal-deployment-paragraph-backend,
+  .hey-you-modal-deployment-paragraph-frontend {
+    text-align: left;
+    hyphens: none;
+    overflow-wrap: break-word;
+    word-break: normal;
+  }
+
+  .hey-you-modal-backend-paragraph {
+    padding: 0.75rem;
+    font-size: clamp(0.75rem, 3vw, 0.9rem);
+    line-height: 1.4;
+  }
+
+  .saftey-features-title,
+  .safety-features-paragraph,
+  .safety-features-paragraph-two {
+    font-size: clamp(0.75rem, 3vw, 1rem);
+  }
+
+  .hey-you-modal-deployment-paragraph-backend,
+  .hey-you-modal-deployment-paragraph-frontend {
+    grid-row: 2 / 7;
+    padding: 0.75rem;
+    font-size: clamp(0.625rem, 2.5vw, 0.8rem);
+    line-height: 1.35;
+    z-index: 12;
+  }
+
+  .hey-you-modal-deployment-paragraph-backend {
+    grid-column: 1 / 7;
+  }
+
+  .hey-you-modal-deployment-paragraph-frontend {
+    grid-column: 7 / 13;
+  }
+
+  .hey-you-modal-project-video {
+    width: min(90vw, 50rem);
+    max-width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+  }
+}
+
+@media (max-width: 700px) and (max-height: 450px) {
+  .hey-you-modal-backend-paragraph,
+  .saftey-features-title,
+  .safety-features-paragraph,
+  .safety-features-paragraph-two {
+    font-size: 0.625rem;
   }
 }

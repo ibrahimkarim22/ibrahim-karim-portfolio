@@ -1047,3 +1047,145 @@ MEDIA QUERIES
     margin-bottom: 20px;
   }
 }
+
+@media (max-width: 900px) {
+  .projects-div-main {
+    grid-template-rows: 7rem repeat(6, auto) auto;
+    min-height: 100vh;
+    min-height: 100svh;
+    height: auto;
+    gap: 0;
+  }
+
+  .nav-div-main {
+    inset: 0 0 auto;
+    width: 100%;
+    max-width: 100vw;
+    grid-template-rows: auto auto;
+  }
+
+  .pages-container,
+  .social-container {
+    min-width: 0;
+  }
+
+  .nav-home-btn,
+  .nav-resume-btn,
+  .nav-three-dee-resume-btn {
+    min-height: 44px;
+    margin: 0;
+    padding: 0.5rem clamp(0.5rem, 2vw, 1rem);
+    font-size: clamp(0.875rem, 2.5vw, 1.125rem);
+  }
+
+  .social-container {
+    gap: clamp(0rem, 1vw, 0.4375rem);
+  }
+
+  .social-container a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 44px;
+    height: 44px;
+  }
+
+  .nav-gmail-link,
+  .nav-github-link,
+  .nav-linkedin-link,
+  .nav-instagram-link,
+  .nav-youtube-link {
+    font-size: clamp(1.5rem, 5vw, 2rem);
+  }
+
+  .profile-image {
+    width: 44px;
+    height: 44px;
+    object-fit: cover;
+  }
+
+  .whacka-div-main,
+  .bard-div-main,
+  .krispy-div-main,
+  .hey-you-div-main,
+  .this-portfolio-div-main,
+  .kanban-div-main {
+    width: 100%;
+    min-width: 0;
+    padding: clamp(2.5rem, 10vw, 5rem) clamp(1rem, 5vw, 3rem);
+    row-gap: 1.25rem;
+  }
+
+  .this-portfolio-text {
+    margin-top: 0;
+  }
+
+  .whacka-text,
+  .krispy-text,
+  .hey-you-text,
+  .bard-text,
+  .this-portfolio-text,
+  .kanban-text {
+    font-size: clamp(2rem, 10vw, 4rem);
+  }
+
+  .whacka-description-text,
+  .krispy-description-text,
+  .hey-you-description-text,
+  .bard-description-text,
+  .this-portfolio-description-text,
+  .kanban-description-text {
+    font-size: clamp(1rem, 4.5vw, 1.75rem);
+  }
+
+  .whacka-software-text-container,
+  .krispy-software-text-container,
+  .hey-you-software-text-container,
+  .bard-software-text-container,
+  .this-portfolio-software-text-container,
+  .kanban-software-text-container {
+    gap: 0.5rem;
+    max-width: 100%;
+  }
+
+  .whacka-software-text-container > *,
+  .krispy-software-text-container > *,
+  .hey-you-software-text-container > *,
+  .bard-software-text-container > *,
+  .this-portfolio-software-text-container > *,
+  .kanban-software-text-container > * {
+    width: auto;
+    max-width: 100%;
+    font-size: clamp(0.875rem, 3.5vw, 1.25rem);
+    overflow-wrap: break-word;
+    white-space: normal;
+  }
+
+  .tuh-doo {
+    margin-bottom: clamp(2.5rem, 12vw, 4rem);
+  }
+
+  .footer-div-main {
+    min-width: 0;
+    margin-top: 0;
+    padding: clamp(4rem, 12vw, 6rem) 1rem 3rem;
+  }
+
+  .socials-icons {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .socials-icons a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .projects-copyright-container {
+    margin-top: 2rem;
+    text-align: center;
+  }
+}

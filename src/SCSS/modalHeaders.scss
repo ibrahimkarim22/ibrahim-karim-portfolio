@@ -338,3 +338,85 @@
     margin: 15px;
   }
 }
+
+@media (max-width: 1000px) {
+  .whacka-modal-header,
+  .krispy-modal-header,
+  .hey-you-modal-header,
+  .bard-modal-header,
+  .kanban-modal-header,
+  .this-portfolio-modal-header {
+    display: flex;
+    width: 100%;
+    height: auto;
+    min-height: 4.25rem;
+    padding: 0.5rem 0.75rem;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    flex-wrap: nowrap;
+  }
+
+  .whacka-modal-header .modal-title,
+  .krispy-modal-header .modal-title,
+  .hey-you-modal-header .modal-title,
+  .bard-modal-header .modal-title,
+  .kanban-modal-header .modal-title,
+  .this-portfolio-modal-header .modal-title {
+    flex: 1 1 auto;
+    min-width: 0;
+    margin: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    text-align: left;
+    font-size: clamp(1.25rem, 4vw, 1.875rem);
+    line-height: 1.2;
+  }
+
+  .whacka-modal-header-text,
+  .krispy-modal-header-text,
+  .hey-you-modal-header-text,
+  .bard-modal-header-text,
+  .kanban-modal-header-text,
+  .this-portfolio-modal-header-text,
+  .whacka-modal-header-text-two,
+  .krispy-modal-header-text-two,
+  .hey-you-modal-header-text-two,
+  .bard-modal-header-text-two,
+  .kanban-modal-header-text-two,
+  .this-portfolio-modal-header-text-two {
+    margin: 0;
+    width: 100%;
+    max-width: 100%;
+    white-space: normal;
+    text-wrap: wrap;
+    overflow-wrap: anywhere;
+  }
+
+  .whacka-modal-header-text-two,
+  .krispy-modal-header-text-two,
+  .hey-you-modal-header-text-two,
+  .bard-modal-header-text-two,
+  .kanban-modal-header-text-two,
+  .this-portfolio-modal-header-text-two {
+    margin-top: 0.125rem;
+    font-size: clamp(0.75rem, 3vw, 1rem);
+  }
+
+  .whacka-modal-header .btn-close,
+  .krispy-modal-header .btn-close,
+  .hey-you-modal-header .btn-close,
+  .bard-modal-header .btn-close,
+  .kanban-modal-header .btn-close,
+  .this-portfolio-modal-header .btn-close {
+    flex: 0 0 44px;
+    box-sizing: border-box;
+    width: 44px;
+    height: 44px;
+    margin: 0;
+    padding: 0.75rem;
+    scale: 1;
+    background-size: 1rem;
+  }
+}
