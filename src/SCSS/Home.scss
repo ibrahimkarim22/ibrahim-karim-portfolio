@@ -302,40 +302,73 @@ z-index: 100;
 
 @media (max-width: 1250px) { 
   .menu-div-main {
-    grid-template-columns: 100vw;
-    grid-template-rows: 50vh 59vh 30vh 30vh 20vh;
-    height: 80% ;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: repeat(6, auto);
+    min-height: 100vh;
+    min-height: 100svh;
+    height: auto;
     grid-template-areas: 
     'a'
     'b'
     'c'
     'd'
     'e'
+    'f'
     ;
 
 }
 .logo-div-container {
   grid-area: a;
+  width: 100%;
+  min-width: 0;
   }
-  .full-stack-div {
-    grid-area: a;
 
+  .logo-canvas-container,
+  .logo-canvas {
+    width: 100%;
+    height: clamp(18rem, 50vw, 31.25rem);
+  }
+
+  .logo-canvas-container canvas {
+    height: 100% !important;
+  }
+
+  .full-stack-div {
+    grid-area: b;
+    padding: 1rem 1.5rem;
+    text-align: center;
+    line-height: 1.2;
     animation: fullStackStartUpPhone 3s ease-in-out forwards;
   }
   .bio-div-main-container {
-    grid-area: b;
+    grid-area: c;
+    min-width: 0;
   }
   .bio-div-main {
-    padding: 50px;
+    width: 100%;
+    max-width: 52rem;
+    padding: clamp(1.5rem, 6vw, 3.125rem) clamp(1.25rem, 8vw, 3.125rem);
+    text-align: left;
+    hyphens: none;
+    overflow-wrap: break-word;
+    word-break: normal;
+    line-height: 1.6;
   }
   .menu-items {
-    grid-area: c;
+    grid-area: d;
+    min-width: 0;
+    padding: 2rem 1rem;
+    gap: 0.25rem;
   }
   .contact-items {
-    grid-area: d;
+    grid-area: e;
+    flex-wrap: wrap;
+    row-gap: 0.25rem;
+    padding: 1rem;
   }
   .home-copyright-container {
-    grid-area: e;
+    grid-area: f;
+    padding: 2rem 1rem;
     }
 
     // .logo-canvas-container canvas {
@@ -343,3 +376,39 @@ z-index: 100;
     // }
 
 } 
+
+@media (max-width: 700px) {
+  .full-stack-div {
+    font-size: clamp(1.35rem, 7vw, 1.875rem);
+  }
+
+  .projects-title-div,
+  .pdfResume-title-div,
+  .threeResume-title-div {
+    font-size: clamp(2rem, 11vw, 2.8125rem);
+  }
+
+  .megaracer {
+    font-size: clamp(1.75rem, 10vw, 2.5rem);
+  }
+
+  .linkedin,
+  .github,
+  .gmail {
+    min-height: 44px;
+    padding: 0.75rem clamp(0.75rem, 4vw, 1.375rem);
+  }
+
+  .typeracer {
+    right: 50%;
+    bottom: calc(100% + 0.5rem);
+    width: min(90vw, 550px);
+    height: min(54vw, 330px);
+    transform: translateX(50%);
+  }
+
+  .typeracer-profile {
+    width: 200%;
+    height: 200%;
+  }
+}

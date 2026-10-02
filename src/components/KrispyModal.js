@@ -202,7 +202,7 @@ function KrispyModal({ isOpen, closeModal }) {
                 <div className="routing-info">
                   React Router plays a crucial role in managing the navigation
                   between pages. With{" "}
-                  <span className="red-text" style={{ fontSize: "20px" }}>
+                  <span className="red-text krispy-routing-emphasis">
                     nested routing and dynamic URL parameters
                   </span>
                   , users can easily navigate between movies, TV channels, and
@@ -223,7 +223,7 @@ function KrispyModal({ isOpen, closeModal }) {
               </div>
               <div className="bootstrap-info-container">
                 <div className="bootstrap-info">
-                  <span style={{ fontSize: "19px" }}>
+                  <span className="krispy-bootstrap-lead">
                     For a{" "}
                     <span className="bold-text">
                       responsive design across various devices
@@ -235,8 +235,8 @@ function KrispyModal({ isOpen, closeModal }) {
                   <span className="bold-text">Bootstrap's</span> responsive
                   utilities and{" "}
                   <span className="bold-text">flex containers</span>, I
-                  maintained a consistent design
-                  <span style={{ fontSize: "80px", marginLeft: "40px" }}>
+                  maintained a consistent design{" "}
+                  <span className="krispy-bootstrap-responsive-emphasis">
                     regardless of screen size
                   </span>
                   .
@@ -261,11 +261,11 @@ function KrispyModal({ isOpen, closeModal }) {
                   <span className="bold-text">React Scroll Parallax</span>. It
                   was much easier to implement than React Spring Parallax. I
                   just wrapped all the elements with{" "}
-                  <code className="bold-text" style={{ fontSize: "50px" }}>
+                  <code className="bold-text krispy-parallax-tag">
                     &lt;Parallax&gt;
                   </code>{" "}
                   and used{" "}
-                  <code className="bold-text" style={{ fontSize: "50px" }}>
+                  <code className="bold-text krispy-parallax-tag">
                     &lt;ParallaxLayer&gt;
                   </code>{" "}
                   for individual layers.

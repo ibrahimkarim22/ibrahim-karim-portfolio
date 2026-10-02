@@ -318,3 +318,35 @@
 .kanban-modal-footer button:hover {
   background-color: #ffc500;
 }
+
+@media (max-width: 1000px) {
+  .whacka-modal-footer,
+  .krispy-modal-footer,
+  .hey-you-modal-footer,
+  .bard-modal-footer,
+  .kanban-modal-footer,
+  .this-portfolio-modal-footer {
+    width: 100%;
+    height: auto;
+    min-height: 4.5rem;
+    padding: 0.625rem 0.75rem;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .whacka-modal-footer button,
+  .krispy-modal-footer button,
+  .hey-you-modal-footer button,
+  .bard-modal-footer button,
+  .kanban-modal-footer button,
+  .this-portfolio-modal-footer button {
+    flex: 1 1 5rem;
+    width: auto;
+    max-width: 10rem;
+    min-width: 0;
+    min-height: 44px;
+    height: auto;
+    padding: 0.5rem;
+    font-size: clamp(0.75rem, 2.5vw, 0.9rem);
+  }
+}

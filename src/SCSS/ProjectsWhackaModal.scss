@@ -371,6 +371,91 @@ MEDIA QUERIES
   }
 }
 
+@media (max-width: 900px) {
+  .whacka-modal-flex-main {
+    height: auto;
+    min-height: 100%;
+  }
+
+  .whacka-modal-page-one {
+    height: auto;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-rows: auto auto;
+    gap: 1rem;
+    padding: 2rem clamp(1rem, 5vw, 2rem);
+    border-width: 0;
+  }
+
+  .whacka-modal-js-logo-container {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+  }
+
+  .whacka-modal-html-logo-container {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+  }
+
+  .whacka-modal-sass-logo-container {
+    grid-column: 3 / 4;
+    grid-row: 1 / 2;
+  }
+
+  .whacka-modal-info-container {
+    grid-column: 1 / -1;
+    grid-row: 2 / 3;
+  }
+
+  .whacka-modal-js-image,
+  .whacka-modal-html-image,
+  .whacka-modal-sass-image {
+    width: 100%;
+    max-width: 7rem;
+    scale: 0.7;
+  }
+
+  .whacka-modal-info,
+  .whacka-paragraph-two-container,
+  .button-clicks-text,
+  .grid-interactions-text,
+  .sound-text,
+  .timers-text {
+    text-align: left;
+    hyphens: none;
+    overflow-wrap: break-word;
+    word-break: normal;
+    line-height: 1.55;
+  }
+
+  .whacka-modal-info {
+    padding: clamp(1rem, 5vw, 1.5rem);
+  }
+
+  .whacka-modal-page-three {
+    height: auto;
+    min-height: 100%;
+    padding-top: 2rem;
+  }
+
+  .event-listeners-title {
+    padding: 0 1rem;
+    text-align: center;
+    line-height: 1.4;
+  }
+
+  .button-clicks-text,
+  .grid-interactions-text,
+  .sound-text,
+  .timers-text {
+    padding: clamp(1.5rem, 8vw, 3rem);
+  }
+
+  .whacka-code-image {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
 @media (max-height: 400px) and (orientation: landscape) {
   .whacka-modal-info {
     font-size: 10px;

@@ -785,3 +785,66 @@
     font-size: 18px;
   }
 }
+
+@media (max-width: 700px) {
+  .this-portfolio-main-flex-container {
+    height: auto;
+    min-height: 100%;
+  }
+
+  .this-portfolio-modal-info-container,
+  .grid-paragraph-container,
+  .css-animation-paragraph-container,
+  .three-dee-paragraph-container,
+  .java-script-progress-paragraph-one-container,
+  .java-script-progress-paragraph-two-container,
+  .java-script-progress-paragraph-three-container,
+  .java-script-scroll-paragraph-one-container,
+  .java-script-scroll-paragraph-two-container,
+  .java-script-scroll-paragraph-three-container,
+  .lazy-load-info-container,
+  .this-portfolio-firebase-info-container {
+    padding: clamp(2rem, 8vw, 4rem) clamp(1.25rem, 6vw, 3rem);
+  }
+
+  .this-portfolio-modal-info,
+  .grid-paragraph,
+  .css-animation-paragraph,
+  .three-dee-paragraph,
+  .java-script-progress-paragraph-one,
+  .java-script-progress-paragraph-two,
+  .java-script-progress-paragraph-three,
+  .java-script-scroll-paragraph-one,
+  .java-script-scroll-paragraph-two,
+  .java-script-scroll-paragraph-three,
+  .lazy-load-info,
+  .this-portfolio-firebase-info {
+    padding: 0;
+    text-align: left;
+    hyphens: none;
+    overflow-wrap: break-word;
+    word-break: normal;
+    line-height: 1.55;
+  }
+
+  .hey-you-grid-code,
+  .grid-image-hey-you,
+  .curtain-grid-image,
+  .curtain-grid-code,
+  .animation-whale-hey-you,
+  .splash-keyframes-image-hey-you,
+  .animation-splash-hey-you,
+  .whale-keyframes-image-hey-you,
+  .use-effect-image,
+  .resume-canvas-image,
+  .logo-canvas-image,
+  .logo-model-image,
+  .resume-model-image,
+  .phone-blender,
+  .horizontal-scroll-image,
+  .progress-one-image,
+  .progress-two-image,
+  .lazy-load-code {
+    max-width: 100%;
+  }
+}

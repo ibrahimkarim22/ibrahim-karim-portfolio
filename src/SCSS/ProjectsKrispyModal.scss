@@ -224,6 +224,23 @@ PAGE 2
   padding: 0vh 20vw 5vw 20vw;
 }
 
+.krispy-routing-emphasis {
+  font-size: 20px;
+}
+
+.krispy-bootstrap-lead {
+  font-size: 19px;
+}
+
+.krispy-bootstrap-responsive-emphasis {
+  margin-left: 40px;
+  font-size: 80px;
+}
+
+.krispy-parallax-tag {
+  font-size: 50px;
+}
+
 .favorite-code-main-container {
   display: flex;
   justify-content: center;
@@ -612,5 +629,84 @@ PAGE 6
   .bootstrap-info,
   .parallax-info {
     font-size: 12px;
+  }
+}
+
+@media (max-width: 700px) {
+  .krispy-modal-flex-main {
+    height: auto;
+    min-height: 100%;
+  }
+
+  .krispy-logos-container {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .krispy-modal-js-logo-container,
+  .krispy-modal-react-logo-container,
+  .krispy-modal-redux-logo-container,
+  .krispy-modal-sass-logo-container,
+  .krispy-modal-firebase-logo-container,
+  .krispy-modal-bootstrap-logo-container {
+    min-width: 0;
+  }
+
+  .krispy-modal-info,
+  .krispy-modal-redux-info,
+  .map-info,
+  .map-info-two,
+  .routing-info,
+  .bootstrap-info,
+  .parallax-info {
+    padding: clamp(2rem, 8vw, 3rem) clamp(1.25rem, 8vw, 3rem);
+    font-size: clamp(1rem, 4vw, 1.125rem);
+    text-align: left;
+    hyphens: none;
+    overflow-wrap: break-word;
+    word-break: normal;
+    line-height: 1.55;
+  }
+
+  .krispy-routing-emphasis,
+  .krispy-bootstrap-lead,
+  .krispy-bootstrap-responsive-emphasis,
+  .krispy-parallax-tag {
+    font-size: inherit;
+  }
+
+  .krispy-bootstrap-responsive-emphasis {
+    margin-left: 0;
+  }
+
+  .krispy-parallax-tag {
+    overflow-wrap: anywhere;
+    word-break: normal;
+  }
+
+  .krispy-modal-redux-title,
+  .map-title,
+  .routing-title,
+  .bootstrap-title,
+  .parallax-title {
+    padding: 2rem 1rem;
+    font-size: clamp(1.5rem, 8vw, 2.5rem);
+    text-align: center;
+    white-space: normal;
+    text-wrap: wrap;
+    overflow-wrap: break-word;
+  }
+
+  .film-container {
+    padding: 2rem 0;
+  }
+
+  .favorite-code,
+  .favorite-gif,
+  .map-code,
+  .routing-code,
+  .bootstrap-code,
+  .parallax-code {
+    max-width: 100%;
   }
 }

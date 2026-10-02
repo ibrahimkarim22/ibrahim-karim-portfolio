@@ -212,6 +212,7 @@
     box-shadow: rgba(0, 0, 0, 0.8) 0px 0px 30px 30px;
   }
 }
+
 @media (max-width: 550px) {
   .curtain-shadow-one,
   .curtain-shadow-two,
@@ -1033,5 +1034,88 @@
   .bard-modal-folger-text,
   .bard-modal-mit-text {
     font-size: 18px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .bard-modal-body-main {
+    padding: 0;
+  }
+
+  .bard-modal-main-flex-container {
+    height: auto;
+    min-height: 100%;
+  }
+
+  .bard-modal-page-two-container {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    padding: clamp(4rem, 12vh, 7rem) 0;
+  }
+
+  .bard-modal-intro-text-container {
+    grid-column: 1 / -1;
+    grid-row: 1 / 2;
+  }
+
+  .bard-honors-award-text-container {
+    grid-column: 1 / -1;
+    grid-row: 2 / 3;
+    padding: 2rem 1rem 0;
+    font-size: clamp(1rem, 4vw, 1.25rem);
+    text-align: center;
+    white-space: normal;
+    transform: none;
+  }
+
+  .bard-modal-intro-text,
+  .bard-modal-folger-text,
+  .bard-modal-mit-text,
+  .bard-modal-firebase-text,
+  .bard-modal-features-text-one,
+  .bard-modal-features-text-two,
+  .bard-modal-features-text-three,
+  .bard-modal-additional-features-text-one,
+  .bard-modal-additional-features-text-two {
+    padding-right: 0;
+    padding-left: 0;
+    text-align: left;
+    hyphens: none;
+    overflow-wrap: break-word;
+    word-break: normal;
+    line-height: 1.55;
+  }
+
+  .bard-modal-intro-text-container,
+  .bard-modal-folger-text-container,
+  .bard-modal-mit-text-container,
+  .bard-modal-firebase-text-container,
+  .bard-modal-features-text-one-container,
+  .bard-modal-features-text-two-container,
+  .bard-modal-features-text-three-container,
+  .bard-modal-additional-features-text-one-container,
+  .bard-modal-additional-features-text-two-container {
+    padding: clamp(2rem, 8vw, 4rem) clamp(1.25rem, 6vw, 3rem);
+  }
+
+  .bard-modal-honors-video,
+  .phone-bard-side-menu,
+  .phone-bard-home,
+  .phone-bard-profile,
+  .phone-bard-course,
+  .phone-bard-quiz,
+  .phone-bard-quiz-one,
+  .phone-bard-medals,
+  .phone-bard-synopsis,
+  .phone-bard-info,
+  .phone-bard-how-to,
+  .phone-bard-performance {
+    max-width: 100%;
+  }
+
+  .bard-modal-honors-video {
+    width: min(100%, 50rem);
+    height: auto;
+    aspect-ratio: 16 / 9;
   }
 }
