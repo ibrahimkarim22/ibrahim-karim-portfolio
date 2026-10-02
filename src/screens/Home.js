@@ -37,14 +37,19 @@ function Home() {
           <div className="menu-div-main">
             <div className="bio-div-main-container">
               <div className="bio-div-main">
-                Hey You! I'm a developer who loves turning ideas into reality,
-                much like a director bringing a script to life on stage. Whether
-                it’s through 2D and 3D design, animation, or video editing,
-                every play has its five acts, and every line of code adds to the
-                story. When I’m not crafting the next scene, you’ll find me
-                dreaming about CSS units or solving coding puzzles in my sleep
-                (it’s all a part of the job, right?). After all, the show must
-                go on, even in my dreams.
+                <p>
+                  Hello! I’m Ibrahim, a full-stack web and mobile developer with
+                  a background in fine arts and a strong interest in UI/UX. I
+                  enjoy combining development and design to create experiences
+                  that are functional, intuitive, and visually engaging.
+                </p>
+                <p>
+                  I work with technologies like JavaScript, CSS, React, React
+                  Native, Node.js, APIs, and cloud tools, while also exploring
+                  2D/3D design, animation, and visual storytelling. I’m always
+                  learning, building, and looking for better ways to turn ideas
+                  into useful digital experiences.
+                </p>
               </div>
             </div>
 
@@ -59,7 +64,7 @@ function Home() {
                 </div>
               </Link>
               <a
-                href="https://docs.google.com/document/d/1WG92jYd5XDt1nloZyuQvcS0ih_0wK6c4oY8u4rhxwUM/edit?usp=sharing"
+                href="/Ibrahim_Karim_Full_Stack_Resume.pdf"
                 rel="noopener noreferrer"
                 target="_blank"
                 style={{ textDecoration: "none" }}
@@ -75,17 +80,27 @@ function Home() {
               </Link>
 
               <div className="megaracer-container">
-                <div className="megaracer">Megaracer</div>
                 <a
-                  href="https://data.typeracer.com/pit/profile?user=ib_ra_heem_22&ref=badge"
+                  href="https://data.typeracer.com/pit/profile?user=ib_ra_heem_22"
                   target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ textDecoration: "none" }}
                 >
-                  <img
-                    src="https://data.typeracer.com/misc/badge?user=ib_ra_heem_22"
-                    border="0"
-                    alt="TypeRacer.com scorecard for user ib_ra_heem_22"
-                    className="typeracer"
-                  />
+                  <div className="megaracer">Megaracer</div>
+                </a>
+                <a
+                  href="https://data.typeracer.com/pit/profile?user=ib_ra_heem_22"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <div className="typeracer">
+                    <iframe
+                      src="https://data.typeracer.com/pit/profile?user=ib_ra_heem_22"
+                      title="TypeRacer profile for ib_ra_heem_22"
+                      className="typeracer-profile"
+                      loading="lazy"
+                    />
+                  </div>
                 </a>
               </div>
             </div>
@@ -120,7 +135,9 @@ function Home() {
             </div>
             <div className="full-stack-div">Full-Stack Developer</div>
             <div className="home-copyright-container">
-              <div className="copyright-text">&copy; 2025 Ibrahim Karim.</div>
+              <div className="copyright-text">
+                &copy; {new Date().getFullYear()} Ibrahim Karim.
+              </div>
             </div>
           </div>
         </>
