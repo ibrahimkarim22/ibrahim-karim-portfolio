@@ -71,7 +71,7 @@ const Projects = () => {
               Home
             </Link>
             <a
-              href="https://docs.google.com/document/d/1WG92jYd5XDt1nloZyuQvcS0ih_0wK6c4oY8u4rhxwUM/edit?usp=sharing"
+              href="/Ibrahim_Karim_Full_Stack_Resume.pdf"
               className="nav-resume-btn"
               rel="noopener noreferrer"
               target="_blank"
@@ -295,7 +295,7 @@ const Projects = () => {
                 Home
               </a>
               <a
-                href="https://docs.google.com/document/d/1WG92jYd5XDt1nloZyuQvcS0ih_0wK6c4oY8u4rhxwUM/edit?usp=sharing"
+                href="/Ibrahim_Karim_Full_Stack_Resume.pdf"
                 className="resume-link"
                 rel="noopener noreferrer"
                 target="_blank"
@@ -320,7 +320,9 @@ const Projects = () => {
             </div>
 
             <div className="projects-copyright-container">
-              <div className="copyright-text">&copy; 2025 Ibrahim Karim. </div>
+              <div className="copyright-text">
+                &copy; {new Date().getFullYear()} Ibrahim Karim.{" "}
+              </div>
             </div>
           </div>
         </div>
