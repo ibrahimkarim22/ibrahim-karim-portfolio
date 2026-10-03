@@ -7,6 +7,7 @@ import HeyYouModal from "../components/HeyYouModal";
 import BardModal from "../components/BardModal";
 import ThisPortfolioModal from "../components/ThisPortfolioModal";
 import KanbanBoardModal from "../components/KanbanBoardModal";
+import Copyright from "../components/Copyright";
 import karim from "../images/karim.jpeg";
 import { useEffect, useState } from "react";
 import static1 from "../images/static1.png";
@@ -321,7 +322,7 @@ const Projects = () => {
 
             <div className="projects-copyright-container">
               <div className="copyright-text">
-                &copy; {new Date().getFullYear()} Ibrahim Karim.{" "}
+                <Copyright />
               </div>
             </div>
           </div>

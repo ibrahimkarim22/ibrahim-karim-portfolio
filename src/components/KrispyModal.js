@@ -13,6 +13,7 @@ import krispyMapCode from "../images/krispyMapCode.png";
 import krispyRoutingCode from "../images/krispyRoutingCode.png";
 import krispyBootstrapCode from "../images/krispyBootstrapCode.png";
 import krispyParallaxCode from "../images/krispyParallaxCode.png";
+import Copyright from "./Copyright";
 
 function KrispyModal({ isOpen, closeModal }) {
   return (
@@ -286,7 +287,7 @@ function KrispyModal({ isOpen, closeModal }) {
                 />
           </div> */}
               <div className="krispy-copyright-container">
-                <div className="copyright-text">&copy; 2024 Ibrahim Karim.</div>
+                <div className="copyright-text"><Copyright /></div>
               </div>
             </div>
           </div>

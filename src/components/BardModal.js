@@ -27,6 +27,7 @@ import phoneBardSynopsis from "../images/phoneBardSynopsis.png";
 import phoneBardPerformance from "../images/phoneBardPerformance.png";
 import phoneBardHowTo from "../images/phoneBardHowTo.png";
 import native from "../images/native.png";
+import Copyright from "./Copyright";
 
 function BardModal({ isOpen, closeModal }) {
   return (
@@ -416,7 +417,7 @@ function BardModal({ isOpen, closeModal }) {
                 ></iframe>
               </div>
               <div className="bard-copyright-container">
-                <div className="copyright-text">&copy; 2024 Ibrahim Karim.</div>
+                <div className="copyright-text"><Copyright /></div>
               </div>
             </div>
           </div>

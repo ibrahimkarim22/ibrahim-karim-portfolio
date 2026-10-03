@@ -19,6 +19,7 @@ import phoneHeyYouGenerate from "../images/phoneHeyYouGenerate.png";
 import phoneHeyYouJoined from "../images/phoneHeyYouJoined.png";
 import phoneHeyYouMap from "../images/phoneHeyYouMap.png";
 import phoneHeyYouChat from "../images/phoneHeyYouChat.png";
+import Copyright from "./Copyright";
 
 function HeyYouModal({ isOpen, closeModal }) {
   return (
@@ -326,7 +327,7 @@ function HeyYouModal({ isOpen, closeModal }) {
                 ></iframe>
               </div>
               <div className="hey-you-copyright-container">
-                <div className="copyright-text">&copy; 2024 Ibrahim Karim.</div>
+                <div className="copyright-text"><Copyright /></div>
               </div>
             </div>
           </HorizontalScroll>

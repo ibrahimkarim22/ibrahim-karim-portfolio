@@ -122,16 +122,22 @@ test("uses the supported TypeRacer profile for the MegaRacer hover preview", () 
   ).not.toBeInTheDocument();
 });
 
-test("shows the current year in the homepage copyright", () => {
+test("shows the copyright range through the current year on the homepage", () => {
   renderLoadedHome(new Date("2042-06-15T12:00:00Z"));
 
-  expect(screen.getByText("© 2042 Ibrahim Karim.")).toBeInTheDocument();
+  expect(screen.getByText("© 2023–2042 Ibrahim Karim.")).toBeInTheDocument();
 });
 
-test("shows the current year in the Projects copyright", () => {
+test("shows the same copyright range on the Projects page", () => {
   renderProjects(new Date("2042-06-15T12:00:00Z"));
 
-  expect(screen.getByText("© 2042 Ibrahim Karim.")).toBeInTheDocument();
+  expect(screen.getByText("© 2023–2042 Ibrahim Karim.")).toBeInTheDocument();
+});
+
+test("shows only the start year when the current year is 2023", () => {
+  renderLoadedHome(new Date("2023-06-15T12:00:00Z"));
+
+  expect(screen.getByText("© 2023 Ibrahim Karim.")).toBeInTheDocument();
 });
 
 test("opens the visible MegaRacer item in a safe new tab", () => {
