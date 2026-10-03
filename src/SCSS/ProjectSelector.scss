@@ -1,0 +1,75 @@
+.project-selector {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  padding: 1rem;
+  color: white;
+}
+
+.project-selector__heading {
+  flex: none;
+  margin: 0 0 0.75rem;
+  font-size: clamp(1.25rem, 2vw, 1.75rem);
+}
+
+.project-selector__list {
+  display: grid;
+  flex: 1;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+  min-width: 0;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.project-selector__item {
+  min-width: 0;
+  min-height: 0;
+}
+
+.project-selector__button {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.3rem;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  overflow: auto;
+  padding: 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 0.5rem;
+  background: rgba(2, 0, 28, 0.8);
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.project-selector__button:focus-visible {
+  outline: 3px solid #ffde59;
+  outline-offset: 2px;
+}
+
+.project-selector__name {
+  font-weight: 700;
+}
+
+.project-selector__description {
+  font-size: 0.9rem;
+}
+
+.project-selector__technologies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2rem 0.5rem;
+  font-size: 0.75rem;
+}
