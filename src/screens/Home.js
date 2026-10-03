@@ -19,16 +19,33 @@ function Home() {
   const previousProjectIdRef = useRef(selectedProjectId);
   const projectTriggerRef = useRef(null);
   const headingRef = useRef(null);
+  // Capture before child modals mount: Reactstrap replaces inline overflow and
+  // later restores a computed value, losing the original value and priority.
+  const originalBodyOverflowRef = useRef({
+    value: document.body.style.getPropertyValue("overflow"),
+    priority: document.body.style.getPropertyPriority("overflow"),
+  });
+
+  useEffect(() => {
+    const { value, priority } = originalBodyOverflowRef.current;
+    return () => {
+      document.body.classList.remove("portfolio-bounded-view-open");
+      document.body.style.setProperty("overflow", value, priority);
+    };
+  }, []);
 
   useEffect(() => {
     if (activeView && activeView !== PORTFOLIO_VIEWS.HOME) {
       document.body.classList.add("portfolio-bounded-view-open");
+      // Between modals, let the responsive rule own the lock. Removing the
+      // inline value also prevents an existing inline !important from winning.
+      if (!selectedProjectId) document.body.style.removeProperty("overflow");
     } else {
       document.body.classList.remove("portfolio-bounded-view-open");
+      const { value, priority } = originalBodyOverflowRef.current;
+      document.body.style.setProperty("overflow", value, priority);
     }
-
-    return () => document.body.classList.remove("portfolio-bounded-view-open");
-  }, [activeView]);
+  }, [activeView, selectedProjectId]);
 
   useEffect(() => {
     const interval = setInterval(() => {

@@ -456,7 +456,8 @@ z-index: 100;
 
 @media (max-width: 1250px), (max-height: 700px) {
   body.portfolio-bounded-view-open {
-    overflow: hidden;
+    // Keep the bounded layer locked during Reactstrap's inline restoration.
+    overflow: hidden !important;
   }
 
   .menu-div-main[data-active-view="projects"],

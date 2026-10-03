@@ -1,4 +1,4 @@
-import { act, render, screen, within } from "@testing-library/react";
+import { act, cleanup, render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MemoryRouter, useLocation, useNavigate } from "react-router-dom";
 import { Modal, ModalBody, ModalHeader } from "reactstrap";
@@ -182,6 +182,74 @@ test.each(["/projects", "/threeDeeResume"])("unmounting %s removes the bounded-v
   expect(document.body).toHaveClass("portfolio-bounded-view-open");
   unmount();
   expect(document.body).not.toHaveClass("portfolio-bounded-view-open");
+});
+
+describe("body overflow ownership with Reactstrap", () => {
+  let style;
+  let originalBodyStyle;
+
+  beforeEach(() => {
+    originalBodyStyle = document.body.getAttribute("style");
+    document.body.style.removeProperty("overflow");
+    // CRA omits imported SCSS in Jest; apply only the bounded viewport rule
+    // without a media query because JSDOM does not evaluate viewport media.
+    style = document.createElement("style");
+    style.textContent = "body { overflow: auto; } body.portfolio-bounded-view-open { overflow: hidden !important; }";
+    document.head.appendChild(style);
+  });
+
+  afterEach(() => {
+    cleanup();
+    style.remove();
+    if (originalBodyStyle === null) document.body.removeAttribute("style");
+    else document.body.setAttribute("style", originalBodyStyle);
+    document.body.classList.remove("existing-page-class");
+  });
+
+  test("selector modal close keeps Projects locked and returning Home restores scrolling", async () => {
+    const user = renderPortfolio(["/projects"]);
+    expect(window.getComputedStyle(document.body).overflow).toBe("hidden");
+    await user.click(screen.getByRole("button", { name: /^BARD / }));
+    await user.click(screen.getByRole("button", { name: "Close" }));
+    expectPath("/projects");
+    expect(window.getComputedStyle(document.body).overflow).toBe("hidden");
+
+    await user.click(screen.getByRole("button", { name: "Projects" }));
+    expectCenter("Home");
+    expect(document.body.style.getPropertyValue("overflow")).toBe("");
+    expect(window.getComputedStyle(document.body).overflow).toBe("auto");
+  });
+
+  test("direct modal close keeps Projects locked and unmount restores the original overflow", async () => {
+    const user = renderPortfolio(["/projects/bard"]);
+    await user.click(screen.getByRole("button", { name: "Close" }));
+    expectPath("/projects");
+    expect(window.getComputedStyle(document.body).overflow).toBe("hidden");
+
+    cleanup();
+    expect(document.body.style.getPropertyValue("overflow")).toBe("");
+    expect(document.body.style.getPropertyPriority("overflow")).toBe("");
+    expect(window.getComputedStyle(document.body).overflow).toBe("auto");
+  });
+
+  test.each(["Home", "unmount"])("restores pre-Home inline overflow and priority on %s without touching unrelated styles", async (exit) => {
+    document.body.style.setProperty("overflow", "scroll", "important");
+    document.body.style.setProperty("color", "purple", "important");
+    document.body.classList.add("existing-page-class");
+    const user = renderPortfolio(["/projects/bard"]);
+    await user.click(screen.getByRole("button", { name: "Close" }));
+    expect(window.getComputedStyle(document.body).overflow).toBe("hidden");
+    if (exit === "Home") await user.click(screen.getByRole("button", { name: "Projects" }));
+    else cleanup();
+
+    expect(document.body.style.getPropertyValue("overflow")).toBe("scroll");
+    expect(document.body.style.getPropertyPriority("overflow")).toBe("important");
+    expect(window.getComputedStyle(document.body).overflow).toBe("scroll");
+    expect(document.body.style.getPropertyValue("color")).toBe("purple");
+    expect(document.body.style.getPropertyPriority("color")).toBe("important");
+    expect(document.body).toHaveClass("existing-page-class");
+    expect(document.body).not.toHaveClass("portfolio-bounded-view-open");
+  });
 });
 
 test("Projects toggles the route with expanded and pressed state", async () => {
