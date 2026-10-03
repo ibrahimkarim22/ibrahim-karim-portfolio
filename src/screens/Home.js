@@ -1,12 +1,24 @@
 import { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
-import Logo from "../components/Logo";
+import { useLocation, useNavigate } from "react-router-dom";
 import Progress from "../components/Progress";
 import Copyright from "../components/Copyright";
+import HomeNavigation from "../components/home/HomeNavigation";
+import HomeCenterView from "../components/home/HomeCenterView";
+import { getPortfolioRouteState, PORTFOLIO_VIEWS } from "../components/home/portfolioRouteState";
+import { getProjectById } from "../components/projects/projectCatalog";
+import ProjectModalHost from "../components/projects/ProjectModalHost";
 
 function Home() {
   const [progress, setProgress] = useState(0);
-  const [loadLogo, setLoadLogo] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const routeState = getPortfolioRouteState(location.pathname);
+  const { activeView, selectedProjectId } = routeState || {};
+  const initialViewRef = useRef(activeView);
+  const previousViewRef = useRef(activeView);
+  const previousProjectIdRef = useRef(selectedProjectId);
+  const projectTriggerRef = useRef(null);
+  const headingRef = useRef(null);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -24,18 +36,53 @@ function Home() {
   }, []);
 
   useEffect(() => {
-    if (progress === 100) {
-      setLoadLogo(true);
+    if (selectedProjectId && !getProjectById(selectedProjectId)) {
+      navigate("/projects", { replace: true });
     }
-  }, [progress]);
+  }, [selectedProjectId, navigate]);
+
+  useEffect(() => {
+    if (previousProjectIdRef.current && selectedProjectId === null) {
+      if (projectTriggerRef.current?.isConnected) {
+        projectTriggerRef.current.focus();
+      }
+    }
+    previousProjectIdRef.current = selectedProjectId;
+  }, [selectedProjectId]);
+
+  useEffect(() => {
+    const viewChanged = previousViewRef.current !== activeView;
+    previousViewRef.current = activeView;
+    if (!viewChanged || selectedProjectId) return;
+
+    const frame = requestAnimationFrame(() => headingRef.current?.focus());
+    return () => cancelAnimationFrame(frame);
+  }, [activeView, selectedProjectId]);
+
+  function selectProject(id, trigger) {
+    projectTriggerRef.current = trigger;
+    navigate(`/projects/${id}`, { state: { projectModalOrigin: "/projects" } });
+  }
+
+  function closeProject() {
+    if (location.state?.projectModalOrigin === "/projects") {
+      navigate(-1);
+    } else {
+      navigate("/projects", { replace: true });
+    }
+  }
+
+  // Router matches case-insensitively; the route-state parser defines which
+  // exact portfolio paths are supported. Keep rejected matches out of the shell.
+  if (!routeState) return null;
 
   return (
     <>
-      {progress < 100 ? (
+      {initialViewRef.current === PORTFOLIO_VIEWS.HOME && progress < 100 ? (
         <Progress progress={progress} />
       ) : (
         <>
-          <div className="menu-div-main">
+          <div className="menu-div-main" data-active-view={activeView}>
             <div className="bio-div-main-container">
               <div className="bio-div-main">
                 <p>
@@ -54,57 +101,16 @@ function Home() {
               </div>
             </div>
 
-            <div className="logo-div-container">
-              <Logo className="logo-div" setProgress={setProgress} />
-            </div>
-
-            <div className="menu-items">
-              <Link to="/projects" style={{ textDecoration: "none" }}>
-                <div className="projects-title-div-container">
-                  <div className="projects-title-div">Projects</div>
-                </div>
-              </Link>
-              <a
-                href="/Ibrahim_Karim_Full_Stack_Resume.pdf"
-                rel="noopener noreferrer"
-                target="_blank"
-                style={{ textDecoration: "none" }}
-              >
-                <div className="pdfResume-title-div-container">
-                  <div className="pdfResume-title-div">Resume</div>
-                </div>
-              </a>
-              <Link to="/threeDeeResume" style={{ textDecoration: "none" }} target="_blank">
-                <div className="threeResume-title-div-container">
-                  <div className="threeResume-title-div">3D Profile</div>
-                </div>
-              </Link>
-
-              <div className="megaracer-container">
-                <a
-                  href="https://data.typeracer.com/pit/profile?user=ib_ra_heem_22"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{ textDecoration: "none" }}
-                >
-                  <div className="megaracer">Megaracer</div>
-                </a>
-                <a
-                  href="https://data.typeracer.com/pit/profile?user=ib_ra_heem_22"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <div className="typeracer">
-                    <iframe
-                      src="https://data.typeracer.com/pit/profile?user=ib_ra_heem_22"
-                      title="TypeRacer profile for ib_ra_heem_22"
-                      className="typeracer-profile"
-                      loading="lazy"
-                    />
-                  </div>
-                </a>
-              </div>
-            </div>
+            <HomeCenterView
+              activeView={activeView}
+              onSelectProject={selectProject}
+              headingRef={headingRef}
+            />
+            <HomeNavigation
+              activeView={activeView}
+              onToggleProjects={() => navigate(activeView === PORTFOLIO_VIEWS.PROJECTS ? "/" : "/projects")}
+              onToggleThreeDProfile={() => navigate(activeView === PORTFOLIO_VIEWS.THREE_D_PROFILE ? "/" : "/threeDeeResume")}
+            />
             <div className="contact-items">
               <a
                 href="https://www.linkedin.com/in/ibrahim-karim-abaa952a7/"
@@ -141,6 +147,7 @@ function Home() {
               </div>
             </div>
           </div>
+          <ProjectModalHost selectedProjectId={selectedProjectId} onClose={closeProject} />
         </>
       )}
     </>

@@ -3,18 +3,26 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./SCSS/App.scss";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./screens/Home";
-import Projects from "./screens/Projects";
-import ThreeDeeResume from "./screens/ThreeDeeResume";
+
+export function PortfolioRoutes() {
+  return (
+    <Routes>
+      {/* Child matches supply URL state to the persistent Home shell, so Home
+          deliberately has no visual Outlet. */}
+      <Route path="/" element={<Home />}>
+        <Route index element={null} />
+        <Route path="projects" element={null} />
+        <Route path="projects/:projectId" element={null} />
+        <Route path="threeDeeResume" element={null} />
+      </Route>
+    </Routes>
+  );
+}
 
 function App() {
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/projects" element={<Projects />} />
-        <Route path="/projects/:projectId" element={<Projects />} />
-        <Route path="/threeDeeResume" element={<ThreeDeeResume />} />
-      </Routes>
+      <PortfolioRoutes />
     </Router>
   );
 }
