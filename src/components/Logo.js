@@ -72,7 +72,7 @@ function Logo() {
           <ambientLight intensity={0.1} />
         </Canvas>
         {progress > 0 && progress < 100 ? (
-          <Progress progress={progress} />
+          <Progress progress={progress} contained />
         ) : null}
       </div>
     </div>

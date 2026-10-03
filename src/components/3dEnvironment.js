@@ -46,7 +46,7 @@ function BlenderEnvironment() {
   const controlsRef = useRef();
 
   return (
-    <div>
+    <div className="blender-environment-canvas">
       <Canvas
         className="resume-canvas"
         style={{
@@ -54,7 +54,7 @@ function BlenderEnvironment() {
           borderStyle: "ridge",
           borderWidth: "3px",
           width: "100%",
-          height: "100vh",
+          height: "100%",
         }}
       >
         <BackgroundColor color="black" />
@@ -76,7 +76,7 @@ function BlenderEnvironment() {
           zoomSpeed={4}
         />
       </Canvas>
-      {progress > 0 && progress < 100 ? <Progress progress={progress} /> : null}
+      {progress > 0 && progress < 100 ? <Progress progress={progress} contained /> : null}
     </div>
   );
 }
