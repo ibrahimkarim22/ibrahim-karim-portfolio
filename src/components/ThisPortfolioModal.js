@@ -20,6 +20,7 @@ import blenderLogo from "../images/blender.png";
 import conditionalRendering from "../images/conditionalRendering.png";
 import firebase from "../images/firebase.png";
 import phoneBlender from "../images/phoneBlender.png";
+import Copyright from "./Copyright";
 
 function ThisPortfolioModal({ isOpen, closeModal }) {
   return (
@@ -378,7 +379,7 @@ function ThisPortfolioModal({ isOpen, closeModal }) {
                 />
               </div>
               <div className="this-portfolio-copyright-container">
-                <div className="copyright-text">&copy; 2024 Ibrahim Karim.</div>
+                <div className="copyright-text"><Copyright /></div>
               </div>
               <div className="batman">
 

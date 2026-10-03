@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../components/Logo";
 import Progress from "../components/Progress";
+import Copyright from "../components/Copyright";
 
 function Home() {
   const [progress, setProgress] = useState(0);
@@ -136,7 +137,7 @@ function Home() {
             <div className="full-stack-div">Full-Stack Developer</div>
             <div className="home-copyright-container">
               <div className="copyright-text">
-                &copy; {new Date().getFullYear()} Ibrahim Karim.
+                <Copyright />
               </div>
             </div>
           </div>

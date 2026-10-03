@@ -16,6 +16,7 @@ import kanbanSass3 from "../images/kanbanSass3.png";
 import tuhdoo1 from "../images/tuhdoo1.png";
 import tuhdoo2 from "../images/tuhdoo2.png";
 import tuhdoo3 from "../images/tuhdoo3.png";
+import Copyright from "./Copyright";
 
 function KanbanBoardModal({ isOpen, closeModal }) {
   return (
@@ -127,7 +128,7 @@ function KanbanBoardModal({ isOpen, closeModal }) {
             <img src={kanbanSass3} alt="kanban sass 2"  className="kanban-sass3-code"/>
           </div>
           <div className="kanban-copyright-container">
-                <div className="copyright-text">&copy; 2025 Ibrahim Karim.</div>
+                <div className="copyright-text"><Copyright /></div>
               </div>
         </ModalBody>
       )}

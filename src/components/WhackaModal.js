@@ -4,6 +4,7 @@ import html from "../images/html.png";
 import sass from "../images/sass.png";
 import whacka from "../images/whacka.gif";
 import whackaCode from "../images/whackaCode.png";
+import Copyright from "./Copyright";
 
 function WhackaModal({ isOpen, closeModal }) {
   return (
@@ -147,7 +148,7 @@ function WhackaModal({ isOpen, closeModal }) {
                 />
               </div>
               <div className="whacka-copyright-container">
-                <div className="copyright-text">&copy; 2024 Ibrahim Karim.</div>
+                <div className="copyright-text"><Copyright /></div>
               </div>
             </div>
           </div>
