@@ -21,6 +21,16 @@ function Home() {
   const headingRef = useRef(null);
 
   useEffect(() => {
+    if (activeView && activeView !== PORTFOLIO_VIEWS.HOME) {
+      document.body.classList.add("portfolio-bounded-view-open");
+    } else {
+      document.body.classList.remove("portfolio-bounded-view-open");
+    }
+
+    return () => document.body.classList.remove("portfolio-bounded-view-open");
+  }, [activeView]);
+
+  useEffect(() => {
     const interval = setInterval(() => {
       setProgress((prev) => {
         if (prev < 100) {

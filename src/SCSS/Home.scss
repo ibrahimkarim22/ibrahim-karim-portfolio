@@ -300,6 +300,25 @@
 .home-center-view {
   grid-area: b;
   min-width: 0;
+  min-height: 0;
+}
+
+.menu-div-main[data-active-view="projects"],
+.menu-div-main[data-active-view="3d-profile"] {
+  // Keep the Home animation clock running while alternate views stay visible.
+  opacity: 1 !important;
+
+  .home-center-view {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: rgb(2, 0, 28);
+  }
+
+  .menu-items {
+    opacity: 1 !important;
+  }
 }
 
 .logo-div-container {
@@ -432,5 +451,92 @@ z-index: 100;
   .typeracer-profile {
     width: 200%;
     height: 200%;
+  }
+}
+
+@media (max-width: 1250px), (max-height: 700px) {
+  body.portfolio-bounded-view-open {
+    overflow: hidden;
+  }
+
+  .menu-div-main[data-active-view="projects"],
+  .menu-div-main[data-active-view="3d-profile"] {
+    --portfolio-view-gap: clamp(0.5rem, 2vmin, 1rem);
+    --portfolio-navigation-height: calc(88px + var(--portfolio-view-gap));
+
+    .home-center-view {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      box-sizing: border-box;
+      height: 100vh;
+      height: 100dvh;
+      padding:
+        calc(max(env(safe-area-inset-top), var(--portfolio-view-gap)) + var(--portfolio-navigation-height) + var(--portfolio-view-gap))
+        max(env(safe-area-inset-right), var(--portfolio-view-gap))
+        max(env(safe-area-inset-bottom), var(--portfolio-view-gap))
+        max(env(safe-area-inset-left), var(--portfolio-view-gap));
+    }
+
+    .menu-items {
+      position: fixed;
+      top: max(env(safe-area-inset-top), var(--portfolio-view-gap));
+      right: max(env(safe-area-inset-right), var(--portfolio-view-gap));
+      left: max(env(safe-area-inset-left), var(--portfolio-view-gap));
+      z-index: 201;
+      display: grid;
+      grid-template-areas: none;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-rows: repeat(2, minmax(44px, 1fr));
+      gap: var(--portfolio-view-gap);
+      height: var(--portfolio-navigation-height);
+      min-width: 0;
+      min-height: 0;
+      padding: 0;
+      background-color: snow;
+    }
+
+    .menu-items > * {
+      grid-area: auto;
+      min-width: 0;
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .projects-title-div,
+    .pdfResume-title-div,
+    .threeResume-title-div,
+    .megaracer {
+      font-size: clamp(1rem, 2.5vw, 1.5rem);
+    }
+
+    .megaracer-container {
+      transform: none;
+    }
+
+    .typeracer {
+      position: fixed;
+      top: calc(max(env(safe-area-inset-top), var(--portfolio-view-gap)) + var(--portfolio-navigation-height) + var(--portfolio-view-gap));
+      right: max(env(safe-area-inset-right), var(--portfolio-view-gap));
+      bottom: auto;
+      max-width: calc(100vw - max(env(safe-area-inset-left), var(--portfolio-view-gap)) - max(env(safe-area-inset-right), var(--portfolio-view-gap)));
+      max-height: calc(100vh - max(env(safe-area-inset-top), var(--portfolio-view-gap)) - var(--portfolio-navigation-height) - var(--portfolio-view-gap) - max(env(safe-area-inset-bottom), var(--portfolio-view-gap)));
+      max-height: calc(100dvh - max(env(safe-area-inset-top), var(--portfolio-view-gap)) - var(--portfolio-navigation-height) - var(--portfolio-view-gap) - max(env(safe-area-inset-bottom), var(--portfolio-view-gap)));
+      transform: none;
+    }
+  }
+}
+
+@media (orientation: landscape) and (max-height: 500px) {
+  .menu-div-main[data-active-view="projects"],
+  .menu-div-main[data-active-view="3d-profile"] {
+    --portfolio-navigation-height: 44px;
+
+    .menu-items {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-rows: minmax(44px, 1fr);
+    }
   }
 }

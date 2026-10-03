@@ -142,6 +142,48 @@ test("initial projects renders the shell and all six choices immediately", () =>
   projectCases.forEach(([, name]) => expect(within(selector).getByRole("button", { name: new RegExp(name) })).toBeInTheDocument());
 });
 
+test.each([
+  ["/", "Home", "home"],
+  ["/projects", "Projects", "projects"],
+  ["/projects/bard", "Projects", "projects"],
+  ["/threeDeeResume", "3D Profile", "3d-profile"],
+])("the shell exposes its route-derived view at %s", (path, label, activeView) => {
+  renderPortfolio([path]);
+  if (path === "/") advance();
+  expect(expectCenter(label).closest(".menu-div-main")).toHaveAttribute("data-active-view", activeView);
+});
+
+test.each(["Projects", "3D Profile"])("%s manages the bounded-view body class while preserving unrelated classes", async (label) => {
+  document.body.classList.add("existing-page-class");
+  try {
+    const user = renderPortfolio();
+    advance();
+    expect(document.body).not.toHaveClass("portfolio-bounded-view-open");
+    const toggle = screen.getByRole("button", { name: label });
+
+    await user.click(toggle);
+    expect(document.body).toHaveClass("portfolio-bounded-view-open", "existing-page-class");
+
+    await user.click(toggle);
+    expectCenter("Home");
+    expect(document.body).not.toHaveClass("portfolio-bounded-view-open");
+    expect(document.body).toHaveClass("existing-page-class");
+  } finally {
+    document.body.classList.remove("existing-page-class");
+  }
+});
+
+test.each(["/projects", "/threeDeeResume"])("unmounting %s removes the bounded-view body class", (path) => {
+  const { unmount } = render(
+    <MemoryRouter initialEntries={[path]}>
+      <PortfolioRoutes />
+    </MemoryRouter>
+  );
+  expect(document.body).toHaveClass("portfolio-bounded-view-open");
+  unmount();
+  expect(document.body).not.toHaveClass("portfolio-bounded-view-open");
+});
+
 test("Projects toggles the route with expanded and pressed state", async () => {
   const user = renderPortfolio();
   advance();
@@ -234,6 +276,7 @@ test("copyright shows only the start year at the 2023 boundary", () => {
 
 test.each(["/about", "/PROJECTS", "/THREEDEERESUME"])("unsupported path %s renders no portfolio shell", (path) => {
   renderPortfolio([path]);
+  expect(document.body).not.toHaveClass("portfolio-bounded-view-open");
   expect(screen.queryByText("Full-Stack Developer")).not.toBeInTheDocument();
   expect(screen.queryByRole("button", { name: "Projects" })).not.toBeInTheDocument();
   expect(screen.queryByText("Loading...")).not.toBeInTheDocument();
