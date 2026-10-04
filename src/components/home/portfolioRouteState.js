@@ -1,6 +1,7 @@
 export const PORTFOLIO_VIEWS = Object.freeze({
   HOME: "home",
   PROJECTS: "projects",
+  RESUME: "resume",
   THREE_D_PROFILE: "3d-profile",
 });
 
@@ -13,6 +14,10 @@ export function getPortfolioRouteState(pathname) {
 
   if (normalizedPath === "/projects") {
     return { activeView: PORTFOLIO_VIEWS.PROJECTS, selectedProjectId: null };
+  }
+
+  if (normalizedPath === "/resume") {
+    return { activeView: PORTFOLIO_VIEWS.RESUME, selectedProjectId: null };
   }
 
   const projectMatch = normalizedPath.match(/^\/projects\/([^/]+)$/);

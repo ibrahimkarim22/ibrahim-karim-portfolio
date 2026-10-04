@@ -14,12 +14,18 @@ const expectedCopy = [
 
 describe("ProjectSelector", () => {
   it("renders the labelled project region and complete copy in six native buttons", () => {
-    render(<ProjectSelector projects={PROJECTS} onSelectProject={() => {}} />);
+    render(
+      <ProjectSelector
+        projects={PROJECTS}
+        onBackHome={() => {}}
+        onSelectProject={() => {}}
+      />
+    );
 
     const region = screen.getByRole("region", { name: /projects/i });
     expect(region).toHaveAttribute("id", "project-selector");
     expect(within(region).getByRole("heading", { name: /projects/i })).toBeInTheDocument();
-    const buttons = within(region).getAllByRole("button");
+    const buttons = within(within(region).getByRole("list")).getAllByRole("button");
     expect(buttons).toHaveLength(6);
     expect(within(region).getAllByRole("listitem")).toHaveLength(6);
 
@@ -38,14 +44,39 @@ describe("ProjectSelector", () => {
   it("sends the selected ID and native button when activated with Enter", async () => {
     const user = userEvent.setup();
     const onSelectProject = jest.fn();
-    render(<ProjectSelector projects={PROJECTS} onSelectProject={onSelectProject} />);
+    render(
+      <ProjectSelector
+        projects={PROJECTS}
+        onBackHome={() => {}}
+        onSelectProject={onSelectProject}
+      />
+    );
 
-    await user.tab();
-    const button = screen.getAllByRole("button")[0];
+    const button = within(screen.getByRole("list")).getAllByRole("button")[0];
+    button.focus();
     expect(button).toHaveFocus();
     await user.keyboard("{Enter}");
 
     expect(onSelectProject).toHaveBeenCalledTimes(1);
     expect(onSelectProject).toHaveBeenCalledWith("whackamole", button);
+  });
+
+  it("offers a keyboard-accessible Back to Home control", async () => {
+    const user = userEvent.setup();
+    const onBackHome = jest.fn();
+    render(
+      <ProjectSelector
+        projects={PROJECTS}
+        onBackHome={onBackHome}
+        onSelectProject={() => {}}
+      />
+    );
+
+    const back = screen.getByRole("button", { name: "Back to Home" });
+    expect(back).toHaveAttribute("type", "button");
+    back.focus();
+    await user.keyboard("{Enter}");
+
+    expect(onBackHome).toHaveBeenCalledTimes(1);
   });
 });

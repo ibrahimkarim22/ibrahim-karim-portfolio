@@ -1,9 +1,8 @@
-import { useState, useEffect, useRef } from "react";
+import { Suspense, useState, useEffect, useRef, useCallback } from "react";
 import * as THREE from "three";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { useGLTF, PerspectiveCamera } from "@react-three/drei";
 import logo from "../models/logo.glb";
-import Progress from "./Progress";
 import "../SCSS/App.scss";
 
 function BackgroundColor({ color }) {
@@ -14,12 +13,12 @@ function BackgroundColor({ color }) {
   return null;
 }
 
-function LogoInit({ path, position, setProgress }) {
+function LogoInit({ path, position, onReady }) {
   const group = useRef();
-  const { scene, animations } = useGLTF(path, true, (xhr) => {
-    setProgress((xhr.loaded / xhr.total) * 100);
-  });
+  const { scene, animations } = useGLTF(path, true);
   const mixer = useRef();
+
+  useEffect(() => { onReady(); }, [scene, onReady]);
 
   useEffect(() => {
     if (animations.length) {
@@ -40,7 +39,8 @@ function LogoInit({ path, position, setProgress }) {
 }
 
 function Logo() {
-  const [progress, setProgress] = useState(0);
+  const [sceneReady, setSceneReady] = useState(false);
+  const onSceneReady = useCallback(() => setSceneReady(true), []);
   const cameraRef = useRef();
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
@@ -54,15 +54,12 @@ function Logo() {
 
   return (
     <div className="logo-canvas-container">
-      <div className="logo-canvas">
-        <Canvas>
+      <div className="logo-canvas" aria-busy={!sceneReady}>
+        <Canvas className="signature-canvas">
           <BackgroundColor color="snow" />
-          <LogoInit
-            path={logo}
-            position={[0.5, 0, 0]}
-            setProgress={setProgress}
-            
-            />
+          <Suspense fallback={null}>
+            <LogoInit path={logo} position={[0.5, 0, 0]} onReady={onSceneReady} />
+          </Suspense>
           <PerspectiveCamera
             ref={cameraRef}
             makeDefault
@@ -71,9 +68,6 @@ function Logo() {
           />
           <ambientLight intensity={0.1} />
         </Canvas>
-        {progress > 0 && progress < 100 ? (
-          <Progress progress={progress} contained />
-        ) : null}
       </div>
     </div>
   );

@@ -1,10 +1,16 @@
 import { getPortfolioRouteState, PORTFOLIO_VIEWS } from "./portfolioRouteState";
 
 describe("getPortfolioRouteState", () => {
+  it("defines Resume as a distinct route-backed view", () => {
+    expect(PORTFOLIO_VIEWS.RESUME).toBe("resume");
+  });
+
   it.each([
     ["/", { activeView: PORTFOLIO_VIEWS.HOME, selectedProjectId: null }],
     ["/projects", { activeView: PORTFOLIO_VIEWS.PROJECTS, selectedProjectId: null }],
     ["/projects/", { activeView: PORTFOLIO_VIEWS.PROJECTS, selectedProjectId: null }],
+    ["/resume", { activeView: PORTFOLIO_VIEWS.RESUME, selectedProjectId: null }],
+    ["/resume/", { activeView: PORTFOLIO_VIEWS.RESUME, selectedProjectId: null }],
     ["/projects/WHACKAMOLE", { activeView: PORTFOLIO_VIEWS.PROJECTS, selectedProjectId: "whackamole" }],
     ["/projects/not-real", { activeView: PORTFOLIO_VIEWS.PROJECTS, selectedProjectId: "not-real" }],
     ["/threeDeeResume", { activeView: PORTFOLIO_VIEWS.THREE_D_PROFILE, selectedProjectId: null }],
@@ -12,7 +18,7 @@ describe("getPortfolioRouteState", () => {
     expect(getPortfolioRouteState(pathname)).toEqual(expected);
   });
 
-  it.each(["/about", "/projects/a/b", "/threeDeeResume/extra"]) (
+  it.each(["/about", "/projects/a/b", "/threeDeeResume/extra", "/resume/extra", "/RESUME"]) (
     "returns null for unsupported path %s",
     (pathname) => {
       expect(getPortfolioRouteState(pathname)).toBeNull();

@@ -10,7 +10,6 @@
   height: 100vh;
   background-color: snow;
   box-shadow: 0px 0px 100px rgb(0, 128, 255);
-  animation: menuPageBgStartUp 22s ease-in-out forwards;
   justify-content: center;
   align-items: center;
 }
@@ -93,7 +92,6 @@
 .menu-items {
   flex-direction: column;
   grid-area: c;
-  animation: menuItemsStartUp 30s ease-in-out forwards;
 }
 
 .home-navigation-button {
@@ -304,26 +302,53 @@
 }
 
 .menu-div-main[data-active-view="projects"],
+.menu-div-main[data-active-view="resume"],
 .menu-div-main[data-active-view="3d-profile"] {
-  // Keep the Home animation clock running while alternate views stay visible.
-  opacity: 1 !important;
-
   .home-center-view {
     position: relative;
     width: 100%;
     height: 100%;
     overflow: hidden;
-    background-color: rgb(2, 0, 28);
+  }
+}
+
+.menu-div-main[data-active-view="projects"] .home-center-view,
+.menu-div-main[data-active-view="resume"] .home-center-view,
+.menu-div-main[data-active-view="3d-profile"] .home-center-view {
+  background-color: snow;
+}
+
+.menu-div-main[data-active-view="3d-profile"] {
+  // Keep scene/HUD layers local. The transformed Megaracer preview belongs to
+  // its navigation sibling, which must paint above the entire viewer.
+  .home-center-view {
+    isolation: isolate;
+    z-index: 0;
   }
 
   .menu-items {
-    opacity: 1 !important;
+    position: relative;
+    z-index: 1;
   }
 }
 
 .logo-div-container {
 grid-area: b;
-  animation: logoStartUp 15s ease-in-out forwards;
+}
+
+.logo-canvas .signature-canvas {
+  opacity: 1;
+  transition: opacity 350ms ease-out;
+}
+
+.logo-canvas[aria-busy="true"] .signature-canvas {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo-canvas .signature-canvas {
+    transition: none;
+  }
 }
 
 .home-copyright-container {
@@ -461,9 +486,13 @@ z-index: 100;
   }
 
   .menu-div-main[data-active-view="projects"],
+  .menu-div-main[data-active-view="resume"],
   .menu-div-main[data-active-view="3d-profile"] {
     --portfolio-view-gap: clamp(0.5rem, 2vmin, 1rem);
     --portfolio-navigation-height: calc(88px + var(--portfolio-view-gap));
+    --portfolio-contact-height: 44px;
+    --portfolio-copyright-height: 20px;
+    --portfolio-footer-height: calc(var(--portfolio-contact-height) + var(--portfolio-copyright-height) + var(--portfolio-view-gap));
 
     .home-center-view {
       position: fixed;
@@ -475,7 +504,7 @@ z-index: 100;
       padding:
         calc(max(env(safe-area-inset-top), var(--portfolio-view-gap)) + var(--portfolio-navigation-height) + var(--portfolio-view-gap))
         max(env(safe-area-inset-right), var(--portfolio-view-gap))
-        max(env(safe-area-inset-bottom), var(--portfolio-view-gap))
+        calc(max(env(safe-area-inset-bottom), var(--portfolio-view-gap)) + var(--portfolio-footer-height) + var(--portfolio-view-gap))
         max(env(safe-area-inset-left), var(--portfolio-view-gap));
     }
 
@@ -532,6 +561,7 @@ z-index: 100;
 
 @media (orientation: landscape) and (max-height: 500px) {
   .menu-div-main[data-active-view="projects"],
+  .menu-div-main[data-active-view="resume"],
   .menu-div-main[data-active-view="3d-profile"] {
     --portfolio-navigation-height: 44px;
 

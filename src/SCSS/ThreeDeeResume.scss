@@ -5,6 +5,7 @@
   min-width: 0;
   min-height: 0;
   overflow: hidden;
+  background-color: black;
 
   .blender-environment {
     cursor: url(https://uploads.codesandbox.io/uploads/user/b3e56831-8b98-4fee-b941-0e27f39883ab/Ad1_-cursor.png)
@@ -28,6 +29,18 @@
     height: 100%;
     min-width: 0;
     min-height: 0;
+    opacity: 1;
+    transition: opacity 350ms ease-out;
+  }
+
+  .blender-environment[aria-busy="true"] .blender-environment-canvas {
+    opacity: 0;
+  }
+
+  .blender-environment[aria-busy="true"] .resume-canvas {
+    // R3F sets pointer-events inline. Do not let a gesture on the empty scene
+    // opt out of initial framing before the real model bounds arrive.
+    pointer-events: none !important;
   }
 
   .resume-canvas {
@@ -41,17 +54,138 @@
     max-height: 100%;
   }
 
-  .orbit-instructions {
-    background-color: rgba(255, 255, 255, 0.8);
-    border-radius: 33px;
-    padding: 20px;
+  .profile-controls {
     position: absolute;
-    top: 20px;
-    right: 20px;
-    display: inline-block;
+    inset: 0.65rem;
     z-index: 2;
-    font-size: 22px;
-    color: rgb(92, 42, 172);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.4rem;
+    pointer-events: none;
+    text-align: left;
+    font-family: "Raleway", sans-serif;
+  }
+
+  .profile-controls__panel,
+  .profile-controls__trigger {
+    box-sizing: border-box;
+    border: 1px solid rgba(181, 165, 216, 0.3);
+    border-radius: 0.55rem;
+    background-color: rgba(15, 13, 28, 0.84);
+    color: #ede7f5;
+    backdrop-filter: blur(6px);
+    pointer-events: auto;
+  }
+
+  .profile-controls__panel {
+    flex: 0 1 auto;
+    min-height: 0;
+    max-width: 100%;
+    max-height: 100%;
+    padding: 0.45rem 0.6rem;
+    overflow: auto;
+    overscroll-behavior: contain;
+  }
+
+  .profile-controls__heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+
+  .profile-controls__heading p {
+    margin: 0 0 0.3rem;
+    color: #b9dcea;
+    font-size: 0.6rem;
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: 0.12em;
+  }
+
+  .profile-controls__gestures {
+    margin: 0 0 0.35rem;
+    font-size: 0.72rem;
+    line-height: 1.35;
+  }
+
+  .profile-controls__gestures > div {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .profile-controls__gestures dt {
+    color: #ede7f5;
+    font-weight: 500;
+  }
+
+  .profile-controls__gestures dd {
+    margin: 0;
+    color: #c5b7dd;
+  }
+
+  .profile-controls button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 28px;
+    border: 1px solid rgba(220, 174, 199, 0.35);
+    border-radius: 0.35rem;
+    padding: 0.25rem 0.5rem;
+    background-color: rgba(194, 145, 170, 0.1);
+    color: #f1dce8;
+    font: 500 0.72rem/1.3 "Raleway", sans-serif;
+    cursor: pointer;
+    transition: background-color 120ms ease;
+    pointer-events: auto;
+  }
+
+  .profile-controls button:hover:not(:disabled),
+  .profile-controls button:active:not(:disabled) {
+    background-color: rgba(194, 145, 170, 0.22);
+  }
+
+  .profile-controls button:focus-visible {
+    outline: 2px solid #b9dcea;
+    outline-offset: 2px;
+  }
+
+  .profile-controls button:disabled {
+    opacity: 0.5;
+    cursor: default;
+  }
+
+  .profile-controls .profile-controls__trigger {
+    flex: none;
+    min-height: 44px;
+    padding: 0.5rem 0.75rem;
+    background-color: rgba(15, 13, 28, 0.84);
+    font-size: 0.8rem;
+  }
+
+  .profile-controls--compact .profile-controls__panel {
+    width: 12rem;
+    max-height: calc(100% - 44px - 0.4rem);
+  }
+
+  .profile-controls--compact .profile-controls__gestures {
+    font-size: 0.75rem;
+  }
+
+  .profile-controls--compact .profile-controls__reset {
+    width: 100%;
+    min-height: 44px;
+  }
+
+  .profile-controls--compact .profile-controls__close {
+    flex: none;
+    min-width: 44px;
+    min-height: 44px;
+    margin-bottom: 0.3rem;
+    padding: 0;
+    font-size: 1.35rem;
   }
 
   @media screen and (min-width: 1024px) {
@@ -59,14 +193,15 @@
       display: block;
     }
 
-    .orbit-instructions {
-      display: inline-block;
-    }
   }
 
-  @media screen and (max-width: 1023px) {
-    .orbit-instructions {
-      display: none;
+  @media (prefers-reduced-motion: reduce) {
+    .blender-environment-canvas {
+      transition: none;
+    }
+
+    .profile-controls button {
+      transition: none;
     }
   }
 }

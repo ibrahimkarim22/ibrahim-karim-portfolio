@@ -1,9 +1,10 @@
-import { useState, useEffect, useRef } from "react";
+import { Suspense, forwardRef, useState, useEffect, useRef, useMemo, useLayoutEffect } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { OrbitControls, useGLTF, PerspectiveCamera } from "@react-three/drei";
 import * as THREE from "three";
-import Progress from "./Progress";
 import landscape from "../models/landscape2.glb";
+import ProfileCameraRig from "./profile/ProfileCameraRig";
+import { getSkylineBounds } from "./profile/profileCamera";
 
 function BackgroundColor({ color }) {
   const { scene } = useThree();
@@ -15,12 +16,13 @@ function BackgroundColor({ color }) {
   return null;
 }
 
-function Landscape({ path, setProgress }) {
+function Landscape({ path, onBoundsReady }) {
   const group = useRef();
-  const { scene, animations } = useGLTF(path, true, (xhr) => {
-    setProgress((xhr.loaded / xhr.total) * 100);
-  });
+  const { scene, animations } = useGLTF(path, true);
   const mixer = useRef();
+  const bounds = useMemo(() => getSkylineBounds(scene), [scene]);
+
+  useLayoutEffect(() => { onBoundsReady(bounds); }, [bounds, onBoundsReady]);
 
   useEffect(() => {
     if (animations.length) {
@@ -40,10 +42,11 @@ function Landscape({ path, setProgress }) {
   return <primitive ref={group} object={scene} />;
 }
 
-function BlenderEnvironment() {
-  const [progress, setProgress] = useState(0);
+const BlenderEnvironment = forwardRef(function BlenderEnvironment({ onReady }, ref) {
+  const [bounds, setBounds] = useState(null);
   const cameraRef = useRef();
   const controlsRef = useRef();
+  const interactionRef = useRef(false);
 
   return (
     <div className="blender-environment-canvas">
@@ -62,23 +65,25 @@ function BlenderEnvironment() {
         <PerspectiveCamera
           makeDefault
           ref={cameraRef}
-          position={[100, 0, 0]}
-          fov={80}
+          fov={60}
           near={1}
           far={20000}
         />
-        <Landscape path={landscape} setProgress={setProgress} />
+        <Suspense fallback={null}>
+          <Landscape path={landscape} onBoundsReady={setBounds} />
+        </Suspense>
         <OrbitControls
           ref={controlsRef}
           enableZoom={true}
           minDistance={10}
-          maxDistance={180}
           zoomSpeed={4}
+          onStart={() => { interactionRef.current = true; }}
         />
+        <ProfileCameraRig ref={ref} bounds={bounds} controlsRef={controlsRef}
+          interactionRef={interactionRef} onReady={onReady} />
       </Canvas>
-      {progress > 0 && progress < 100 ? <Progress progress={progress} contained /> : null}
     </div>
   );
-}
+});
 
 export default BlenderEnvironment;

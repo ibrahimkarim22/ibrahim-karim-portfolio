@@ -3,9 +3,11 @@ import { PORTFOLIO_VIEWS } from "./portfolioRouteState";
 export default function HomeNavigation({
   activeView,
   onToggleProjects,
+  onToggleResume,
   onToggleThreeDProfile,
 }) {
   const projectsActive = activeView === PORTFOLIO_VIEWS.PROJECTS;
+  const resumeActive = activeView === PORTFOLIO_VIEWS.RESUME;
 
   return (
     <nav className="menu-items" aria-label="Portfolio navigation">
@@ -21,16 +23,18 @@ export default function HomeNavigation({
           <span className="projects-title-div">Projects</span>
         </span>
       </button>
-      <a
-        href="/Ibrahim_Karim_Full_Stack_Resume.pdf"
-        rel="noopener noreferrer"
-        target="_blank"
-        style={{ textDecoration: "none" }}
+      <button
+        type="button"
+        className="home-navigation-button"
+        aria-controls="resume-view"
+        aria-expanded={resumeActive}
+        aria-pressed={resumeActive}
+        onClick={onToggleResume}
       >
-        <div className="pdfResume-title-div-container">
-          <div className="pdfResume-title-div">Resume</div>
-        </div>
-      </a>
+        <span className="pdfResume-title-div-container">
+          <span className="pdfResume-title-div">Resume</span>
+        </span>
+      </button>
       <button
         type="button"
         className="home-navigation-button"
@@ -43,6 +47,7 @@ export default function HomeNavigation({
       </button>
       <div className="megaracer-container">
         <a
+          className="home-navigation-link"
           href="https://data.typeracer.com/pit/profile?user=ib_ra_heem_22"
           target="_blank"
           rel="noopener noreferrer"
