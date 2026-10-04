@@ -1,98 +1,35 @@
-/*==========================
-HEADER
-============================*/
-
-@keyframes bardModalHeaderStartup {
-  0% {
-    transform: translate(-300vh, 0px);
-  }
-  100% {
-    transform: translate(0px, 0px);
-  }
+// Brief anticipation, weighted travel, then a slower settle into narrow fabric wings.
+@keyframes bardCurtainOpenLeft {
+  0%, 8% { transform: translateX(0); }
+  100% { transform: translateX(-96%); }
 }
 
-/*==========================
-  STAGE CURTAINS
-  ============================*/
-
-@keyframes stageCurtain {
-  0% {
-    transform: translate(0px, -100vh);
-  }
-  100% {
-    transform: translate(0px, 0px);
-  }
+@keyframes bardCurtainOpenRight {
+  0%, 8% { transform: translateX(0); }
+  100% { transform: translateX(96%); }
 }
 
-@keyframes honors {
-  0% {
-    opacity: 0;
-  }
-
-  50% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
+@keyframes bardTasselPull {
+  0%, 100% { transform: translateY(0); }
+  40% { transform: translateY(3px); }
 }
 
-@keyframes onlineCourse {
-  0% {
-    opacity: 0;
-  }
-  1% {
-    opacity: 1;
-  }
-  2% {
-    opacity: 0;
-  }
-  5% {
-    opacity: 0;
-  }
-  6% {
-    opacity: 1;
-  }
-  7% {
-    opacity: 0;
-  }
-  24% {
-    opacity: 0;
-  }
-  25% {
-    opacity: 1;
-  }
-  26% {
-    opacity: 0;
-  }
-  27% {
-    opacity: 1;
-  }
-  74% {
-    opacity: 1;
-  }
-  75% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 1;
-  }
+@keyframes bardCordTension {
+  0%, 100% { transform: scaleY(1); }
+  40% { transform: scaleY(1.1); }
 }
 
-@keyframes shakespeare {
-  0% {
-    color: blue;
-  }
-  25% {
-    color: red;
-  }
-  50% {
-    color: blueviolet;
-  }
-  75% {
-    color: rgb(44, 145, 106);
-  }
-  100% {
-    color: blue;
-  }
+@keyframes bardCurtainCloseLeft {
+  from { transform: var(--bard-curtain-start, translateX(-96%)); }
+  to { transform: translateX(0); }
+}
+
+@keyframes bardCurtainCloseRight {
+  from { transform: var(--bard-curtain-start, translateX(96%)); }
+  to { transform: translateX(0); }
+}
+
+@keyframes bardTitleEntrance {
+  from { opacity: 0; transform: translateY(0.75rem); }
+  to { opacity: 1; transform: translateY(0); }
 }
