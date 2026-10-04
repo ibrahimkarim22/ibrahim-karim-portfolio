@@ -1,22 +1,3 @@
-.projects-div-main::-webkit-scrollbar {
-  height: 5px;
-  width: 7px;
-}
-
-.projects-div-main::-webkit-scrollbar-track {
-  background-color: rgb(0, 0, 0);
-}
-
-.projects-div-main::-webkit-scrollbar-thumb {
-  background-color: #ffffff;
-  border-radius: 1px;
-}
-
-.projects-div-main:-webkit-scrollbar-thumb:hover {
-  background-color: rgb(0, 0, 0);
-}
-
-
 /*====================
 HEY YOU 
 =====================*/
@@ -116,23 +97,4 @@ WHACKA
 }
 .whacka-modal-flex-main::-webkit-scrollbar-thumb:hover {
   background-color: rgb(0, 4, 255);
-}
-
-@media (max-width: 1400px) {
-.projects-div-main::-webkit-scrollbar {
-  width: 2px;
-}
-
-.projects-div-main::-webkit-scrollbar-track {
-  background-color: rgb(0, 0, 0);
-}
-
-.projects-div-main::-webkit-scrollbar-thumb {
-  background-color: rgb(255, 255, 255);
-  border-radius: 2px;
-}
-
-.projects-div-main:-webkit-scrollbar-thumb:hover {
-  background-color: rgb(0, 0, 0);
-}
 }

@@ -1,0 +1,118 @@
+.menu-div-main {
+  --home-entry-title-rest: translate(0%, 5%) rotate(-90deg);
+
+  // Keep this persistent title at rest when the Home-only class is removed,
+  // rather than reactivating its legacy slide-in on another center view.
+  .full-stack-div {
+    animation: none;
+    transform: var(--home-entry-title-rest);
+  }
+}
+
+// The route-derived class is removed outside Home and reapplied on return.
+// Ordinary renders and model readiness leave the shell's animation clock alone.
+.menu-div-main.home-entry {
+  --home-entry-logo-duration: 800ms;
+  --home-entry-title-duration: 800ms;
+  --home-entry-title-delay: 200ms;
+  --home-entry-biography-delay: 600ms;
+  --home-entry-about-duration: 700ms;
+  --home-entry-about-delay: 750ms;
+  --home-entry-navigation-duration: 700ms;
+  --home-entry-navigation-delay: 1500ms;
+  --home-entry-social-duration: 600ms;
+  --home-entry-social-delay: 2000ms;
+  --home-entry-copyright-duration: 500ms;
+  --home-entry-copyright-delay: 2700ms;
+
+  .full-stack-div {
+    animation: home-entry-lift var(--home-entry-title-duration) ease-out var(--home-entry-title-delay) backwards;
+  }
+
+  .home-context-panel__bio > p {
+    // Retain the existing 1300ms reveal and 1200ms paragraph stagger.
+    animation-delay: var(--home-entry-biography-delay);
+  }
+
+  .home-context-panel__bio > p + p {
+    animation-delay: calc(var(--home-entry-biography-delay) + 1200ms);
+  }
+
+  .home-about__trigger {
+    animation: home-entry-fade var(--home-entry-about-duration) ease-out var(--home-entry-about-delay) backwards;
+  }
+
+  .menu-items {
+    // Opacity only, without a persistent filled stacking context after entrance:
+    // preserve nav transforms and the TypeRacer preview's normal layering.
+    animation: home-entry-fade var(--home-entry-navigation-duration) ease-out var(--home-entry-navigation-delay) backwards;
+  }
+
+  .contact-items {
+    animation: home-entry-fade var(--home-entry-social-duration) ease-out var(--home-entry-social-delay) backwards;
+  }
+
+  .home-copyright-container {
+    animation: home-entry-fade var(--home-entry-copyright-duration) ease-out var(--home-entry-copyright-delay) backwards;
+  }
+
+  // Override animated opacity without cancelling it: blur must not restart it.
+  .menu-items:focus-within,
+  .contact-items:focus-within,
+  .home-about__trigger:focus-visible {
+    opacity: 1 !important;
+  }
+
+  .logo-canvas .signature-canvas {
+    // Replace the old short transition; pending visibility is still loader-owned.
+    transition: none;
+  }
+
+  .logo-canvas[aria-busy="false"] .signature-canvas {
+    animation: home-entry-fade var(--home-entry-logo-duration) ease-out backwards;
+  }
+}
+
+@media (max-width: 1250px) {
+  .menu-div-main {
+    --home-entry-title-rest: none;
+  }
+}
+
+@keyframes home-entry-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes home-entry-lift {
+  from {
+    opacity: 0;
+    translate: 0 6px;
+  }
+  to {
+    opacity: 1;
+    translate: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .menu-div-main.home-entry {
+    .full-stack-div,
+    .home-context-panel__bio > p,
+    .home-context-panel__bio > p + p,
+    .home-about__trigger,
+    .menu-items,
+    .contact-items,
+    .home-copyright-container,
+    .logo-canvas[aria-busy="false"] .signature-canvas {
+      animation: none;
+      animation-delay: 0ms;
+      opacity: 1;
+      translate: none;
+    }
+  }
+}

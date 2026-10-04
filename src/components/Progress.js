@@ -1,8 +1,8 @@
 import karim from "../images/karim.jpeg";
 
-const Progress = ({ progress }) => {
+const Progress = ({ progress, contained = false }) => {
   return (
-    <div className="progress-container">
+    <div className={`progress-container${contained ? " progress-container--contained" : ""}`}>
       {/* <img
         src={karim}
         className="progress-image"

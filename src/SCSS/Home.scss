@@ -10,7 +10,6 @@
   height: 100vh;
   background-color: snow;
   box-shadow: 0px 0px 100px rgb(0, 128, 255);
-  animation: menuPageBgStartUp 22s ease-in-out forwards;
   justify-content: center;
   align-items: center;
 }
@@ -93,7 +92,22 @@
 .menu-items {
   flex-direction: column;
   grid-area: c;
-  animation: menuItemsStartUp 30s ease-in-out forwards;
+}
+
+.home-navigation-button {
+  appearance: none;
+  background: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+.home-navigation-button:focus-visible {
+  outline: 3px solid #0066cc;
+  outline-offset: 5px;
+  border-radius: 4px;
 }
 
 .projects-title-div-container,
@@ -281,9 +295,60 @@
 //   height: 400px; 
 //   max-width: 800px;
 // }
+.home-center-view {
+  grid-area: b;
+  min-width: 0;
+  min-height: 0;
+}
+
+.menu-div-main[data-active-view="projects"],
+.menu-div-main[data-active-view="resume"],
+.menu-div-main[data-active-view="3d-profile"] {
+  .home-center-view {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+}
+
+.menu-div-main[data-active-view="projects"] .home-center-view,
+.menu-div-main[data-active-view="resume"] .home-center-view,
+.menu-div-main[data-active-view="3d-profile"] .home-center-view {
+  background-color: snow;
+}
+
+.menu-div-main[data-active-view="3d-profile"] {
+  // Keep scene/HUD layers local. The transformed Megaracer preview belongs to
+  // its navigation sibling, which must paint above the entire viewer.
+  .home-center-view {
+    isolation: isolate;
+    z-index: 0;
+  }
+
+  .menu-items {
+    position: relative;
+    z-index: 1;
+  }
+}
+
 .logo-div-container {
 grid-area: b;
-  animation: logoStartUp 15s ease-in-out forwards;
+}
+
+.logo-canvas .signature-canvas {
+  opacity: 1;
+  transition: opacity 350ms ease-out;
+}
+
+.logo-canvas[aria-busy="true"] .signature-canvas {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo-canvas .signature-canvas {
+    transition: none;
+  }
 }
 
 .home-copyright-container {
@@ -317,6 +382,7 @@ z-index: 100;
     ;
 
 }
+.home-center-view,
 .logo-div-container {
   grid-area: a;
   width: 100%;
@@ -410,5 +476,98 @@ z-index: 100;
   .typeracer-profile {
     width: 200%;
     height: 200%;
+  }
+}
+
+@media (max-width: 1250px), (max-height: 700px) {
+  body.portfolio-bounded-view-open {
+    // Keep the bounded layer locked during Reactstrap's inline restoration.
+    overflow: hidden !important;
+  }
+
+  .menu-div-main[data-active-view="projects"],
+  .menu-div-main[data-active-view="resume"],
+  .menu-div-main[data-active-view="3d-profile"] {
+    --portfolio-view-gap: clamp(0.5rem, 2vmin, 1rem);
+    --portfolio-navigation-height: calc(88px + var(--portfolio-view-gap));
+    --portfolio-contact-height: 44px;
+    --portfolio-copyright-height: 20px;
+    --portfolio-footer-height: calc(var(--portfolio-contact-height) + var(--portfolio-copyright-height) + var(--portfolio-view-gap));
+
+    .home-center-view {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      box-sizing: border-box;
+      height: 100vh;
+      height: 100dvh;
+      padding:
+        calc(max(env(safe-area-inset-top), var(--portfolio-view-gap)) + var(--portfolio-navigation-height) + var(--portfolio-view-gap))
+        max(env(safe-area-inset-right), var(--portfolio-view-gap))
+        calc(max(env(safe-area-inset-bottom), var(--portfolio-view-gap)) + var(--portfolio-footer-height) + var(--portfolio-view-gap))
+        max(env(safe-area-inset-left), var(--portfolio-view-gap));
+    }
+
+    .menu-items {
+      position: fixed;
+      top: max(env(safe-area-inset-top), var(--portfolio-view-gap));
+      right: max(env(safe-area-inset-right), var(--portfolio-view-gap));
+      left: max(env(safe-area-inset-left), var(--portfolio-view-gap));
+      z-index: 201;
+      display: grid;
+      grid-template-areas: none;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-rows: repeat(2, minmax(44px, 1fr));
+      gap: var(--portfolio-view-gap);
+      height: var(--portfolio-navigation-height);
+      min-width: 0;
+      min-height: 0;
+      padding: 0;
+      background-color: snow;
+    }
+
+    .menu-items > * {
+      grid-area: auto;
+      min-width: 0;
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .projects-title-div,
+    .pdfResume-title-div,
+    .threeResume-title-div,
+    .megaracer {
+      font-size: clamp(1rem, 2.5vw, 1.5rem);
+    }
+
+    .megaracer-container {
+      transform: none;
+    }
+
+    .typeracer {
+      position: fixed;
+      top: calc(max(env(safe-area-inset-top), var(--portfolio-view-gap)) + var(--portfolio-navigation-height) + var(--portfolio-view-gap));
+      right: max(env(safe-area-inset-right), var(--portfolio-view-gap));
+      bottom: auto;
+      max-width: calc(100vw - max(env(safe-area-inset-left), var(--portfolio-view-gap)) - max(env(safe-area-inset-right), var(--portfolio-view-gap)));
+      max-height: calc(100vh - max(env(safe-area-inset-top), var(--portfolio-view-gap)) - var(--portfolio-navigation-height) - var(--portfolio-view-gap) - max(env(safe-area-inset-bottom), var(--portfolio-view-gap)));
+      max-height: calc(100dvh - max(env(safe-area-inset-top), var(--portfolio-view-gap)) - var(--portfolio-navigation-height) - var(--portfolio-view-gap) - max(env(safe-area-inset-bottom), var(--portfolio-view-gap)));
+      transform: none;
+    }
+  }
+}
+
+@media (orientation: landscape) and (max-height: 500px) {
+  .menu-div-main[data-active-view="projects"],
+  .menu-div-main[data-active-view="resume"],
+  .menu-div-main[data-active-view="3d-profile"] {
+    --portfolio-navigation-height: 44px;
+
+    .menu-items {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-rows: minmax(44px, 1fr);
+    }
   }
 }

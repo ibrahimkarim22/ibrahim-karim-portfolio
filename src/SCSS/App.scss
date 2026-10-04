@@ -4,15 +4,17 @@ body {
 
 @import "colors";
 @import "Home";
+@import "HomeContextPanel";
+@import "HomeNavigation";
 @import "HomeProgress";
 @import "KeyframesBardModal";
 @import "KeyframesHeyYouModal";
 @import "KeyframesHome";
 @import "KeyframesKrispyModal";
-@import "KeyframesProjects";
 @import "KeyframesThisPortfolioModal";
 @import "KeyframesWhackaModal";
-@import "Projects";
+@import "ProjectSelector";
+@import "ResumeView";
 @import "ProjectsBardModal";
 @import "ProjectsHeyYouModal";
 @import "ProjectsKrispyModal";
@@ -24,3 +26,6 @@ body {
 @import "modalHeaders";
 @import "modalFooters";
 @import "copyrightLogo";
+@import "AboutMeSheet";
+@import "HomeMobile";
+@import "HomeEntry";
