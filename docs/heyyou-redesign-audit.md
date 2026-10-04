@@ -1,5 +1,7 @@
 # HeyYou modal redesign — October 4, 2026
 
+The latest **Connection animation polish** section below describes the current hero signal and supersedes the earlier opening-ring timing. Earlier audits remain as the redesign history.
+
 ## Scope and evidence
 
 Only HeyYou's component, focused tests, styles, and this report are in scope. No shared modal, routing, selector, resume, profile, or other project changes. No commit, push, PR, or deployment.
@@ -179,3 +181,50 @@ The 99% dive is now y +120% instead of +70%, taking the entire image below the s
 - At the last screenshot, downward wheel gestures move the modal body; at the first screenshot, upward gestures do the same. Interior wheel gestures retain the existing horizontal ×3 movement and snap. The local capture listener accounts for the one-pixel fractional snap offset found at 1024px and normalizes line/page wheel deltas. Touch, buttons, keyboard navigation, and the shared component stay intact.
 
 Independent read-only review initially found the container-unit and legacy-listener issues. Both were fixed and verified. The final targeted review reported **no Critical, Important, or Minor findings**. Final focused/full tests, production build, changed-file lint, Sass compilation, diff checks, and the five-layout browser review are recorded above. No commit, push, PR, or deployment occurred.
+
+## Connection animation polish — current behavior
+
+This follow-up changes the connection illustration only. The phone positions, dimensions, tilt, section structure, captions, title, gallery handoff, whale, technical story, and footer are retained. Work starts from commit `831094d` with the preceding phone-placement CSS already in the working tree. No commit or push was performed.
+
+### A. Why the signal felt separate and off-center
+
+The prior SVG used its own 520×520 center inside a fixed-height area above the devices. Its right-side target and one-sided route gave the drawing a second visual anchor. Neither its vertical position nor its paths represented the two staggered phone endpoints.
+
+### B. Midpoint and containment
+
+`HeroConnection` measures each rendered phone frame with `getBoundingClientRect()` before paint. The shared point is the average of the two frame centers, expressed in local composition coordinates. Computed transform matrices locate the actual facing edges of the tilted frames. Device nodes sit just outside those edges; both paths terminate at the shared point. The maximum pulse radius is the smaller edge clearance minus 7px, capped at 48px. The entire SVG uses the measured composition viewBox rather than a separately positioned square.
+
+ResizeObserver watches the composition and both phone frames. A window-resize fallback maintains the same geometry when that API is absent; cleanup removes the observer/listener. No per-frame JavaScript is needed for the animation.
+
+| Viewport | Local group center (x, y) | Maximum ring radius |
+| --- | --- | --- |
+| 1440×900 | 297.53, 360.00 | 48.00px |
+| 1024×768 | 215.09, 335.00 | 38.05px |
+| 768×1024 | 159.90, 312.50 | 22.90px |
+| 390×844 | 175.00, 322.50 | 25.61px |
+| 320×568 | 144.00, 287.50 | 19.78px |
+
+### C–D. Connection story and loop
+
+Permanent cyan device nodes, dotted paths, concentric rings, and a central group glyph establish the relationship even during the quiet state. The isolated right-side target is removed. A subtle `GROUP` label reinforces the unchanged “ONE GROUP. TWO WAYS TO CONNECT.” caption without introducing literal arrows.
+
+Each cycle lasts 6.4s. The left signal appears first, followed by the right. Both arrive at the shared point at 38% (2.432s). A synchronization halo brightens there, then one clean pulse expands from 42% and fades by 70%. The connected state settles before the next cycle. Travelers fade after arrival and return invisibly. Each animated element has matching start/end states; the fixed device/group nodes and paths remain visible across the seam. Closing and reopening restarts the composition.
+
+### E. Responsive and reduced-motion validation
+
+All five requested sizes pass the measured midpoint check within 1px. Browser hit-testing verifies that the maximum ring and group label avoid the tilted phone frames. Pulse sizes adapt to the available gap without moving either phone or overlapping the existing caption.
+
+The browser review samples 12 connection timestamps at every size (**60 frames**), including first/second-cycle convergence, outward expansion, settled state, and 6.399/6.400/6.401s around the seam. Static device nodes and paths remain visible in every sample. Reduced motion at 1440×900, 390×844, and 320×568 stops all animation while retaining the two paths/nodes and shared group glyph. Desktop-to-phone resizing without ResizeObserver and legacy media-query listeners also pass. Review uses headless Edge; native Safari was unavailable.
+
+The full modal regression run also passes the existing 70 whale samples, keyboard/focus behavior, gallery wheel handoff, safe external actions, and video activation checks. No application page errors were recorded. Screenshots and `review-results.json` are in `C:\Users\ibrah\AppData\Local\Temp\heyyou-group-connection-final`.
+
+### F–G. Files and checks
+
+- `src/components/HeyYouModal.js`: measured connection geometry and local hero illustration; existing phones/section content retained.
+- `src/SCSS/ProjectsHeyYouModal.scss`: signal styles and static connected reduced-motion state. Earlier phone-placement changes remain in this file.
+- `src/SCSS/KeyframesHeyYouModal.scss`: converging signals, shared-node response, outward pulse, and matched loop states.
+- `src/components/HeyYouModal.test.js`: asymmetric midpoint, narrow tilted-frame clearance, and static semantic description regressions.
+- `scripts/heyyou-modal-review.cjs`: connection timing, midpoint, phone overlap, loop, and reduced-motion browser checks.
+- `docs/heyyou-redesign-audit.md`: current behavior and validation record.
+
+Test-first expectations failed 3/16 before implementation. Final focused tests pass **16/16**; the full suite passes **225/225 in 13 suites**. Production build, changed-file ESLint, Sass compilation, and `git diff --check` pass. Existing warnings outside this change remain. No unrelated HeyYou section or shared component was modified.

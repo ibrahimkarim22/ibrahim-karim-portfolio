@@ -11,6 +11,7 @@ const baseUrl = process.env.HEYYOU_REVIEW_URL || "http://localhost:3000";
 const output = process.env.HEYYOU_REVIEW_OUTPUT_DIRECTORY || path.join(os.tmpdir(), "heyyou-modal-review");
 const sizes = [[1440, 900], [1024, 768], [768, 1024], [390, 844], [320, 568]];
 const samples = [1800, 2700, 4500, 9000, 12600, 14400, 17820, 17910, 17982, 17999, 18000, 18001, 18018, 18090];
+const signalSamples = [0, 600, 1800, 2432, 3000, 4200, 5600, 6399, 6400, 6401, 8832, 9400];
 
 async function scrollTo(page, selector) {
   await page.locator(selector).evaluate((element) => {
@@ -26,6 +27,48 @@ async function freeze(page, selector, time) {
       animation.currentTime = currentTime;
     }
   }, time);
+}
+
+async function inspectConnection(page, width, output) {
+  await page.locator(".hey-you-hero-product").scrollIntoViewIfNeeded();
+  const geometry = await page.locator(".hey-you-location-signal").evaluate((svg) => {
+    const orbit = svg.querySelector(".hey-you-signal-orbit");
+    const x = Number(orbit.getAttribute("cx")), y = Number(orbit.getAttribute("cy")), radius = Number(orbit.getAttribute("r"));
+    const point = (px, py) => new DOMPoint(px, py).matrixTransform(svg.getScreenCTM());
+    const center = point(x, y);
+    const phones = [...svg.parentElement.querySelectorAll(".hey-you-hero-phone")].map((e) => { const r = e.getBoundingClientRect(); return { x: (r.left + r.right) / 2, y: (r.top + r.bottom) / 2 }; });
+    const clear = (p) => !document.elementsFromPoint(p.x, p.y).some((e) => e.closest(".hey-you-hero-phone"));
+    const ringClear = Array.from({ length: 32 }, (_, i) => point(x + (radius + 1) * Math.cos(i * Math.PI / 16), y + (radius + 1) * Math.sin(i * Math.PI / 16))).every(clear);
+    const label = svg.querySelector("text").getBoundingClientRect();
+    return { center: { x: center.x, y: center.y }, midpoint: { x: (phones[0].x + phones[1].x) / 2, y: (phones[0].y + phones[1].y) / 2 }, radius, ringClear, labelClear: clear({ x: label.left, y: label.top }) && clear({ x: label.right, y: label.bottom }) };
+  });
+  assert(Math.abs(geometry.center.x - geometry.midpoint.x) < 1 && Math.abs(geometry.center.y - geometry.midpoint.y) < 1, `${width}: group is not centered between rendered phones`);
+  assert(geometry.ringClear && geometry.labelClear, `${width}: connection overlaps a phone`);
+  const frames = [];
+  for (const time of signalSamples) {
+    await freeze(page, ".hey-you-location-signal", time);
+    const frame = await page.locator(".hey-you-location-signal").evaluate((svg) => {
+      const orbit = svg.querySelector(".hey-you-signal-orbit");
+      const center = { x: Number(orbit.getAttribute("cx")), y: Number(orbit.getAttribute("cy")) };
+      const travelers = ["left", "right"].map((side) => {
+        const e = svg.querySelector(`.hey-you-signal-traveler-${side}`), style = getComputedStyle(e), matrix = new DOMMatrixReadOnly(style.transform);
+        return { x: Number(e.getAttribute("cx")) + matrix.m41, y: Number(e.getAttribute("cy")) + matrix.m42, opacity: Number(style.opacity) };
+      });
+      const pulse = getComputedStyle(svg.querySelector(".hey-you-signal-ring"));
+      return { center, travelers, pulseOpacity: Number(pulse.opacity), pulseScale: new DOMMatrixReadOnly(pulse.transform).m11, baselineNodesVisible: [...svg.querySelectorAll(".hey-you-device-node")].every((e) => Number(getComputedStyle(e).opacity) > 0.8), pathsVisible: [...svg.querySelectorAll(".hey-you-signal-route")].every((e) => Number(getComputedStyle(e).opacity) > 0) };
+    });
+    if (time === 2432 || time === 8832) {
+      assert(frame.travelers.every((p) => Math.hypot(p.x - frame.center.x, p.y - frame.center.y) < 1 && p.opacity > 0.8), `${width}: signals do not synchronize at ${time}`);
+      assert(frame.pulseOpacity < 0.001, "pulse starts before signals meet");
+    }
+    if (time === 3000 || time === 9400) assert(frame.pulseOpacity > 0.1, "missing established-connection pulse");
+    if (time >= 6399 && time <= 6401) assert(frame.travelers.every((p) => p.opacity < 0.01) && frame.pulseOpacity < 0.001, "visible signal reset at loop seam");
+    assert(frame.baselineNodesVisible && frame.pathsVisible, "connected state disappears during loop");
+    frames.push({ time, ...frame });
+    await page.locator(".hey-you-hero-product").screenshot({ path: path.join(output, `${width}-connection-${time}.png`) });
+  }
+  assert(frames.find((f) => f.time === 4200).pulseScale > frames.find((f) => f.time === 3000).pulseScale, "connection pulse does not expand");
+  return { ...geometry, frames };
 }
 
 async function review() {
@@ -60,19 +103,17 @@ async function review() {
       assert.deepEqual(animationStyles.whale, { name: "dockerLogo", duration: "18s", iterations: "infinite", easing: "linear" });
       assert.equal(animationStyles.splash.duration, "18s");
       assert.equal(animationStyles.pulse.iterations, "infinite");
-      assert.equal(animationStyles.pulse.duration, "3.6s");
+      assert.equal(animationStyles.pulse.duration, "6.4s");
       const preservedLogos = await page.locator(".hey-you-modal-main-div").evaluate((root) => [".express-hey-you-modal", ".mongo-hey-you-modal", ".socket-io-logo-two", ".google-maps-api-logo-one-container", ".google-maps-api-logo-two-container", ".hey-you-safety-person", ".hey-you-safety-key", ".bg-light-hey-you-modal", ".bg-light-hey-you-modal-two", ".bg-light-hey-you-modal-three"].map((selector) => getComputedStyle(root.querySelector(selector)).animationName));
       assert.deepEqual(preservedLogos, ["expressLogoInfiniteHeyYouModal", "mongoLogoInfiniteHeyYouModal", "socketioLogoHeyYouModal", "googleApiLogoOne", "googleApiLogoTwo", "faUser", "keyHeyYouModal", "bgLightInfiniteHeyYouModal", "bgLightTwoInfiniteHeyYouModal", "bgLightThreeInfiniteHeyYouModal"]);
       const whaleOffsets = await page.locator(".docker-logo-container").evaluate((e) => e.getAnimations()[0].effect.getKeyframes().map((frame) => frame.offset));
       assert.deepEqual(whaleOffsets, [0, 0.1, 0.15, 0.29, 0.5, 0.7, 0.74, 0.8, 0.99, 1]);
       assert(await page.locator(".docker-logo-container").evaluate((e) => { const frames = e.getAnimations()[0].effect.getKeyframes(); return frames[0].transform === frames[frames.length - 1].transform; }), "whale start/end poses differ");
-      await freeze(page, ".hey-you-location-signal", 1000);
-      assert.equal(await page.locator(".hey-you-signal-lock").evaluate((e) => getComputedStyle(e).opacity), "1");
-      await freeze(page, ".hey-you-location-signal", 5000);
-      assert(Number(await page.locator(".hey-you-signal-ring-one").evaluate((e) => getComputedStyle(e).opacity)) > 0, "signal pulse stops after opening");
+      const connection = await inspectConnection(page, width, output);
       await freeze(page, ".hey-you-modal-header", 5000);
       await freeze(page, ".hey-you-modal-footer", 5000);
       await freeze(page, ".hey-you-modal-main-title", 2000);
+      await page.locator(".hey-you-modal-body-main").evaluate((e) => e.scrollTo({ top: 0, behavior: "instant" }));
       await page.screenshot({ path: path.join(output, `${width}-hero.png`) });
 
       for (const [chapter, selector] of [["mobile", ".hey-you-mobile"], ["architecture", ".hey-you-architecture"], ["realtime", ".hey-you-realtime"], ["location", ".hey-you-location"], ["safety", ".hey-you-safety"], ["shipping", ".hey-you-shipping"], ["demo", ".hey-you-demo"]]) {
@@ -135,7 +176,7 @@ async function review() {
         await page.locator(".hey-you-ocean").screenshot({ path: path.join(output, `${width}-whale-${time}.png`) });
         if (time >= 17820) assert(frame.imageTop >= frame.sceneHeight, `${width}: whale exposes the loop boundary at ${time}ms (top ${frame.imageTop}, scene ${frame.sceneHeight})`);
       }
-      report.sizes.push({ width, height, headerHeight, metrics, animationStyles, preservedLogos, whaleOffsets, whaleFrames, polish, wheelHandoff: { bodyBefore, bodyAfter, reverseBefore, reverseAfter } });
+      report.sizes.push({ width, height, headerHeight, metrics, animationStyles, preservedLogos, whaleOffsets, whaleFrames, polish, connection, wheelHandoff: { bodyBefore, bodyAfter, reverseBefore, reverseAfter } });
       await context.close();
     }
 
@@ -146,6 +187,9 @@ async function review() {
       await page.getByRole("dialog", { name: "HEYYOU" }).waitFor();
       const animations = await page.locator(".hey-you-modal-main-div").evaluate((root) => root.getAnimations({ subtree: true }).map((a) => a.animationName));
       assert.deepEqual(animations, [], `${width}: reduced motion still animates`);
+      await page.locator(".hey-you-hero-product").scrollIntoViewIfNeeded();
+      assert(await page.locator(".hey-you-location-signal").evaluate((svg) => [...svg.querySelectorAll(".hey-you-device-node, .hey-you-signal-route, .hey-you-shared-node")].every((e) => Number(getComputedStyle(e).opacity) > 0)), "reduced motion loses connected-state visual");
+      await page.locator(".hey-you-hero-product").screenshot({ path: path.join(output, `${width}-connection-reduced.png`) });
       await scrollTo(page, ".hey-you-ocean");
       await page.locator(".hey-you-ocean").screenshot({ path: path.join(output, `${width}-whale-reduced.png`) });
       const image = page.locator(".docker-logo");
@@ -178,6 +222,8 @@ async function review() {
     await compatibilityPage.getByRole("dialog", { name: "HEYYOU" }).waitFor();
     await compatibilityPage.setViewportSize({ width: 390, height: 844 });
     await compatibilityPage.waitForFunction(() => { const scene = document.querySelector(".hey-you-ocean"); return Math.abs(parseFloat(scene.style.getPropertyValue("--hey-you-scene-unit-x")) * 100 - scene.clientWidth) < 1; });
+    await compatibilityPage.waitForFunction(() => { const product = document.querySelector(".hey-you-hero-product"); return Math.abs(product.querySelector("svg").viewBox.baseVal.width - product.getBoundingClientRect().width) < 1; });
+    assert(await compatibilityPage.locator(".hey-you-location-signal").evaluate((svg) => { const product = svg.parentElement.getBoundingClientRect(); const frames = [...svg.parentElement.querySelectorAll(".hey-you-hero-phone")].map((e) => e.getBoundingClientRect()); const orbit = svg.querySelector(".hey-you-signal-orbit"); return Math.abs(Number(orbit.getAttribute("cy")) + product.top - (frames[0].top + frames[0].bottom + frames[1].top + frames[1].bottom) / 4) < 1; }), "connection midpoint fails after resize without ResizeObserver");
     await freeze(compatibilityPage, ".hey-you-ocean", 9000);
     assert(await compatibilityPage.locator(".hey-you-ocean").evaluate((scene) => Math.abs(new DOMMatrixReadOnly(getComputedStyle(scene.querySelector(".docker-logo-container")).transform).m41 + scene.clientWidth * 0.5) < 1), "resize fallback breaks whale path");
     await compatibilityPage.emulateMedia({ reducedMotion: "reduce" });
@@ -247,7 +293,7 @@ async function review() {
     await context.close();
     assert.deepEqual(report.pageErrors, []);
     await fs.writeFile(path.join(output, "review-results.json"), JSON.stringify(report, null, 2));
-    console.log(JSON.stringify({ viewports: report.sizes.length, whaleTimestampsPerViewport: samples.length, reducedMotionViewports: report.reducedMotion.length, wheelHandoffViewports: report.sizes.length, compatibility: report.compatibility, interactions: report.interactions, output }, null, 2));
+    console.log(JSON.stringify({ viewports: report.sizes.length, connectionTimestampsPerViewport: signalSamples.length, whaleTimestampsPerViewport: samples.length, reducedMotionViewports: report.reducedMotion.length, wheelHandoffViewports: report.sizes.length, compatibility: report.compatibility, interactions: report.interactions, output }, null, 2));
   } finally {
     await browser.close();
   }

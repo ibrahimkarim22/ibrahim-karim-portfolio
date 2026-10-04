@@ -1,6 +1,40 @@
 import { act, fireEvent, render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import HeyYouModal from "./HeyYouModal";
+import HeyYouModal, { getConnectionGeometry } from "./HeyYouModal";
+
+it("anchors the shared group to the rendered phone midpoint rather than the container center", () => {
+  const geometry = getConnectionGeometry({
+    width: 450, height: 540,
+    left: { x: 90, y: 230, width: 100, height: 240, matrix: [1, 0, 0, 1] },
+    right: { x: 330, y: 270, width: 120, height: 240, matrix: [1, 0, 0, 1] },
+  });
+  expect(geometry.center).toEqual({ x: 210, y: 250 });
+  expect(geometry.left.x).toBeLessThan(geometry.center.x);
+  expect(geometry.right.x).toBeGreaterThan(geometry.center.x);
+  expect(geometry.radius).toBeGreaterThan(20);
+  expect(geometry.radius).toBeLessThan(60);
+});
+
+it("keeps the connected ring inside the gap between tilted narrow phone frames", () => {
+  const angle = 6 * Math.PI / 180;
+  const geometry = getConnectionGeometry({
+    width: 288, height: 440,
+    left: { x: 59.04, y: 272.5, width: 112.32, height: 245, matrix: [Math.cos(angle), -Math.sin(angle), Math.sin(angle), Math.cos(angle)] },
+    right: { x: 228.96, y: 302.5, width: 112.32, height: 245, matrix: [Math.cos(angle), Math.sin(angle), -Math.sin(angle), Math.cos(angle)] },
+  });
+  expect(geometry.center).toEqual({ x: 144, y: 287.5 });
+  expect(geometry.radius).toBeGreaterThan(15);
+  expect(geometry.radius).toBeLessThan(25);
+});
+
+it("explains two devices joining a shared group even without motion", () => {
+  render(<HeyYouModal isOpen closeModal={jest.fn()} />);
+  const signal = screen.getByRole("img", { name: "Location signal illustration" });
+  expect(signal).toHaveAccessibleDescription("Two devices connect through one shared group.");
+  expect(within(signal).getByText("Left device signal")).toBeInTheDocument();
+  expect(within(signal).getByText("Right device signal")).toBeInTheDocument();
+  expect(within(signal).getByText("GROUP")).toBeInTheDocument();
+});
 
 it("names the dialog and makes the mobile product and technical story discoverable", () => {
   render(<HeyYouModal isOpen closeModal={jest.fn()} />);

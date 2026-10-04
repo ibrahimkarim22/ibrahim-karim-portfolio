@@ -424,17 +424,26 @@
   }
 }
 
-// Route and lock settle within 950ms; the staggered rings keep the live signal
-// pulsing. Mounting the open modal restarts the independent title and signal.
+// Both devices converge at 38%, the group pulses after synchronization, then
+// rests. Permanent paths/nodes keep the connected state visible at the seam.
 @keyframes heyYouSignalPulse {
-  0% { opacity: 0.65; transform: scale(0.35); }
-  100% { opacity: 0; transform: scale(2.7); }
+  0%, 38%, 100% { opacity: 0; transform: scale(0.25); }
+  42% { opacity: 0.75; transform: scale(0.32); }
+  70%, 90% { opacity: 0; transform: scale(1); }
 }
-@keyframes heyYouSignalRoute {
-  0%, 20% { stroke-dashoffset: 75; opacity: 0; }
-  100% { stroke-dashoffset: 0; opacity: 0.6; }
+@keyframes heyYouSignalLeft {
+  0%, 100% { opacity: 0; transform: translate(0, 0); }
+  8%, 12% { opacity: 0.9; transform: translate(0, 0); }
+  38%, 44% { opacity: 0.9; transform: translate(var(--hey-you-signal-dx), var(--hey-you-signal-dy)); }
+  50%, 90% { opacity: 0; transform: translate(var(--hey-you-signal-dx), var(--hey-you-signal-dy)); }
 }
-@keyframes heyYouSignalLock {
-  0%, 45% { opacity: 0; transform: translate(-10px, 10px); }
-  100% { opacity: 1; transform: translate(0, 0); }
+@keyframes heyYouSignalRight {
+  0%, 6%, 100% { opacity: 0; transform: translate(0, 0); }
+  12%, 18% { opacity: 0.9; transform: translate(0, 0); }
+  38%, 44% { opacity: 0.9; transform: translate(var(--hey-you-signal-dx), var(--hey-you-signal-dy)); }
+  50%, 90% { opacity: 0; transform: translate(var(--hey-you-signal-dx), var(--hey-you-signal-dy)); }
+}
+@keyframes heyYouSignalMeet {
+  0%, 32%, 65%, 100% { opacity: 0.25; }
+  38%, 46% { opacity: 0.95; }
 }

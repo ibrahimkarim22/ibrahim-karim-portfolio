@@ -40,6 +40,102 @@ function LocationMark({ className = "" }) {
   return <svg className={className} viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path d="M16 29s10-10 10-17a10 10 0 0 0-20 0c0 7 10 17 10 17Z" fill="none" stroke="currentColor" strokeWidth="1.5" /><circle cx="16" cy="12" r="3.5" fill="none" stroke="currentColor" strokeWidth="1.5" /></svg>;
 }
 
+export function getConnectionGeometry({ width, height, left, right }) {
+  const center = { x: (left.x + right.x) / 2, y: (left.y + right.y) / 2 };
+  const edge = (phone, side) => [-1, 1].map((end) => {
+    const [a, b, c, d] = phone.matrix;
+    const x = side * phone.width / 2;
+    const y = end * phone.height / 2;
+    return { x: phone.x + a * x + c * y, y: phone.y + b * x + d * y };
+  });
+  const distance = ([start, end]) => {
+    const dx = end.x - start.x;
+    const dy = end.y - start.y;
+    const progress = Math.max(0, Math.min(1, ((center.x - start.x) * dx + (center.y - start.y) * dy) / (dx * dx + dy * dy)));
+    return Math.hypot(center.x - start.x - progress * dx, center.y - start.y - progress * dy);
+  };
+  const endpoint = ([start, end]) => {
+    const middle = { x: (start.x + end.x) / 2, y: (start.y + end.y) / 2 };
+    const length = Math.hypot(center.x - middle.x, center.y - middle.y);
+    const inset = Math.min(8, length / 3);
+    return { x: middle.x + (center.x - middle.x) * inset / length, y: middle.y + (center.y - middle.y) * inset / length };
+  };
+  const leftEdge = edge(left, 1);
+  const rightEdge = edge(right, -1);
+  return { width, height, center, left: endpoint(leftEdge), right: endpoint(rightEdge), radius: Math.max(1, Math.min(48, distance(leftEdge) - 7, distance(rightEdge) - 7)) };
+}
+
+function HeroConnection() {
+  const compositionRef = useRef(null);
+  const leftRef = useRef(null);
+  const rightRef = useRef(null);
+  const [geometry, setGeometry] = useState(() => getConnectionGeometry({
+    width: 520, height: 580,
+    left: { x: 120, y: 320, width: 180, height: 360, matrix: [1, 0, 0, 1] },
+    right: { x: 400, y: 355, width: 180, height: 360, matrix: [1, 0, 0, 1] },
+  }));
+
+  useLayoutEffect(() => {
+    const composition = compositionRef.current;
+    const measure = () => {
+      const bounds = composition.getBoundingClientRect();
+      if (!bounds.width || !bounds.height) return;
+      const frame = (element) => {
+        const rect = element.getBoundingClientRect();
+        const style = getComputedStyle(element);
+        const values = style.transform === "none" ? [1, 0, 0, 1] : style.transform.slice(style.transform.indexOf("(") + 1, -1).split(",").map(Number);
+        return {
+          x: (rect.left + rect.right) / 2 - bounds.left,
+          y: (rect.top + rect.bottom) / 2 - bounds.top,
+          width: parseFloat(style.width), height: parseFloat(style.height),
+          matrix: values.length === 16 ? [values[0], values[1], values[4], values[5]] : values.slice(0, 4),
+        };
+      };
+      setGeometry(getConnectionGeometry({ width: bounds.width, height: bounds.height, left: frame(leftRef.current), right: frame(rightRef.current) }));
+    };
+    measure();
+    if (window.ResizeObserver) {
+      const observer = new ResizeObserver(measure);
+      [composition, leftRef.current, rightRef.current].forEach((element) => observer.observe(element));
+      return () => observer.disconnect();
+    }
+    window.addEventListener("resize", measure);
+    return () => window.removeEventListener("resize", measure);
+  }, []);
+
+  const { center, radius } = geometry;
+  return (
+    <div className="hey-you-hero-product" ref={compositionRef}>
+      <svg className="hey-you-location-signal" viewBox={`0 0 ${geometry.width} ${geometry.height}`} role="img" aria-label="Location signal illustration" aria-describedby="hey-you-connection-description">
+        <desc id="hey-you-connection-description">Two devices connect through one shared group.</desc>
+        <g fill="none" stroke="currentColor">
+          <circle cx={center.x} cy={center.y} r={radius} className="hey-you-signal-orbit" />
+          <circle cx={center.x} cy={center.y} r={radius * 0.68} className="hey-you-signal-orbit" />
+          {["left", "right"].map((side) => {
+            const source = geometry[side];
+            return <g key={side}><title>{side === "left" ? "Left device signal" : "Right device signal"}</title>
+              <path className={`hey-you-signal-route hey-you-signal-route-${side}`} d={`M${source.x} ${source.y} L${center.x} ${center.y}`} strokeDasharray="2 5" />
+              <circle className="hey-you-device-node-halo" cx={source.x} cy={source.y} r="6" />
+              <circle className="hey-you-device-node" cx={source.x} cy={source.y} r="2.7" />
+              <circle className={`hey-you-signal-traveler hey-you-signal-traveler-${side}`} cx={source.x} cy={source.y} r="2.7" style={{ "--hey-you-signal-dx": `${center.x - source.x}px`, "--hey-you-signal-dy": `${center.y - source.y}px` }} />
+            </g>;
+          })}
+          <circle cx={center.x} cy={center.y} r={radius} className="hey-you-signal-ring hey-you-signal-ring-one" style={{ transformOrigin: `${center.x}px ${center.y}px` }} />
+          <circle cx={center.x} cy={center.y} r="13" className="hey-you-signal-synchronization" />
+        </g>
+        <g className="hey-you-shared-node" transform={`translate(${center.x} ${center.y})`}>
+          <circle r="9" fill="#0d2330" stroke="currentColor" />
+          <g fill="none" stroke="currentColor" strokeWidth="0.8"><circle cx="0" cy="-3" r="2" /><circle cx="-4.5" cy="-0.5" r="1.4" /><circle cx="4.5" cy="-0.5" r="1.4" /><path d="M-3 5V3a3 3 0 0 1 6 0v2M-6.5 4V3a2 2 0 0 1 2-2M6.5 4V3a2 2 0 0 0-2-2" /></g>
+        </g>
+        <text className="hey-you-signal-label" x={center.x} y={center.y + radius + 14} textAnchor="middle">GROUP</text>
+      </svg>
+      <div className="hey-you-hero-phone hey-you-hero-phone-map" ref={leftRef}><img src={phoneHeyYouMap} alt="HeyYou group map on an Android phone" /></div>
+      <div className="hey-you-hero-phone hey-you-hero-phone-chat" ref={rightRef}><img src={phoneHeyYouChat} alt="HeyYou messages on an Android phone" /></div>
+      <span className="hey-you-product-annotation">ONE GROUP.<br />TWO WAYS TO CONNECT.</span>
+    </div>
+  );
+}
+
 function ProductGallery() {
   const galleryRef = useRef(null);
   const [reducedMotion, setReducedMotion] = useState(false);
@@ -172,17 +268,7 @@ function HeyYouModal({ isOpen, closeModal }) {
                   <a className="hey-you-text-link" href="#hey-you-mobile-title">Meet the app <span aria-hidden="true">↓</span></a>
                   <p className="hey-you-recognition"><span aria-hidden="true">✧</span> Nucamp Full-Stack Honors Award</p>
                 </div>
-                <div className="hey-you-hero-product">
-                  <svg className="hey-you-location-signal" viewBox="0 0 520 520" role="img" aria-label="Location signal illustration">
-                    <g fill="none" stroke="currentColor"><circle cx="260" cy="260" r="210" className="hey-you-signal-orbit" /><circle cx="260" cy="260" r="145" className="hey-you-signal-orbit" />
-                      <circle cx="260" cy="260" r="72" className="hey-you-signal-ring hey-you-signal-ring-one" /><circle cx="260" cy="260" r="72" className="hey-you-signal-ring hey-you-signal-ring-two" />
-                      <path className="hey-you-signal-route" d="M85 380h65l42-56h107l56-110h80" strokeDasharray="5 7" />
-                    </g><g className="hey-you-signal-lock"><circle cx="435" cy="214" r="7" fill="currentColor" /><path d="M423 193h-9v9m33-9h9v9m-42 24v9h9m33-9v9h-9" fill="none" stroke="currentColor" strokeWidth="2" /></g>
-                  </svg>
-                  <div className="hey-you-hero-phone hey-you-hero-phone-map"><img src={phoneHeyYouMap} alt="HeyYou group map on an Android phone" /></div>
-                  <div className="hey-you-hero-phone hey-you-hero-phone-chat"><img src={phoneHeyYouChat} alt="HeyYou messages on an Android phone" /></div>
-                  <span className="hey-you-product-annotation">ONE GROUP.<br />TWO WAYS TO CONNECT.</span>
-                </div>
+                <HeroConnection />
               </div>
               <ul className="hey-you-stack-summary" aria-label="Project technology summary"><li>React Native <span>/ Expo</span></li><li>Node.js <span>/ Express</span></li><li>Socket.IO <span>/ MongoDB</span></li><li>Docker <span>/ Cloud Run</span></li></ul>
             </section>

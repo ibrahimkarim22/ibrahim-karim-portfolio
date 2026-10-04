@@ -128,17 +128,21 @@
   .hey-you-hero-description { font-size: clamp(1.25rem, 2vw, 1.8rem); line-height: 1.4; letter-spacing: -0.03em; }
   .hey-you-hero-context { color: var(--hey-you-muted); font-size: 0.93rem; max-width: 30rem; margin: 1.2rem 0 1.15rem; }
   .hey-you-recognition { display: flex; align-items: center; gap: 0.7rem; color: #b9c9cc; font-size: 0.74rem; margin-top: 2rem; > span { color: #d6c494; font-size: 1.2rem; } }
-  .hey-you-hero-product { position: relative; min-width: 0; height: 510px; }
-  .hey-you-location-signal { position: absolute; width: 100%; height: 100%; inset: 0; color: var(--hey-you-cyan); }
-  .hey-you-signal-orbit { opacity: 0.14; stroke-width: 0.7; }
-  .hey-you-signal-ring { transform-origin: 260px 260px; animation: heyYouSignalPulse 3.6s ease-out infinite both; }
-  .hey-you-signal-ring-two { animation-delay: 1.8s; }
-  .hey-you-signal-route { opacity: 0.6; stroke-width: 1; animation: heyYouSignalRoute 850ms ease-out both; }
-  .hey-you-signal-lock { transform-origin: 435px 214px; animation: heyYouSignalLock 950ms ease-out both; }
-  .hey-you-hero-phone { position: absolute; width: 43%; height: 430px; top: 15px; img { width: 100%; height: 100%; object-fit: cover; } }
-  .hey-you-hero-phone-map { left: 9%; transform: rotate(-6deg); }
-  .hey-you-hero-phone-chat { left: 44%; top: 85px; transform: rotate(6deg); }
-  .hey-you-product-annotation { position: absolute; bottom: 10px; left: 4%; font-family: monospace; font-size: 0.62rem; line-height: 1.8; letter-spacing: 0.1em; color: var(--hey-you-muted); }
+  .hey-you-hero-product { position: relative; min-width: 0; height: 580px; }
+  .hey-you-location-signal { position: absolute; width: 100%; height: 100%; inset: 0; color: var(--hey-you-cyan); pointer-events: none; }
+  .hey-you-signal-orbit { opacity: 0.2; stroke-width: 0.7; }
+  .hey-you-signal-route { opacity: 0.4; stroke-width: 1; }
+  .hey-you-device-node-halo { opacity: 0.4; stroke-width: 0.8; }
+  .hey-you-device-node { fill: currentColor; stroke: none; opacity: 0.85; }
+  .hey-you-signal-traveler { fill: currentColor; stroke: none; animation: heyYouSignalLeft 6.4s ease-in-out infinite both; }
+  .hey-you-signal-traveler-right { animation-name: heyYouSignalRight; }
+  .hey-you-signal-ring { stroke-width: 1.25; animation: heyYouSignalPulse 6.4s ease-in-out infinite both; }
+  .hey-you-signal-synchronization { stroke-width: 0.8; animation: heyYouSignalMeet 6.4s ease-in-out infinite both; }
+  .hey-you-signal-label { fill: #a6cbd0; font-family: monospace; font-size: 8px; letter-spacing: 0.1em; }
+  .hey-you-hero-phone { position: absolute; width: 36%; height: 385px; top: 150px; img { width: 100%; height: 100%; object-fit: cover; } }
+  .hey-you-hero-phone-map { left: 3%; transform: rotate(-6deg); }
+  .hey-you-hero-phone-chat { right: 3%; top: 185px; transform: rotate(6deg); }
+  .hey-you-product-annotation { position: absolute; bottom: 5px; left: 3%; font-family: monospace; font-size: 0.62rem; line-height: 1.8; letter-spacing: 0.1em; color: var(--hey-you-muted); }
   .hey-you-stack-summary { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; list-style: none; margin: 0; padding: 1.5rem 0; border-top: 1px solid var(--hey-you-rule); color: var(--hey-you-white); font-size: 0.77rem; span { color: var(--hey-you-muted); } }
 
   .hey-you-mobile { background: #e8efef; color: #132c36; .hey-you-eyebrow { color: #32616b; } .hey-you-section-heading > p { color: #4a666e; } }
@@ -261,10 +265,10 @@
 @media (max-width: 1100px) {
   .hey-you-modal-main-div {
     .hey-you-hero-composition { gap: 0.5rem; padding-top: 2.75rem; }
-    .hey-you-hero-product { height: 440px; }
-    .hey-you-hero-phone { height: 360px; width: 45%; }
-    .hey-you-hero-phone-map { left: 3%; }
-    .hey-you-hero-phone-chat { left: 43%; top: 75px; }
+    .hey-you-hero-product { height: 530px; }
+    .hey-you-hero-phone { height: 330px; width: 38%; top: 155px; }
+    .hey-you-hero-phone-map { left: 1%; }
+    .hey-you-hero-phone-chat { right: 1%; top: 185px; }
     .hey-you-device-shot { height: 390px; max-width: 200px; }
     .hey-you-backend-detail, .hey-you-realtime, .hey-you-location { gap: 2rem; }
     .hey-you-safety { gap: 3rem; }
@@ -277,11 +281,11 @@
     --hey-you-gutter: 2rem;
     .hey-you-hero-composition { grid-template-columns: 1fr 0.85fr; }
     h1 { font-size: 4.3rem; }
-    .hey-you-hero-product { height: 360px; }
-    .hey-you-hero-phone { height: 295px; width: 50%; }
+    .hey-you-hero-product { height: 480px; }
+    .hey-you-hero-phone { height: 275px; width: 40%; top: 160px; }
     .hey-you-hero-phone-map { left: 0; }
-    .hey-you-hero-phone-chat { left: 42%; top: 65px; }
-    .hey-you-product-annotation { bottom: -10px; font-size: 0.5rem; }
+    .hey-you-hero-phone-chat { right: 0; top: 190px; }
+    .hey-you-product-annotation { bottom: 0; font-size: 0.5rem; }
     .hey-you-stack-summary { grid-template-columns: 1fr 1fr; gap: 0.65rem 1rem; }
     .hey-you-section-heading { align-items: flex-start; gap: 1.25rem; }
     .hey-you-gallery-screen { flex-basis: 50%; }
@@ -312,11 +316,11 @@
     .hey-you-hero-description { font-size: 1.3rem; }
     .hey-you-hero-context { font-size: 0.88rem; margin-top: 1rem; }
     .hey-you-recognition { margin-top: 1.25rem; font-size: 0.66rem; }
-    .hey-you-hero-product { width: 100%; max-width: 390px; margin: auto; height: 360px; }
-    .hey-you-hero-phone { width: 42%; height: 305px; }
-    .hey-you-hero-phone-map { left: 8%; }
-    .hey-you-hero-phone-chat { left: 44%; top: 45px; }
-    .hey-you-product-annotation { left: 0; bottom: 0; }
+    .hey-you-hero-product { width: 100%; max-width: 390px; margin: auto; height: 495px; }
+    .hey-you-hero-phone { width: 39%; height: 280px; top: 165px; }
+    .hey-you-hero-phone-map { left: 1%; }
+    .hey-you-hero-phone-chat { right: 1%; top: 200px; }
+    .hey-you-product-annotation { left: 1%; bottom: 0; }
     .hey-you-stack-summary { font-size: 0.68rem; padding-block: 1.2rem; }
     .hey-you-section-heading { flex-direction: column; align-items: flex-start; margin-bottom: 2rem; > p { font-size: 0.85rem; } }
     .hey-you-eyebrow { font-size: 0.6rem; margin-bottom: 0.8rem; }
@@ -354,9 +358,9 @@
   .hey-you-modal-main-div {
     --hey-you-gutter: 1rem;
     .hey-you-modal-header .hey-you-modal-header-text-two { font-size: 0.6rem; }
-    .hey-you-hero-product { height: 300px; }
-    .hey-you-hero-phone { height: 250px; }
-    .hey-you-hero-phone-chat { top: 40px; }
+    .hey-you-hero-product { height: 440px; }
+    .hey-you-hero-phone { height: 245px; top: 150px; }
+    .hey-you-hero-phone-chat { top: 180px; }
     .hey-you-product-annotation { font-size: 0.45rem; }
     .hey-you-device-shot { height: 400px; max-width: 210px; }
     .hey-you-code-frame pre { font-size: 0.75rem; }
@@ -370,7 +374,8 @@
     *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
     .hey-you-modal-main-title { opacity: 1; }
     .hey-you-signal-ring { opacity: 0; }
-    .hey-you-signal-lock, .hey-you-signal-route { opacity: 0.6; }
+    .hey-you-signal-traveler { opacity: 0; transform: none; }
+    .hey-you-signal-synchronization, .hey-you-signal-route { opacity: 0.6; }
     .hey-you-modal-footer .hey-you-footer-action:hover { scale: 1; }
     .water-particle-one, .water-particle-two { opacity: 0; }
     .docker-logo-container { transform: translate(calc(-35 * var(--hey-you-scene-unit-x, 1vw)), calc(-8 * var(--hey-you-scene-unit-y, 1vh))) rotate(8deg); }
