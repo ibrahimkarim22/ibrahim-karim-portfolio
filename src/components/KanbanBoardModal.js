@@ -1,3 +1,4 @@
+import ProjectImage from "./projects/ProjectImage";
 import { useRef } from "react";
 import { Modal, ModalHeader, ModalFooter } from "reactstrap";
 import kanbanReact from "../images/kanbanReact.png";
@@ -35,7 +36,7 @@ function SectionLabel({ number, children }) {
 function AppCapture({ src, width, height, name, number, children }) {
   return (
     <figure className="td-app-capture">
-      <img src={src} width={width} height={height} loading="lazy" decoding="async" alt={`Tuh-Doo app: ${name}`} />
+      <ProjectImage src={src} width={width} height={height} loading="lazy" decoding="async" alt={`Tuh-Doo app: ${name}`} />
       <figcaption><span className="td-capture-number" aria-hidden="true">{number}</span><div><strong>{name}</strong><p>{children}</p></div><a className="td-full-size" href={src} target="_blank" rel="noopener noreferrer" aria-label={`View ${name} at full size (opens in a new tab)`}><span>View full size</span><span aria-hidden="true">↗</span></a></figcaption>
     </figure>
   );
@@ -46,7 +47,7 @@ function CodeEvidence({ item }) {
     <figure className="td-code-evidence">
       <div className="td-code-label">{item.file}</div>
       <div className="td-code-crop" style={{ aspectRatio: `${item.width} / ${item.crop}` }}>
-        <img src={item.src} width={item.width} height={item.height} loading="lazy" decoding="async" alt={`Tuh-Doo implementation: ${item.name}`} style={{ top: `${-item.top / item.crop * 100}%` }} />
+        <ProjectImage src={item.src} width={item.width} height={item.height} loading="lazy" decoding="async" alt={`Tuh-Doo implementation: ${item.name}`} style={{ top: `${-item.top / item.crop * 100}%` }} />
       </div>
       <figcaption><div><strong>{item.name}</strong><p>{item.note}</p></div><a className="td-full-size" href={item.src} target="_blank" rel="noopener noreferrer" aria-label={`View ${item.name} at full size (opens in a new tab)`}>View full size <span aria-hidden="true">↗</span></a></figcaption>
     </figure>

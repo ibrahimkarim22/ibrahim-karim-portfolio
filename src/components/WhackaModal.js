@@ -1,3 +1,4 @@
+import ProjectImage from "./projects/ProjectImage";
 import { useEffect, useRef, useState } from "react";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import js from "../images/js.png";
@@ -6,7 +7,7 @@ import sass from "../images/sass.png";
 import whacka from "../images/whacka.gif";
 import Copyright from "./Copyright";
 
-function WhackaMoleTarget({ logo, name, index }) {
+function WhackaMoleTarget({ logo, name, index, width, height }) {
   const [isHit, setIsHit] = useState(false);
   const [hasBeenHit, setHasBeenHit] = useState(false);
   const hitTimer = useRef(null);
@@ -45,7 +46,7 @@ function WhackaMoleTarget({ logo, name, index }) {
           aria-label={`Whack ${name} logo`}
           onClick={whackLogo}
         >
-          <img src={logo} alt="" className="whacka-mole-logo" />
+          <ProjectImage src={logo} width={width} height={height} alt="" className="whacka-mole-logo" />
         </button>
       </div>
       {isHit && (
@@ -131,7 +132,7 @@ function WhackaModal({ isOpen, closeModal }) {
                     <span className="whacka-round-label">60 sec</span>
                   </div>
                   <div className="whacka-gif-frame">
-                    <img
+                    <ProjectImage critical
                       src={whacka}
                       width={1920}
                       height={1080}
@@ -147,8 +148,8 @@ function WhackaModal({ isOpen, closeModal }) {
                 <div className="whacka-mole-stage" role="group" aria-label="Interactive technology logos">
                   <span className="whacka-stage-label">The tools behind the game</span>
                   <div className="whacka-mole-holes">
-                    {[{ logo: js, name: "JavaScript" }, { logo: html, name: "HTML" }, { logo: sass, name: "Sass" }].map(({ logo, name }, index) => (
-                      <WhackaMoleTarget logo={logo} name={name} index={index} key={name} />
+                    {[{ logo: js, name: "JavaScript", width: 1200, height: 1200 }, { logo: html, name: "HTML", width: 264, height: 300 }, { logo: sass, name: "Sass", width: 300, height: 225 }].map(({ logo, name, width, height }, index) => (
+                      <WhackaMoleTarget logo={logo} name={name} index={index} width={width} height={height} key={name} />
                     ))}
                   </div>
                 </div>

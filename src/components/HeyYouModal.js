@@ -2,6 +2,7 @@ import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import HorizontalScroll from "./HorizontalScroll";
 import Copyright from "./Copyright";
+import ProjectImage, { ProjectImageGroup } from "./projects/ProjectImage";
 import express from "../images/express.png";
 import mongo from "../images/mongo.png";
 import node from "../images/node.png";
@@ -129,8 +130,10 @@ function HeroConnection() {
         </g>
         <text className="hey-you-signal-label" x={center.x} y={center.y + radius + 14} textAnchor="middle">GROUP</text>
       </svg>
-      <div className="hey-you-hero-phone hey-you-hero-phone-map" ref={leftRef}><img src={phoneHeyYouMap} alt="HeyYou group map on an Android phone" /></div>
-      <div className="hey-you-hero-phone hey-you-hero-phone-chat" ref={rightRef}><img src={phoneHeyYouChat} alt="HeyYou messages on an Android phone" /></div>
+      <ProjectImageGroup sources={[phoneHeyYouMap, phoneHeyYouChat]}>
+        <div className="hey-you-hero-phone hey-you-hero-phone-map" ref={leftRef}><ProjectImage src={phoneHeyYouMap} width={1367} height={1221} critical alt="HeyYou group map on an Android phone" /></div>
+        <div className="hey-you-hero-phone hey-you-hero-phone-chat" ref={rightRef}><ProjectImage src={phoneHeyYouChat} width={1367} height={1221} critical alt="HeyYou messages on an Android phone" /></div>
+      </ProjectImageGroup>
       <span className="hey-you-product-annotation">ONE GROUP.<br />TWO WAYS TO CONNECT.</span>
     </div>
   );
@@ -183,7 +186,7 @@ function ProductGallery() {
   };
   const images = screens.map(({ image, title, description, alt }, index) => (
     <figure className="hey-you-page hey-you-gallery-screen" key={title}>
-      <div className="hey-you-device-shot"><img src={image} alt={alt} loading="lazy" /></div>
+      <div className="hey-you-device-shot"><ProjectImage src={image} width={1367} height={1221} alt={alt} loading="lazy" /></div>
       <figcaption><span className="hey-you-screen-number">0{index + 1}</span><div><h3>{title}</h3><p>{description}</p></div></figcaption>
     </figure>
   ));
@@ -234,10 +237,10 @@ function DeploymentScene() {
         <div className="stars-grid-container">{["one", "two", "three", "four"].map((star) => <div className={`star-${star}-container`} key={star}><div className={`star-${star}`} /></div>)}</div>
         <div className="water-div-at-distance" /><div className="water-div-further" /><div className="water-div-closer" />
         <div className="water-particle-one" /><div className="water-particle-two" />
-        <div className="docker-logo-container"><img src={docker} className="docker-logo" alt="" /></div>
-        <div className="google-cloud-run-building hey-you-deployment-badge"><img src={run} className="google-cloud-run-logo" alt="" /><div><span>Backend host</span><strong>Cloud Run</strong></div></div>
-        <div className="expo-building hey-you-deployment-badge"><img src={expo} className="expo-logo" alt="" /><div><span>Mobile tooling</span><strong>Expo</strong></div></div>
-        <div className="react-native-building hey-you-deployment-badge"><img src={native} className="react-native-logo" alt="" /><div><span>Mobile app</span><strong>React Native</strong></div></div>
+        <div className="docker-logo-container"><ProjectImage src={docker} width={300} height={191} className="docker-logo" alt="" /></div>
+        <div className="google-cloud-run-building hey-you-deployment-badge"><ProjectImage src={run} width={1024} height={921} className="google-cloud-run-logo" alt="" /><div><span>Backend host</span><strong>Cloud Run</strong></div></div>
+        <div className="expo-building hey-you-deployment-badge"><ProjectImage src={expo} width={300} height={265} className="expo-logo" alt="" /><div><span>Mobile tooling</span><strong>Expo</strong></div></div>
+        <div className="react-native-building hey-you-deployment-badge"><ProjectImage src={native} width={275} height={300} className="react-native-logo" alt="" /><div><span>Mobile app</span><strong>React Native</strong></div></div>
       </div>
       <span className="hey-you-ocean-notation" aria-hidden="true">A LITTLE IMAGINATION. A REAL DEPLOYMENT STORY.</span>
     </div>
@@ -288,7 +291,7 @@ function HeyYouModal({ isOpen, closeModal }) {
               <div className="hey-you-backend-detail"><div><h3>A place for the shared state.</h3><p>Express handles the HTTP routes; Socket.IO handles live group communication on the same Node.js server. Mongoose models store user accounts, group membership, location coordinates, and messages in MongoDB.</p><p>The mobile map gets its coordinates from Expo Location and renders named markers with Google Maps through <code>react-native-maps</code>.</p></div>
                 <div className="hey-you-backend-visual" aria-hidden="true"><div className="hey-you-backend-canvas">
                   <div className="bg-light-hey-you-modal" /><div className="bg-light-hey-you-modal-two" /><div className="bg-light-hey-you-modal-three" />
-                  <img src={node} className="node-hey-you-modal" alt="" /><img src={express} className="express-hey-you-modal" alt="" /><img src={mongo} className="mongo-hey-you-modal" alt="" />
+                  <ProjectImage src={node} width={266} height={300} className="node-hey-you-modal" alt="" /><ProjectImage src={express} width={300} height={87} className="express-hey-you-modal" alt="" /><ProjectImage src={mongo} width={135} height={300} className="mongo-hey-you-modal" alt="" />
                 </div><span>NODE.JS / EXPRESS / MONGODB</span></div>
               </div>
             </section>
@@ -297,12 +300,12 @@ function HeyYouModal({ isOpen, closeModal }) {
               <div className="hey-you-realtime-copy"><p className="hey-you-eyebrow">03 / Real-time connection</p><h2 id="hey-you-realtime-title">Updates, without<br />the refresh.</h2><p>Socket.IO rooms connect devices through their group access key. The server saves a location or message, then broadcasts the update to that room. Listening clients update their map markers or conversation.</p>
                 <dl className="hey-you-event-list"><div><dt>Location</dt><dd><code>updateLocation</code><span aria-hidden="true"> → </span><code>locationUpdated</code></dd></div><div><dt>Messages</dt><dd><code>sendMessage</code><span aria-hidden="true"> → </span><code>newMessage</code></dd></div><div><dt>Groups</dt><dd>Create or join a room with an access key</dd></div></dl>
               </div>
-              <figure className="hey-you-code-frame"><figcaption><span><img className="socket-io-logo-two" src={socketio} alt="" /> Socket.IO / server.js</span><span>LOCATION DELIVERY</span></figcaption><pre><code>{locationExcerpt}</code></pre><p><code>io.to(accessKey)</code> selects the group's room. <code>locationUpdated</code> carries the coordinates back to its connected clients.</p></figure>
+              <figure className="hey-you-code-frame"><figcaption><span><ProjectImage className="socket-io-logo-two" src={socketio} width={300} height={299} alt="" /> Socket.IO / server.js</span><span>LOCATION DELIVERY</span></figcaption><pre><code>{locationExcerpt}</code></pre><p><code>io.to(accessKey)</code> selects the group's room. <code>locationUpdated</code> carries the coordinates back to its connected clients.</p></figure>
             </section>
 
             <section className="hey-you-location" aria-labelledby="hey-you-location-title">
               <div className="hey-you-location-copy"><p className="hey-you-eyebrow">04 / Location</p><h2 id="hey-you-location-title">A place for<br />every person.</h2><p>Expo Location requests foreground permission and watches device position. The app sends the coordinates through Socket.IO; each incoming group update becomes a named marker on the Google map.</p><p>The result is a shared view of where your group is, alongside a place to talk.</p><div className="hey-you-location-pipeline"><span>Device position</span><span aria-hidden="true">↓</span><span>Group update</span><span aria-hidden="true">↓</span><span>Named map marker</span></div></div>
-              <figure className="hey-you-map-exhibit"><div className="hey-you-map-stage"><div className="hey-you-device-shot"><img src={phoneHeyYouMap} alt="Original HeyYou map showing the Ibrahim, Mom, and Dad group markers" loading="lazy" /></div><div className="hey-you-map-orbits" aria-hidden="true"><div className="google-maps-api-logo-one-container"><img src={googleMaps} alt="" /></div><div className="google-maps-api-logo-two-container"><img src={googleMaps} alt="" /></div></div></div><figcaption><LocationMark /> Google Maps / Original project screen</figcaption></figure>
+              <figure className="hey-you-map-exhibit"><div className="hey-you-map-stage"><div className="hey-you-device-shot"><ProjectImage src={phoneHeyYouMap} width={1367} height={1221} alt="Original HeyYou map showing the Ibrahim, Mom, and Dad group markers" loading="lazy" /></div><div className="hey-you-map-orbits" aria-hidden="true"><div className="google-maps-api-logo-one-container"><ProjectImage src={googleMaps} width={210} height={300} alt="" /></div><div className="google-maps-api-logo-two-container"><ProjectImage src={googleMaps} width={210} height={300} alt="" /></div></div></div><figcaption><LocationMark /> Google Maps / Original project screen</figcaption></figure>
             </section>
 
             <section className="hey-you-safety" aria-labelledby="hey-you-safety-title">

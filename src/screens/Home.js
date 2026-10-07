@@ -14,6 +14,7 @@ import AboutMeSheet from "../components/home/AboutMeSheet";
 import { getPortfolioRouteState, PORTFOLIO_VIEWS } from "../components/home/portfolioRouteState";
 import { getProjectById } from "../components/projects/projectCatalog";
 import ProjectModalHost from "../components/projects/ProjectModalHost";
+import { preloadProjectImages } from "../components/projects/projectImageLoading";
 
 function Home() {
   const location = useLocation();
@@ -91,6 +92,7 @@ function Home() {
   }, [activeView, selectedProjectId]);
 
   function selectProject(id, trigger) {
+    preloadProjectImages(id);
     projectTriggerRef.current = trigger;
     navigate(`/projects/${id}`, { state: { projectModalOrigin: "/projects" } });
   }

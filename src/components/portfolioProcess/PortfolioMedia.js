@@ -1,3 +1,4 @@
+import ProjectImage from "../projects/ProjectImage";
 export default function PortfolioMedia({
   src,
   width,
@@ -11,7 +12,7 @@ export default function PortfolioMedia({
     <figure className="tp-media">
       {label && <p className="tp-media-label">{label}</p>}
       <div className="tp-media-mount">
-        <img
+        <ProjectImage
           src={src}
           width={width}
           height={height}
@@ -54,7 +55,7 @@ export function SourceCrop({
         className="tp-source-crop"
         style={{ aspectRatio: `${cropWidth} / ${crop}` }}
       >
-        <img
+        <ProjectImage
           src={src}
           width={width}
           height={height}
