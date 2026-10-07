@@ -1,4 +1,5 @@
 import ProjectArtwork, { BardAudience } from "./ProjectArtwork";
+import { preloadProjectImages } from "./projectImageLoading";
 
 export default function ProjectSelector({
   projects, onSelectProject, previewProjectId,
@@ -21,12 +22,22 @@ export default function ProjectSelector({
               aria-describedby={`project-${project.id}-stack`}
               data-previewed={previewProjectId === project.id ? "true" : undefined}
               onPointerEnter={(event) => {
-                if (event.pointerType !== "touch") onPreviewEnter?.(project.id, "hovered");
+                if (event.pointerType !== "touch") {
+                  preloadProjectImages(project.id);
+                  onPreviewEnter?.(project.id, "hovered");
+                }
               }}
               onPointerLeave={() => onPreviewLeave?.(project.id, "hovered")}
-              onFocus={() => onPreviewEnter?.(project.id, "focused")}
+              onFocus={() => {
+                preloadProjectImages(project.id);
+                onPreviewEnter?.(project.id, "focused");
+              }}
               onBlur={() => onPreviewLeave?.(project.id, "focused")}
-              onClick={(event) => onSelectProject(project.id, event.currentTarget)}
+              onPointerDown={() => preloadProjectImages(project.id)}
+              onClick={(event) => {
+                preloadProjectImages(project.id);
+                onSelectProject(project.id, event.currentTarget);
+              }}
             >
               <span className="project-selector__edition" aria-hidden="true">
                 <span className="project-selector__number">{String(index + 1).padStart(2, "0")}</span>

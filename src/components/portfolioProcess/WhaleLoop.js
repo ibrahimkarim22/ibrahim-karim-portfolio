@@ -1,3 +1,4 @@
+import ProjectImage from "../projects/ProjectImage";
 import { useEffect, useRef, useState } from "react";
 
 export default function WhaleLoop({
@@ -113,7 +114,7 @@ export default function WhaleLoop({
     <figure className="tp-whale-media" ref={ref}>
       <div className="tp-media-mount">
         {reduced || failed ? (
-          <img
+          <ProjectImage
             src={poster}
             width="1139"
             height="580"

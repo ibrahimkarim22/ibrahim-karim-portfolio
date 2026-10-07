@@ -1,3 +1,4 @@
+import ProjectImage from "../projects/ProjectImage";
 import {
   useCallback,
   useEffect,
@@ -148,7 +149,7 @@ export function OpeningAssembly({ worlds }) {
             key={world.name}
           >
             <div className="tp-plane-image">
-              <img
+              <ProjectImage critical
                 src={world.src}
                 width={world.width}
                 height={world.height}
@@ -593,7 +594,7 @@ export function QualitySheet({ previews }) {
               {viewport.toUpperCase()} / {preview.width} PX
             </span>
             <div className="tp-preview-body">
-              <img
+              <ProjectImage
                 src={preview.src}
                 width={preview.width}
                 height={preview.height}

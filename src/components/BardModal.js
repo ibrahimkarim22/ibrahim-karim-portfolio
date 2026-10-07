@@ -1,3 +1,4 @@
+import ProjectImage from "./projects/ProjectImage";
 import { useEffect, useRef } from "react";
 import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import native from "../images/native.png";
@@ -65,7 +66,7 @@ const phoneBounds = {
   [phoneBardHowTo]: [321, 27, 921, 1201],
 };
 
-function PhoneFigure({ src, name, number, eager = false, role = "ensemble" }) {
+function PhoneFigure({ src, name, number, role = "ensemble" }) {
   const [left, top, right, bottom] = phoneBounds[src];
   // Keep a small clear edge around the complete device; trim transparent canvas only.
   const x = Math.max(0, left - 24), y = Math.max(0, top - 24);
@@ -77,7 +78,7 @@ function PhoneFigure({ src, name, number, eager = false, role = "ensemble" }) {
       "--bard-image-left": `${-x / width * 100}%`,
       "--bard-image-top": `${-y / height * 100}%`,
     }}>
-      <div className="bard-phone-mount"><img src={src} alt={`Bard app: ${name}`} width="1367" height="1221" loading={eager ? "eager" : "lazy"} decoding="async" /></div>
+      <div className="bard-phone-mount"><ProjectImage src={src} alt={`Bard app: ${name}`} width="1367" height="1221" loading="lazy" decoding="async" /></div>
       <figcaption><span aria-hidden="true">FIG. {number}</span><span>{name}</span></figcaption>
     </figure>
   );
@@ -88,7 +89,7 @@ function ImplementationFigure({ src, name, number }) {
   return (
     <figure className="bard-implementation-figure">
       <a href={src} target="_blank" rel="noopener noreferrer" aria-label={`Open ${name} at full size (opens in a new tab)`}>
-        <img src={src} alt={`Bard implementation: ${name}`} width={width} height={height} loading="lazy" decoding="async" />
+        <ProjectImage src={src} alt={`Bard implementation: ${name}`} width={width} height={height} loading="lazy" decoding="async" />
       </a>
       <figcaption><span aria-hidden="true">EXCERPT {number}</span><span>{name}<a className="bard-full-size-link" href={src} target="_blank" rel="noopener noreferrer" aria-label={`View ${name} at full size (opens in a new tab)`}>View full size <span aria-hidden="true">↗</span></a></span></figcaption>
     </figure>
@@ -199,10 +200,10 @@ function BardModal({ isOpen, closeModal }) {
                   <h2 id="bard-prologue-title" data-bard-cue>A way into<br /><em>Shakespeare.</em></h2>
                   <p className="bard-intro-lead" data-bard-cue>I created an <span className="bard-editorial-emphasis">online course</span> platform for all <span className="bard-editorial-emphasis">38 of Shakespeare’s plays.</span></p>
                   <p>This application aims to provide an engaging way for users to explore Shakespeare’s works through a combination of reading, quizzes, and video content.</p>
-                  <div className="bard-native-credit"><img src={native} alt="" /><span>Built with React Native<br /><small>A literary experience on mobile</small></span></div>
+                  <div className="bard-native-credit"><ProjectImage src={native} width={275} height={300} alt="" /><span>Built with React Native<br /><small>A literary experience on mobile</small></span></div>
                 </div>
                 <div className="bard-prologue-exhibit">
-                  <PhoneFigure src={phoneBardHome} name="Home — the invitation to learn" number="01" role="hero" eager />
+                  <PhoneFigure src={phoneBardHome} name="Home — the invitation to learn" number="01" role="hero" />
                   <p className="bard-vertical-note">Nucamp Front-End Honors Award</p>
                 </div>
               </div>
@@ -241,7 +242,7 @@ function BardModal({ isOpen, closeModal }) {
                   <p>Users create accounts and receive a unique profile, with an email, password, an updateable default profile picture, and progress through the plays.</p>
                   <p>Account data is stored in Google Firestore. On login, that data updates the Redux state of completed quiz levels so users can resume their progress.</p>
                   <ul className="bard-technology-credits" aria-label="Account technologies">
-                    {[["Firebase", firebase], ["Firestore", firestore], ["Redux", redux]].map(([name, logo]) => <li key={name}><img src={logo} alt="" /><span>{name}</span></li>)}
+                    {[["Firebase", firebase, 219, 300], ["Firestore", firestore, 256, 300], ["Redux", redux, 300, 285]].map(([name, logo, width, height]) => <li key={name}><ProjectImage src={logo} width={width} height={height} alt="" /><span>{name}</span></li>)}
                   </ul>
                   <PhoneFigure src={phoneBardCourse} name="The course and its levels" number="05" role="supporting" />
                 </div>

@@ -241,7 +241,7 @@
   .krispy-rendering-note { display: grid; gap: 0.5rem; justify-items: center; padding: 1.5rem; border: 1px solid var(--krispy-rule); font-size: 0.8rem; color: var(--krispy-muted); code { color: var(--krispy-gold); font-size: 1.5rem; } }
   .krispy-route-note { padding: 1.5rem 0; > span { display: block; margin: 1rem 0; font-family: monospace; font-size: clamp(1.5rem, 2.7vw, 2.5rem); strong { color: var(--krispy-gold); } } small { color: var(--krispy-muted); font-size: 0.8rem; } }
   .krispy-data-credit { border-top: 1px solid var(--krispy-rule); padding-top: 1rem; span { display: block; margin-bottom: 0.25rem; color: var(--krispy-muted); font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase; } }
-  .krispy-favorites-demo { width: 100%; min-width: 0; padding: 0.6rem; border: 1px solid var(--krispy-rule); picture { display: block; background: #262933; } img { display: block; width: 100%; max-height: 330px; object-fit: contain; } figcaption { padding: 0.75rem 0.25rem 0.2rem; font-size: 0.7rem; line-height: 1.6; color: var(--krispy-muted); } }
+  .krispy-favorites-demo { width: 100%; min-width: 0; padding: 0.6rem; border: 1px solid var(--krispy-rule); picture { display: block; background: #262933; } img { display: block; width: 100%; height: auto; max-height: 330px; object-fit: contain; } figcaption { padding: 0.75rem 0.25rem 0.2rem; font-size: 0.7rem; line-height: 1.6; color: var(--krispy-muted); } }
   .krispy-code-pair { grid-column: 2 / -1; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1.25rem; }
   .krispy-code-frame {
     min-width: 0; border: 1px solid var(--krispy-rule); background: var(--krispy-code-surface);

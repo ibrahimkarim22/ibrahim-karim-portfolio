@@ -1,0 +1,12 @@
+.project-image {
+  height: auto;
+  opacity: 0;
+  transition: opacity 200ms ease;
+
+  &[data-image-state="ready"] { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-image { transition: none; }
+  .krispy-favorites-demo { --krispy-demo-ratio: 1463 / 1401; }
+}

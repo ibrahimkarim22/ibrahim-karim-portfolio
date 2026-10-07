@@ -1,3 +1,4 @@
+import ProjectImage from "./projects/ProjectImage";
 import { useEffect, useRef, useState } from "react";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import chaplinVagabond from "../images/chaplinVagabond.jpg";
@@ -14,12 +15,12 @@ import Copyright from "./Copyright";
 
 const movieSource = "https://publicdomainmovie.net/movie.php?id=CC_1916_07_10_TheVagabond&type=.mp4";
 const technologies = [
-  { name: "JavaScript", logo: js },
-  { name: "React", logo: reactLogo, className: "krispy-modal-react-logo" },
-  { name: "Redux", logo: redux },
-  { name: "Firebase Hosting", logo: firebase },
-  { name: "Bootstrap", logo: bootstrapLogo },
-  { name: "SCSS", logo: sass },
+  { name: "JavaScript", logo: js, width: 1200, height: 1200 },
+  { name: "React", logo: reactLogo, width: 300, height: 270, className: "krispy-modal-react-logo" },
+  { name: "Redux", logo: redux, width: 300, height: 285 },
+  { name: "Firebase Hosting", logo: firebase, width: 219, height: 300 },
+  { name: "Bootstrap", logo: bootstrapLogo, width: 300, height: 300 },
+  { name: "SCSS", logo: sass, width: 300, height: 225 },
 ];
 
 // Excerpts verified against Krispy's favoritesSlice.js, with line wrapping.
@@ -104,7 +105,7 @@ function KrispyModal({ isOpen, closeModal }) {
                   </aside>
                 </div>
                 <div className="krispy-technology-credits">
-                  <div><p className="krispy-eyebrow">Built with</p><ul aria-label="Main technology stack">{technologies.map(({ name, logo, className }) => <li key={name}>{logo && <img src={logo} alt="" className={className} />}<span>{name}</span></li>)}</ul></div>
+                  <div><p className="krispy-eyebrow">Built with</p><ul aria-label="Main technology stack">{technologies.map(({ name, logo, className, width, height }) => <li key={name}>{logo && <ProjectImage src={logo} width={width} height={height} alt="" className={className} />}<span>{name}</span></li>)}</ul></div>
                   <button type="button" className="krispy-house-lights" aria-label="House lights" aria-describedby="krispy-lights-state" aria-pressed={screening} onClick={() => setScreening((dimmed) => !dimmed)}>
                     {/* Adapt the original pendant lamp and its local light-state interaction. */}
                     <svg className="krispy-lamp" viewBox="0 0 36 48" aria-hidden="true" focusable="false">
@@ -122,13 +123,13 @@ function KrispyModal({ isOpen, closeModal }) {
                 <div className="film-container">
                   <figure className="krispy-poster-exhibit">
                     <a className="chaplin-vagabond-container krispy-poster-link" href="https://krispy22.web.app/movie/3" target="_blank" rel="noopener noreferrer" aria-label="Watch The Vagabond (opens in a new tab)">
-                      <img className="chaplin-vagabond" src={chaplinVagabond} alt="Charlie Chaplin — The Vagabond film poster" /><span className="krispy-poster-play" aria-hidden="true">▶</span>
+                      <ProjectImage className="chaplin-vagabond" src={chaplinVagabond} width={960} height={1440} alt="Charlie Chaplin — The Vagabond film poster" /><span className="krispy-poster-play" aria-hidden="true">▶</span>
                     </a>
                     <figcaption><span><small>01 / Charlie Chaplin</small><strong>The Vagabond</strong></span><a className="krispy-poster-caption-action" href="https://krispy22.web.app/movie/3" target="_blank" rel="noopener noreferrer" aria-label="Watch film: The Vagabond (opens in a new tab)">Watch film <span aria-hidden="true">↗</span></a></figcaption>
                   </figure>
                   <figure className="krispy-poster-exhibit">
                     <a className="chaplin-one-am-container krispy-poster-link" href="https://krispy22.web.app/movie/1" target="_blank" rel="noopener noreferrer" aria-label="Watch One A.M. (opens in a new tab)">
-                      <img className="chaplin-one-am" src={chaplinOneAM} alt="Charlie Chaplin — One A.M. film poster" /><span className="krispy-poster-play" aria-hidden="true">▶</span>
+                      <ProjectImage className="chaplin-one-am" src={chaplinOneAM} width={800} height={1195} alt="Charlie Chaplin — One A.M. film poster" /><span className="krispy-poster-play" aria-hidden="true">▶</span>
                     </a>
                     <figcaption><span><small>02 / Charlie Chaplin</small><strong>One A.M.</strong></span><a className="krispy-poster-caption-action" href="https://krispy22.web.app/movie/1" target="_blank" rel="noopener noreferrer" aria-label="Watch film: One A.M. (opens in a new tab)">Watch film <span aria-hidden="true">↗</span></a></figcaption>
                   </figure>
@@ -164,7 +165,7 @@ function KrispyModal({ isOpen, closeModal }) {
                 <article className="krispy-chapter krispy-favorites-chapter">
                   <div className="krispy-chapter-index"><span>03</span><p>State & favorites</p></div>
                   <div className="krispy-chapter-copy"><h3>A personal collection</h3><p>Redux centralizes adding and removing favorites. Separate lists hold movies, TV channels, and globe locations, so each category keeps its own collection in shared state.</p><p>Removal filters the matching item by its ID. This keeps the favorites interaction consistent across the three categories.</p><p className="krispy-data-credit"><span>Project hosting</span> Firebase Hosting</p></div>
-                  <figure className="krispy-favorites-demo"><picture><source media="(prefers-reduced-motion: reduce)" srcSet={krispyFavorite} /><img src={krispyFavoriteGif} alt="Krispy favorites demonstration" loading="lazy" /></picture><figcaption>Adding & removing favorites in Krispy</figcaption></figure>
+                  <figure className="krispy-favorites-demo"><picture><source media="(prefers-reduced-motion: reduce)" srcSet={krispyFavorite} /><ProjectImage src={krispyFavoriteGif} style={{ aspectRatio: "var(--krispy-demo-ratio, 1920 / 1080)" }} width={1920} height={1080} alt="Krispy favorites demonstration" loading="lazy" /></picture><figcaption>Adding & removing favorites in Krispy</figcaption></figure>
                   <div className="krispy-code-pair">
                     <figure className="krispy-code-frame"><figcaption><span>Redux / Initial state</span><span aria-hidden="true">EXCERPT 01</span></figcaption><pre><code>{favoritesExcerpt}</code></pre><p>Three lists, held in one centralized state.</p></figure>
                     <figure className="krispy-code-frame"><figcaption><span>Redux / Remove a movie</span><span aria-hidden="true">EXCERPT 02</span></figcaption><pre><code>{removalExcerpt}</code></pre><p>Keep every movie except the selected ID.</p></figure>
