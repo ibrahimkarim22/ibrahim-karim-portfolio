@@ -1,0 +1,86 @@
+// One viewport anchor keeps the shared footer still across every section.
+.menu-div-main[data-active-view] {
+  --portfolio-contact-height: 56px;
+  --portfolio-copyright-height: 36px;
+  --portfolio-footer-bottom: max(env(safe-area-inset-bottom), 0px);
+  --portfolio-footer-height: calc(var(--portfolio-contact-height) + var(--portfolio-copyright-height) + var(--portfolio-view-gap, 0px));
+
+  > .contact-items,
+  > .home-copyright-container {
+    position: fixed;
+    inset: auto 28vw var(--portfolio-footer-bottom) 23vw;
+    z-index: 201;
+    box-sizing: border-box;
+    grid-area: auto;
+    width: auto;
+    min-width: 0;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    opacity: 1;
+    animation: none;
+    transform: none;
+  }
+
+  > .contact-items {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    bottom: calc(var(--portfolio-footer-bottom) + var(--portfolio-copyright-height));
+    height: var(--portfolio-contact-height);
+  }
+
+  > .contact-items > a {
+    min-height: 44px;
+    padding: 0.5rem 0.75rem;
+    font: 400 0.8125rem/1.4 var(--home-interface-font);
+    letter-spacing: 0.01em;
+    text-transform: none;
+    transform: none;
+    animation: none;
+    opacity: 1;
+  }
+
+  > .home-copyright-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: var(--portfolio-copyright-height);
+  }
+
+  > .home-copyright-container > .copyright-text {
+    margin: 0;
+    padding: 0;
+    font: 400 0.75rem/1.4 var(--home-interface-font);
+    letter-spacing: 0.01em;
+  }
+
+  @media (max-width: 1250px), (max-height: 700px) {
+    --portfolio-footer-bottom: max(env(safe-area-inset-bottom), 0.5rem);
+
+    > .contact-items,
+    > .home-copyright-container {
+      right: max(env(safe-area-inset-right), 0.5rem);
+      left: max(env(safe-area-inset-left), 0.5rem);
+    }
+
+    > .contact-items {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.5rem;
+      // Leave the candle's existing corner free of link hit targets.
+      padding-left: calc(var(--candle-left) + var(--candle-width) + 0.5rem);
+    }
+
+    > .contact-items > a { padding-inline: 0.5rem; }
+  }
+}
+
+@media (max-width: 1250px), (max-height: 700px) {
+  .menu-div-main[data-active-view="home"] {
+    padding-bottom: calc(var(--portfolio-footer-bottom) + var(--portfolio-contact-height) + var(--portfolio-copyright-height) + 0.5rem);
+  }
+}

@@ -18,12 +18,6 @@
   --home-entry-biography-delay: 600ms;
   --home-entry-about-duration: 700ms;
   --home-entry-about-delay: 750ms;
-  --home-entry-navigation-duration: 700ms;
-  --home-entry-navigation-delay: 1500ms;
-  --home-entry-social-duration: 600ms;
-  --home-entry-social-delay: 2000ms;
-  --home-entry-copyright-duration: 500ms;
-  --home-entry-copyright-delay: 2700ms;
 
   .full-stack-div {
     animation: home-entry-lift var(--home-entry-title-duration) ease-out var(--home-entry-title-delay) backwards;
@@ -43,22 +37,12 @@
   }
 
   .menu-items {
-    // Opacity only, without a persistent filled stacking context after entrance:
-    // preserve nav transforms and the TypeRacer preview's normal layering.
-    animation: home-entry-fade var(--home-entry-navigation-duration) ease-out var(--home-entry-navigation-delay) backwards;
-  }
-
-  .contact-items {
-    animation: home-entry-fade var(--home-entry-social-duration) ease-out var(--home-entry-social-delay) backwards;
-  }
-
-  .home-copyright-container {
-    animation: home-entry-fade var(--home-entry-copyright-duration) ease-out var(--home-entry-copyright-delay) backwards;
+    animation: none;
+    opacity: 1;
   }
 
   // Override animated opacity without cancelling it: blur must not restart it.
   .menu-items:focus-within,
-  .contact-items:focus-within,
   .home-about__trigger:focus-visible {
     opacity: 1 !important;
   }

@@ -2,6 +2,10 @@ import { useEffect, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Copyright from "../components/Copyright";
 import HomeNavigation from "../components/home/HomeNavigation";
+import HomeContactLinks from "../components/home/HomeContactLinks";
+import HomeAmbientLight from "../components/home/HomeAmbientLight";
+import HomeCandle from "../components/home/HomeCandle";
+import { PortfolioLightingContext, usePortfolioLighting } from "../components/home/portfolioLighting";
 import HomeCenterView from "../components/home/HomeCenterView";
 import HomeContextPanel from "../components/home/HomeContextPanel";
 import useProjectPreview from "../components/home/useProjectPreview";
@@ -16,7 +20,9 @@ function Home() {
   const navigate = useNavigate();
   const routeState = getPortfolioRouteState(location.pathname);
   const { activeView, selectedProjectId } = routeState || {};
+  const lighting = usePortfolioLighting(activeView);
   const isNarrowLayout = useNarrowLayout();
+  const isCompactViewport = useNarrowLayout("(max-width: 1250px), (max-height: 700px)");
   const projectPreview = useProjectPreview(activeView);
   const { onPreviewEnter } = projectPreview;
   const previousViewRef = useRef(activeView);
@@ -39,17 +45,23 @@ function Home() {
   }, []);
 
   useEffect(() => {
-    if (activeView && activeView !== PORTFOLIO_VIEWS.HOME) {
+    const isBoundedView = activeView === PORTFOLIO_VIEWS.RESUME
+      || activeView === PORTFOLIO_VIEWS.THREE_D_PROFILE
+      || activeView === PORTFOLIO_VIEWS.MEGARACER
+      || (activeView === PORTFOLIO_VIEWS.PROJECTS && isCompactViewport);
+    if (isBoundedView) {
       document.body.classList.add("portfolio-bounded-view-open");
       // Between modals, let the responsive rule own the lock. Removing the
       // inline value also prevents an existing inline !important from winning.
       if (!selectedProjectId) document.body.style.removeProperty("overflow");
     } else {
       document.body.classList.remove("portfolio-bounded-view-open");
-      const { value, priority } = originalBodyOverflowRef.current;
-      document.body.style.setProperty("overflow", value, priority);
+      if (!selectedProjectId) {
+        const { value, priority } = originalBodyOverflowRef.current;
+        document.body.style.setProperty("overflow", value, priority);
+      }
     }
-  }, [activeView, selectedProjectId]);
+  }, [activeView, selectedProjectId, isCompactViewport]);
 
   useEffect(() => {
     if (selectedProjectId && !getProjectById(selectedProjectId)) {
@@ -92,7 +104,29 @@ function Home() {
   }
 
   function selectView(view, path) {
-    if (activeView !== view) navigate(path);
+    if (activeView !== view) navigate(path, { state: { portfolioNavigationOrigin: location.pathname } });
+  }
+
+  function goBack() {
+    // Only traverse a known portfolio entry; direct links have a safe Home exit.
+    const origin = location.state?.portfolioNavigationOrigin;
+    if (origin && getPortfolioRouteState(origin)) {
+      navigate(-1);
+    } else {
+      lighting.selectTheme(PORTFOLIO_VIEWS.HOME);
+      navigate("/");
+    }
+  }
+
+  function restoreNavigationBodyOverflow({ unmount = false } = {}) {
+    if (selectedProjectId && !unmount) return;
+    if (unmount || activeView === PORTFOLIO_VIEWS.HOME
+      || (activeView === PORTFOLIO_VIEWS.PROJECTS && !isCompactViewport)) {
+      const { value, priority } = originalBodyOverflowRef.current;
+      document.body.style.setProperty("overflow", value, priority);
+    } else if (!selectedProjectId) {
+      document.body.style.removeProperty("overflow");
+    }
   }
 
   // Router matches case-insensitively; the route-state parser defines which
@@ -100,11 +134,18 @@ function Home() {
   if (!routeState) return null;
 
   return (
-    <>
+    <PortfolioLightingContext.Provider value={lighting}>
       <div
         className={`menu-div-main${activeView === PORTFOLIO_VIEWS.HOME ? " home-entry" : ""}`}
         data-active-view={activeView}
+        data-light-theme={lighting.theme}
+        data-light-phase={lighting.changing ? "changing" : "settled"}
+        data-light-cycle={lighting.cycle}
+        data-light-motion={lighting.reduced ? "reduced" : "full"}
+        style={lighting.style}
       >
+        <HomeAmbientLight />
+        <HomeCandle />
         {!(isNarrowLayout && activeView === PORTFOLIO_VIEWS.HOME) && (
           <HomeContextPanel
             activeView={activeView}
@@ -114,7 +155,6 @@ function Home() {
 
         <HomeCenterView
           activeView={activeView}
-          onBackHome={() => navigate("/")}
           onSelectProject={selectProject}
           projectPreview={projectPreview}
           headingRef={headingRef}
@@ -123,39 +163,18 @@ function Home() {
         {isNarrowLayout && activeView === PORTFOLIO_VIEWS.HOME && <AboutMeSheet />}
         <HomeNavigation
           activeView={activeView}
+          onLightingSelect={lighting.selectTheme}
+          isNarrowLayout={isNarrowLayout}
+          routeKey={location.key}
+          onBackHome={() => navigate("/")}
+          onBack={goBack}
+          onSheetClosed={restoreNavigationBodyOverflow}
           onToggleProjects={() => selectView(PORTFOLIO_VIEWS.PROJECTS, "/projects")}
           onToggleResume={() => selectView(PORTFOLIO_VIEWS.RESUME, "/resume")}
           onToggleThreeDProfile={() => selectView(PORTFOLIO_VIEWS.THREE_D_PROFILE, "/threeDeeResume")}
+          onToggleMegaracer={() => selectView(PORTFOLIO_VIEWS.MEGARACER, "/megaracer")}
         />
-        <div className="contact-items">
-          <a
-            href="https://www.linkedin.com/in/ibrahim-karim-abaa952a7/"
-            rel="noopener noreferrer"
-            target="_blank"
-            className="linkedin"
-            style={{ textDecoration: "none" }}
-          >
-            Linkedin
-          </a>
-          <a
-            href="https://github.com/ibrahimkarim22"
-            rel="noopener noreferrer"
-            target="_blank"
-            className="github"
-            style={{ textDecoration: "none" }}
-          >
-            Github
-          </a>
-          <a
-            href="mailto:22ibrahimkarim@gmail.com"
-            rel="noopener noreferrer"
-            target="_blank"
-            className="gmail"
-            style={{ textDecoration: "none" }}
-          >
-            Gmail
-          </a>
-        </div>
+        <HomeContactLinks />
         <div className="home-copyright-container">
           <div className="copyright-text">
             <Copyright />
@@ -163,7 +182,7 @@ function Home() {
         </div>
       </div>
       <ProjectModalHost selectedProjectId={selectedProjectId} onClose={closeProject} />
-    </>
+    </PortfolioLightingContext.Provider>
   );
 }
 

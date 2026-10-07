@@ -1,6 +1,18 @@
-body {
-  background-color: rgb(2, 0, 28);
+:root {
+  --home-environment-color: #050505;
+  --home-color-primary: #F2E2C4;
+  --home-color-body: #D8C6A6;
+  --home-color-secondary: #B6A78E;
+  --home-color-accent: #C8A25A;
+  --home-color-rose: #6A1E2D;
+  --home-color-shadow: #14090D;
+  --home-moon-light: #C9D8EE;
+  --home-logo-moonlight: #FF3131;
+  --home-logo-glow: #FF3131;
+  --home-interface-font: "Raleway", sans-serif;
 }
+
+body { background-color: var(--home-environment-color); }
 
 @import "colors";
 @import "Home";
@@ -15,6 +27,7 @@ body {
 @import "KeyframesWhackaModal";
 @import "ProjectSelector";
 @import "ResumeView";
+@import "MegaracerView";
 @import "ProjectsBardModal";
 @import "ProjectsHeyYouModal";
 @import "ProjectsKrispyModal";
@@ -29,3 +42,8 @@ body {
 @import "AboutMeSheet";
 @import "HomeMobile";
 @import "HomeEntry";
+
+@import "HomeLighting";
+@import "HomeLightDust";
+@import "HomeCandle";
+@import "HomeFooter";

@@ -1,0 +1,223 @@
+.menu-div-main {
+  --candle-left: clamp(1rem, 4vw, 4rem);
+  --candle-height: clamp(13rem, 30dvh, 19rem);
+  // Match the SVG's proportions so the wax and flame stay slender on desktop.
+  --candle-width: calc(var(--candle-height) * 96 / 260);
+}
+
+.portfolio-candle {
+  position: fixed;
+  z-index: var(--portfolio-light-fixture-layer);
+  left: var(--candle-left);
+  bottom: 0;
+  width: var(--candle-width);
+  height: var(--candle-height);
+  pointer-events: none;
+
+  > svg { position: relative; display: block; width: 100%; height: 100%; overflow: visible; }
+  &__glow-envelope { position: absolute; inset: 0; opacity: 1; transition: opacity 640ms ease; }
+  &__flame-envelope { transform-box: fill-box; transform-origin: 50% 100%; opacity: 1; transform: scale(1); transition: opacity 640ms ease, transform 760ms cubic-bezier(0.22, 0.61, 0.36, 1); }
+  &:is([data-candle-state="off"], [data-candle-state="extinguishing"]) &__glow-envelope { opacity: 0; }
+  &:is([data-candle-state="off"], [data-candle-state="extinguishing"]) &__flame-envelope { opacity: 0; transform: scale(0.18, 0.08); }
+  &__glow {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    width: clamp(9rem, 15vw, 15rem);
+    height: clamp(9rem, 15vw, 15rem);
+    transform: translate(-50%, -50%);
+    background: radial-gradient(closest-side, color-mix(in srgb, var(--candle-flame-color) 28%, transparent), color-mix(in srgb, var(--candle-flame-color) 9%, transparent) 42%, transparent 100%);
+    animation: portfolio-candle-glow 2600ms ease-in-out infinite;
+    pointer-events: none;
+  }
+  &__surge-glow {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    width: clamp(7rem, 10vw, 10rem);
+    height: clamp(7rem, 10vw, 10rem);
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    background: radial-gradient(closest-side, color-mix(in srgb, var(--candle-flame-color) 32%, transparent), color-mix(in srgb, var(--candle-flame-color) 11%, transparent) 40%, transparent 100%);
+    pointer-events: none;
+  }
+  &__dust {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    width: clamp(3.5rem, 6vw, 5.5rem);
+    height: clamp(4rem, 7vw, 6rem);
+    transform: translate(-50%, -50%);
+    overflow: hidden;
+    contain: layout paint;
+    pointer-events: none;
+  }
+  &[data-candle-state="off"] &__dust { visibility: hidden; }
+  &__dust-particle {
+    position: absolute;
+    width: 1.4px;
+    height: 1.4px;
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--candle-flame-color) 46%, #fff8e7);
+    opacity: 0.24;
+    animation: portfolio-candle-dust-drift var(--candle-dust-duration) var(--candle-dust-delay) ease-in-out infinite;
+    pointer-events: none;
+  }
+  &__dust-particle--0 { left: 17%; top: 54%; --candle-dust-duration: 12s; --candle-dust-delay: -4s; }
+  &__dust-particle--1 { left: 41%; top: 31%; width: 1px; height: 1px; --candle-dust-duration: 15s; --candle-dust-delay: -11s; }
+  &__dust-particle--2 { left: 68%; top: 65%; width: 1.5px; height: 1.5px; --candle-dust-duration: 13s; --candle-dust-delay: -7s; }
+  &__dust-particle--3 { left: 81%; top: 25%; width: 1.1px; height: 1.1px; --candle-dust-duration: 16s; --candle-dust-delay: -13s; }
+  &__dust-particle--4 { left: 29%; top: 82%; width: 1.8px; height: 1.8px; --candle-dust-duration: 10s; --candle-dust-delay: -3s; }
+  &__dust-particle--5 { left: 57%; top: 14%; width: 1.2px; height: 1.2px; --candle-dust-duration: 14s; --candle-dust-delay: -9s; }
+  &__wax-highlight { opacity: 0.36; transition: opacity 640ms ease; }
+  &:is([data-candle-state="off"], [data-candle-state="extinguishing"]) &__wax-highlight { opacity: 0.06; }
+  &__flame,
+  &__ignition,
+  &__flame-shape,
+  &__flame-heart { transform-box: fill-box; transform-origin: 50% 100%; }
+  &__flame { animation: portfolio-candle-flicker 2600ms ease-in-out infinite; }
+  &__flame-core { stop-color: color-mix(in srgb, var(--candle-flame-color) 9%, #fff8e7); transition: stop-color 420ms ease; }
+  &__flame-edge { stop-color: var(--candle-flame-color); transition: stop-color 420ms ease; }
+  &[data-candle-state="igniting"] &__ignition { animation: portfolio-candle-ignite 900ms ease both; }
+  &[data-candle-state="igniting"] &__surge-glow { animation: portfolio-candle-surge-glow 900ms ease both; }
+}
+
+.portfolio-candle-magic {
+  position: fixed;
+  z-index: 1060;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  contain: layout paint;
+
+  .portfolio-candle__sparkle {
+    position: absolute;
+    left: var(--magic-origin-x);
+    top: var(--magic-origin-y);
+    width: var(--magic-size);
+    height: var(--magic-size);
+    opacity: 0;
+    animation: portfolio-candle-magic-flight 1700ms var(--magic-delay) cubic-bezier(0.19, 0.57, 0.32, 1) both;
+    pointer-events: none;
+  }
+  .portfolio-candle__sparkle > svg { display: block; width: 100%; height: 100%; overflow: visible; filter: drop-shadow(0 0 4px color-mix(in srgb, var(--candle-flame-color) 68%, #fff8e7)); }
+  .portfolio-candle__sparkle path { fill: color-mix(in srgb, var(--candle-flame-color) 38%, #fff8e7); stroke: var(--candle-flame-color); stroke-width: 0.75; }
+  .portfolio-candle__sparkle--star path { fill: color-mix(in srgb, var(--candle-flame-color) 16%, #fff8e7); }
+}
+
+.portfolio-candle-smoke {
+  position: fixed;
+  z-index: 1060;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  contain: layout paint;
+
+  .portfolio-candle__smoke-wisp {
+    position: absolute;
+    left: var(--smoke-origin-x);
+    top: var(--smoke-origin-y);
+    width: var(--smoke-size);
+    height: calc(var(--smoke-size) * 8 / 3);
+    transform-origin: 50% 100%;
+    opacity: 0;
+    animation: portfolio-candle-smoke-rise 7500ms var(--smoke-delay) cubic-bezier(0.37, 0, 0.63, 1) both;
+    pointer-events: none;
+  }
+  .portfolio-candle__smoke-wisp > svg { display: block; width: 100%; height: 100%; filter: blur(1.2px); }
+  .portfolio-candle__smoke-wisp path { fill: none; stroke: #737077; stroke-width: 4.5; stroke-linecap: round; }
+  &[data-smoke-motion="reduced"] .portfolio-candle__smoke-wisp {
+    transform: translate(-50%, -100%) scale(0.45, 0.42);
+    animation: portfolio-candle-smoke-fade 580ms ease both;
+  }
+}
+
+@keyframes portfolio-candle-smoke-rise {
+  0% { opacity: 0; transform: translate(-50%, -100%) scale(0.35, 0.3); }
+  10% { opacity: 0.4; }
+  48% { opacity: 0.3; transform: translate(calc(-50% + var(--smoke-mid-drift)), calc(-100% + var(--smoke-mid-rise))) scale(0.9, 1); }
+  82% { opacity: 0.16; }
+  100% { opacity: 0; transform: translate(calc(-50% + var(--smoke-drift)), calc(-100% + var(--smoke-rise))) scale(1.4, 1.3); }
+}
+@keyframes portfolio-candle-smoke-fade {
+  0%, 100% { opacity: 0; }
+  25% { opacity: 0.3; }
+}
+
+@keyframes portfolio-candle-flicker {
+  0%, 100% { opacity: 0.96; transform: translateX(0) rotate(-0.4deg) skewX(0deg) scale(1, 1); }
+  16% { opacity: 0.88; transform: translateX(-0.6px) rotate(-1.6deg) skewX(-1.4deg) scale(0.96, 0.96); }
+  36% { opacity: 1; transform: translateX(0.7px) rotate(1.1deg) skewX(1.1deg) scale(1.02, 1.035); }
+  57% { opacity: 0.92; transform: translateX(-0.3px) rotate(-0.8deg) skewX(-0.7deg) scale(0.98, 0.985); }
+  76% { opacity: 0.99; transform: translateX(0.5px) rotate(0.7deg) skewX(0.8deg) scale(1.01, 1.02); }
+}
+@keyframes portfolio-candle-glow {
+  0%, 100% { opacity: 0.74; }
+  16% { opacity: 0.61; }
+  36% { opacity: 0.88; }
+  57% { opacity: 0.69; }
+  76% { opacity: 0.82; }
+}
+@keyframes portfolio-candle-ignite {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  8% { opacity: 0.94; transform: scale(1.1); }
+  24%, 52% { opacity: 1; transform: scale(1.8); }
+  68% { opacity: 1; transform: scale(1.08); }
+}
+@keyframes portfolio-candle-surge-glow {
+  0%, 100% { opacity: 0; }
+  8% { opacity: 0.06; }
+  24%, 52% { opacity: 0.4; }
+  68% { opacity: 0.04; }
+}
+@keyframes portfolio-candle-magic-flight {
+  0% { opacity: 0; transform: translate(-50%, -50%) rotate(0deg) scale(0.3); }
+  9% { opacity: 1; }
+  48% { opacity: 0.92; transform: translate(calc(-50% + var(--magic-mid-drift)), calc(-50% + var(--magic-mid-rise))) rotate(calc(var(--magic-spin) * 0.4)) scale(1); }
+  84% { opacity: 0.56; }
+  100% { opacity: 0; transform: translate(calc(-50% + var(--magic-drift)), calc(-50% + var(--magic-rise))) rotate(var(--magic-spin)) scale(0.45); }
+}
+@keyframes portfolio-candle-shimmer {
+  0%, 100% { opacity: 0.95; }
+  50% { opacity: 1; }
+}
+@keyframes portfolio-candle-glow-shimmer {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 0.79; }
+}
+@keyframes portfolio-candle-color-fade {
+  from { opacity: 0.8; }
+  to { opacity: 1; }
+}
+@keyframes portfolio-candle-dust-drift {
+  0%, 100% { opacity: 0.2; transform: translate(3px, 4px); }
+  50% { opacity: 0.32; transform: translate(-4px, -7px); }
+}
+
+@media (max-width: 1250px), (max-height: 700px) {
+  .menu-div-main {
+    --candle-left: max(env(safe-area-inset-left), 1rem);
+    --candle-height: clamp(5.5rem, 13dvh, 6rem);
+    --candle-width: calc(var(--candle-height) * 96 / 260);
+  }
+  .portfolio-candle { position: absolute; }
+  .portfolio-candle__glow { width: 6.5rem; height: 6.5rem; }
+  .portfolio-candle__surge-glow { width: 5rem; height: 5rem; }
+}
+
+@mixin portfolio-candle-reduced-motion {
+  .portfolio-candle__flame { animation: portfolio-candle-shimmer 3400ms ease-in-out infinite; }
+  .portfolio-candle__glow { animation: portfolio-candle-glow-shimmer 3400ms ease-in-out infinite; }
+  .portfolio-candle__flame-envelope { transition: opacity 240ms ease, transform 240ms ease; }
+  .portfolio-candle__glow-envelope { transition: opacity 240ms ease; }
+  .portfolio-candle__wax-highlight { transition: opacity 240ms ease; }
+  .portfolio-candle__dust-particle { animation: none; opacity: 0.13; }
+  .portfolio-candle__surge-glow { display: none; }
+  .portfolio-candle[data-candle-state="igniting"] .portfolio-candle__ignition { animation: portfolio-candle-color-fade 240ms ease both; }
+  .portfolio-candle-magic { display: none; }
+  .portfolio-candle-smoke .portfolio-candle__smoke-wisp { transform: translate(-50%, -100%) scale(0.45, 0.42); animation: portfolio-candle-smoke-fade 580ms ease both; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  @include portfolio-candle-reduced-motion;
+}

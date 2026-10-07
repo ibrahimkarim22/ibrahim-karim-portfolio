@@ -1,427 +1,644 @@
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
-import heyYouGrid from "../images/heyYouGrid.png";
-import whaleKeyframes from "../images/whaleKeyframes.png";
-import splashKeyframes from "../images/splashKeyframes.png";
-import animationSplashHeyYou from "../images/animationSplashHeyYou.png";
-import animationWhaleHeyYou from "../images/animationWhaleHeyYou.png";
-import curtainGrid from "../images/curtainGrid.png";
-import useEffectCode from "../images/useEffectCode.png";
-import resumeCanvas from "../images/resumeCanvas.png";
-import logoCanvas from "../images/logoCanvas.png";
+import { useEffect, useRef, useState } from "react";
+import { Modal, ModalHeader, ModalFooter } from "reactstrap";
+import Copyright from "./Copyright";
+import PortfolioSystem from "./portfolioProcess/PortfolioSystem";
+import PortfolioMedia, { SourceCrop } from "./portfolioProcess/PortfolioMedia";
+import {
+  OpeningAssembly,
+  MotionStudies,
+  MotionTimeline,
+  AssetPipeline,
+  QualitySheet,
+  FinalAssembly,
+  useExhibitionScenes,
+} from "./portfolioProcess/PortfolioExhibition";
+import connection from "../images/portfolio-process/heyyou-connection.jpg";
+import connectionTablet from "../images/portfolio-process/heyyou-connection-tablet.jpg";
+import connectionMobile from "../images/portfolio-process/heyyou-connection-mobile.jpg";
+import whale from "../images/portfolio-process/heyyou-whale.jpg";
+import whaleLoop from "../images/portfolio-process/heyyou-whale-loop.webm";
+import curtain from "../images/portfolio-process/bard-curtain.jpg";
+import board from "../images/portfolio-process/tuhdoo-board.jpg";
+import signature from "../images/portfolio-process/portfolio-signature.jpg";
+import profile from "../images/portfolio-process/portfolio-profile.jpg";
 import logoModel from "../images/logoModel.png";
 import resumeModel from "../images/resumeModel.png";
-import progressOne from "../images/progressOne.png";
-import progressTwo from "../images/progressTwo.png";
-import HorizontalScrollImage from "../images/horizontalScrollImage.png";
-import curtainGridCode from "../images/curtainGridCode.png";
-import heyYouGridCode from "../images/heyYouGridCode.png";
-import fiber from "../images/fiber.png";
-import blenderLogo from "../images/blender.png";
-import conditionalRendering from "../images/conditionalRendering.png";
-import firebase from "../images/firebase.png";
-import phoneBlender from "../images/phoneBlender.png";
-import Copyright from "./Copyright";
+import whaleKeyframes from "../images/whaleKeyframes.png";
+import splashKeyframes from "../images/splashKeyframes.png";
+import useEffectCode from "../images/useEffectCode.png";
 
-function ThisPortfolioModal({ isOpen, closeModal }) {
+const chapters = [
+  ["concept", "Concept"],
+  ["system", "System"],
+  ["worlds", "Worlds"],
+  ["motion", "Motion"],
+  ["assets", "Assets"],
+  ["experience", "Loading"],
+  ["quality", "Quality"],
+  ["deployment", "Ship"],
+];
+const worlds = [
+  {
+    name: "HeyYou",
+    src: connection,
+    width: 1280,
+    height: 756,
+    direction: "Connection / playful geometry",
+    motion:
+      "Signals converge between two phones; a whale carries the deployment story.",
+    note: "A shared place. A moving signal.",
+  },
+  {
+    name: "BARD",
+    src: curtain,
+    width: 1280,
+    height: 771,
+    direction: "Theatre / literary programme",
+    motion:
+      "Weighted curtains open onto the programme, with Draw and Raise controls.",
+    note: "A stage for the story.",
+  },
+  {
+    name: "Tuh-Doo",
+    src: board,
+    width: 1168,
+    height: 768,
+    direction: "Workflow / organized surfaces",
+    motion:
+      "An organizing hero board settles, then advances one task at a time.",
+    note: "Order, with momentum.",
+  },
+];
+
+function SectionHeading({ number, label, id, title, children }) {
+  return (
+    <header className="tp-section-heading">
+      <svg
+        className="tp-section-number"
+        viewBox="0 0 280 200"
+        aria-hidden="true"
+        focusable="false"
+      >
+        <text x="0" y="160">
+          {number}
+        </text>
+      </svg>
+      <div>
+        <p className="tp-label">
+          <span>{number}</span> / {label}
+        </p>
+        <h2 id={id} tabIndex={-1}>
+          {title}
+        </h2>
+      </div>
+      {children && <p className="tp-section-deck">{children}</p>}
+    </header>
+  );
+}
+
+function StudioAtlas({ closeModal }) {
+  const bodyRef = useRef(null);
+  useExhibitionScenes(bodyRef);
+  const [chapter, setChapter] = useState("concept");
+  const [assetStage, setAssetStage] = useState(0);
+  useEffect(() => {
+    const index = bodyRef.current.querySelector(".tp-index");
+    const active = index.querySelector('[aria-current="step"]');
+    if (active && index.scrollWidth > index.clientWidth) {
+      index.scrollTo?.({
+        left: Math.max(
+          0,
+          active.offsetLeft - index.clientWidth / 2 + active.offsetWidth / 2,
+        ),
+        behavior: "auto",
+      });
+    }
+  }, [chapter]);
+  function measureChapter() {
+    const body = bodyRef.current;
+    if (!body) return;
+    const threshold =
+      body.getBoundingClientRect().top + Math.min(180, body.clientHeight * 0.3);
+    let active = "concept";
+    chapters.forEach(([id]) => {
+      if (
+        body.querySelector(`#tp-${id}`)?.getBoundingClientRect().top <=
+        threshold
+      )
+        active = id;
+    });
+    if (body.scrollHeight - body.scrollTop - body.clientHeight <= 2)
+      active = "deployment";
+    setChapter(active);
+  }
+  function goTo(id) {
+    const body = bodyRef.current;
+    const target = body.querySelector(`#tp-${id}-title`);
+    const index = body.querySelector(".tp-index");
+    if (target)
+      body.scrollTo?.({
+        top:
+          body.scrollTop +
+          target.getBoundingClientRect().top -
+          body.getBoundingClientRect().top -
+          index.offsetHeight -
+          16,
+        behavior: "instant",
+      });
+    target?.focus({ preventScroll: true });
+    setChapter(id);
+  }
+  return (
+    <>
+      <ModalHeader
+        tag="div"
+        toggle={closeModal}
+        closeAriaLabel="Close project"
+        className="tp-header"
+      >
+        <span className="tp-studio-mark" aria-hidden="true">
+          ▧
+        </span>
+        <span className="tp-header-name">THIS PORTFOLIO</span>
+        <span className="tp-header-context">STUDIO ATLAS / SYSTEM INDEX</span>
+      </ModalHeader>
+      <div
+        ref={bodyRef}
+        className="modal-body tp-body"
+        tabIndex={0}
+        role="region"
+        aria-label="Portfolio studio atlas"
+        onScroll={measureChapter}
+      >
+        <nav className="tp-index" aria-label="Studio atlas chapters">
+          {chapters.map(([id, name], index) => (
+            <button
+              type="button"
+              key={id}
+              aria-label={`${String(index + 1).padStart(2, "0")} ${name}`}
+              aria-current={chapter === id ? "step" : undefined}
+              onClick={() => goTo(id)}
+            >
+              <span aria-hidden="true">
+                {String(index + 1).padStart(2, "0")}
+              </span>{" "}
+              {name}
+            </button>
+          ))}
+        </nav>
+        <main className="tp-atlas">
+          <section
+            className="tp-hero tp-section"
+            id="tp-concept"
+            aria-labelledby="tp-concept-title"
+          >
+            <div className="tp-project-line">
+              <span>IBRAHIM KARIM / DESIGN & DEVELOPMENT</span>
+              <span>THE PORTFOLIO, AS A PROJECT</span>
+            </div>
+            <div className="tp-hero-layout">
+              <div className="tp-hero-copy">
+                <p className="tp-label">
+                  <span className="tp-orange-square" aria-hidden="true" /> 01 /
+                  CONCEPT
+                </p>
+                <h1 id="tp-project-title">
+                  THIS
+                  <br />
+                  PORTFOLIO
+                  <span className="tp-title-dot" aria-hidden="true">
+                    .
+                  </span>
+                </h1>
+                <h2 id="tp-concept-title" tabIndex={-1}>
+                  Designing the system
+                  <br />
+                  behind the projects.
+                </h2>
+                <p className="tp-hero-description">
+                  A portfolio built as a system of interactive project worlds.
+                  The work is the starting point; the interface gives each
+                  project its own space.
+                </p>
+                <button
+                  type="button"
+                  className="tp-text-link"
+                  onClick={() => goTo("system")}
+                >
+                  Explore the construction <span aria-hidden="true">↓</span>
+                </button>
+              </div>
+              <OpeningAssembly worlds={worlds} />
+            </div>
+            <ul className="tp-materials" aria-label="Portfolio technologies">
+              <li>
+                React <span>/ interface</span>
+              </li>
+              <li>
+                SCSS + CSS <span>/ motion</span>
+              </li>
+              <li>
+                Blender <span>/ assets</span>
+              </li>
+              <li>
+                React Three Fiber <span>/ 3D</span>
+              </li>
+              <li>
+                Firebase <span>/ hosting</span>
+              </li>
+            </ul>
+            <div className="tp-concept-note">
+              <span aria-hidden="true">↳</span>
+              <p>
+                Case studies were redesigned to present earlier projects through
+                the current portfolio system; original project media is
+                preserved where relevant.
+              </p>
+            </div>
+          </section>
+
+          <section
+            className="tp-section tp-system-section"
+            id="tp-system"
+            aria-labelledby="tp-system-title"
+          >
+            <SectionHeading
+              number="02"
+              label="SYSTEM / CONSTRUCTION DRAWING"
+              id="tp-system-title"
+              title={
+                <>
+                  One structure.
+                  <br />
+                  Room for expression.
+                </>
+              }
+            >
+              The shell stays in place. Routes select a view or project. A
+              shared host opens the selected case study.
+            </SectionHeading>
+            <PortfolioSystem />
+            <div className="tp-support-strip">
+              <span>SUPPORTING MATERIALS</span>
+              <span>SCSS / layout</span>
+              <span>CSS / choreography</span>
+              <span>GLB + images / assets</span>
+              <span>Jest + browser review / QA</span>
+            </div>
+          </section>
+
+          <section
+            className="tp-section tp-worlds-section"
+            id="tp-worlds"
+            aria-labelledby="tp-worlds-title"
+          >
+            <SectionHeading
+              number="03"
+              label="PROJECT WORLDS / CURRENT EXPERIENCE"
+              id="tp-worlds-title"
+              title="One system. Different worlds."
+            >
+              Three finished case-study identities, presented through the same
+              portfolio shell and modal contract.
+            </SectionHeading>
+            <div className="tp-worlds">
+              {worlds.map((world, index) => (
+                <article
+                  className={`tp-world tp-world--${index} tp-scene`}
+                  key={world.name}
+                >
+                  <div className="tp-contact-label">
+                    <span>EXHIBIT / 0{index + 1}</span>
+                    <span>CURRENT EXPERIENCE</span>
+                  </div>
+                  <PortfolioMedia
+                    src={world.src}
+                    width={world.width}
+                    height={world.height}
+                    name={`${world.name} current case study`}
+                    alt={`${world.name} current case study: ${world.note}`}
+                    caption={world.note}
+                  />
+                  <div className="tp-world-copy">
+                    <span className="tp-world-numeral" aria-hidden="true">
+                      0{index + 1}
+                    </span>
+                    <h3>{world.name}</h3>
+                    <p className="tp-world-direction">{world.direction}</p>
+                    <p>{world.motion}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+            <p className="tp-margin-note">
+              The presentation changes. The shared open / close behavior stays
+              consistent.
+            </p>
+          </section>
+
+          <section
+            className="tp-section tp-motion-section"
+            id="tp-motion"
+            aria-labelledby="tp-motion-title"
+          >
+            <SectionHeading
+              number="04"
+              label="MOTION / FRAME STUDIES"
+              id="tp-motion-title"
+              title={
+                <>
+                  Motion with
+                  <br />a point of view.
+                </>
+              }
+            >
+              Timing follows the project: a playful loop, a theatrical entrance,
+              a sequence that puts work in order.
+            </SectionHeading>
+            <MotionStudies />
+            <MotionTimeline
+              source={whaleKeyframes}
+              whale={whale}
+              loop={whaleLoop}
+            />
+            <details className="tp-archive">
+              <summary>Open the splash motion source</summary>
+              <SourceCrop
+                src={splashKeyframes}
+                width={1626}
+                height={1416}
+                top={380}
+                crop={300}
+                cropWidth={1025}
+                name="splash keyframes"
+                alt="Process archive: splash animation keyframes"
+                note="20–25% / original splash timing"
+              />
+            </details>
+          </section>
+
+          <section
+            className="tp-section tp-assets-section"
+            id="tp-assets"
+            aria-labelledby="tp-assets-title"
+          >
+            <SectionHeading
+              number="05"
+              label="3D + ASSETS / THE STUDIO PROCESS"
+              id="tp-assets-title"
+              title={
+                <>
+                  From Blender
+                  <br />
+                  to the browser.
+                </>
+              }
+            >
+              Some assets become live scenes. Others become rendered images.
+              Each has a place in the interface.
+            </SectionHeading>
+            <AssetPipeline selected={assetStage} onSelect={setAssetStage} />
+            <div className="tp-process-grid" data-stage={assetStage}>
+              <PortfolioMedia
+                src={logoModel}
+                width="1918"
+                height="990"
+                name="Blender signature source"
+                alt="Process archive: Blender signature model in its original modeling workspace"
+                label="PROCESS ARCHIVE / BLENDER"
+                caption="The signature, at its source."
+              />
+              <PortfolioMedia
+                src={signature}
+                width="1280"
+                height="900"
+                name="portfolio signature in the browser"
+                alt="Current portfolio home shell with the rendered 3D signature"
+                label="CURRENT EXPERIENCE / LIVE SCENE"
+                caption="logo.glb → the home signature."
+              />
+              <PortfolioMedia
+                src={resumeModel}
+                width="1918"
+                height="984"
+                name="Blender profile source"
+                alt="Process archive: Blender 3D profile environment and skill buildings"
+                label="PROCESS ARCHIVE / BLENDER"
+                caption="A profile built as a landscape."
+              />
+              <PortfolioMedia
+                src={profile}
+                width="512"
+                height="810"
+                name="portfolio 3D profile"
+                alt="Current portfolio 3D profile scene with interactive camera controls"
+                label="CURRENT EXPERIENCE / LIVE SCENE"
+                caption="landscape2.glb → the 3D Profile."
+              />
+            </div>
+            <div
+              className="tp-source-pair tp-integration-evidence"
+              data-stage={assetStage}
+            >
+              <div>
+                <p className="tp-label">SOURCE / ANIMATION INTEGRATION</p>
+                <h3>From a clip to a frame.</h3>
+                <p>
+                  This earlier source capture shows the same integration pattern
+                  used by the live scenes: create an animation mixer, play the
+                  model’s clips, and update the mixer from React Three Fiber’s
+                  frame loop.
+                </p>
+                <p>
+                  Rendered phone views use images; the signature and profile use
+                  live GLB scenes. Choose the medium for the moment.
+                </p>
+              </div>
+              <SourceCrop
+                src={useEffectCode}
+                width={821}
+                height={360}
+                top={0}
+                crop={360}
+                name="3D animation mixer"
+                alt="Process archive: Three.js AnimationMixer setup and clip playback"
+                note="AnimationMixer / original implementation capture"
+              />
+            </div>
+          </section>
+
+          <section
+            className="tp-section tp-experience-section"
+            id="tp-experience"
+            aria-labelledby="tp-experience-title"
+          >
+            <SectionHeading
+              number="06"
+              label="CODE + LOADING / EXPERIENCE"
+              id="tp-experience-title"
+              title="Bring in what belongs."
+            >
+              Loading and mounting follow the active view. The interface keeps
+              the surrounding navigation available.
+            </SectionHeading>
+            <div className="tp-experience-blocks">
+              <article>
+                <span className="tp-block-number">01</span>
+                <h3>Mount the selected project.</h3>
+                <p>
+                  The catalog imports the project components. The modal host
+                  renders the selected one; closing it removes that presentation
+                  and its local state.
+                </p>
+                <small>Conditional rendering / React</small>
+              </article>
+              <article>
+                <span className="tp-block-number">02</span>
+                <h3>Contain model loading.</h3>
+                <p>
+                  GLB loading suspends inside each Canvas. Scene readiness sets{" "}
+                  <code>aria-busy</code>; the 3D Profile enables its controls
+                  when the camera is ready.
+                </p>
+                <small>Suspense / useGLTF / readiness</small>
+              </article>
+              <article>
+                <span className="tp-block-number">03</span>
+                <h3>Defer supporting media.</h3>
+                <p>
+                  Case-study images and video embeds use native lazy loading.
+                  Media dimensions reserve space before the images arrive.
+                </p>
+                <small>loading="lazy" / image dimensions</small>
+              </article>
+            </div>
+          </section>
+
+          <section
+            className="tp-section tp-quality-section"
+            id="tp-quality"
+            aria-labelledby="tp-quality-title"
+          >
+            <SectionHeading
+              number="07"
+              label="ACCESSIBILITY / QUALITY"
+              id="tp-quality-title"
+              title="Considered, down to the details."
+            />
+            <QualitySheet
+              previews={{
+                desktop: { src: connection, width: 1280, height: 756 },
+                tablet: { src: connectionTablet, width: 768, height: 737 },
+                mobile: { src: connectionMobile, width: 390, height: 1141 },
+              }}
+            />
+          </section>
+
+          <section
+            className="tp-section tp-deployment-section"
+            id="tp-deployment"
+            aria-labelledby="tp-deployment-title"
+          >
+            <SectionHeading
+              number="08"
+              label="DEPLOYMENT / THE FINAL LAYER"
+              id="tp-deployment-title"
+              title={
+                <>
+                  A place for
+                  <br />
+                  the complete system.
+                </>
+              }
+            >
+              Firebase Hosting is configured to serve the production build, with
+              routes rewritten to the application entry point.
+            </SectionHeading>
+            <div className="tp-deploy-path tp-scene">
+              <span>REACT APPLICATION</span>
+              <span aria-hidden="true">→</span>
+              <span>PRODUCTION BUILD</span>
+              <span aria-hidden="true">→</span>
+              <span>FIREBASE HOSTING</span>
+              <span aria-hidden="true">→</span>
+              <span>ROUTED EXPERIENCE</span>
+            </div>
+            <div className="tp-deploy-note">
+              <code>firebase.json</code>
+              <p>
+                <code>public: "build"</code>
+                <br />
+                <code>** → /index.html</code>
+              </p>
+              <p>
+                Direct project links return to the same application shell. React
+                Router selects the view inside it.
+              </p>
+            </div>
+            <div className="tp-complete">
+              <FinalAssembly />
+              <p className="tp-label">09 / COMPLETE SYSTEM</p>
+              <h2>
+                Many layers.
+                <br />
+                One experience.
+              </h2>
+              <p>
+                Content, interface, motion and assets brought into alignment. A
+                portfolio that shows the work—and the craft behind its
+                presentation.
+              </p>
+              <span className="tp-complete-stamp">
+                DESIGNED / BUILT / CONNECTED
+              </span>
+            </div>
+            <div className="tp-copyright">
+              <Copyright />
+              <span>THIS PORTFOLIO / STUDIO ATLAS</span>
+            </div>
+          </section>
+        </main>
+      </div>
+      <ModalFooter
+        className="tp-footer"
+        role="group"
+        aria-label="Portfolio project actions"
+      >
+        <span className="tp-footer-note">
+          THE SYSTEM BEHIND THE WORK <span aria-hidden="true">↗</span>
+        </span>
+        <button type="button" className="tp-action" onClick={closeModal}>
+          Close
+        </button>
+        <a className="tp-action" href="mailto:22ibrahimkarim@gmail.com">
+          Email
+        </a>
+        <a
+          className="tp-action tp-action--primary"
+          href="https://github.com/ibrahim-karim-22/ibrahim-karim-portfolio"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          GitHub <span aria-hidden="true">↗</span>
+          <span className="visually-hidden"> (opens in a new tab)</span>
+        </a>
+      </ModalFooter>
+    </>
+  );
+}
+
+export default function ThisPortfolioModal({ isOpen, closeModal }) {
   return (
     <Modal
       isOpen={isOpen}
       toggle={closeModal}
       fullscreen
+      fade={false}
+      trapFocus
+      labelledBy="tp-project-title"
       className="this-portfolio-modal-main-div"
     >
-      {isOpen && (
-        <ModalHeader
-          toggle={closeModal}
-          className="this-portfolio-modal-header"
-        >
-          <div className="this-portfolio-modal-header-text">This Portfolio</div>
-        </ModalHeader>
-      )}
-      {isOpen && (
-        <ModalBody className="this-portfolio-modal-body-main">
-          <div className="this-portfolio-main-flex-container">
-            {/* PAGE 1 */}
-            <div className="this-portfolio-page-one">
-              <div className="this-portfolio-modal-info-container">
-                <div className="this-portfolio-modal-info">
-                  For this portfolio, I set out to challenge my design and
-                  styling skills. I used{" "}
-                  <span className="bold-text">React</span>, for the UI and{" "}
-                  <span className="bold-text">JavaScript </span> to implement{" "}
-                  <span style={{ fontStyle: "italic" }}>
-                    horizontal scrolling
-                  </span>{" "}
-                  and{" "}
-                  <span style={{ fontStyle: "italic" }}>loading progress</span>{" "}
-                  on launch. <span className="bold-text">Blender</span> and{" "}
-                  <span className="bold-text">React Three Fiber</span>{" "} were
-                  essential for modeling, animating, and rendering 3D objects
-                  like the portfolio title, Android phones, and the 3D resume.
-                  To optimize for various viewports, I applied modern{" "}
-                  <span className="bold-text">grid displays</span> with{" "}
-                  <span className="bold-text">flex containers</span>, which also
-                  played a key role in creating the stage curtain.{" "}
-                  <span className="bold-text">CSS animation keyframes </span>{" "}
-                  brought the Docker whale and other animations to life.
-                </div>
-              </div>
-            </div>
-
-            {/* PAGE 2 */}
-            <div className="this-portfolio-page-two">
-              <div className="grid-title-text-container">
-                <div className="grid-title-text">Grid Layout</div>
-              </div>
-              <div className="grid-paragraph-container">
-                <div className="grid-paragraph">
-                  I’ve become proficient with grid layouts and flex containers.
-                  When I first learned about grid displays, I was amazed at how
-                  straightforward they were to implement. I also learned to use{" "}
-                  <span className="bold-text"> vw </span> and{" "}
-                  <span className="bold-text">vh</span> units to size images,
-                  containers, and most recently, titles. This eliminated many
-                  unnecessary media queries and made it easier to adapt layouts
-                  for different devices. This approach has significantly
-                  simplified the process of aligning and organizing content
-                  across my portfolio.
-                </div>
-              </div>
-              <div className="grid-image-hey-you-container">
-                <img
-                  src={heyYouGrid}
-                  className="grid-image-hey-you"
-                  alt="grid image from hey you modal"
-                />
-              </div>
-              <div className="hey-you-grid-code-container">
-                <img
-                  src={heyYouGridCode}
-                  className="hey-you-grid-code"
-                  alt="hey you grid code"
-                />
-              </div>
-              <div className="curtain-grid-image-container">
-                <img
-                  src={curtainGrid}
-                  className="curtain-grid-image"
-                  alt="curtain grid image"
-                />
-              </div>
-              <div className="curtain-grid-code-container">
-                <img
-                  src={curtainGridCode}
-                  className="curtain-grid-code"
-                  alt="curtain grid code"
-                />
-              </div>
-            </div>
-            {/* PAGE 3 */}
-            <div className="this-portfolio-page-three">
-              <div className="css-animation-title-text-container">
-                <div className="css-animation-title-text">
-                  CSS animation keyframes
-                </div>
-              </div>
-
-              <div className="css-animation-paragraph-container">
-                <div className="css-animation-paragraph">
-                  I have a deep passion for working on animations. It fascinates
-                  me how countless elements come together frame by frame, which
-                  ties into my love for theatre and storytelling. Using
-                  keyframes felt natural, as it closely resembles animating 3D
-                  objects in Blender and 2D in ToonBoom Harmony. Both involve
-                  manipulating <span className="bold-text">x</span>,{" "}
-                  <span className="bold-text">y</span>, and{" "}
-                  <span className="bold-text">z</span> coordinates on an
-                  animation timeline. While coding keyframes required more
-                  mental visualization compared to the visual interfaces of
-                  Blender and Harmony, sketching ideas on paper made everything
-                  click.
-                </div>
-              </div>
-              <div className="whale-keyframes-image-hey-you-container">
-                <img
-                  src={whaleKeyframes}
-                  className="whale-keyframes-image-hey-you"
-                  alt="whale keyframes from css for hey you modal"
-                />
-              </div>
-              <div className="animation-whale-hey-you-container">
-                <img
-                  src={animationWhaleHeyYou}
-                  className="animation-whale-hey-you"
-                  alt="hey you modal whale animation"
-                />
-              </div>
-
-              <div className="splash-keyframes-image-hey-you-container">
-                <img
-                  src={splashKeyframes}
-                  className="splash-keyframes-image-hey-you"
-                  alt="splash keyframes from css for hey you modal"
-                />
-              </div>
-              <div className="animation-splash-hey-you-container">
-                <img
-                  src={animationSplashHeyYou}
-                  className="animation-splash-hey-you"
-                  alt="splash animation from hey you modal"
-                />
-              </div>
-            </div>
-            {/* PAGE 4 */}
-            <div className="this-portfolio-page-four">
-              <div className="three-dee-implementation-title-text-container">
-                <div className="three-dee-implementation-title-text">
-                  ThreeDee
-                </div>
-              </div>
-              <div className="three-dee-paragraph-container">
-                <div className="three-dee-paragraph">
-                  I designed and animated the portfolio logo, the Android phone,
-                  and the 3D portfolio using Blender. After creating these
-                  models, I exported them as{" "}
-                  <span className="bold-text">GLTF files</span> and used{" "}
-                  <span className="bold-text">React Three Fiber</span>{" "} to import
-                  and render them within React. This allowed me to integrate the
-                  3D elements into the interactive scene. Since there were many
-                  instances of the 3D phone model, I rendered them as images
-                  directly from Blender and imported the images, rather than
-                  using React Three Fiber to render each instance.
-                </div>
-              </div>
-              <div className="use-effect-image-container">
-                <img
-                  src={useEffectCode}
-                  className="use-effect-image"
-                  alt="use effect"
-                />
-              </div>
-              <div className="resume-canvas-image-container">
-                <img
-                  src={resumeCanvas}
-                  className="resume-canvas-image"
-                  alt="resume canvas"
-                />
-              </div>
-              <div className="logo-canvas-image-container">
-                <img
-                  src={logoCanvas}
-                  className="logo-canvas-image"
-                  alt="logo canvas"
-                />
-              </div>
-
-              <div className="logo-model-image-container">
-                <img
-                  src={logoModel}
-                  className="logo-model-image"
-                  alt="logo model"
-                />
-              </div>
-
-              <div className="resume-model-image-container">
-                <img
-                  src={resumeModel}
-                  className="resume-model-image"
-                  alt="resume model"
-                />
-              </div>
-              <div className="phone-blender-container">
-                <img
-                  src={phoneBlender}
-                  className="phone-blender"
-                  alt="phone blender"
-                />
-              </div>
-              <div className="fiber-container">
-                <img
-                  src={fiber}
-                  className="fiber"
-                  alt="react fiber three logo"
-                />
-              </div>
-              <div className="blender-logo-container">
-                <img
-                  src={blenderLogo}
-                  className="blender-logo"
-                  alt="blender logo"
-                />
-              </div>
-              <div className="design-one-container">
-                <div className="design-one"></div>
-              </div>
-              <div className="design-two-container"></div>
-              <div className="design-three-container"></div>
-            </div>
-
-            {/* PAGE 5 */}
-            <div className="this-portfolio-page-five">
-              <div className="java-script-title-text-container">
-                <div className="java-script-title-text">Java Script</div>
-              </div>
-              <div className="java-script-progress-paragraph-one-container">
-                <div className="java-script-progress-paragraph-one">
-                  <span className="bold-text">Loading Screen</span>: for smooth
-                  transitions when 3D GLTF models (3D portfolio & name logo) are
-                  loading I used a loading screen. This prevents any delays or
-                  stuttering when displaying 3D content.
-                </div>
-              </div>
-              <div className="java-script-progress-paragraph-two-container">
-                <div className="java-script-progress-paragraph-two">
-                  <span className="bold-text">Loading Indicator</span>: The
-                  progress bar tracks the loading of the GLTF file, showing
-                  users the progress in percentages.
-                </div>
-              </div>
-              <div className="progress-one-image-container">
-                <img
-                  src={progressOne}
-                  className="progress-one-image"
-                  alt="progress one"
-                />
-              </div>
-              <div className="java-script-progress-paragraph-three-container">
-                <div className="java-script-progress-paragraph-three">
-                  <span className="bold-text">Conditional Rendering</span>: I
-                  used the ternary operator to display the progress bar only
-                  while loading is in progress. This keeps the interface clean
-                  and only shows the loading indicator when needed.
-                </div>
-              </div>
-              <div className="progress-two-image-container">
-                <img
-                  src={progressTwo}
-                  className="progress-two-image"
-                  alt="progress two"
-                />
-              </div>
-
-              <div className="java-script-scroll-paragraph-one-container">
-                <div className="java-script-scroll-paragraph-one">
-                  <span className="bold-text">Horizontal Scroll</span>: For the
-                  "Hey You" modal, I created a custom horizontal scroll effect
-                  using JavaScript. This effect allows users to scroll
-                  horizontally, with content snapping to the center of the
-                  screen like a carousel.
-                </div>
-              </div>
-              <div className="java-script-scroll-paragraph-two-container">
-                <div className="java-script-scroll-paragraph-two">
-                  <span className="bold-text">Event Listeners</span>: I used
-                  onWheel and onScroll events to detect scrolling. The onWheel
-                  event translates vertical scrolling into horizontal movement,
-                  while onScroll makes the content snap to the nearest section
-                  when the user stops scrolling.
-                </div>
-              </div>
-              <div className="java-script-scroll-paragraph-three-container">
-                <div className="java-script-scroll-paragraph-three">
-                  <span className="bold-text">Magnetic Effect</span>: The
-                  "Magnetic Effect" works by continuously monitoring the scroll
-                  position as the user scrolls horizontally. When the scrolling
-                  stops (or decelerates significantly), the alignScroll function
-                  calculates which section is closest to the current scroll
-                  position. The mathematics in this process revolves around
-                  minimizing the distance between the current scroll position
-                  and the page positions. The section with the smallest distance
-                  is determined to be the nearest, and the scroll position is
-                  then adjusted (or "snapped") to align perfectly with this
-                  section, giving a magnetic-like snapping effect.
-                </div>
-              </div>
-              <div className="horizontal-scroll-image-container">
-                <img
-                  src={HorizontalScrollImage}
-                  className="horizontal-scroll-image"
-                  alt="horizontal scroll code"
-                />
-              </div>
-              <div className="lazy-load-info-container">
-                <div className="lazy-load-info">
-                  <span className="bold-text">Lazy Loading</span>: To make the
-                  app runs smoothly with the gltf files, CSS animations and gif
-                  that are scattered throughout this portfolio, I used lazy
-                  loading. Each modal in the Projects page containes conditional
-                  rendering using isOpen state to determine if the modal's
-                  header, body, and footer should be rendered. Once a modal
-                  closes the header, body, and footer are removed.
-                </div>
-              </div>
-              <div className="lazy-load-code-container">
-                <img
-                  src={conditionalRendering}
-                  className="lazy-load-code"
-                  alt="lazy load"
-                />
-              </div>
-            </div>
-
-            {/* PAGE 6 */}
-            <div className="this-portfolio-page-six">
-              <div className="this-portfolio-firebase-title-container">
-                <div className="this-portfolio-firebase-title">
-                  Web App Deployment
-                </div>
-              </div>
-              <div className="this-portfolio-firebase-info-container">
-                <div className="this-portfolio-firebase-info">
-                  To deploy this portfolio to a web app I used firebase
-                </div>
-              </div>
-              <div className="this-portfolio-firebase-logo-container">
-                <img
-                  src={firebase}
-                  className="this-portfolio-firebase-logo"
-                  alt="firebase logo"
-                />
-              </div>
-              <div className="this-portfolio-copyright-container">
-                <div className="copyright-text"><Copyright /></div>
-              </div>
-              <div className="batman">
-
-              <a target="_blank" href="https://icons8.com/icon/RizaLqSJehxS/batman">Batman</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
-              </div>
-            </div>
-          </div>
-        </ModalBody>
-      )}
-      {isOpen && (
-        <ModalFooter className="this-portfolio-modal-footer">
-          <Button
-            color="danger"
-            className="this-portfolio-modal-close-btn"
-            onClick={closeModal}
-          >
-            Close
-          </Button>
-          <Button
-            color="warning"
-            className="this-portfolio-site-btn"
-            onClick={() =>
-              (window.location.href = "mailto:22ibrahimkarim@gmail.com")
-            }
-          >
-            Email!
-          </Button>
-          <Button
-            color="info"
-            className="this-portfolio-modal-github-btn"
-            onClick={(src) =>
-              window.open(
-                "https://github.com/ibrahim-karim-22/ibrahim-karim-portfolio"
-              )
-            }
-          >
-            GitHub
-          </Button>
-        </ModalFooter>
-      )}
+      {isOpen && <StudioAtlas closeModal={closeModal} />}
     </Modal>
   );
 }
-
-export default ThisPortfolioModal;

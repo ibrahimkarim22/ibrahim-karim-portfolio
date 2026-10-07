@@ -14,13 +14,13 @@
 
 @keyframes heyYouModalTitleStartup {
   0% {
-    transform: translate(300px, 0px);
-    color: rgb(92, 92, 92);
+    transform: translate(var(--hey-you-title-distance, 300px), 0px);
+    color: var(--hey-you-title-start-ink, rgb(92, 92, 92));
   }
 
   100% {
     transform: translate(0px, 0px);
-    color: rgb(0, 0, 0);
+    color: var(--hey-you-title-ink, rgb(0, 0, 0));
   }
 }
 /*==========================
@@ -47,17 +47,17 @@
 
 @keyframes arrow {
   0% {
-    transform: translate(0vw, 0vh);
+    transform: translate(calc(0 * var(--hey-you-arrow-unit, 1vw)), 0vh);
   }
   25% {
-    transform: translate(-3vw, 0vh);
+    transform: translate(calc(-3 * var(--hey-you-arrow-unit, 1vw)), 0vh);
   }
   70% {
-    transform: translate(3vw, 0vh);
+    transform: translate(calc(3 * var(--hey-you-arrow-unit, 1vw)), 0vh);
   }
 
   100% {
-    transform: translate(0vw, 0vh);
+    transform: translate(calc(0 * var(--hey-you-arrow-unit, 1vw)), 0vh);
   }
 }
 
@@ -221,10 +221,10 @@
 ============================*/
 @keyframes keyHeyYouModal {
   0% {
-    transform: translate(0px, 800px) rotate(0deg);
+    transform: translate(0px, var(--hey-you-key-distance, 800px)) rotate(0deg);
   }
   100% {
-    transform: translate(0px, -800px) rotate(360deg);
+    transform: translate(0px, calc(-1 * var(--hey-you-key-distance, 800px))) rotate(360deg);
   }
 }
 
@@ -281,131 +281,131 @@
 
 @keyframes dockerLogo {
   0% {
-    transform: translate(10vw, 100vh) rotate(90deg); /*start*/
+    transform: translate(calc(10 * var(--hey-you-motion-x, 1vw)), calc(100 * var(--hey-you-motion-y, 1vh))) rotate(90deg); /*start*/
   }
   10% {
-    transform: translate(-2vw, -10vh) rotate(90deg); /*jump out of water*/
+    transform: translate(calc(-2 * var(--hey-you-motion-x, 1vw)), calc(-10 * var(--hey-you-motion-y, 1vh))) rotate(90deg); /*jump out of water*/
   }
   15% {
-    transform: translate(-3vw, -10vh) rotate(90deg); /*stay up move in air*/
+    transform: translate(calc(-3 * var(--hey-you-motion-x, 1vw)), calc(-10 * var(--hey-you-motion-y, 1vh))) rotate(90deg); /*stay up move in air*/
   }
   29% {
-    transform: translate(-20vw, 100vh) rotate(0deg); /*dive down and rotate back to normal*/
+    transform: translate(calc(-20 * var(--hey-you-motion-x, 1vw)), calc(100 * var(--hey-you-motion-y, 1vh))) rotate(0deg); /*dive down and rotate back to normal*/
   }
   50% {
-    transform: translate(-50vw, 0vh) rotate(22deg); /*rotate nose up dive up to surface moving to the left */
+    transform: translate(calc(-50 * var(--hey-you-motion-x, 1vw)), calc(0 * var(--hey-you-motion-y, 1vh))) rotate(22deg); /*rotate nose up dive up to surface moving to the left */
   }
 
   70% {
-    transform: translate(-60vw, 5vh) rotate(0deg); /*still moving to the left. floating above expo and Cloud Run containers */
+    transform: translate(calc(-60 * var(--hey-you-motion-x, 1vw)), calc(5 * var(--hey-you-motion-y, 1vh))) rotate(0deg); /*still moving to the left. floating above expo and Cloud Run containers */
   }
 
   74% {
-    transform: translate(-65vw, 0vh) rotate(15deg); /*get ready dive down*/
+    transform: translate(calc(-65 * var(--hey-you-motion-x, 1vw)), calc(0 * var(--hey-you-motion-y, 1vh))) rotate(15deg); /*get ready dive down*/
   }
   80% {
-    transform: translate(-67vw, 5vh) rotate(-80deg) skew(0deg, 10deg); /*moving left slightly to where the dive will happen. begin to rotate to dive down*/
+    transform: translate(calc(-67 * var(--hey-you-motion-x, 1vw)), calc(5 * var(--hey-you-motion-y, 1vh))) rotate(-80deg) skew(0deg, 10deg); /*moving left slightly to where the dive will happen. begin to rotate to dive down*/
   }
 
   99% {
-    transform: translate(-68vw, 70vh) rotate(-90deg) skew(0deg, -10deg); /*dive down*/
+    transform: translate(calc(-68 * var(--hey-you-motion-x, 1vw)), calc(120 * var(--hey-you-motion-y, 1vh))) rotate(-90deg) skew(0deg, -10deg); /*fully below the clipped scene before returning*/
   }
   100% {
-    transform: translate(0px, 100vh) rotate(90deg); /*reset*/
+    transform: translate(calc(10 * var(--hey-you-motion-x, 1vw)), calc(100 * var(--hey-you-motion-y, 1vh))) rotate(90deg); /*same hidden pose as 0%; return stays below the scene*/
   }
 }
 
 @keyframes waterSplashOne {
   0% {
-    transform: translate(0vw, 20vh) rotate(0deg) scale(1) skew(0deg, 0deg); /*splash is hidden by water's zindex no opacity*/
+    transform: translate(calc(0 * var(--hey-you-motion-x, 1vw)), calc(20 * var(--hey-you-motion-y, 1vh))) rotate(0deg) scale(1) skew(0deg, 0deg); /*splash is hidden by water's zindex no opacity*/
     opacity: 0;
   }
   10% {
-    transform: translate(0vw, 20vh) rotate(0deg) scale(1) skew(0deg, 0deg); /*keyframe extended*/
+    transform: translate(calc(0 * var(--hey-you-motion-x, 1vw)), calc(20 * var(--hey-you-motion-y, 1vh))) rotate(0deg) scale(1) skew(0deg, 0deg); /*keyframe extended*/
     opacity: 0;
   }
   15% {
-    transform: translate(0vw, 20vh) rotate(0deg) scale(1) skew(0deg, 0deg); /*keyframe extended*/
+    transform: translate(calc(0 * var(--hey-you-motion-x, 1vw)), calc(20 * var(--hey-you-motion-y, 1vh))) rotate(0deg) scale(1) skew(0deg, 0deg); /*keyframe extended*/
     opacity: 0;
   }
   20% {
-    transform: translate(2vw, 20vh) rotate(0deg) scale(1) skew(0deg, 0deg); /*keyframe extended*/
+    transform: translate(calc(2 * var(--hey-you-motion-x, 1vw)), calc(20 * var(--hey-you-motion-y, 1vh))) rotate(0deg) scale(1) skew(0deg, 0deg); /*keyframe extended*/
     opacity: 1;
   }
   25% {
-    transform: translate(4vw, -10vh) rotate(-20deg) scale(2.5)
+    transform: translate(calc(4 * var(--hey-you-motion-x, 1vw)), calc(-10 * var(--hey-you-motion-y, 1vh))) rotate(-20deg) scale(2.5)
       skew(20deg, 50deg); /*splash going up. opacity same. size increases*/
     opacity: 1;
   }
   50% {
-    transform: translate(4vw, 11vh) rotate(-20deg) scale(1); /*splash going down losing opacity and scaling down.*/
+    transform: translate(calc(4 * var(--hey-you-motion-x, 1vw)), calc(11 * var(--hey-you-motion-y, 1vh))) rotate(-20deg) scale(1); /*splash going down losing opacity and scaling down.*/
     opacity: 0;
   }
   70% {
-    transform: translate(4vw, 11vh) rotate(-20deg) scale(1); /*keyframe extended*/
+    transform: translate(calc(4 * var(--hey-you-motion-x, 1vw)), calc(11 * var(--hey-you-motion-y, 1vh))) rotate(-20deg) scale(1); /*keyframe extended*/
     opacity: 0;
   }
   74% {
-    transform: translate(4vw, 11vh) rotate(-20deg) scale(1); /*keyframe extended*/
+    transform: translate(calc(4 * var(--hey-you-motion-x, 1vw)), calc(11 * var(--hey-you-motion-y, 1vh))) rotate(-20deg) scale(1); /*keyframe extended*/
     opacity: 0;
   }
   80% {
-    transform: translate(4vw, 11vh) rotate(-20deg) scale(1); /*keyframe extended*/
+    transform: translate(calc(4 * var(--hey-you-motion-x, 1vw)), calc(11 * var(--hey-you-motion-y, 1vh))) rotate(-20deg) scale(1); /*keyframe extended*/
     opacity: 0;
   }
   99% {
-    transform: translate(4vw, 11vh) rotate(-20deg) scale(1); /*keyframe extended*/
+    transform: translate(calc(4 * var(--hey-you-motion-x, 1vw)), calc(11 * var(--hey-you-motion-y, 1vh))) rotate(-20deg) scale(1); /*keyframe extended*/
     opacity: 0;
   }
   100% {
-    transform: translate(-2vw, 11vh) rotate(0deg) scale(1); /*reset*/
+    transform: translate(calc(-2 * var(--hey-you-motion-x, 1vw)), calc(11 * var(--hey-you-motion-y, 1vh))) rotate(0deg) scale(1); /*reset*/
     opacity: 0;
   }
 }
 @keyframes waterSplashTwo {
   0% {
-    transform: translate(0vw, 20vh) rotate(0deg) scale(1) skew(0deg, 0deg); /*splash is hidden by water's zindex no opacity*/
+    transform: translate(calc(0 * var(--hey-you-motion-x, 1vw)), calc(20 * var(--hey-you-motion-y, 1vh))) rotate(0deg) scale(1) skew(0deg, 0deg); /*splash is hidden by water's zindex no opacity*/
     opacity: 0;
   }
   10% {
-    transform: translate(0vw, 20vh) rotate(0deg) scale(1) skew(0deg, 0deg); /*keyframe extended*/
+    transform: translate(calc(0 * var(--hey-you-motion-x, 1vw)), calc(20 * var(--hey-you-motion-y, 1vh))) rotate(0deg) scale(1) skew(0deg, 0deg); /*keyframe extended*/
     opacity: 0;
   }
   15% {
-    transform: translate(0vw, 20vh) rotate(0deg) scale(1) skew(0deg, 0deg); /*keyframe extended*/
+    transform: translate(calc(0 * var(--hey-you-motion-x, 1vw)), calc(20 * var(--hey-you-motion-y, 1vh))) rotate(0deg) scale(1) skew(0deg, 0deg); /*keyframe extended*/
     opacity: 0;
   }
   20% {
-    transform: translate(-2vw, 20vh) rotate(0deg) scale(1) skew(0deg, 0deg); /*keyframe extended*/
+    transform: translate(calc(-2 * var(--hey-you-motion-x, 1vw)), calc(20 * var(--hey-you-motion-y, 1vh))) rotate(0deg) scale(1) skew(0deg, 0deg); /*keyframe extended*/
     opacity: 1;
   }
   25% {
-    transform: translate(-4vw, -10vh) rotate(-20deg) scale(2.5)
+    transform: translate(calc(-4 * var(--hey-you-motion-x, 1vw)), calc(-10 * var(--hey-you-motion-y, 1vh))) rotate(-20deg) scale(2.5)
       skew(-20deg, -50deg); /*splash going up. opacity same. size increases*/
     opacity: 1;
   }
   50% {
-    transform: translate(-4vw, 11vh) rotate(-20deg) scale(1); /*splash going down losing opacity and scaling down.*/
+    transform: translate(calc(-4 * var(--hey-you-motion-x, 1vw)), calc(11 * var(--hey-you-motion-y, 1vh))) rotate(-20deg) scale(1); /*splash going down losing opacity and scaling down.*/
     opacity: 0;
   }
   70% {
-    transform: translate(-4vw, 11vh) rotate(-20deg) scale(1); /*keyframe extended*/
+    transform: translate(calc(-4 * var(--hey-you-motion-x, 1vw)), calc(11 * var(--hey-you-motion-y, 1vh))) rotate(-20deg) scale(1); /*keyframe extended*/
     opacity: 0;
   }
   74% {
-    transform: translate(-4vw, 11vh) rotate(-20deg) scale(1); /*keyframe extended*/
+    transform: translate(calc(-4 * var(--hey-you-motion-x, 1vw)), calc(11 * var(--hey-you-motion-y, 1vh))) rotate(-20deg) scale(1); /*keyframe extended*/
     opacity: 0;
   }
   80% {
-    transform: translate(-4vw, 11vh) rotate(-20deg) scale(1); /*keyframe extended*/
+    transform: translate(calc(-4 * var(--hey-you-motion-x, 1vw)), calc(11 * var(--hey-you-motion-y, 1vh))) rotate(-20deg) scale(1); /*keyframe extended*/
     opacity: 0;
   }
   99% {
-    transform: translate(-4vw, 11vh) rotate(-20deg) scale(1); /*keyframe extended*/
+    transform: translate(calc(-4 * var(--hey-you-motion-x, 1vw)), calc(11 * var(--hey-you-motion-y, 1vh))) rotate(-20deg) scale(1); /*keyframe extended*/
     opacity: 0;
   }
   100% {
-    transform: translate(2vw, 11vh) rotate(0deg) scale(1); /*reset*/
+    transform: translate(calc(2 * var(--hey-you-motion-x, 1vw)), calc(11 * var(--hey-you-motion-y, 1vh))) rotate(0deg) scale(1); /*reset*/
     opacity: 0;
   }
 }
@@ -422,4 +422,28 @@
   100% {
     opacity: 1;
   }
+}
+
+// Both devices converge at 38%, the group pulses after synchronization, then
+// rests. Permanent paths/nodes keep the connected state visible at the seam.
+@keyframes heyYouSignalPulse {
+  0%, 38%, 100% { opacity: 0; transform: scale(0.25); }
+  42% { opacity: 0.75; transform: scale(0.32); }
+  70%, 90% { opacity: 0; transform: scale(1); }
+}
+@keyframes heyYouSignalLeft {
+  0%, 100% { opacity: 0; transform: translate(0, 0); }
+  8%, 12% { opacity: 0.9; transform: translate(0, 0); }
+  38%, 44% { opacity: 0.9; transform: translate(var(--hey-you-signal-dx), var(--hey-you-signal-dy)); }
+  50%, 90% { opacity: 0; transform: translate(var(--hey-you-signal-dx), var(--hey-you-signal-dy)); }
+}
+@keyframes heyYouSignalRight {
+  0%, 6%, 100% { opacity: 0; transform: translate(0, 0); }
+  12%, 18% { opacity: 0.9; transform: translate(0, 0); }
+  38%, 44% { opacity: 0.9; transform: translate(var(--hey-you-signal-dx), var(--hey-you-signal-dy)); }
+  50%, 90% { opacity: 0; transform: translate(var(--hey-you-signal-dx), var(--hey-you-signal-dy)); }
+}
+@keyframes heyYouSignalMeet {
+  0%, 32%, 65%, 100% { opacity: 0.25; }
+  38%, 46% { opacity: 0.95; }
 }

@@ -35,18 +35,19 @@ export const PROJECTS = [
     ModalComponent: BardModal,
   },
   {
-    id: "thisportfolio",
-    name: "Portfolio",
-    description: "This Portfolio",
-    technologies: ["JavaScript", "React", "Firebase", "SCSS", "Blender 3D", "React Three Fiber"],
-    ModalComponent: ThisPortfolioModal,
-  },
-  {
     id: "kanban",
     name: "Tuh-Doo / Kanban Board",
     description: "To Do List",
     technologies: ["JavaScript", "React", "SCSS", "Firebase", "Firestore"],
     ModalComponent: KanbanBoardModal,
+  },
+  // Keep this meta-project last; insert future projects before it.
+  {
+    id: "thisportfolio",
+    name: "Portfolio",
+    description: "This Portfolio",
+    technologies: ["JavaScript", "React", "Firebase", "SCSS", "Blender 3D", "React Three Fiber"],
+    ModalComponent: ThisPortfolioModal,
   },
 ];
 

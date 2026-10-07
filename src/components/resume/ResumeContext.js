@@ -8,9 +8,14 @@ export default function ResumeContext({ className = "" }) {
       <p className="home-context-panel__description">
         Web development, software projects, technical tools, and a background in visual design.
       </p>
-      <a className="resume-download" href={RESUME_PDF_PATH} download>
-        Download Resume
-      </a>
+      <div className="resume-context__actions">
+        <a className="resume-download" href={RESUME_PDF_PATH} download>
+          Download Resume
+        </a>
+        <a className="resume-view__open" href={RESUME_PDF_PATH} target="_blank" rel="noopener noreferrer">
+          Open Resume
+        </a>
+      </div>
     </div>
   );
 }

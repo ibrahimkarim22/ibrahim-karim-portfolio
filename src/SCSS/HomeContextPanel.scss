@@ -6,6 +6,8 @@
   animation: none;
   color: #393530;
   font-family: "Raleway", sans-serif;
+  font-size: clamp(1rem, 1.05vw, 1.125rem);
+  font-weight: 200;
   line-height: 1.6;
 }
 
@@ -82,12 +84,30 @@
   line-height: 1.6;
 }
 
+.home-context-panel__stack-label {
+  display: block;
+  margin-bottom: 0.45rem;
+  color: #865464;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.home-context-panel__stack-names {
+  display: block;
+  font-size: 0.8125rem;
+  line-height: 1.8;
+  overflow-wrap: break-word;
+}
+
 // Use the existing shell breakpoint: its center becomes a bounded overlay
 // here, so contextual captions must not compete with the selector or scene.
 @media (max-width: 1250px), (max-height: 700px) {
   .menu-div-main[data-active-view="projects"] .home-context-panel,
   .menu-div-main[data-active-view="resume"] .home-context-panel,
-  .menu-div-main[data-active-view="3d-profile"] .home-context-panel {
+  .menu-div-main[data-active-view="3d-profile"] .home-context-panel,
+  .menu-div-main[data-active-view="megaracer"] .home-context-panel {
     display: none;
   }
 }

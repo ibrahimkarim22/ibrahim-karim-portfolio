@@ -1,158 +1,87 @@
-/*==========================
-  HEADER
-============================*/
-
-@keyframes WhackaModalHeaderStartup {
-  0% {
-    transform: translate(0px, 0px);
-  }
-  30% {
-    transform: translate(0px, 0px);
-  }
-  50% {
-    scale: 2;
-  }
-  60% {
-    scale: 1;
-  }
-  70% {
-    transform: rotateX(50deg);
-  }
-  80% {
-    transform: rotateX(-50deg);
-  }
-  90% {
-    transform: rotateX(20deg);
-  }
+// Travel through the opening to its bottom; only the front lip covers the descent.
+@keyframes whackaMolePeek {
+  0%,
+  18%,
+  76%,
   100% {
-    transform: rotateX(0deg);
-  }
-}
-@keyframes whackaTextTwo {
-  0% {
-    transform: translate(-500px, 0px);
+    transform: translateY(calc(100% + var(--whacka-hole-depth)));
   }
 
-  100% {
-    transform: translate(0px, 0px);
-  }
-}
-/*==========================
-  BODY
-============================*/
-
-@keyframes whackaModalSubtextCyclical {
-  0% {
-    transform: translate(-22x, 0px);
-  }
-  50% {
-    transform: translate(22px, 0px);
-  }
-
-  100% {
-    color: rgb(0, 0, 0);
-    transform: translate(0px, 10px);
+  36%,
+  58% {
+    transform: translateY(0);
   }
 }
 
-@keyframes WhackaModalBodyStartup {
-  0% {
-    transform: translate(0px, 700px);
+@keyframes whackaModalSquash {
+  0% { transform: scaleY(var(--whacka-open-squash)); }
+  22% { transform: scaleY(var(--whacka-open-stretch)); }
+  46% { transform: scaleY(var(--whacka-open-recoil)); }
+  70% { transform: scaleY(var(--whacka-open-rebound)); }
+  100% { transform: scaleY(1); }
+}
+
+@keyframes whackaHeaderPop {
+  0% { transform: scale(0.96); }
+  22% { transform: scale(var(--whacka-header-pop)); }
+  40% { transform: scale(1); }
+  56% { transform: perspective(240px) rotateX(var(--whacka-header-tip)); }
+  72% { transform: perspective(240px) rotateX(calc(var(--whacka-header-tip) * -0.65)); }
+  86% { transform: perspective(240px) rotateX(calc(var(--whacka-header-tip) * 0.25)); }
+  100% { transform: none; }
+}
+
+@keyframes whackaHeaderSlide {
+  0% { transform: translateX(var(--whacka-header-slide)); }
+  72% { transform: translateX(2px); }
+  100% { transform: translateX(0); }
+}
+
+// The original footer bounced on entry; keep that gesture within each control.
+@keyframes whackaFooterStamp {
+  0% { transform: scale(var(--whacka-footer-squash)); }
+  30% { transform: scale(var(--whacka-footer-stretch)); }
+  62% { transform: scale(var(--whacka-footer-recoil)); }
+  100% { transform: scale(1); }
+}
+
+// Preserve the original seven-second Play color cycle using the current palette.
+@keyframes whackaFooterPlayPalette {
+  0%, 100% {
+    background-color: var(--whacka-red);
+    border-color: var(--whacka-red);
   }
-  100% {
-    transform: translate(0px, 0px);
+  33% {
+    background-color: #78e6a3;
+    border-color: #78e6a3;
+  }
+  66% {
+    background-color: var(--whacka-yellow);
+    border-color: var(--whacka-yellow);
   }
 }
 
-@keyframes WhackaModalFadeInBackground {
-  0% {
-    opacity: 0;
+// Discrete hit windows cover only the meaningfully visible part of each cycle.
+@keyframes whackaMoleAvailable {
+  0%, 29%, 65%, 100% {
+    pointer-events: none;
+    cursor: default;
   }
-  100% {
+
+  30%, 64% {
+    pointer-events: auto;
+    cursor: pointer;
+  }
+}
+
+@keyframes whackaHitScore {
+  0% {
     opacity: 1;
-  }
-}
-
-@keyframes whackaModalLogoCyclicalJs {
-  0% {
-    transform: translate(0px, 400px);
-  }
-
-  10% {
-    transform: translate(0px, -200px);
+    transform: translate(-50%, 0);
   }
 
   100% {
-    transform: translate(0px, 400px);
-  }
-}
-@keyframes whackaModalLogoCyclicalHtml {
-  0% {
-    transform: translate(0px, 400px);
-  }
-
-  60% {
-    transform: translate(0px, 400px);
-  }
-
-  70% {
-    transform: translate(0px, -200px);
-  }
-
-  100% {
-    transform: translate(0px, 400px);
-  }
-}
-@keyframes whackaModalLogoCyclicalSass {
-  0% {
-    transform: translate(0px, 400px);
-  }
-  30% {
-    transform: translate(0px, 400px);
-  }
-  40% {
-    transform: translate(0px, -150px);
-  }
-  100% {
-    transform: translate(0px, 400px);
-  }
-}
-
-/*==========================
-  FOOTER
-  ============================*/
-@keyframes whackaFooterBody {
-  0% {
-    scale: 0.2;
-  }
-  10% {
-    scale: 3;
-  }
-  20% {
-    scale: 0.2;
-  }
-  30% {
-    scale: 3;
-  }
-  40% {
-    scale: 0.2;
-  }
-  50% {
-    scale: 3;
-  }
-  60% {
-    scale: 0.2;
-  }
-  70% {
-    scale: 3;
-  }
-  80% {
-    scale: 0.2;
-  }
-  90% {
-    scale: 3;
-  }
-  100% {
-    scale: 1;
+    opacity: 0;
+    transform: translate(-50%, -6px);
   }
 }
