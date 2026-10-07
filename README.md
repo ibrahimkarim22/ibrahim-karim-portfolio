@@ -1,70 +1,137 @@
-# Getting Started with Create React App
+# Ibrahim Karim Portfolio
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A custom interactive portfolio built to showcase my web development work, projects, technical experience, and design approach.
 
-## Available Scripts
+🔗 **Live site:** [ibrahimkarim-34158.web.app](https://ibrahimkarim-34158.web.app)
 
-In the project directory, you can run:
+## About
 
-### `npm start`
+This portfolio was built as more than a traditional project gallery. I wanted each section and project to have its own visual identity while still feeling like part of the same overall experience.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The site includes custom navigation, responsive layouts, animated and 3D elements, project-specific presentations, a resume experience, and separate desktop and mobile treatments.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Features
 
-### `npm test`
+- Custom responsive portfolio experience for desktop and mobile
+- Animated suspended neon logo and atmospheric home-page lighting
+- Custom navigation and project-selection interface
+- Individual project presentations instead of generic project cards
+- Interactive and animated project experiences
+- 3D profile presentation
+- Integrated resume viewer and downloadable PDF
+- Keyboard and accessibility-focused interactions
+- Reduced-motion support for animation-heavy elements
+- Responsive layouts designed specifically for smaller screens
+- Automated regression testing for navigation, projects, animation behavior, and UI state
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Featured Projects
 
-### `npm run build`
+### TUH-DOO
+A personal Kanban productivity application built around task creation, organization, and workflow progression.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### HeyYou
+A real-time mobile location-sharing and messaging application built for groups.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### KRISPY
+A responsive React media platform for browsing public-domain films and live streams.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Bard
+A React Native learning application focused on Shakespeare, quizzes, progress tracking, and achievements.
 
-### `npm run eject`
+### Whack a Mole
+An interactive browser game presented through a custom project experience.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Megaracer
+A custom interactive project presented through the portfolio's expanded project system.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Technologies
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Front End
+- React
+- JavaScript
+- HTML5
+- CSS3
+- Sass / SCSS
+- Three.js / 3D web graphics
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Testing
+- Jest
+- React Testing Library
 
-## Learn More
+### Tools
+- Git
+- GitHub
+- npm
+- VS Code
+- Browser DevTools
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Hosting
+- Firebase Hosting
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Running Locally
 
-### Code Splitting
+Clone the repository:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```bash
+git clone <repository-url>
+cd ibrahim-karim-portfolio
+```
 
-### Analyzing the Bundle Size
+Install dependencies:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```bash
+npm install
+```
 
-### Making a Progressive Web App
+Start the development server:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+```bash
+npm start
+```
 
-### Advanced Configuration
+The application will be available at:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+```text
+http://localhost:3000
+```
 
-### Deployment
+## Testing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Run the complete test suite:
 
-### `npm run build` fails to minify
+```bash
+CI=true npm test -- --runInBand
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Production Build
+
+Create an optimized production build:
+
+```bash
+npm run build
+```
+
+The compiled application will be generated in the `build` directory.
+
+## Deployment
+
+The portfolio is deployed through Firebase Hosting.
+
+```bash
+npx firebase-tools deploy --only hosting
+```
+
+## Design
+
+The portfolio uses a dark theatrical visual direction with custom lighting, motion, typography, and project-specific presentation styles.
+
+Rather than using one repeated card layout for every project, each project is given its own visual treatment while sharing the same overall navigation and interaction system.
+
+The responsive experience is intentionally adapted for mobile rather than simply shrinking the desktop layout.
+
+## Author
+
+**Ibrahim Karim**  
+Full-Stack Web & Mobile Developer
+
+[View the live portfolio](https://ibrahimkarim-34158.web.app)
