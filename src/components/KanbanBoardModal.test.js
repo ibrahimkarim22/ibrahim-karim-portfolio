@@ -13,6 +13,37 @@ it("names the dialog and exposes a focusable case study", () => {
   expect(screen.getByRole("region", { name: "Tuh-Doo case study" })).toHaveAttribute("tabindex", "0");
 });
 
+it("organizes the case study into named editorial sections and a clear workflow", () => {
+  openProject();
+  const idea = screen.getByRole("region", { name: "Make room for what matters." });
+  expect(within(idea).getByRole("heading", { name: "Make room for what matters.", level: 2 })).toBeInTheDocument();
+  const how = screen.getByRole("region", { name: "Create. Move. Finish." });
+  const steps = within(within(how).getByRole("list")).getAllByRole("listitem");
+  expect(steps).toHaveLength(3);
+  ["Create", "Move", "Finish"].forEach((name, index) => {
+    expect(within(steps[index]).getByRole("heading", { name, level: 3 })).toBeInTheDocument();
+  });
+  expect(screen.getByText("ROLE", { selector: "dt" })).toBeInTheDocument();
+  expect(screen.getByText("BUILT WITH", { selector: "dt" })).toBeInTheDocument();
+  expect(screen.getByText("FOCUS", { selector: "dt" })).toBeInTheDocument();
+  expect(screen.getByRole("region", { name: "Good work moves forward." })).toBeInTheDocument();
+  expect(screen.getByRole("region", { name: "One board. Your own rhythm." })).toBeInTheDocument();
+  expect(screen.getByRole("region", { name: "Small pieces. One thoughtful board." })).toBeInTheDocument();
+  expect(screen.queryByRole("progressbar")).not.toBeInTheDocument();
+});
+
+it("provides the same clearly labelled external project actions at the hero and footer", () => {
+  openProject();
+  const groups = [
+    screen.getByRole("group", { name: "Open the Tuh-Doo project" }),
+    screen.getByRole("group", { name: "Tuh-Doo project actions" }),
+  ];
+  groups.forEach((group) => {
+    expect(within(group).getByRole("link", { name: "Open board (opens in a new tab)" })).toHaveAttribute("href", "https://kanbanboardtodolist.web.app/");
+    expect(within(group).getByRole("link", { name: "GitHub (opens in a new tab)" })).toHaveAttribute("href", "https://github.com/ibrahimkarim22/kanbanboard");
+  });
+});
+
 it("moves focus to the workflow without creating a browser-history entry", async () => {
   openProject();
   const before = window.location.href;
@@ -77,24 +108,6 @@ it("restores the initial sample tasks with Reset board", async () => {
   expect(screen.getByRole("button", { name: "Reset board" })).toHaveFocus();
 });
 
-it("tracks reading progress and safely handles a body with no scroll distance", () => {
-  openProject();
-  const body = screen.getByRole("region", { name: "Tuh-Doo case study" });
-  Object.defineProperties(body, { scrollHeight: { configurable: true, value: 2000 }, clientHeight: { configurable: true, value: 500 } });
-  body.scrollTop = 750;
-  fireEvent.scroll(body);
-  expect(screen.getByRole("progressbar", { name: "Case study progress" })).toHaveAttribute("aria-valuenow", "50");
-  body.scrollTop = 1500;
-  fireEvent.scroll(body);
-  expect(screen.getByRole("progressbar", { name: "Case study progress" })).toHaveAttribute("aria-valuetext", "Complete");
-  body.scrollTop = 0;
-  fireEvent.scroll(body);
-  expect(screen.getByRole("progressbar", { name: "Case study progress" })).toHaveAttribute("aria-valuenow", "0");
-  Object.defineProperty(body, "scrollHeight", { configurable: true, value: 500 });
-  fireEvent.scroll(body);
-  expect(screen.getByRole("progressbar", { name: "Case study progress" })).toHaveAttribute("aria-valuenow", "100");
-});
-
 it("preserves all app and implementation captures with meaningful descriptions and full-size access", () => {
   openProject();
   expect(screen.getAllByRole("img", { name: /^Tuh-Doo app:/ }).map((img) => img.getAttribute("src"))).toEqual([
@@ -109,14 +122,23 @@ it("preserves all app and implementation captures with meaningful descriptions a
     expect(link).toHaveAttribute("target", "_blank");
     expect(link).toHaveAttribute("rel", "noopener noreferrer");
   });
-  expect(screen.getByRole("link", { name: /Open board/ })).toHaveAttribute("href", "https://kanbanboardtodolist.web.app/");
-  expect(screen.getByRole("link", { name: /GitHub/ })).toHaveAttribute("href", "https://github.com/ibrahimkarim22/kanbanboard");
+  screen.getAllByRole("link", { name: /Open board/ }).forEach((link) => {
+    expect(link).toHaveAttribute("href", "https://kanbanboardtodolist.web.app/");
+    expect(link).toHaveAttribute("target", "_blank");
+    expect(link).toHaveAttribute("rel", "noopener noreferrer");
+  });
+  screen.getAllByRole("link", { name: /GitHub/ }).forEach((link) => {
+    expect(link).toHaveAttribute("href", "https://github.com/ibrahimkarim22/kanbanboard");
+    expect(link).toHaveAttribute("target", "_blank");
+    expect(link).toHaveAttribute("rel", "noopener noreferrer");
+  });
 });
 
-it.each(["Close project", "Close"])("connects %s to the close action", async (name) => {
+it("connects the single project close control to the close action", async () => {
   const closeModal = jest.fn();
   render(<KanbanBoardModal isOpen closeModal={closeModal} />);
-  await userEvent.setup().click(screen.getByRole("button", { name, exact: true }));
+  expect(screen.queryByRole("button", { name: "Close", exact: true })).not.toBeInTheDocument();
+  await userEvent.setup().click(screen.getByRole("button", { name: "Close project", exact: true }));
   expect(closeModal).toHaveBeenCalledTimes(1);
 });
 
@@ -136,7 +158,7 @@ it("contains focus, restores the opener, and resets local state on reopening", a
   await waitFor(() => expect(screen.getByRole("dialog")).toHaveFocus());
   const user = userEvent.setup();
   await user.click(screen.getByRole("button", { name: "Move Outline the idea to In Progress" }));
-  const last = screen.getByRole("link", { name: /GitHub/ });
+  const last = within(screen.getByRole("group", { name: "Tuh-Doo project actions" })).getByRole("link", { name: /GitHub/ });
   last.focus();
   fireEvent.keyDown(last, { key: "Tab", keyCode: 9, which: 9 });
   expect(screen.getByRole("button", { name: "Close project" })).toHaveFocus();
@@ -147,5 +169,7 @@ it("contains focus, restores the opener, and resets local state on reopening", a
   expect(opener).toHaveFocus();
   rerender(project(true));
   expect(within(column("Backlog")).getByRole("listitem", { name: "Outline the idea" })).toBeInTheDocument();
-  expect(screen.getByRole("progressbar", { name: "Case study progress" })).toHaveAttribute("aria-valuenow", "0");
+  expect(within(column("Backlog")).getAllByRole("listitem")).toHaveLength(2);
+  expect(within(column("In Progress")).getAllByRole("listitem")).toHaveLength(2);
+  expect(within(column("Complete")).getAllByRole("listitem")).toHaveLength(1);
 });

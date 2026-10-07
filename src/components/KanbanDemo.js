@@ -1,6 +1,7 @@
 import { useLayoutEffect, useRef, useState } from "react";
 
 const columns = ["Backlog", "In Progress", "Complete"];
+const statusMarks = ["○", "◐", "●"];
 const initialTasks = [
   { id: "TD-01", title: "Outline the idea", detail: "Start with a clear purpose", column: 0 },
   { id: "TD-02", title: "Sketch the layout", detail: "Make room for the next step", column: 0 },
@@ -55,7 +56,7 @@ export default function KanbanDemo() {
   return (
     <section className="td-demo" aria-label="Interactive sample board" aria-describedby="td-demo-instructions">
       <div className="td-demo-toolbar">
-        <div><span className="td-mini-brand" aria-hidden="true">▦</span><strong>A little momentum</strong><span className="td-demo-label">Portfolio recreation</span></div>
+        <div><strong>A little momentum</strong><span className="td-demo-label">Portfolio recreation</span></div>
         <button className="td-reset" type="button" onClick={reset}><span aria-hidden="true">↺</span> Reset board</button>
       </div>
       <p id="td-demo-instructions" className="td-demo-instructions">Drag a card, or use its arrow buttons to move it. Five sample tasks. A fresh start every time.</p>
@@ -78,7 +79,7 @@ export default function KanbanDemo() {
                 if (id && activeDrag.current === id) moveTask(id, index);
                 endDrag();
               }}>
-              <div className="td-column-heading"><h3><span className="td-state-dot" aria-hidden="true" />{name}</h3><span className="td-column-count" aria-label={`${tasks.filter((task) => task.column === index).length} tasks`}>{tasks.filter((task) => task.column === index).length}</span></div>
+              <div className="td-column-heading"><h3><span className="td-state-dot" aria-hidden="true">{statusMarks[index]}</span>{name}</h3><span className="td-column-count" aria-label={`${tasks.filter((task) => task.column === index).length} tasks`}>{tasks.filter((task) => task.column === index).length}</span></div>
               <ul className="td-task-list">
                 {tasks.filter((task) => task.column === index).map((task) => (
                   <li key={task.id} aria-label={task.title} draggable
@@ -90,12 +91,12 @@ export default function KanbanDemo() {
                       event.dataTransfer.effectAllowed = "move";
                       setDragged(task.id);
                     }} onDragEnd={endDrag}>
-                    <div className="td-task-topline"><span>{task.id}</span><span className="td-task-grip" aria-hidden="true">⠿</span></div>
-                    <p className="td-task-title"><span className="td-task-check" aria-hidden="true">{index === 2 ? "✓" : ""}</span>{task.title}</p>
+                    <div className="td-task-topline"><span>{task.id.replace("TD-", "")}</span><span className="td-task-grip" aria-hidden="true">⠿</span></div>
+                    <p className="td-task-title">{task.title}</p>
                     <p className="td-task-detail">{task.detail}</p>
-                    <div className="td-task-bottomline"><span className="td-task-state">{index === 2 ? "Done" : index === 1 ? "In motion" : "Up next"}</span><div className="td-task-controls">
-                      {index > 0 && <button type="button" data-direction="left" aria-label={`Move ${task.title} to ${columns[index - 1]}`} onClick={() => moveTask(task.id, index - 1, "left")}><span className="td-task-arrow-desktop" aria-hidden="true">←</span><span className="td-task-arrow-mobile" aria-hidden="true">↑</span></button>}
-                      {index < 2 && <button type="button" data-direction="right" aria-label={`Move ${task.title} to ${columns[index + 1]}`} onClick={() => moveTask(task.id, index + 1, "right")}><span className="td-task-arrow-desktop" aria-hidden="true">→</span><span className="td-task-arrow-mobile" aria-hidden="true">↓</span></button>}
+                    <div className="td-task-bottomline"><span className="td-task-state"><span aria-hidden="true">{statusMarks[index]}</span> {name}</span><div className="td-task-controls">
+                      {index > 0 && <button type="button" data-direction="left" aria-label={`Move ${task.title} to ${columns[index - 1]}`} onClick={() => moveTask(task.id, index - 1, "left")}><span className="td-task-arrow-desktop" aria-hidden="true">←</span></button>}
+                      {index < 2 && <button type="button" data-direction="right" aria-label={`Move ${task.title} to ${columns[index + 1]}`} onClick={() => moveTask(task.id, index + 1, "right")}><span className="td-task-arrow-desktop" aria-hidden="true">→</span></button>}
                     </div></div>
                   </li>
                 ))}
@@ -105,7 +106,7 @@ export default function KanbanDemo() {
           ))}
         </div>
       </div>
-      <div className="td-demo-bottom"><span><span aria-hidden="true">✓</span> {completed} of 5 complete</span><div className="td-demo-meter" aria-hidden="true"><span style={{ width: `${completed * 20}%` }} /></div><span className="td-demo-footnote">Small moves. Clear progress.</span></div>
+      <div className="td-demo-bottom"><span>{completed} of 5 complete</span><span className="td-demo-footnote">Small moves. Clear progress.</span></div>
       <p className="visually-hidden" role="status" aria-live="polite" aria-atomic="true">{announcement}</p>
     </section>
   );

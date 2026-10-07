@@ -1,0 +1,296 @@
+// Shared theme colors transition independently of the persistent candle loops.
+@property --section-light { syntax: "<color>"; inherits: true; initial-value: #e6dabf; }
+@property --candle-flame-color { syntax: "<color>"; inherits: true; initial-value: #e6dabf; }
+
+:root {
+  --portfolio-light-pool-layer: 203;
+  --portfolio-light-fixture-layer: 204;
+}
+
+body:has(.menu-div-main),
+.menu-div-main {
+  background-color: var(--home-environment-color);
+  transition: --section-light 800ms ease, --candle-flame-color 420ms 180ms ease;
+}
+
+body:has(.menu-div-main:not([data-active-view="home"])),
+.menu-div-main:not([data-active-view="home"]) { background-color: #000; }
+
+.menu-div-main {
+  --light-source-x: 83vw;
+  --light-source-y: calc(env(safe-area-inset-top) + 53px);
+  --candle-source-x: calc(var(--candle-left) + var(--candle-width) / 2);
+  --candle-source-y: calc(100dvh - var(--candle-height) * 0.8);
+  position: relative;
+  isolation: isolate;
+  box-shadow: none;
+
+  &::before,
+  &::after {
+    content: "";
+    position: fixed;
+    z-index: -1;
+    inset: 0;
+    pointer-events: none;
+  }
+  // A restrained pool at the glass reaches Projects, then falls into darkness.
+  &::before {
+    background:
+      radial-gradient(circle 10vw at var(--light-source-x) var(--light-source-y), color-mix(in srgb, var(--section-light) 55%, #787878) 5%, color-mix(in srgb, var(--section-light) 45%, #484848) 25%, color-mix(in srgb, var(--section-light) 35%, #000) 48%, color-mix(in srgb, var(--section-light) 12%, #000) 72%, transparent 100%),
+      radial-gradient(circle 8vw at var(--light-source-x) var(--light-source-y), color-mix(in srgb, var(--section-light) 9%, transparent), transparent 100%);
+  }
+  &::after {
+    background: radial-gradient(ellipse clamp(9rem, 18vw, 19rem) clamp(10rem, 28dvh, 18rem) at var(--candle-source-x) var(--candle-source-y), color-mix(in srgb, var(--candle-flame-color) 27%, transparent), color-mix(in srgb, var(--candle-flame-color) 9%, transparent) 38%, transparent 100%);
+    animation: portfolio-candle-glow 2600ms ease-in-out infinite;
+    filter: opacity(1);
+    transition: filter 640ms ease;
+  }
+}
+
+.menu-div-main[data-light-theme="home"]::after { filter: opacity(0); }
+.menu-div-main:not([data-active-view="home"])[data-light-phase="changing"]::before { animation: var(--bulb-pulse-name, portfolio-bulb-change) 900ms linear both; }
+
+// Home uses the shared black environment, with the existing corner shading intact.
+.menu-div-main[data-active-view="home"] {
+  color: var(--home-color-primary);
+
+  > .home-context-panel {
+    color: var(--home-color-body);
+    font-family: var(--home-interface-font);
+  }
+
+  .home-context-panel__bio {
+    color: var(--home-color-body);
+    font-family: var(--home-interface-font);
+    font-weight: 400;
+  }
+
+  .portfolio-navigation {
+    --navigation-ink: var(--home-color-primary);
+    --navigation-paper: var(--home-color-primary);
+    --navigation-word-color: var(--home-color-primary);
+    --navigation-accent: var(--home-color-accent);
+    font-family: var(--home-interface-font);
+
+    > .navigation-home { color: var(--home-color-primary); }
+    .navigation-destination .navigation-word { color: var(--home-color-primary); }
+    .navigation-home[aria-current="page"] .navigation-home__label,
+    .navigation-home:is(:hover, :focus-visible) .navigation-home__label,
+    .navigation-destination:is(:hover, :focus-visible, [data-motion-phase="playing"], [data-motion-phase="held"], [aria-current="page"]) .navigation-word {
+      color: var(--home-color-accent);
+    }
+    .navigation-destination--projects,
+    .navigation-destination--resume,
+    .navigation-destination--profile,
+    .navigation-destination--racer { --destination-fill: var(--home-color-accent); }
+    .navigation-channel--red { color: var(--home-color-rose); }
+    .navigation-channel--cyan { color: var(--home-color-accent); }
+    .navigation-stereo-register__red { stroke: var(--home-color-rose); }
+    .navigation-stereo-register__cyan { stroke: var(--home-color-accent); }
+  }
+
+  .full-stack-div {
+    color: var(--home-color-secondary);
+    font-family: var(--home-interface-font);
+  }
+
+  .contact-items > a {
+    color: var(--home-color-secondary);
+
+    &:is(:hover, :focus-visible) { color: var(--home-color-accent); }
+    &:focus-visible { outline-color: var(--home-color-accent); }
+  }
+
+  .home-copyright-container > .copyright-text {
+    color: var(--home-color-secondary);
+    font-family: var(--home-interface-font);
+    font-size: 0.75rem;
+    font-weight: 400;
+  }
+
+  .home-about__trigger {
+    border-color: color-mix(in srgb, var(--home-color-secondary) 55%, transparent);
+    background: #000;
+    color: var(--home-color-primary);
+    font-family: var(--home-interface-font);
+
+    &:is(:hover, :focus-visible) {
+      border-color: var(--home-color-accent);
+      background: #000;
+      color: var(--home-color-accent);
+    }
+    &:focus-visible { outline-color: var(--home-color-accent); }
+  }
+
+  @media (max-width: 700px), (max-width: 1250px) and (max-height: 500px) {
+    .home-about__trigger {
+      position: relative;
+      min-height: 32px;
+      padding: 0.15rem 0.4rem;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      font-size: 0.8rem;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      text-decoration: underline;
+      text-decoration-color: color-mix(in srgb, var(--home-color-accent) 55%, transparent);
+      text-decoration-thickness: 1px;
+      text-underline-offset: 0.3em;
+      // Keep a 44px tap target without allocating a full button-sized row.
+      &::before { content: ""; position: absolute; inset: -6px 0; }
+      &:is(:hover, :focus-visible) {
+        background: transparent;
+        text-decoration-color: var(--home-color-accent);
+      }
+    }
+  }
+
+  &::before,
+  &::after { background: none; }
+  .home-center-view { box-shadow: none; }
+}
+
+.menu-div-main:not([data-active-view="home"]) {
+  // Light crosses opaque cards and embedded viewers, while remaining below
+  // its physical sources. Black gradient stops add no darkness in screen mode.
+  &::before,
+  &::after {
+    z-index: var(--portfolio-light-pool-layer);
+    mix-blend-mode: screen;
+  }
+
+  > .home-context-panel {
+    color: #eee9df;
+    .home-context-panel__heading { color: #eee9df; }
+    .home-context-panel__description { color: #c5c4c0; }
+    .home-context-panel__detail { color: #b1b4b7; border-color: #3c4045; }
+    .home-context-panel__label,
+    .home-context-panel__stack-label { color: color-mix(in srgb, var(--section-light) 36%, #eee9df); }
+  }
+  .full-stack-div { color: #c4c1b9; }
+  // The darker wall needs readable ink, without adding light to the lower titles.
+  .portfolio-navigation[data-nav-mode="desktop"] {
+    --navigation-accent: var(--navigation-cinematic-hover);
+    --navigation-paper: var(--navigation-cinematic-ink);
+    --navigation-word-color: var(--navigation-paper);
+    > .navigation-home { color: var(--navigation-paper); }
+    .navigation-destination--resume { --destination-fill: #b090b5; }
+    .navigation-destination--profile { --destination-fill: var(--destination-source, #ffb45e); }
+    .navigation-destination--racer { --destination-fill: var(--destination-source, #c6ff00); }
+  }
+  .contact-items,
+  .home-copyright-container { background: transparent; }
+  .contact-items > a {
+    color: #dedbd3;
+    &:is(:hover, :focus-visible) { color: #f3ce70; }
+    &:focus-visible { outline-color: #f3ce70; }
+  }
+  .home-copyright-container > .copyright-text { color: #a8acaf; }
+}
+
+.menu-div-main:not([data-active-view="home"]) > .home-center-view { background-color: #000; box-shadow: none; }
+
+.portfolio-light {
+  position: fixed;
+  z-index: var(--portfolio-light-fixture-layer);
+  top: env(safe-area-inset-top);
+  left: calc(var(--light-source-x) - 21px);
+  width: 42px;
+  height: 84px;
+  pointer-events: none;
+
+  --pull-distance: 14px;
+  --pull-stretch: 1.22;
+  &__transition { position: absolute; inset: 0; width: 100%; height: 100%; }
+  &[data-light-phase="changing"] &__transition { animation: portfolio-bulb-change 900ms linear both; }
+  &__halo {
+    position: absolute;
+    top: 53px;
+    left: 21px;
+    width: 10rem;
+    height: 10rem;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle closest-side, color-mix(in srgb, var(--section-light) 22%, transparent), transparent);
+    pointer-events: none;
+  }
+  svg { position: relative; display: block; width: 100%; height: 100%; overflow: visible; }
+  &__cord { fill: none; stroke: #a39688; stroke-width: 1.5; }
+  &__cap { fill: #71655d; stroke: #4f4943; stroke-width: 1.5; }
+  &__glass { stroke: #655f57; stroke-width: 1.5; }
+  &__glass--unlit { fill: #a69d8833; }
+  &__core { stop-color: color-mix(in srgb, var(--section-light) 18%, #fffaf0); }
+  &__rim { stop-color: var(--section-light); }
+  &__filament { fill: none; stroke: #fff4dc; stroke-width: 1.5; opacity: 0.85; }
+  &__reflection { fill: none; stroke: #fff9ed; stroke-width: 2; opacity: 0.5; }
+  &__socket { fill: none; stroke: #c3b6a4; stroke-width: 1.5; }
+  &__pull-mount,
+  &__pull-thread { fill: none; stroke: #aa9b86; stroke-width: 1.2; }
+  &__pull-thread { transform-box: view-box; transform-origin: 46px 46px; }
+  &__pull-toggle { fill: #bca889; stroke: #706253; stroke-width: 0.8; }
+  &[data-light-phase="changing"] &__pull-thread { animation: portfolio-cord-pull 900ms ease both; }
+  &[data-light-phase="changing"] &__pull-toggle { animation: portfolio-cord-toggle 900ms ease both; }
+}
+
+@keyframes portfolio-bulb-change {
+  0%, 16%, 34%, 100% { opacity: 1; }
+  8%, 25% { opacity: 0; }
+}
+@keyframes portfolio-bulb-change-replay {
+  0%, 16%, 34%, 100% { opacity: 1; }
+  8%, 25% { opacity: 0; }
+}
+@keyframes portfolio-cord-pull {
+  0%, 65%, 100% { transform: scaleY(1); }
+  12% { transform: scaleY(var(--pull-stretch)); }
+  30% { transform: scaleY(0.99); }
+  44% { transform: scaleY(1.03); }
+}
+@keyframes portfolio-cord-toggle {
+  0%, 65%, 100% { transform: translateY(0); }
+  12% { transform: translateY(var(--pull-distance)); }
+  30% { transform: translateY(-0.8px); }
+  44% { transform: translateY(2.3px); }
+}
+@keyframes portfolio-light-fade {
+  from { opacity: 0.8; }
+  to { opacity: 1; }
+}
+
+@media (max-width: 1250px), (max-height: 700px) {
+  .menu-div-main {
+    --light-source-x: calc(100vw - max(env(safe-area-inset-right), 14px) - 14px);
+    --light-source-y: calc(env(safe-area-inset-top) + 34px);
+    --candle-source-y: calc(100% - var(--candle-height) * 0.8);
+    &::before { background: radial-gradient(circle clamp(7rem, 32vw, 10rem) at var(--light-source-x) var(--light-source-y), color-mix(in srgb, var(--section-light) 18%, transparent), color-mix(in srgb, var(--section-light) 5%, transparent) 44%, transparent 100%); }
+    &::after { position: absolute; background: radial-gradient(ellipse 8rem 9rem at var(--candle-source-x) var(--candle-source-y), color-mix(in srgb, var(--candle-flame-color) 26%, transparent), color-mix(in srgb, var(--candle-flame-color) 8%, transparent) 38%, transparent 100%); }
+  }
+  .menu-div-main[data-active-view] .contact-items { box-sizing: border-box; padding-left: calc(var(--candle-left) + var(--candle-width) + 0.5rem); }
+  .menu-div-main[data-active-view="home"] {
+    &::before { background: radial-gradient(ellipse 32vw 30dvh at 0% 72%, #29212c22, transparent), radial-gradient(ellipse 30vw 25dvh at 100% 100%, #29212c2e, transparent); }
+    &::after { background: radial-gradient(ellipse 7rem 8rem at var(--candle-source-x) var(--candle-source-y), color-mix(in srgb, var(--candle-flame-color) 16%, transparent), transparent); }
+  }
+  .portfolio-light { left: auto; right: max(env(safe-area-inset-right), 14px); width: 28px; height: 56px; }
+  .portfolio-light__halo { top: 34px; left: 14px; width: 7rem; height: 7rem; }
+  .menu-div-main[data-active-view="projects"] .portfolio-navigation[data-nav-mode="compact"] { background: transparent; }
+  .menu-div-main[data-active-view="projects"] {
+    > .home-center-view,
+    > .contact-items,
+    > .home-copyright-container { background-color: transparent; }
+  }
+  .menu-div-main:is([data-active-view="resume"], [data-active-view="3d-profile"], [data-active-view="megaracer"]) > .home-center-view { background-color: #000; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body:has(.menu-div-main),
+  .menu-div-main { transition: --section-light 240ms ease, --candle-flame-color 240ms ease; }
+  .menu-div-main::after { animation: portfolio-candle-glow-shimmer 3400ms ease-in-out infinite; }
+  .menu-div-main::after { transition-duration: 240ms; }
+  .menu-div-main:not([data-active-view="home"])[data-light-phase="changing"]::before { animation: var(--bulb-pulse-name, portfolio-bulb-change) 240ms ease both; }
+  @keyframes portfolio-bulb-change { from { opacity: 0.8; } to { opacity: 1; } }
+  @keyframes portfolio-bulb-change-replay { from { opacity: 0.8; } to { opacity: 1; } }
+  .portfolio-light { --pull-distance: 3px; --pull-stretch: 1.04; }
+  .portfolio-light[data-light-phase="changing"] .portfolio-light__transition { animation: portfolio-light-fade 240ms ease both !important; }
+  .portfolio-light[data-light-phase="changing"] .portfolio-light__pull-thread { animation: portfolio-cord-pull 240ms ease both !important; }
+  .portfolio-light[data-light-phase="changing"] .portfolio-light__pull-toggle { animation: portfolio-cord-toggle 240ms ease both !important; }
+}

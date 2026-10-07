@@ -3,6 +3,7 @@ import ProjectSelector from "../projects/ProjectSelector";
 import { PROJECTS } from "../projects/projectCatalog";
 import ThreeDProfileView from "../profile/ThreeDProfileView";
 import ResumeView from "../resume/ResumeView";
+import MegaracerView from "../megaracer/MegaracerView";
 import { PORTFOLIO_VIEWS } from "./portfolioRouteState";
 
 const VIEW_LABELS = {
@@ -10,9 +11,10 @@ const VIEW_LABELS = {
   [PORTFOLIO_VIEWS.PROJECTS]: "Projects",
   [PORTFOLIO_VIEWS.RESUME]: "Resume",
   [PORTFOLIO_VIEWS.THREE_D_PROFILE]: "3D Profile",
+  [PORTFOLIO_VIEWS.MEGARACER]: "Megaracer",
 };
 
-export default function HomeCenterView({ activeView, onBackHome, onSelectProject, projectPreview, headingRef }) {
+export default function HomeCenterView({ activeView, onSelectProject, projectPreview, headingRef }) {
   return (
     <section
       id="home-center-view"
@@ -26,22 +28,17 @@ export default function HomeCenterView({ activeView, onBackHome, onSelectProject
       {activeView === PORTFOLIO_VIEWS.PROJECTS ? (
         <ProjectSelector
           projects={PROJECTS}
-          onBackHome={onBackHome}
           onSelectProject={onSelectProject}
           previewProjectId={projectPreview.previewProjectId}
           onPreviewEnter={projectPreview.onPreviewEnter}
           onPreviewLeave={projectPreview.onPreviewLeave}
         />
       ) : activeView === PORTFOLIO_VIEWS.RESUME ? (
-        <ResumeView onBackHome={onBackHome} />
+        <ResumeView />
+      ) : activeView === PORTFOLIO_VIEWS.MEGARACER ? (
+        <MegaracerView />
       ) : activeView === PORTFOLIO_VIEWS.THREE_D_PROFILE ? (
         <div className="home-profile-view">
-          <header className="home-profile-view__header">
-            <button className="home-profile-view__back" type="button" onClick={onBackHome}>
-              <span aria-hidden="true">←</span>
-              <span>Back to Home</span>
-            </button>
-          </header>
           <div className="home-profile-view__scene">
             <ThreeDProfileView />
           </div>

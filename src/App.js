@@ -15,6 +15,7 @@ export function PortfolioRoutes() {
         <Route path="projects/:projectId" element={null} />
         <Route path="resume" element={null} />
         <Route path="threeDeeResume" element={null} />
+        <Route path="megaracer" element={null} />
       </Route>
     </Routes>
   );

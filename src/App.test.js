@@ -29,8 +29,8 @@ const projectCases = [
   ["krispy", "KRISPY", KrispyModal],
   ["heyyou", "HeyYou", HeyYouModal],
   ["bard", "BARD", BardModal],
-  ["thisportfolio", "Portfolio", ThisPortfolioModal],
   ["kanban", "Tuh-Doo / Kanban Board", KanbanBoardModal],
+  ["thisportfolio", "Portfolio", ThisPortfolioModal],
 ];
 
 function LocationProbe() {
@@ -62,6 +62,12 @@ function advance(milliseconds = 5000) {
   act(() => jest.advanceTimersByTime(milliseconds));
 }
 
+async function selectCompactDestination(user, name) {
+  await user.click(screen.getByRole("button", { name: "Navigate", exact: true }));
+  const dialog = screen.getByRole("dialog", { name: "Choose a destination" });
+  await user.click(within(dialog).getByRole("button", { name, exact: true }));
+}
+
 function expectPath(path) {
   expect(screen.getByLabelText("Current path")).toHaveTextContent(new RegExp(`^${path}$`));
 }
@@ -74,6 +80,7 @@ function expectCenter(view) {
     within(center).queryByRole("region", { name: "Projects" }),
     within(center).queryByTitle("Ibrahim Karim resume PDF"),
     within(center).queryByLabelText("Interactive 3D profile"),
+    within(center).queryByTitle("Megaracer / TypeRacer profile preview"),
   ].filter(Boolean);
   expect(renderedViews).toHaveLength(1);
   return center;
@@ -94,19 +101,25 @@ function expectPreservedContent(view = "Home") {
   expect(resume).not.toHaveAttribute("href");
   expect(resume).not.toHaveAttribute("target");
   [
-    ["Linkedin", "https://www.linkedin.com/in/ibrahim-karim-abaa952a7/"],
-    ["Github", "https://github.com/ibrahimkarim22"],
-    ["Gmail", "mailto:22ibrahimkarim@gmail.com"],
-    ["Megaracer", "https://data.typeracer.com/pit/profile?user=ib_ra_heem_22"],
+    ["LinkedIn", "https://www.linkedin.com/in/ibrahim-karim-abaa952a7/"],
+    ["GitHub", "https://github.com/ibrahimkarim22"],
+    ["Email", "mailto:22ibrahimkarim@gmail.com"],
   ].forEach(([name, href]) => {
     const link = screen.getByRole("link", { name });
     expect(link).toHaveAttribute("href", href);
     expect(link).toHaveAttribute("target", "_blank");
     expect(link).toHaveAttribute("rel", "noopener noreferrer");
   });
-  const preview = screen.getByTitle("TypeRacer profile for ib_ra_heem_22");
-  expect(preview).toHaveAttribute("src", "https://data.typeracer.com/pit/profile?user=ib_ra_heem_22");
-  expect(preview.closest("a")).toHaveAttribute("href", "https://data.typeracer.com/pit/profile?user=ib_ra_heem_22");
+  expect(screen.getByRole("button", { name: "Megaracer", exact: true })).not.toHaveAttribute("href");
+  const preview = screen.queryByTitle("Megaracer / TypeRacer profile preview");
+  if (view === "Megaracer") {
+    expect(preview).toHaveAttribute("src", "https://data.typeracer.com/pit/profile?user=ib_ra_heem_22");
+    expect(preview.closest("a")).toHaveAttribute("href", "https://data.typeracer.com/pit/profile?user=ib_ra_heem_22");
+    expect(preview.closest("a")).toHaveAttribute("target", "_blank");
+    expect(preview.closest("a")).toHaveAttribute("rel", "noopener noreferrer");
+  } else {
+    expect(preview).not.toBeInTheDocument();
+  }
   expect(screen.queryByAltText("TypeRacer.com scorecard for user ib_ra_heem_22")).not.toBeInTheDocument();
 }
 
@@ -115,6 +128,9 @@ let desktopHoverMedia;
 let desktopHoverListeners;
 let narrowLayoutMedia;
 let narrowLayoutListeners;
+let compactProjectsMedia;
+let compactProjectsListeners;
+let shortViewportMatches;
 
 beforeEach(() => {
   originalMatchMedia = window.matchMedia;
@@ -132,7 +148,19 @@ beforeEach(() => {
     addEventListener: jest.fn((event, listener) => narrowLayoutListeners.add(listener)),
     removeEventListener: jest.fn((event, listener) => narrowLayoutListeners.delete(listener)),
   };
-  window.matchMedia = jest.fn((query) => query === "(max-width: 1250px)" ? narrowLayoutMedia : desktopHoverMedia);
+  compactProjectsListeners = new Set();
+  shortViewportMatches = false;
+  compactProjectsMedia = {
+    get matches() { return narrowLayoutMedia.matches || shortViewportMatches; },
+    media: "(max-width: 1250px), (max-height: 700px)",
+    addEventListener: jest.fn((event, listener) => compactProjectsListeners.add(listener)),
+    removeEventListener: jest.fn((event, listener) => compactProjectsListeners.delete(listener)),
+  };
+  window.matchMedia = jest.fn((query) => {
+    if (query === narrowLayoutMedia.media) return narrowLayoutMedia;
+    if (query === compactProjectsMedia.media) return compactProjectsMedia;
+    return desktopHoverMedia;
+  });
   jest.useFakeTimers();
   jest.clearAllMocks();
   projectCases.forEach(([id, name, Component]) => {
@@ -169,7 +197,7 @@ describe("Home entrance lifecycle", () => {
     expect(screen.getByRole("button", { name: "Projects" })).toBeEnabled();
     expect(screen.getByRole("button", { name: "Resume" })).toBeEnabled();
     expect(screen.getByRole("button", { name: "3D Profile" })).toBeEnabled();
-    expect(screen.getByRole("link", { name: "Github" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "GitHub" })).toBeInTheDocument();
     expect(screen.getByText("Full-Stack Developer")).toBeInTheDocument();
     expect(screen.getByText(/Hello! I’m Ibrahim/)).toBeInTheDocument();
     expect(screen.queryByText("Loading...")).not.toBeInTheDocument();
@@ -180,6 +208,7 @@ describe("Home entrance lifecycle", () => {
     ["Projects", "/projects"],
     ["Resume", "/resume"],
     ["3D Profile", "/threeDeeResume"],
+    ["Megaracer", "/megaracer"],
   ])("%s removes the entrance and returning Home restores it without remounting the shell", async (label, path) => {
     const user = renderPortfolio();
     const shell = expectCenter("Home").closest(".menu-div-main");
@@ -191,7 +220,7 @@ describe("Home entrance lifecycle", () => {
     expect(expectCenter(label).closest(".menu-div-main")).toBe(shell);
     expect(shell).not.toHaveClass("home-entry");
 
-    await user.click(screen.getByRole("button", { name: "Back to Home" }));
+    await user.click(screen.getByRole("button", { name: "Home" }));
     expectPath("/");
     expect(expectCenter("Home").closest(".menu-div-main")).toBe(shell);
     expect(shell).toHaveClass("home-entry");
@@ -225,7 +254,7 @@ describe("Home entrance lifecycle", () => {
     const biography = screen.getByText(/Hello! I’m Ibrahim/);
     const title = screen.getByText("Full-Stack Developer");
     const navigation = screen.getByRole("navigation", { name: "Portfolio navigation" });
-    const contacts = screen.getByRole("link", { name: "Github" }).parentElement;
+    const contacts = screen.getByRole("link", { name: "GitHub" }).parentElement;
     expect(shell).toHaveClass("home-entry");
     const classChanges = [];
     const observer = new MutationObserver((records) => classChanges.push(...records));
@@ -240,7 +269,7 @@ describe("Home entrance lifecycle", () => {
       expect(screen.getByText(/Hello! I’m Ibrahim/)).toBe(biography);
       expect(screen.getByText("Full-Stack Developer")).toBe(title);
       expect(screen.getByRole("navigation", { name: "Portfolio navigation" })).toBe(navigation);
-      expect(screen.getByRole("link", { name: "Github" }).parentElement).toBe(contacts);
+      expect(screen.getByRole("link", { name: "GitHub" }).parentElement).toBe(contacts);
     } finally {
       observer.disconnect();
     }
@@ -279,7 +308,7 @@ test("navigation and Home restoration work before the old artificial completion 
   const navigation = screen.getByRole("navigation", { name: "Portfolio navigation" });
   await user.click(within(navigation).getByRole("button", { name: "Projects" }));
   expectPath("/projects");
-  await user.click(screen.getByRole("button", { name: "Back to Home" }));
+  await user.click(screen.getByRole("button", { name: "Home" }));
   expectPath("/");
   const biography = screen.getByText(/Hello! I’m Ibrahim/);
   expect(screen.getByRole("navigation", { name: "Portfolio navigation" })).toBe(navigation);
@@ -310,7 +339,7 @@ test.each([
   expect(expectCenter(label).closest(".menu-div-main")).toHaveAttribute("data-active-view", activeView);
 });
 
-test.each(["Projects", "Resume", "3D Profile"])("%s manages the bounded-view body class while preserving unrelated classes", async (label) => {
+test.each(["Resume", "3D Profile"])("%s manages the bounded-view body class while preserving unrelated classes", async (label) => {
   document.body.classList.add("existing-page-class");
   try {
     const user = renderPortfolio();
@@ -321,7 +350,7 @@ test.each(["Projects", "Resume", "3D Profile"])("%s manages the bounded-view bod
     await user.click(toggle);
     expect(document.body).toHaveClass("portfolio-bounded-view-open", "existing-page-class");
 
-    await user.click(screen.getByRole("button", { name: "Back to Home" }));
+    await user.click(screen.getByRole("button", { name: "Home" }));
     expectCenter("Home");
     expect(document.body).not.toHaveClass("portfolio-bounded-view-open");
     expect(document.body).toHaveClass("existing-page-class");
@@ -330,7 +359,7 @@ test.each(["Projects", "Resume", "3D Profile"])("%s manages the bounded-view bod
   }
 });
 
-test.each(["/projects", "/resume", "/threeDeeResume"])("unmounting %s removes the bounded-view body class", (path) => {
+test.each(["/resume", "/threeDeeResume"])("unmounting %s removes the bounded-view body class", (path) => {
   const { unmount } = render(
     <MemoryRouter initialEntries={[path]}>
       <PortfolioRoutes />
@@ -363,30 +392,163 @@ describe("body overflow ownership with Reactstrap", () => {
     document.body.classList.remove("existing-page-class");
   });
 
-  test("selector modal close keeps Projects locked and returning Home restores scrolling", async () => {
+  test("selector modal close restores Projects document scrolling and Home scrolling", async () => {
     const user = renderPortfolio(["/projects"]);
-    expect(window.getComputedStyle(document.body).overflow).toBe("hidden");
+    expect(window.getComputedStyle(document.body).overflow).toBe("auto");
     await user.click(screen.getByRole("button", { name: /^BARD / }));
+    expect(window.getComputedStyle(document.body).overflow).toBe("hidden");
     await user.click(screen.getByRole("button", { name: "Close" }));
     expectPath("/projects");
-    expect(window.getComputedStyle(document.body).overflow).toBe("hidden");
+    expect(window.getComputedStyle(document.body).overflow).toBe("auto");
 
-    await user.click(screen.getByRole("button", { name: "Back to Home" }));
+    await user.click(screen.getByRole("button", { name: "Home" }));
     expectCenter("Home");
     expect(document.body.style.getPropertyValue("overflow")).toBe("");
     expect(window.getComputedStyle(document.body).overflow).toBe("auto");
   });
 
-  test("direct modal close keeps Projects locked and unmount restores the original overflow", async () => {
+  test("direct modal close restores Projects document scrolling and unmount restores the original overflow", async () => {
     const user = renderPortfolio(["/projects/bard"]);
     await user.click(screen.getByRole("button", { name: "Close" }));
     expectPath("/projects");
-    expect(window.getComputedStyle(document.body).overflow).toBe("hidden");
+    expect(window.getComputedStyle(document.body).overflow).toBe("auto");
 
     cleanup();
     expect(document.body.style.getPropertyValue("overflow")).toBe("");
     expect(document.body.style.getPropertyPriority("overflow")).toBe("");
     expect(window.getComputedStyle(document.body).overflow).toBe("auto");
+  });
+
+  test("history from the navigation wheel into a project closes the wheel and keeps the project scroll lock", async () => {
+    narrowLayoutMedia.matches = true;
+    const utils = renderPortfolio(["/projects"]);
+    await utils.click(screen.getByRole("button", { name: /^BARD / }));
+    await utils.click(screen.getByRole("button", { name: "Close", exact: true }));
+    await utils.click(screen.getByRole("button", { name: "Navigate", exact: true }));
+    expect(screen.getByRole("dialog", { name: "Choose a destination" })).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "Forward", exact: true }));
+    expectPath("/projects/bard");
+    expect(screen.queryByRole("dialog", { name: "Choose a destination" })).not.toBeInTheDocument();
+    expect(screen.getByRole("dialog", { name: "BARD" })).toBeInTheDocument();
+    expect(window.getComputedStyle(document.body).overflow).toBe("hidden");
+    await utils.click(screen.getByRole("button", { name: "Close", exact: true }));
+    expectPath("/projects");
+    expect(document.body).toHaveClass("portfolio-bounded-view-open");
+    expect(window.getComputedStyle(document.body).overflow).toBe("hidden");
+    expect(screen.getByRole("button", { name: /^BARD / })).toHaveFocus();
+  });
+
+  test.each([
+    ["mobile", true, false, true],
+    ["short desktop", false, true, true],
+    ["desktop", false, false, false],
+  ])("%s Projects bounds document scrolling only for a compact viewport", (label, narrow, short, bounded) => {
+    narrowLayoutMedia.matches = narrow;
+    shortViewportMatches = short;
+    renderPortfolio(["/projects"]);
+    const gallery = within(expectCenter("Projects")).getByRole("region", { name: "Projects" });
+    expect(within(gallery).getAllByRole("button")).toHaveLength(6);
+    expect(document.body.classList.contains("portfolio-bounded-view-open")).toBe(bounded);
+    expect(window.getComputedStyle(document.body).overflow).toBe(bounded ? "hidden" : "auto");
+    expect(screen.getByRole("button", { name: narrow ? "Go back" : "Home", exact: true })).toBeEnabled();
+  });
+
+  test("mobile project modal close preserves the gallery node and its scroll position while keeping the document bounded", async () => {
+    narrowLayoutMedia.matches = true;
+    const user = renderPortfolio(["/projects"]);
+    const gallery = within(expectCenter("Projects")).getByRole("region", { name: "Projects" });
+    gallery.scrollTop = 350;
+    const trigger = within(gallery).getByRole("button", { name: /^BARD / });
+    await user.click(trigger);
+    expectPath("/projects/bard");
+    await user.click(screen.getByRole("button", { name: "Close", exact: true }));
+    expectPath("/projects");
+    expect(within(expectCenter("Projects")).getByRole("region", { name: "Projects" })).toBe(gallery);
+    expect(gallery.scrollTop).toBe(350);
+    expect(trigger).toHaveFocus();
+    expect(document.body).toHaveClass("portfolio-bounded-view-open");
+    expect(window.getComputedStyle(document.body).overflow).toBe("hidden");
+    expect(document.body.style.getPropertyValue("overflow")).toBe("");
+  });
+
+  test("narrowing Projects bounds the document without remounting the gallery or losing its scroll position", () => {
+    renderPortfolio(["/projects"]);
+    const gallery = within(expectCenter("Projects")).getByRole("region", { name: "Projects" });
+    gallery.scrollTop = 220;
+    expect(document.body).not.toHaveClass("portfolio-bounded-view-open");
+    narrowLayoutMedia.matches = true;
+    act(() => {
+      narrowLayoutListeners.forEach((listener) => listener({ matches: true }));
+      compactProjectsListeners.forEach((listener) => listener({ matches: true }));
+    });
+    expect(within(expectCenter("Projects")).getByRole("region", { name: "Projects" })).toBe(gallery);
+    expect(gallery.scrollTop).toBe(220);
+    expect(document.body).toHaveClass("portfolio-bounded-view-open");
+    expect(window.getComputedStyle(document.body).overflow).toBe("hidden");
+  });
+
+  test("mobile direct project modal close keeps the existing gallery and releases the inline modal lock to the bounded viewport", async () => {
+    narrowLayoutMedia.matches = true;
+    const user = renderPortfolio(["/projects/bard"]);
+    const gallery = within(expectCenter("Projects")).getByRole("region", { name: "Projects" });
+    gallery.scrollTop = 180;
+    await user.click(screen.getByRole("button", { name: "Close", exact: true }));
+    expectPath("/projects");
+    expect(within(expectCenter("Projects")).getByRole("region", { name: "Projects" })).toBe(gallery);
+    expect(gallery.scrollTop).toBe(180);
+    expect(document.body).toHaveClass("portfolio-bounded-view-open");
+    expect(document.body.style.getPropertyValue("overflow")).toBe("");
+    expect(window.getComputedStyle(document.body).overflow).toBe("hidden");
+  });
+
+  test("closing the mobile Projects navigation wheel does not restore inline overflow over the gallery's document lock", async () => {
+    document.body.style.setProperty("overflow", "scroll", "important");
+    narrowLayoutMedia.matches = true;
+    const user = renderPortfolio(["/projects"]);
+    const center = expectCenter("Projects");
+    const gallery = within(center).getByRole("region", { name: "Projects" });
+    const entry = screen.getByLabelText("Current entry").textContent;
+    gallery.scrollTop = 240;
+    await user.click(screen.getByRole("button", { name: "Navigate", exact: true }));
+    expect(screen.getByRole("dialog", { name: "Choose a destination" })).toBeInTheDocument();
+    expectPath("/projects");
+    expect(screen.getByLabelText("Current entry")).toHaveTextContent(entry);
+    expect(expectCenter("Projects")).toBe(center);
+    expect(within(center).getByRole("region", { name: "Projects" })).toBe(gallery);
+    expect(gallery.scrollTop).toBe(240);
+    await user.click(screen.getByRole("button", { name: "Close navigation", exact: true }));
+    expect(screen.queryByRole("dialog", { name: "Choose a destination" })).not.toBeInTheDocument();
+    expect(document.body).toHaveClass("portfolio-bounded-view-open");
+    expect(document.body.style.getPropertyValue("overflow")).toBe("");
+    expect(window.getComputedStyle(document.body).overflow).toBe("hidden");
+    expect(within(expectCenter("Projects")).getByRole("region", { name: "Projects" })).toBe(gallery);
+    expect(gallery.scrollTop).toBe(240);
+  });
+
+  test.each(["Home", "unmount", "widen"])("compact Projects restores original overflow and priority on %s without leaving a body lock", async (exit) => {
+    document.body.style.setProperty("overflow", "scroll", "important");
+    document.body.style.setProperty("color", "purple", "important");
+    document.body.classList.add("existing-page-class");
+    narrowLayoutMedia.matches = true;
+    const user = renderPortfolio(["/projects"]);
+    expect(document.body).toHaveClass("portfolio-bounded-view-open");
+    expect(document.body.style.getPropertyValue("overflow")).toBe("");
+    if (exit === "Home") await selectCompactDestination(user, "Home");
+    else if (exit === "unmount") cleanup();
+    else {
+      narrowLayoutMedia.matches = false;
+      act(() => {
+        narrowLayoutListeners.forEach((listener) => listener({ matches: false }));
+        compactProjectsListeners.forEach((listener) => listener({ matches: false }));
+      });
+      expectCenter("Projects");
+    }
+    expect(document.body).not.toHaveClass("portfolio-bounded-view-open");
+    expect(document.body.style.getPropertyValue("overflow")).toBe("scroll");
+    expect(document.body.style.getPropertyPriority("overflow")).toBe("important");
+    expect(document.body.style.getPropertyValue("color")).toBe("purple");
+    expect(document.body.style.getPropertyPriority("color")).toBe("important");
+    expect(document.body).toHaveClass("existing-page-class");
   });
 
   test.each(["Home", "unmount"])("restores pre-Home inline overflow and priority on %s without touching unrelated styles", async (exit) => {
@@ -395,8 +557,8 @@ describe("body overflow ownership with Reactstrap", () => {
     document.body.classList.add("existing-page-class");
     const user = renderPortfolio(["/projects/bard"]);
     await user.click(screen.getByRole("button", { name: "Close" }));
-    expect(window.getComputedStyle(document.body).overflow).toBe("hidden");
-    if (exit === "Home") await user.click(screen.getByRole("button", { name: "Back to Home" }));
+    expect(window.getComputedStyle(document.body).overflow).toBe("scroll");
+    if (exit === "Home") await user.click(screen.getByRole("button", { name: "Home" }));
     else cleanup();
 
     expect(document.body.style.getPropertyValue("overflow")).toBe("scroll");
@@ -409,7 +571,7 @@ describe("body overflow ownership with Reactstrap", () => {
   });
 });
 
-test("Projects remains active on repeat activation and Back to Home clears expanded and pressed state", async () => {
+test("Projects remains active on repeat activation and Home clears expanded and pressed state", async () => {
   const user = renderPortfolio();
   advance();
   const projects = screen.getByRole("button", { name: "Projects" });
@@ -423,7 +585,7 @@ test("Projects remains active on repeat activation and Back to Home clears expan
   await user.click(projects);
   expectPath("/projects");
   expect(projects).toHaveAttribute("aria-pressed", "true");
-  await user.click(screen.getByRole("button", { name: "Back to Home" }));
+  await user.click(screen.getByRole("button", { name: "Home" }));
   expectPath("/");
   expect(projects).toHaveAttribute("aria-expanded", "false");
   expect(projects).toHaveAttribute("aria-pressed", "false");
@@ -431,9 +593,9 @@ test("Projects remains active on repeat activation and Back to Home clears expan
   expect(screen.queryByText("Loading...")).not.toBeInTheDocument();
 });
 
-test("Back to Home restores the Logo and browser Back returns to Projects", async () => {
+test("Home restores the Logo and browser Back returns to Projects", async () => {
   const user = renderPortfolio(["/projects"]);
-  const backToHome = screen.getByRole("button", { name: "Back to Home" });
+  const backToHome = screen.getByRole("button", { name: "Home" });
 
   await user.click(backToHome);
   expectPath("/");
@@ -445,7 +607,7 @@ test("Back to Home restores the Logo and browser Back returns to Projects", asyn
   expectCenter("Projects");
 });
 
-test("3D Profile remains active on repeat activation and Back to Home restores Logo", async () => {
+test("3D Profile remains active on repeat activation and Home restores Logo", async () => {
   const user = renderPortfolio();
   advance();
   const profile = screen.getByRole("button", { name: "3D Profile" });
@@ -459,7 +621,7 @@ test("3D Profile remains active on repeat activation and Back to Home restores L
   await user.click(profile);
   expectPath("/threeDeeResume");
   expect(profile).toHaveAttribute("aria-pressed", "true");
-  await user.click(screen.getByRole("button", { name: "Back to Home" }));
+  await user.click(screen.getByRole("button", { name: "Home" }));
   expectPath("/");
   expect(profile).toHaveAttribute("aria-pressed", "false");
   expect(within(expectCenter("Home")).getByLabelText("Portfolio logo")).toBeInTheDocument();
@@ -487,7 +649,7 @@ test("initial 3D deep link and its return home never show the Home loader", asyn
   const user = renderPortfolio(["/threeDeeResume"]);
   expectCenter("3D Profile");
   expect(screen.queryByText("Loading...")).not.toBeInTheDocument();
-  await user.click(screen.getByRole("button", { name: "Back to Home" }));
+  await user.click(screen.getByRole("button", { name: "Home" }));
   expectCenter("Home");
   expect(screen.queryByText("Loading...")).not.toBeInTheDocument();
 });
@@ -516,15 +678,17 @@ test("preserves Home biography and contacts, title, copyright, Resume, and Megar
   expectPreservedContent("Resume");
   await user.click(screen.getByRole("button", { name: "3D Profile" }));
   expectPreservedContent("3D Profile");
+  await user.click(screen.getByRole("button", { name: "Megaracer", exact: true }));
+  expectPreservedContent("Megaracer");
 });
 
 const previewCases = [
   ["Whack a Mole", "A playful test of timing.", "A browser game built around quick reactions and a ticking score clock.", "JavaScript · HTML · SCSS"],
-  ["KRISPY", "Streams, cinema, and discovery.", "A web streaming project bringing live TV, global feeds, and public-domain films together.", "React · Redux · Firebase"],
-  ["HeyYou", "Location sharing meets conversation.", "A mobile app combining real-time location sharing and group messaging.", "React Native · Node.js · Socket.io"],
-  ["BARD", "A new way into Shakespeare.", "A mobile learning project exploring Shakespeare’s plays through reading, quizzes, and video.", "React Native · Redux · Firebase"],
-  ["Portfolio", "Code with a visual signature.", "A developer portfolio combining a React interface with modeled and animated 3D scenes.", "React · Blender 3D · React Three Fiber"],
-  ["Tuh-Doo / Kanban Board", "From to-do to done.", "A task board with drag-and-drop columns and saved work tied to each user’s account.", "React · Firebase · SCSS"],
+  ["KRISPY", "Streams, cinema, and discovery.", "A web streaming project bringing live TV, global feeds, and public-domain films together.", "JavaScript · React · Firebase · Redux · Bootstrap · SCSS"],
+  ["HeyYou", "Location sharing meets conversation.", "A mobile app combining real-time location sharing and group messaging.", "JavaScript · React Native · Android Studio · Socket.io · MongoDB · Node.js · Docker · Google Cloud"],
+  ["BARD", "A new way into Shakespeare.", "A mobile learning project exploring Shakespeare’s plays through reading, quizzes, and video.", "JavaScript · React Native · Android Studio · Redux · Firebase · Firestore"],
+  ["Tuh-Doo / Kanban Board", "From to-do to done.", "A task board with drag-and-drop columns and saved work tied to each user’s account.", "JavaScript · React · SCSS · Firebase · Firestore"],
+  ["Portfolio", "Code with a visual signature.", "A developer portfolio combining a React interface with modeled and animated 3D scenes.", "JavaScript · React · Firebase · SCSS · Blender 3D · React Three Fiber"],
 ];
 
 function expectRestingContext() {
@@ -555,7 +719,6 @@ test.each(previewCases)("hover previews %s without navigating and leaving restor
 
 test("keyboard focus previews cards and leaving pointer hover falls back to the focused card", async () => {
   const user = renderPortfolio(["/projects"]);
-  await user.tab(); // Back to Home
   await user.tab(); // Whack a Mole
   const focused = screen.getByRole("button", { name: /^Whack a Mole / });
   expect(focused).toHaveFocus();
@@ -576,7 +739,6 @@ test("new keyboard focus supersedes an existing hover and blur returns to the ho
   const user = renderPortfolio(["/projects"]);
   await user.hover(screen.getByRole("button", { name: /^HeyYou / }));
   await user.tab();
-  await user.tab();
   const context = screen.getByRole("complementary", { name: "Portfolio context" });
   expect(within(context).getByRole("heading", { name: "A playful test of timing." })).toBeInTheDocument();
   await user.tab({ shift: true });
@@ -594,7 +756,7 @@ test("rapid pointer changes supersede earlier captions and do not add history en
   }
   // A leave event belonging to an older card must not clear the newest preview.
   fireEvent.pointerLeave(cards[0]);
-  expect(within(context).getByRole("heading", { name: "From to-do to done." })).toBeInTheDocument();
+  expect(within(context).getByRole("heading", { name: "Code with a visual signature." })).toBeInTheDocument();
   await user.unhover(cards[5]);
   advance(1000);
   expectRestingContext();
@@ -621,10 +783,10 @@ test("previewed card opens its modal in one action and close restores focus, cap
   expect(screen.getByRole("dialog", { name: "KRISPY" })).toBeInTheDocument();
 });
 
-test("Back to Home clears preview state and restores the biography and signature", async () => {
+test("Home clears preview state and restores the biography and signature", async () => {
   const user = renderPortfolio(["/projects"]);
   await user.hover(screen.getByRole("button", { name: /^BARD / }));
-  await user.click(screen.getByRole("button", { name: "Back to Home" }));
+  await user.click(screen.getByRole("button", { name: "Home" }));
   expectPath("/");
   expect(screen.getByText(/Hello! I’m Ibrahim/)).toBeInTheDocument();
   expect(screen.getByText(/I work with technologies like JavaScript, CSS, React/)).toBeInTheDocument();
@@ -723,22 +885,61 @@ test("closing a selector-opened modal restores focus to its exact invoking butto
   expect(trigger).toHaveFocus();
 });
 
-test("navigation keeps four semantic controls, decorative desktop wrappers, and the external TypeRacer preview", () => {
+test("navigation keeps five semantic controls and decorative wrappers without an external hover preview", () => {
   renderPortfolio(["/projects"]);
   const nav = screen.getByRole("navigation", { name: "Portfolio navigation" });
-  expect(within(nav).getAllByRole("button")).toHaveLength(3);
-  [["Projects", "projects-title-div"], ["Resume", "pdfResume-title-div"], ["3D Profile", "threeResume-title-div"]].forEach(([name, className]) => {
+  expect(within(nav).getAllByRole("button")).toHaveLength(5);
+  expect(within(nav).getByRole("button", { name: "Home", exact: true })).toHaveAttribute("type", "button");
+  [["Projects", "Projects", "projects-title-div"], ["Resume", "Resume", "pdfResume-title-div"], ["3D Profile", "3D profile", "threeResume-title-div"]].forEach(([name, visibleName, className]) => {
     const button = within(nav).getByRole("button", { name });
     expect(button).toHaveAttribute("type", "button");
-    expect(within(button).getByText(name)).toHaveClass(className);
+    // The Projects wrapper contains separate decorative letter spans.
+    // eslint-disable-next-line testing-library/no-node-access
+    expect(button.querySelector(`.${className}`)).toHaveTextContent(visibleName);
     expect(button).not.toHaveAttribute("target");
   });
-  const megaracer = within(nav).getByRole("link", { name: "Megaracer" });
-  expect(megaracer).toHaveAttribute("href", "https://data.typeracer.com/pit/profile?user=ib_ra_heem_22");
-  expect(megaracer).toHaveAttribute("target", "_blank");
-  expect(megaracer).toHaveAttribute("rel", "noopener noreferrer");
-  expect(within(megaracer).getByText("Megaracer")).toHaveClass("megaracer");
-  expect(within(nav).getByTitle("TypeRacer profile for ib_ra_heem_22")).toHaveAttribute("src", "https://data.typeracer.com/pit/profile?user=ib_ra_heem_22");
+  const megaracer = within(nav).getByRole("button", { name: "Megaracer", exact: true });
+  expect(megaracer).not.toHaveAttribute("href");
+  expect(megaracer).not.toHaveAttribute("target");
+  expect(within(megaracer).getByText("Megaracer", { selector: ".megaracer" })).toHaveClass("megaracer");
+  expect(megaracer).toHaveAttribute("aria-controls", "megaracer-view");
+  expect(within(nav).queryByRole("link", { name: "Visit Megaracer / TypeRacer profile" })).not.toBeInTheDocument();
+  expect(screen.queryByTitle("Megaracer / TypeRacer profile preview")).not.toBeInTheDocument();
+});
+
+test.each(["/megaracer", "/megaracer/"])("direct entry at %s selects one center profile and its navigation", (path) => {
+  renderPortfolio([path]);
+  const center = expectCenter("Megaracer");
+  expect(screen.getByRole("button", { name: "Megaracer", exact: true })).toHaveAttribute("aria-current", "page");
+  expect(within(center).getByRole("link", { name: "Visit Megaracer / TypeRacer profile" })).toBeInTheDocument();
+  expect(screen.queryByLabelText("Portfolio logo")).not.toBeInTheDocument();
+});
+
+test("Megaracer hover leaves Home intact; selection and repeat clicks preserve the center frame and history", async () => {
+  const utils = renderPortfolio();
+  const center = expectCenter("Home");
+  const racer = screen.getByRole("button", { name: "Megaracer", exact: true });
+  await utils.hover(racer);
+  expectPath("/");
+  expect(screen.queryByTitle("Megaracer / TypeRacer profile preview")).not.toBeInTheDocument();
+  await utils.click(racer);
+  expectPath("/megaracer");
+  expect(expectCenter("Megaracer")).toBe(center);
+  const frame = screen.getByTitle("Megaracer / TypeRacer profile preview");
+  const entry = screen.getByLabelText("Current entry").textContent;
+  advance(20);
+  expect(screen.getByRole("heading", { name: "Megaracer view" })).toHaveFocus();
+  await utils.click(racer);
+  expect(screen.getByTitle("Megaracer / TypeRacer profile preview")).toBe(frame);
+  expect(screen.getByLabelText("Current entry")).toHaveTextContent(entry);
+  await utils.click(screen.getByRole("button", { name: "Back", exact: true }));
+  expectPath("/");
+  expectCenter("Home");
+  expect(frame).not.toBeInTheDocument();
+  await utils.click(screen.getByRole("button", { name: "Forward", exact: true }));
+  expectPath("/megaracer");
+  expectCenter("Megaracer");
+  expect(screen.getByRole("button", { name: "Megaracer", exact: true })).toHaveAttribute("aria-current", "page");
 });
 
 test("keyboard activation of Resume changes the route and center while preserving the Home shell", async () => {
@@ -747,6 +948,7 @@ test("keyboard activation of Resume changes the route and center while preservin
   const center = expectCenter("Home");
   const nav = screen.getByRole("navigation", { name: "Portfolio navigation" });
   const biography = screen.getByText(/Hello! I’m Ibrahim/);
+  await user.tab(); // Home.
   await user.tab();
   await user.tab();
   const resume = within(nav).getByRole("button", { name: "Resume" });
@@ -776,14 +978,14 @@ test("direct /resume shows Resume context and the existing PDF without mounting 
   expect(viewer.tagName).toBe("IFRAME");
   expect(new URL(viewer.getAttribute("src"), "http://localhost").pathname).toBe("/Ibrahim_Karim_Full_Stack_Resume.pdf");
   expect(screen.getByText("Full-Stack Developer")).toBeInTheDocument();
-  expect(screen.getByRole("link", { name: "Github" })).toBeInTheDocument();
+  expect(screen.getByRole("link", { name: "GitHub" })).toBeInTheDocument();
   expect(screen.queryByText(/Hello! I’m Ibrahim/)).not.toBeInTheDocument();
   expect(screen.queryByLabelText("Portfolio logo")).not.toBeInTheDocument();
   expect(screen.queryByLabelText("Interactive 3D profile")).not.toBeInTheDocument();
   expect(screen.queryByText("Loading...")).not.toBeInTheDocument();
 });
 
-test("Resume offers real Download links and a keyboard-usable Open Resume fallback for the same PDF", async () => {
+test("Resume stacks Download and Open links in the context while the PDF starts without a header", async () => {
   const user = renderPortfolio(["/resume"]);
   const center = expectCenter("Resume");
   const context = screen.getByRole("complementary", { name: "Portfolio context" });
@@ -796,20 +998,21 @@ test("Resume offers real Download links and a keyboard-usable Open Resume fallba
   const description = within(context).getByText("Web development, software projects, technical tools, and a background in visual design.");
   expect(description.compareDocumentPosition(desktopDownload) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
   expect(within(center).getByRole("heading", { name: "Experience & practice." })).toBeInTheDocument();
-  const open = within(center).getByRole("link", { name: "Open Resume" });
+  const open = within(context).getByRole("link", { name: "Open Resume" });
+  expect(desktopDownload.compareDocumentPosition(open) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
   expect(open).toHaveAttribute("href", "/Ibrahim_Karim_Full_Stack_Resume.pdf");
   expect(open).toHaveAttribute("target", "_blank");
   expect(open).toHaveAttribute("rel", "noopener noreferrer");
+  expect(within(center).queryByRole("banner")).not.toBeInTheDocument();
   await user.tab(); // Desktop context download link.
   expect(desktopDownload).toHaveFocus();
-  await user.tab(); // Back to Home.
-  await user.tab(); // Open Resume, available even if the iframe cannot render.
+  await user.tab(); // Open Resume directly below Download Resume.
   expect(open).toHaveFocus();
 });
 
-test("Resume Back to Home returns Home without a loader and Back restores Resume", async () => {
+test("Resume Home returns Home without a loader and Back restores Resume", async () => {
   const user = renderPortfolio(["/resume"]);
-  await user.click(screen.getByRole("button", { name: "Back to Home" }));
+  await user.click(screen.getByRole("button", { name: "Home" }));
   expectPath("/");
   expect(within(expectCenter("Home")).getByLabelText("Portfolio logo")).toBeInTheDocument();
   expect(screen.getByText(/Hello! I’m Ibrahim/)).toBeInTheDocument();
@@ -890,7 +1093,7 @@ test.each(["Projects", "Resume", "3D Profile"])("returning from %s remounts the 
   await user.click(toggle);
   expect(original).not.toBeInTheDocument();
   expect(originalSecond).not.toBeInTheDocument();
-  await user.click(screen.getByRole("button", { name: "Back to Home" }));
+  await user.click(screen.getByRole("button", { name: "Home" }));
 
   expectPath("/");
   expectCenter("Home");
@@ -947,7 +1150,7 @@ test.each(["/", "/projects", "/resume", "/threeDeeResume"])("narrow %s retains a
   [
     ["LinkedIn", "https://www.linkedin.com/in/ibrahim-karim-abaa952a7/"],
     ["GitHub", "https://github.com/ibrahimkarim22"],
-    ["Gmail", "mailto:22ibrahimkarim@gmail.com"],
+    ["Email", "mailto:22ibrahimkarim@gmail.com"],
   ].forEach(([name, href]) => {
     const link = screen.getByRole("link", { name: new RegExp(`^${name}$`, "i") });
     expect(link.tagName).toBe("A");
@@ -1018,17 +1221,48 @@ test.each(["close button", "backdrop", "Escape"])("About Me closes via %s and re
   expectPath("/");
 });
 
-test.each(activeViewCases)("narrow %s has an explicit Home exit and no About Me or inline biography", async (label, path) => {
+test.each(activeViewCases)("narrow %s has Home inside the wheel and no separate Home shortcut, About Me or inline biography", async (label, path) => {
   narrowLayoutMedia.matches = true;
   const user = renderPortfolio([path]);
   expect(screen.queryByRole("button", { name: "About Me" })).not.toBeInTheDocument();
   expect(screen.queryByRole("dialog", { name: "About Me" })).not.toBeInTheDocument();
   expect(screen.queryByText(/Hello! I’m Ibrahim/)).not.toBeInTheDocument();
-  await user.click(screen.getByRole("button", { name: "Back to Home" }));
+  expect(screen.queryByRole("button", { name: "Home", exact: true })).not.toBeInTheDocument();
+  expect(screen.getByRole("button", { name: "Go back", exact: true })).toBeEnabled();
+  await selectCompactDestination(user, "Home");
   expectPath("/");
   expect(screen.getByRole("button", { name: "About Me" })).toBeInTheDocument();
   expect(screen.queryByRole("dialog", { name: "About Me" })).not.toBeInTheDocument();
   expect(screen.queryByText(/Hello! I’m Ibrahim/)).not.toBeInTheDocument();
+});
+
+test("compact Go back returns to the previous visited section without creating a new history entry", async () => {
+  narrowLayoutMedia.matches = true;
+  const user = renderPortfolio();
+  await user.click(screen.getByRole("button", { name: "Projects", exact: true }));
+  const projectsEntry = screen.getByLabelText("Current entry").textContent;
+  await selectCompactDestination(user, "Resume");
+  expectPath("/resume");
+  await user.click(screen.getByRole("button", { name: "Go back", exact: true }));
+  advance(20);
+  expectPath("/projects");
+  expect(screen.getByLabelText("Current entry")).toHaveTextContent(projectsEntry);
+  expect(screen.getByRole("heading", { name: "Projects view" })).toHaveFocus();
+  expect(document.body).not.toHaveClass("modal-open");
+  expect(document.body).toHaveClass("portfolio-bounded-view-open");
+  await user.click(screen.getByRole("button", { name: "Go back", exact: true }));
+  expectPath("/");
+  expect(screen.getByRole("button", { name: "About Me", exact: true })).toBeInTheDocument();
+});
+
+test.each(activeViewCases)("direct compact entry at %s uses Home as the Go back fallback", async (label, path) => {
+  narrowLayoutMedia.matches = true;
+  const user = renderPortfolio([path]);
+  await user.click(screen.getByRole("button", { name: "Go back", exact: true }));
+  advance(20);
+  expectPath("/");
+  expect(screen.getByRole("heading", { name: "Home view" })).toHaveFocus();
+  expect(document.body).not.toHaveClass("modal-open", "portfolio-bounded-view-open");
 });
 
 test("widening Home closes About Me and restores the desktop biography without changing its route", async () => {

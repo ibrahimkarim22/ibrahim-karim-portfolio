@@ -2,6 +2,7 @@ import { PORTFOLIO_VIEWS } from "./portfolioRouteState";
 import { getProjectById } from "../projects/projectCatalog";
 import { PROJECT_CAPTIONS } from "../projects/projectCaptions";
 import ResumeContext from "../resume/ResumeContext";
+import { MegaracerContext } from "../megaracer/MegaracerView";
 import HomeBiography from "./HomeBiography";
 
 export default function HomeContextPanel({ activeView, previewProjectId }) {
@@ -24,11 +25,16 @@ export default function HomeContextPanel({ activeView, previewProjectId }) {
             {caption ? caption.description : "Web applications, mobile experiences, interactive projects, and experiments in design."}
           </p>
           <p className="home-context-panel__detail">
-            {caption ? caption.technologies.join(" · ") : "Select a project to view its details."}
+            {caption ? <>
+              <span className="home-context-panel__stack-label">Built with</span>
+              <span className="home-context-panel__stack-names">{project.technologies.join(" · ")}</span>
+            </> : "Select a project to view its details."}
           </p>
         </div>
       ) : activeView === PORTFOLIO_VIEWS.RESUME ? (
         <ResumeContext key="resume" />
+      ) : activeView === PORTFOLIO_VIEWS.MEGARACER ? (
+        <MegaracerContext key="megaracer" />
       ) : (
         <div className="home-context-panel__caption" key="interactive-profile">
           <h2 className="home-context-panel__heading">Interactive Profile</h2>

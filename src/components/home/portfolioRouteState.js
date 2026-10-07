@@ -3,6 +3,7 @@ export const PORTFOLIO_VIEWS = Object.freeze({
   PROJECTS: "projects",
   RESUME: "resume",
   THREE_D_PROFILE: "3d-profile",
+  MEGARACER: "megaracer",
 });
 
 export function getPortfolioRouteState(pathname) {
@@ -18,6 +19,10 @@ export function getPortfolioRouteState(pathname) {
 
   if (normalizedPath === "/resume") {
     return { activeView: PORTFOLIO_VIEWS.RESUME, selectedProjectId: null };
+  }
+
+  if (normalizedPath === "/megaracer") {
+    return { activeView: PORTFOLIO_VIEWS.MEGARACER, selectedProjectId: null };
   }
 
   const projectMatch = normalizedPath.match(/^\/projects\/([^/]+)$/);

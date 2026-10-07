@@ -213,27 +213,15 @@ function WhackaModal({ isOpen, closeModal }) {
 
           <ModalFooter className="whacka-modal-footer">
             <span className="whacka-footer-credit"><Copyright /></span>
-            <div className="whacka-footer-project-actions" role="group" aria-label="Persistent project actions">
-              <a
-                className="whacka-action whacka-action-primary whacka-footer-play"
-                href="https://whackamolewhackamole.web.app"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+            <div className="whacka-footer-controls" role="group" aria-label="Persistent project actions">
+              <a className="whacka-action whacka-action-primary whacka-footer-play" href="https://whackamolewhackamole.web.app" target="_blank" rel="noopener noreferrer">
                 Play! <span aria-hidden="true">↗</span>
               </a>
-              <a
-                className="whacka-action whacka-action-secondary whacka-footer-github"
-                href="https://github.com/ibrahim-karim-22/portfolioprojectgame"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <a className="whacka-action whacka-action-secondary whacka-footer-github" href="https://github.com/ibrahim-karim-22/portfolioprojectgame" target="_blank" rel="noopener noreferrer">
                 GitHub <span aria-hidden="true">↗</span>
               </a>
+              <Button type="button" color="link" className="whacka-close-action" onClick={closeModal}>Close</Button>
             </div>
-            <Button color="link" className="whacka-close-action" onClick={closeModal}>
-              Close
-            </Button>
           </ModalFooter>
         </>
       )}

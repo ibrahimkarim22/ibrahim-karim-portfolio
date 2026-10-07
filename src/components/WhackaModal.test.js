@@ -26,7 +26,7 @@ it("exposes the existing game and repository as safe external links", () => {
   });
 });
 
-it("keeps persistent project links separate from the footer Close action", () => {
+it("groups persistent project links with the single Close control", () => {
   render(<WhackaModal isOpen={true} closeModal={jest.fn()} />);
 
   const actions = within(screen.getByRole("group", { name: "Persistent project actions" }));
@@ -38,12 +38,15 @@ it("keeps persistent project links separate from the footer Close action", () =>
     expect(link).toHaveAttribute("target", "_blank");
     expect(link).toHaveAttribute("rel", "noopener noreferrer");
   });
-  expect(actions.queryByRole("button", { name: "Close", exact: true })).not.toBeInTheDocument();
+  const close = actions.getByRole("button", { name: "Close", exact: true });
+  expect(close).toBeInTheDocument();
+  expect(screen.getAllByRole("button", { name: "Close", exact: true })).toHaveLength(1);
+  expect(screen.getByRole("button", { name: "Close project", exact: true })).toBeInTheDocument();
   expect(screen.getAllByRole("link", { name: /play/i })).toHaveLength(2);
   expect(screen.getAllByRole("link", { name: /github/i })).toHaveLength(2);
 });
 
-it("tabs through footer Play, GitHub, and then the separate Close control", async () => {
+it("tabs through persistent Play, GitHub, and then Close in DOM order", async () => {
   const user = userEvent.setup();
   render(<WhackaModal isOpen={true} closeModal={jest.fn()} />);
 
@@ -52,7 +55,7 @@ it("tabs through footer Play, GitHub, and then the separate Close control", asyn
   await user.tab();
   expect(actions.getByRole("link", { name: /github/i })).toHaveFocus();
   await user.tab();
-  expect(screen.getByRole("button", { name: "Close", exact: true })).toHaveFocus();
+  expect(actions.getByRole("button", { name: "Close", exact: true })).toHaveFocus();
 });
 
 it.each(["Close project", "Close"])("closes through the %s control", (name) => {

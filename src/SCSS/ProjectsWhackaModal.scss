@@ -119,6 +119,27 @@
     transform-origin: left center;
   }
 
+  .whacka-footer-controls {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    margin: 0 0 0 auto;
+
+    .whacka-action,
+    .whacka-close-action {
+      flex: 0 0 auto;
+      min-height: 44px;
+      padding: 0.5rem 0.75rem;
+      gap: 0.5rem;
+      font-size: 0.875rem;
+      white-space: nowrap;
+    }
+
+    .whacka-close-action { margin-left: 0.25rem; }
+  }
+
   .whacka-game-icon {
     flex: 0 0 18px;
     width: 18px;
@@ -265,6 +286,11 @@
     outline: 3px solid var(--whacka-cyan);
     outline-offset: 4px;
     box-shadow: none;
+  }
+
+  .whacka-modal-header .btn-close:focus-visible {
+    filter: none;
+    opacity: 1;
   }
 
   .whacka-stack {
@@ -741,8 +767,7 @@
     --whacka-footer-squash: 0.92;
     --whacka-footer-stretch: 1.045;
     --whacka-footer-recoil: 0.985;
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    display: flex;
     flex-wrap: nowrap;
     border-top: 1px solid var(--whacka-line);
     padding-bottom: max(0.625rem, env(safe-area-inset-bottom));
@@ -771,20 +796,8 @@
     }
   }
 
-  .whacka-footer-project-actions {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.75rem;
-    margin: 0;
-    min-width: 0;
-  }
-
   &.whacka-modal-frame-open .whacka-modal-footer {
-    .whacka-footer-play {
-      animation: whackaFooterStamp 420ms ease-out,
-        whackaFooterPlayPalette 7s ease-in-out infinite;
-    }
+    .whacka-footer-play { animation: whackaFooterStamp 420ms ease-out, whackaFooterPlayPalette 7s ease-in-out infinite; }
     .whacka-footer-github { animation: whackaFooterStamp 420ms ease-out 60ms backwards; }
     .whacka-close-action { animation: whackaFooterStamp 420ms ease-out 120ms backwards; }
   }
@@ -866,8 +879,6 @@
       --whacka-footer-squash: 0.97;
       --whacka-footer-stretch: 1.015;
       --whacka-footer-recoil: 0.995;
-      grid-template-columns: minmax(0, 1fr) auto;
-      grid-template-areas: "credit credit" "projects close";
       row-gap: 0.375rem;
 
       .whacka-action,
@@ -877,20 +888,11 @@
         gap: 0.5rem;
       }
 
-      .whacka-footer-play { min-width: 68px; }
-      .whacka-footer-github { min-width: 80px; }
       .whacka-close-action {
-        grid-area: close;
         min-width: 68px;
       }
     }
 
-    .whacka-footer-credit { grid-area: credit; }
-    .whacka-footer-project-actions {
-      grid-area: projects;
-      justify-self: center;
-      gap: 0.5rem;
-    }
   }
 
   @media (max-width: 420px) {
@@ -898,6 +900,12 @@
       grid-template-columns: minmax(0, 1fr);
       gap: 1rem;
     }
+  }
+
+  @media (max-width: 600px) {
+    .whacka-modal-footer { flex-wrap: wrap; gap: 0.5rem; }
+    .whacka-footer-credit { flex-basis: 100%; }
+    .whacka-footer-controls { margin-left: auto; }
   }
 
   @media (prefers-reduced-motion: reduce) {

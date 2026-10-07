@@ -1,14 +1,17 @@
 import { useEffect, useRef, useState } from "react";
 
 const initialCards = [
-  { key: "outline", id: "TD-01", title: "Outline the idea", column: 0, row: 0, visible: true },
-  { key: "sketch", id: "TD-02", title: "Sketch the layout", column: 0, row: 1, visible: true },
-  { key: "build", id: "TD-03", title: "Build the board", column: 1, row: 0, visible: true },
-  { key: "test", id: "TD-04", title: "Test the flow", column: 2, row: 1, visible: true },
-  { key: "ship", id: "TD-05", title: "Ship something good", column: 2, row: 0, visible: true },
+  { key: "outline", id: "TD-01", title: "Outline the idea", detail: "Start with a clear purpose.", column: 0, row: 0, visible: true },
+  { key: "sketch", id: "TD-02", title: "Sketch the layout", detail: "Make room for the next step.", column: 0, row: 1, visible: true },
+  { key: "build", id: "TD-03", title: "Build the board", detail: "Put the pieces together.", column: 1, row: 0, visible: true },
+  { key: "test", id: "TD-04", title: "Test the flow", detail: "Give every state a little attention.", column: 2, row: 1, visible: true },
+  { key: "ship", id: "TD-05", title: "Ship something good", detail: "One more thing, done.", column: 2, row: 0, visible: true },
 ];
 const initialBoard = { cards: initialCards, step: 0, nextId: 6, phase: "organized" };
 const nextTitles = ["Plan the next step", "Refine the details", "Review the next idea", "Sketch a new approach"];
+const nextDetails = ["Choose one thing to move forward.", "Give the small decisions some care.", "Make space for a fresh direction.", "Find a clearer way through the work."];
+const columns = ["Backlog", "In Progress", "Complete"];
+const statusMarks = ["○", "◐", "●"];
 const ambientDelay = 3200;
 
 function advanceBoard(board) {
@@ -18,7 +21,7 @@ function advanceBoard(board) {
     if (step === 0 && card.column === 2 && card.row === 1) return { ...card, visible: false };
     if (step === 1 && card.column === 0 && card.row === 1) return { ...card, column: 1 };
     if (step === 2 && card.column === 1 && card.row === 1) return { ...card, column: 2 };
-    if (step === 3 && !card.visible) return { ...card, column: 0, visible: true, id: `TD-${String(board.nextId).padStart(2, "0")}`, title: nextTitles[(board.nextId - 6) % nextTitles.length] };
+    if (step === 3 && !card.visible) return { ...card, column: 0, visible: true, id: `TD-${String(board.nextId).padStart(2, "0")}`, title: nextTitles[(board.nextId - 6) % nextTitles.length], detail: nextDetails[(board.nextId - 6) % nextDetails.length] };
     return card;
   });
   return { cards, step: board.step + 1, nextId: board.nextId + (step === 3 ? 1 : 0), phase: phases[step] };
@@ -109,17 +112,19 @@ export default function TuhDooHeroBoard() {
       data-ambient-phase={opened ? board.phase : "opening"} onAnimationEnd={(event) => { if (event.animationName === "td-card-sort") finishOpeningRef.current?.(); }}>
       <div className="td-opening-top" aria-hidden="true"><span>THE DAILY BOARD</span><span className="td-opening-caption">A place for every next step.</span></div>
       <div className="td-sort-board" aria-hidden="true">
-        {["Backlog", "In Progress", "Complete"].map((label, index) => <div key={label} className={`td-sort-column td-state-${index}`}><span className="td-state-dot" />{label}<span className="td-sort-column-line" /></div>)}
+        {columns.map((label, index) => <div key={label} className={`td-sort-column td-state-${index}`}><span className="td-state-dot">{statusMarks[index]}</span>{label}<span className="td-sort-column-line" /></div>)}
         {board.cards.map((card, index) => (
           <div key={card.key} data-hero-column={card.column} data-hero-visible={card.visible}
             className={`td-sort-card td-sort-card-${index + 1}${!card.visible ? " td-sort-card--retired" : ""}${opened && board.phase === "backlog" && card.id === `TD-${String(board.nextId - 1).padStart(2, "0")}` ? " td-sort-card--fresh" : ""}`}
-            style={opened ? { "--td-final-x": `calc((var(--td-slot) + var(--td-sort-gap)) * ${card.column})`, "--td-final-y": card.row === 0 ? "48px" : "170px", "--td-card-color": `var(--td-${["blue", "amber", "green"][card.column]})` } : undefined}>
-            <span className="td-sort-id">{card.id}<span>⠿</span></span><strong>{card.title}</strong><span className="td-sort-card-rule" /><span className="td-sort-card-rule td-sort-card-rule--short" />
-            {card.column === 2 && <span className={`td-sort-check${!opened && card.key === "test" ? " td-sort-check--arriving" : ""}${opened && board.phase === "complete" && card.visible && card.row === 1 ? " td-sort-check--ambient" : ""}`}>✓</span>}
+            style={opened ? { "--td-final-x": `calc((var(--td-slot) + var(--td-sort-gap)) * ${card.column})`, "--td-final-y": card.row === 0 ? "var(--td-row-one)" : "var(--td-row-two)" } : undefined}>
+            <span className="td-sort-id">{card.id.replace("TD-", "")}</span>
+            <strong>{card.title}</strong>
+            <p className="td-sort-detail">{card.detail}</p>
+            <span className="td-sort-status"><span>{statusMarks[card.column]}</span> {columns[card.column]}</span>
           </div>
         ))}
       </div>
-      <div className="td-opening-bottom" aria-hidden="true"><span className="td-sort-result"><span>✓</span> A LITTLE MORE ORGANIZED.</span><span>{String(board.cards.filter((card) => card.visible).length).padStart(2, "0")} TASKS / 03 STATES</span></div>
+      <div className="td-opening-bottom" aria-hidden="true"><span className="td-sort-result">A LITTLE MORE ORGANIZED.</span><span>{String(board.cards.filter((card) => card.visible).length).padStart(2, "0")} TASKS / 03 STATES</span></div>
     </div>
   );
 }

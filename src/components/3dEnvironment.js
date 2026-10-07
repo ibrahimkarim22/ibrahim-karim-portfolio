@@ -53,9 +53,6 @@ const BlenderEnvironment = forwardRef(function BlenderEnvironment({ onReady }, r
       <Canvas
         className="resume-canvas"
         style={{
-          borderColor: "white",
-          borderStyle: "ridge",
-          borderWidth: "3px",
           width: "100%",
           height: "100%",
         }}

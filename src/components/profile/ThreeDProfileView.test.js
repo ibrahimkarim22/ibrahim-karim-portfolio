@@ -1,4 +1,4 @@
-import { act, render, screen } from "@testing-library/react";
+import { act, render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MemoryRouter, useLocation } from "react-router-dom";
 import { PortfolioRoutes } from "../../App";
@@ -164,10 +164,8 @@ test("Reset leaves the 3D route, history entry and mounted scene intact, then Ba
   const entry = screen.getByLabelText("Route and entry").textContent;
   const canvas = screen.getByRole("img", { name: "3D profile scene" });
   const navigation = screen.getByRole("navigation", { name: "Portfolio navigation" });
-  const preview = screen.getByTitle("TypeRacer profile for ib_ra_heem_22");
-  expect(preview.closest("nav")).toBe(navigation);
-  expect(preview).toHaveAttribute("src", "https://data.typeracer.com/pit/profile?user=ib_ra_heem_22");
-  expect(screen.getAllByTitle("TypeRacer profile for ib_ra_heem_22")).toHaveLength(1);
+  expect(within(navigation).getByRole("button", { name: "Megaracer", exact: true })).toHaveAttribute("aria-controls", "megaracer-view");
+  expect(screen.queryByTitle("Megaracer / TypeRacer profile preview")).not.toBeInTheDocument();
   await user.click(screen.getByRole("button", { name: "Reset View" }));
   expect(mockResetView).toHaveBeenCalledTimes(1);
   expect(screen.getByLabelText("Route and entry")).toHaveTextContent(entry);
@@ -176,7 +174,7 @@ test("Reset leaves the 3D route, history entry and mounted scene intact, then Ba
   expect(screen.queryByText("Loading...")).not.toBeInTheDocument();
   await user.click(screen.getByRole("button", { name: "3D Profile" }));
   expect(screen.getByLabelText("Route and entry")).toHaveTextContent(entry);
-  await user.click(screen.getByRole("button", { name: "Back to Home" }));
+  await user.click(screen.getByRole("button", { name: "Home" }));
   expect(screen.getByLabelText("Route and entry")).toHaveTextContent(/^\/:/);
   expect(screen.getByText(/Hello! I’m Ibrahim/)).toBeInTheDocument();
   expect(screen.getByLabelText("Animated signature")).toBeInTheDocument();
