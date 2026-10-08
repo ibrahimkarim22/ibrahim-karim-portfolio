@@ -7,20 +7,6 @@ import KanbanBoardModal from "../KanbanBoardModal";
 
 export const PROJECTS = [
   {
-    id: "whackamole",
-    name: "Whack a Mole",
-    description: "Online Game",
-    technologies: ["JavaScript", "HTML", "SCSS"],
-    ModalComponent: WhackaModal,
-  },
-  {
-    id: "krispy",
-    name: "KRISPY",
-    description: "Streaming Service",
-    technologies: ["JavaScript", "React", "Firebase", "Redux", "Bootstrap", "SCSS"],
-    ModalComponent: KrispyModal,
-  },
-  {
     id: "heyyou",
     name: "HeyYou",
     description: "Location & Chat",
@@ -35,19 +21,32 @@ export const PROJECTS = [
     ModalComponent: BardModal,
   },
   {
+    id: "thisportfolio",
+    name: "Portfolio",
+    description: "This Portfolio",
+    technologies: ["JavaScript", "React", "Firebase", "SCSS", "Blender 3D", "React Three Fiber"],
+    ModalComponent: ThisPortfolioModal,
+  },
+  {
+    id: "krispy",
+    name: "KRISPY",
+    description: "Streaming Service",
+    technologies: ["JavaScript", "React", "Firebase", "Redux", "Bootstrap", "SCSS"],
+    ModalComponent: KrispyModal,
+  },
+  {
     id: "kanban",
     name: "Tuh-Doo / Kanban Board",
     description: "To Do List",
     technologies: ["JavaScript", "React", "SCSS", "Firebase", "Firestore"],
     ModalComponent: KanbanBoardModal,
   },
-  // Keep this meta-project last; insert future projects before it.
   {
-    id: "thisportfolio",
-    name: "Portfolio",
-    description: "This Portfolio",
-    technologies: ["JavaScript", "React", "Firebase", "SCSS", "Blender 3D", "React Three Fiber"],
-    ModalComponent: ThisPortfolioModal,
+    id: "whackamole",
+    name: "Whack a Mole",
+    description: "Online Game",
+    technologies: ["JavaScript", "HTML", "SCSS"],
+    ModalComponent: WhackaModal,
   },
 ];
 

@@ -261,7 +261,6 @@ body:has(.menu-div-main:not([data-active-view="home"])),
     &::before { background: radial-gradient(circle clamp(7rem, 32vw, 10rem) at var(--light-source-x) var(--light-source-y), color-mix(in srgb, var(--section-light) 18%, transparent), color-mix(in srgb, var(--section-light) 5%, transparent) 44%, transparent 100%); }
     &::after { position: absolute; background: radial-gradient(ellipse 8rem 9rem at var(--candle-source-x) var(--candle-source-y), color-mix(in srgb, var(--candle-flame-color) 26%, transparent), color-mix(in srgb, var(--candle-flame-color) 8%, transparent) 38%, transparent 100%); }
   }
-  .menu-div-main[data-active-view] .contact-items { box-sizing: border-box; padding-left: calc(var(--candle-left) + var(--candle-width) + 0.5rem); }
   .menu-div-main[data-active-view="home"] {
     &::before { background: radial-gradient(ellipse 32vw 30dvh at 0% 72%, #29212c22, transparent), radial-gradient(ellipse 30vw 25dvh at 100% 100%, #29212c2e, transparent); }
     &::after { background: radial-gradient(ellipse 7rem 8rem at var(--candle-source-x) var(--candle-source-y), color-mix(in srgb, var(--candle-flame-color) 16%, transparent), transparent); }
