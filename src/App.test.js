@@ -817,10 +817,11 @@ test.each(["/about", "/PROJECTS", "/RESUME", "/THREEDEERESUME"])("unsupported pa
   expect(screen.queryByText("Loading...")).not.toBeInTheDocument();
 });
 
-test.each(projectCases)("deep link /projects/%s opens only its modal with Projects active", (id, name) => {
+test.each(projectCases)("deep link /projects/%s opens only its modal with Projects active and hidden ropes", (id, name) => {
   renderPortfolio([`/projects/${id}`]);
   expect(screen.getAllByRole("dialog")).toHaveLength(1);
   expect(screen.getByRole("dialog", { name })).toBeInTheDocument();
+  expect(document.querySelector(".navigation-ropes")).toHaveStyle({ display: "none" });
   expect(screen.getByRole("button", { name: "Projects" })).toHaveAttribute("aria-pressed", "true");
   expectCenter("Projects");
   expect(screen.queryByText("Loading...")).not.toBeInTheDocument();
@@ -834,15 +835,21 @@ test.each(projectCases)("selecting %s writes its exact lowercase URL and opens o
   expect(screen.getByRole("dialog", { name })).toBeInTheDocument();
 });
 
-test("selector-opened Close goes Back and Forward reopens the modal", async () => {
+test("selector-opened Close goes Back and Forward reopens the modal and toggles rope visibility", async () => {
   const user = renderPortfolio(["/projects"]);
+  const ropes = document.querySelector(".navigation-ropes");
+  expect(ropes.style.display).not.toBe("none");
   await user.click(screen.getByRole("button", { name: /^BARD / }));
+  expect(ropes).toHaveStyle({ display: "none" });
   await user.click(screen.getByRole("button", { name: "Close" }));
   expectPath("/projects");
+  expect(document.querySelector(".navigation-ropes")).toBe(ropes);
+  expect(ropes.style.display).not.toBe("none");
   expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
   expectCenter("Projects");
   await user.click(screen.getByRole("button", { name: "Forward" }));
   expectPath("/projects/bard");
+  expect(ropes).toHaveStyle({ display: "none" });
   expect(screen.getByRole("dialog", { name: "BARD" })).toBeInTheDocument();
 });
 
@@ -893,7 +900,7 @@ test("navigation keeps five semantic controls and decorative wrappers without an
   [["Projects", "Projects", "projects-title-div"], ["Resume", "Resume", "pdfResume-title-div"], ["3D Profile", "3D profile", "threeResume-title-div"]].forEach(([name, visibleName, className]) => {
     const button = within(nav).getByRole("button", { name });
     expect(button).toHaveAttribute("type", "button");
-    // The Projects wrapper contains separate decorative letter spans.
+    // Each label includes its tied letter without changing the visible wording.
     // eslint-disable-next-line testing-library/no-node-access
     expect(button.querySelector(`.${className}`)).toHaveTextContent(visibleName);
     expect(button).not.toHaveAttribute("target");
@@ -901,7 +908,8 @@ test("navigation keeps five semantic controls and decorative wrappers without an
   const megaracer = within(nav).getByRole("button", { name: "Megaracer", exact: true });
   expect(megaracer).not.toHaveAttribute("href");
   expect(megaracer).not.toHaveAttribute("target");
-  expect(within(megaracer).getByText("Megaracer", { selector: ".megaracer" })).toHaveClass("megaracer");
+  // eslint-disable-next-line testing-library/no-node-access
+  expect(megaracer.querySelector(".megaracer")).toHaveTextContent("Megaracer");
   expect(megaracer).toHaveAttribute("aria-controls", "megaracer-view");
   expect(within(nav).queryByRole("link", { name: "Visit Megaracer / TypeRacer profile" })).not.toBeInTheDocument();
   expect(screen.queryByTitle("Megaracer / TypeRacer profile preview")).not.toBeInTheDocument();

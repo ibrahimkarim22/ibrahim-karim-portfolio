@@ -1,14 +1,6 @@
 // Geometry belongs to the shell. Every moving layer paints inside a fixed hit area.
 @mixin navigation-final-identity {
   .navigation-destination:not(.navigation-destination--racer) .navigation-word { color: var(--destination-fill); -webkit-text-stroke: 0; text-shadow: none; }
-  .navigation-channel--red { opacity: 0.9; transform: translate(-4px, 0.75px); }
-  .navigation-channel--cyan { opacity: 0.9; transform: translate(4px, -0.75px); }
-  .navigation-destination--racer:not([data-motion-phase="idle"]) {
-    .navigation-word { color: var(--destination-fill); -webkit-text-stroke: 0; text-shadow: none; }
-    .navigation-racer-spell { opacity: 0.45; }
-    .navigation-racer-trail { stroke-dashoffset: 0; }
-    .navigation-racer-spark, .navigation-racer-rune { opacity: 0; }
-  }
 }
 
 .menu-div-main .portfolio-navigation,
@@ -19,8 +11,6 @@
   --navigation-cinematic-ink: #ffdc9c;
   --navigation-cinematic-hover: #ffdc9c;
   --navigation-word-color: var(--navigation-ink);
-  --navigation-duration: 680ms;
-  --navigation-ease: cubic-bezier(0.16, 0.85, 0.25, 1);
   --navigation-active-stroke: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 8' preserveAspectRatio='none'%3E%3Cpath fill='white' d='M1 5.3C25 4.1 46 5.5 68 4.7S108 3.5 132 4.2S169 5.4 192 4.6S226 3.7 239 4.1L239 4.7C223 4.5 208 5.2 192 5.8S151 5.5 132 5.5S89 5 68 5.9S24 5.6 1 5.8Z'/%3E%3C/svg%3E");
   display: flex;
   flex-direction: column;
@@ -92,9 +82,6 @@
     &:is(:hover, :focus-visible) {
       .navigation-home__moon-scale { transform: scale(2.15); }
     }
-    &:not([data-home-activation="0"]) {
-      .navigation-home__label { animation: navigation-home-lift 520ms ease-out both; }
-    }
   }
   .navigation-destination {
     position: relative;
@@ -153,8 +140,7 @@
       pointer-events: none;
     }
   }
-  .navigation-word,
-  .navigation-channel {
+  .navigation-word {
     position: relative;
     display: inline-block;
     color: var(--navigation-word-color);
@@ -171,96 +157,13 @@
   .navigation-word { z-index: 3; transition: color 140ms ease-out, -webkit-text-stroke-color 140ms ease-out, text-shadow 180ms ease-out; }
   .navigation-home[aria-current="page"] .navigation-lettering::after,
   .navigation-destination[aria-current="page"] .navigation-lettering::after { opacity: 1; }
-  .navigation-destination:is([data-motion-phase="playing"], [data-motion-phase="held"], [aria-current="page"]) .navigation-word { color: var(--destination-fill); -webkit-text-stroke: 0; text-shadow: none; }
+  .navigation-destination:is(:hover, :focus-visible, [data-rope-selected="true"], [aria-current="page"]) .navigation-word { color: var(--destination-fill); -webkit-text-stroke: 0; text-shadow: none; }
   .navigation-lettering--racer { padding-bottom: 0; }
   .navigation-lettering--profile { text-transform: none; }
   .megaracer { color: var(--navigation-word-color); -webkit-text-stroke: 0; text-shadow: none; }
-  .navigation-destination--racer[data-motion-phase="idle"] .navigation-word { transition: none; }
   .navigation-index,
   .navigation-current { display: none; }
   .navigation-racer-container { position: relative; flex-shrink: 0; transform: none; }
-  .navigation-lettering svg { position: absolute; overflow: visible; fill: none; stroke: currentColor; stroke-width: 1.5; pointer-events: none; }
-  .navigation-lettering svg path { vector-effect: non-scaling-stroke; }
-
-  // The lettering opens into a staggered stage fan and holds a readable bow.
-  .navigation-lettering--projects { --projects-letter-duration: 1050ms; --projects-letter-stagger: 45ms; }
-  .navigation-project-letter {
-    --project-fan-rest: perspective(650px) translate(calc(var(--project-letter-offset) * 0.026em), -0.025em) rotateX(0deg) rotateZ(calc(var(--project-letter-offset) * 0.8deg)) scale(1.015);
-    display: inline-block;
-    transform-origin: 50% 85%;
-    transform: perspective(650px) translate(0, 0) rotateX(0deg) rotateZ(0deg) scale(1);
-    transition: transform 380ms cubic-bezier(0.22, 0.61, 0.36, 1);
-  }
-  .navigation-destination--projects[data-motion-phase="playing"] {
-    .navigation-word { animation: navigation-projects-settle calc(var(--projects-letter-duration) + (var(--projects-letter-count) - 1) * var(--projects-letter-stagger)) linear both; }
-    .navigation-project-letter { animation: navigation-project-letter-flourish var(--projects-letter-duration) calc(var(--project-letter-index) * var(--projects-letter-stagger)) cubic-bezier(0.22, 0.61, 0.36, 1) both; }
-  }
-
-  // Restore the page assembly on hover without the trailing print marker.
-  .navigation-document-assembly { position: absolute; z-index: 1; inset: -0.25em -0.25em; pointer-events: none; }
-  .navigation-document-page {
-    position: absolute;
-    inset: -0.13em 0.03em;
-    border: 1px solid #bba5b7;
-    background: #fffaf4;
-    box-shadow: 3px 3px 0 rgba(101, 65, 105, 0.12);
-    opacity: 0;
-    transform: perspective(600px) rotateY(-80deg) rotateZ(-12deg) scale(0.8);
-  }
-  .navigation-document-page--rear { inset: -0.24em 0.12em; background: #e9dce8; }
-  .navigation-document-rules { z-index: 2; inset: 0; width: 100%; height: 100%; color: #9c708f; opacity: 0; stroke-width: 1.4; }
-  .navigation-document-crops { z-index: 3; inset: -0.15em; width: calc(100% + 0.3em); height: calc(100% + 0.3em); color: #654169; opacity: 0; stroke-width: 1.6; }
-  .navigation-destination--resume[data-motion-phase="playing"] {
-    .navigation-word { animation: navigation-document-word 720ms var(--navigation-ease) both; }
-    .navigation-document-page--front { animation: navigation-document-flip var(--navigation-duration) var(--navigation-ease) both; }
-    .navigation-document-page--rear { animation: navigation-document-flip-rear var(--navigation-duration) 40ms var(--navigation-ease) both; }
-    .navigation-document-rules { animation: navigation-document-rules 610ms 50ms var(--navigation-ease) both; }
-    .navigation-document-crops { animation: navigation-document-crops 580ms 65ms var(--navigation-ease) both; }
-  }
-
-  // Sharp cinema channels shoot apart, cross in depth and land in a stereo lock.
-  .navigation-lettering--profile { --stereo-rest: 0.7px; }
-  .navigation-lettering--profile .navigation-word { text-shadow: none; }
-  .navigation-channel { position: absolute; inset: 0; z-index: 1; opacity: 0.4; text-shadow: none; -webkit-text-stroke: 0.35px currentColor; pointer-events: none; transition: transform 180ms ease-out, opacity 180ms ease-out; }
-  .navigation-channel--red { color: #e42e47; transform: translate(calc(-1 * var(--stereo-rest)), 0.2px); }
-  .navigation-channel--cyan { color: #009f8f; transform: translate(var(--stereo-rest), -0.2px); }
-  .navigation-destination--profile[data-motion-phase="playing"] {
-    .navigation-word { animation: navigation-stereo-center 715ms var(--navigation-ease) both; }
-    .navigation-channel--red { opacity: 0.95; animation: navigation-stereo-red 700ms var(--navigation-ease) both; }
-    .navigation-channel--cyan { opacity: 0.95; animation: navigation-stereo-cyan 700ms 15ms var(--navigation-ease) both; }
-  }
-
-  // Restore the hover light trace without the trailing wand symbol.
-  .navigation-lettering .navigation-racer-spell { z-index: 4; inset: 0; width: 100%; height: 100%; opacity: 0; pointer-events: none; filter: drop-shadow(0 0 2px color-mix(in srgb, var(--destination-fill) 65%, transparent)); }
-  .navigation-racer-trail { fill: none; stroke: var(--destination-fill); stroke-width: 1.15; stroke-linecap: round; stroke-dasharray: 100; stroke-dashoffset: 100; }
-  .navigation-racer-spark { transform-box: view-box; fill: color-mix(in srgb, var(--destination-fill) 32%, var(--navigation-paper)); stroke: none; opacity: 0; }
-  .navigation-racer-rune { transform-box: view-box; fill: var(--destination-fill); stroke: none; opacity: 0; }
-  .navigation-destination--racer[data-motion-phase="playing"] {
-    .navigation-word { animation: navigation-racer-enchant 760ms ease-out both; }
-    .navigation-racer-spell { opacity: 1; }
-    .navigation-racer-trail { animation: navigation-racer-trace 760ms ease-out both; }
-    .navigation-racer-spark { animation: navigation-racer-glint 760ms ease-out both; }
-    .navigation-racer-rune { animation: navigation-racer-rune 600ms 80ms ease-out both; }
-    .navigation-racer-rune:last-child { animation-delay: 140ms; }
-  }
-  // Label effects hold their final pose while the control stays active.
-  .navigation-destination[data-motion-phase="held"] {
-    .navigation-lettering * { animation: none; }
-    .navigation-word { transform: none; clip-path: inset(0); }
-    .navigation-document-page--front { opacity: 0.26; transform: perspective(600px) translate(8px, -4px) rotateY(0) rotateZ(-2deg) scale(0.9); }
-    .navigation-document-page--rear { opacity: 0.18; transform: perspective(600px) translate(-5px, 3px) rotateY(0) rotateZ(3deg) scale(0.92); }
-    .navigation-document-rules { opacity: 0.45; transform: translateX(0) scaleX(1); }
-    .navigation-document-crops { opacity: 0.65; transform: scale(1) rotate(0); }
-    .navigation-channel--red { opacity: 0.95; transform: translate(-4px, 0.75px); }
-    .navigation-channel--cyan { opacity: 0.95; transform: translate(4px, -0.75px); }
-    .navigation-racer-spell { opacity: 0.45; }
-    .navigation-racer-trail { stroke-dashoffset: 0; }
-    .navigation-racer-spark, .navigation-racer-rune { opacity: 0; }
-  }
-  .navigation-destination--projects[data-motion-phase="held"] {
-    .navigation-word { clip-path: none; }
-    .navigation-project-letter { transform: var(--project-fan-rest); }
-  }
 
 }
 
@@ -432,9 +335,6 @@
   .navigation-destination--resume { --destination-fill: #b090b5; }
   .navigation-destination--profile,
   .navigation-destination--racer { --destination-fill: var(--destination-source); }
-  .navigation-document-assembly,
-  .navigation-channel,
-  .navigation-racer-spell { display: none; }
   > .navigation-home {
     .navigation-home__activation { flex-direction: column; gap: 0.5rem; }
     .navigation-home__moon { order: -1; flex-basis: 24px; width: 24px; height: 24px; }
@@ -469,95 +369,10 @@
   @include navigation-final-identity;
 }
 
-@keyframes navigation-projects-settle {
-  0%, 100% { transform: none; }
-}
-@keyframes navigation-project-letter-flourish {
-  0% { transform: perspective(650px) translate(0, 0) rotateX(0deg) rotateZ(0deg) scale(1); }
-  18% { transform: perspective(650px) translate(calc(var(--project-letter-offset) * -0.012em), 0.035em) rotateX(8deg) rotateZ(calc(var(--project-letter-offset) * -1deg)) scale(0.98); }
-  48% { transform: perspective(650px) translate(calc(var(--project-letter-offset) * 0.07em), -0.30em) rotateX(-24deg) rotateZ(calc(var(--project-letter-offset) * 3deg)) scale(1.14); }
-  76% { transform: perspective(650px) translate(calc(var(--project-letter-offset) * 0.035em), -0.055em) rotateX(0deg) rotateZ(calc(var(--project-letter-offset) * 1.1deg)) scale(1.04); }
-  100% { transform: var(--project-fan-rest); }
-}
-@keyframes navigation-document-word {
-  0%, 100% { transform: perspective(600px) rotateX(0) translateY(0); clip-path: inset(0); }
-  22% { transform: perspective(600px) rotateX(-14deg) translateY(-4px); clip-path: polygon(0 0,100% 0,100% 18%,0 18%,0 36%,100% 36%,100% 58%,0 58%,0 76%,100% 76%,100% 100%,0 100%); }
-  60% { transform: perspective(600px) rotateX(5deg) translateY(1px); clip-path: inset(0); }
-}
-@keyframes navigation-document-flip {
-  0% { opacity: 0; transform: perspective(600px) translate(-12px, 5px) rotateY(-95deg) rotateZ(-18deg) scale(0.75); }
-  35% { opacity: 0.95; transform: perspective(600px) translate(-3px, -5px) rotateY(20deg) rotateZ(8deg) scale(1.05); }
-  65% { opacity: 0.7; transform: perspective(600px) translate(5px, 2px) rotateY(-7deg) rotateZ(-3deg) scale(0.95); }
-  100% { opacity: 0.26; transform: perspective(600px) translate(8px, -4px) rotateY(0) rotateZ(-2deg) scale(0.9); }
-}
-@keyframes navigation-document-flip-rear {
-  0% { opacity: 0; transform: perspective(600px) translate(12px, -5px) rotateY(95deg) rotateZ(18deg) scale(0.75); }
-  35% { opacity: 0.8; transform: perspective(600px) translate(3px, 5px) rotateY(-20deg) rotateZ(-8deg) scale(1.05); }
-  65% { opacity: 0.55; transform: perspective(600px) translate(-5px, -2px) rotateY(7deg) rotateZ(3deg) scale(0.95); }
-  100% { opacity: 0.18; transform: perspective(600px) translate(-5px, 3px) rotateY(0) rotateZ(3deg) scale(0.92); }
-}
-@keyframes navigation-document-rules {
-  0% { opacity: 0; transform: translateX(-24px) scaleX(0.2); }
-  35% { opacity: 0.95; transform: translateX(6px) scaleX(1.06); }
-  65% { opacity: 0.8; transform: translateX(-2px) scaleX(0.99); }
-  100% { opacity: 0.45; transform: translateX(0) scaleX(1); }
-}
-@keyframes navigation-document-crops {
-  0% { opacity: 0; transform: scale(0.65) rotate(-5deg); }
-  40% { opacity: 1; transform: scale(1.18) rotate(2deg); }
-  100% { opacity: 0.65; transform: scale(1) rotate(0); }
-}
-@keyframes navigation-stereo-center {
-  0%, 100% { transform: perspective(650px) rotateY(0) rotateX(0) scale(1); }
-  35% { transform: perspective(650px) rotateY(-18deg) rotateX(10deg) scale(1.045); }
-  70% { transform: perspective(650px) rotateY(5deg) rotateX(-3deg) scale(0.995); }
-}
-@keyframes navigation-stereo-red {
-  0% { transform: perspective(650px) translate(calc(-1 * var(--stereo-rest)), 0.2px) rotateY(0) rotateZ(0); }
-  28% { transform: perspective(650px) translate(-30px, -7px) rotateY(-24deg) rotateZ(-4deg); }
-  52% { transform: perspective(650px) translate(9px, 4px) rotateY(16deg) rotateZ(3deg); }
-  76% { transform: perspective(650px) translate(-9px, -2px) rotateY(-5deg) rotateZ(-1deg); }
-  100% { transform: perspective(650px) translate(-4px, 0.75px) rotateY(0) rotateZ(0); }
-}
-@keyframes navigation-stereo-cyan {
-  0% { transform: perspective(650px) translate(var(--stereo-rest), -0.2px) rotateY(0) rotateZ(0); }
-  30% { transform: perspective(650px) translate(32px, 7px) rotateY(24deg) rotateZ(4deg); }
-  56% { transform: perspective(650px) translate(-9px, -4px) rotateY(-16deg) rotateZ(-3deg); }
-  80% { transform: perspective(650px) translate(9px, 2px) rotateY(5deg) rotateZ(1deg); }
-  100% { transform: perspective(650px) translate(4px, -0.75px) rotateY(0) rotateZ(0); }
-}
-@keyframes navigation-racer-enchant {
-  0%, 100% { transform: translateX(0); }
-  35% { transform: translateX(1.5px); }
-}
-@keyframes navigation-racer-trace {
-  0% { stroke-dashoffset: 100; opacity: 0; }
-  12% { opacity: 0.8; }
-  90%, 100% { stroke-dashoffset: 0; opacity: 0.45; }
-}
-@keyframes navigation-racer-glint {
-  0% { opacity: 0; transform: translate(0, 0) scale(0.7); }
-  12% { opacity: 1; }
-  65% { opacity: 0.9; transform: translate(166px, -6px) scale(1); }
-  100% { opacity: 0; transform: translate(256px, -3px) scale(0.7); }
-}
-@keyframes navigation-racer-rune {
-  0%, 100% { opacity: 0; transform: translateX(0); }
-  30% { opacity: 0.75; }
-  70% { opacity: 0.25; transform: translateX(32px); }
-}
-@keyframes navigation-home-lift {
-  0%, 100% { transform: translateY(0); }
-  35% { transform: translateY(-3px); }
-}
 @media (hover: none), (pointer: coarse) {
   .menu-div-main .portfolio-navigation,
   .navigation-wheel__destinations {
     @include navigation-final-identity;
-    .navigation-destination .navigation-lettering * { animation: none !important; }
-    .navigation-project-letter { transform: none !important; }
-    .navigation-word { transform: none; clip-path: none; transition: transform 120ms ease-out; }
-    .navigation-destination:active .navigation-word { transform: scale(0.95); }
   }
 }
 
@@ -568,7 +383,6 @@
   .navigation-wheel__destinations {
     @include navigation-final-identity;
     .navigation-word { transform: none !important; clip-path: none !important; }
-    .navigation-project-letter { transform: none !important; }
     .navigation-home .navigation-home__moon-drift { transform: none; }
     .navigation-home .navigation-home__moon-scale { transform: scale(1.65) !important; filter: none; }
     .navigation-home .navigation-home__moonlight { opacity: 0.55; }

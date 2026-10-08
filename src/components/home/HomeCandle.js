@@ -1,6 +1,8 @@
 import { useContext, useEffect, useId, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { PortfolioLightingContext } from "./portfolioLighting";
+import useCandleInteraction from "./useCandleInteraction";
+import CandleInteractionEffect from "./CandleInteractionEffect";
 
 const MAGIC_PARTICLES = [
   [-54, 28, 0], [38, 16, 70], [92, 22, 130], [-30, 26, 40],
@@ -19,6 +21,7 @@ export default function HomeCandle() {
   const { theme, cycle, changing, reduced } = useContext(PortfolioLightingContext);
   const id = useId().replaceAll(":", "");
   const candleRef = useRef(null);
+  const { interaction, activate, darkHandoff } = useCandleInteraction(candleRef, { theme, cycle, changing, reduced });
   const handledCycleRef = useRef(cycle);
   const previousSmokeThemeRef = useRef(theme);
   const smokeCycleRef = useRef(0);
@@ -61,7 +64,7 @@ export default function HomeCandle() {
 
   return (
     <>
-    <div className="portfolio-candle" ref={candleRef} aria-hidden="true" data-candle-state={state} data-light-phase={changing ? "changing" : "settled"} data-light-motion={reduced ? "reduced" : "full"}>
+    <div className="portfolio-candle" ref={candleRef} aria-hidden="true" data-candle-state={state} data-light-phase={changing ? "changing" : "settled"} data-light-motion={reduced ? "reduced" : "full"} data-candle-interaction={interaction?.kind || "idle"} data-candle-interaction-phase={interaction?.phase || "idle"} data-candle-interaction-repeat={interaction?.restarting ? "true" : "false"} data-candle-dark-handoff={darkHandoff ? "true" : "false"}>
       <span className="portfolio-candle__glow-envelope">
         <span className="portfolio-candle__glow" />
         <span className="portfolio-candle__surge-glow" key={`surge-${cycle}`} />
@@ -86,6 +89,7 @@ export default function HomeCandle() {
         <path d="m48 103 1-22" fill="none" stroke="#4e4033" strokeWidth="1.8" strokeLinecap="round" />
         </g>
         <g className="portfolio-candle__flame-envelope">
+        <g className="portfolio-candle__click-flame-envelope">
         <g className="portfolio-candle__flame">
           <g className="portfolio-candle__ignition" key={cycle}>
             <path className="portfolio-candle__flame-shape" d="M48 14c2 20-14 29-15 47-1 15 6 24 16 24 11 0 17-11 16-25-1-18-14-27-17-46Z" fill={`url(#candle-flame-${id})`} />
@@ -93,8 +97,13 @@ export default function HomeCandle() {
           </g>
         </g>
         </g>
+        </g>
       </svg>
     </div>
+    <button type="button" className="portfolio-candle-action" onClick={activate}
+      aria-label={theme === "home" ? "Strike candle" : "Create candle flame burst"}
+      aria-disabled={interaction?.kind === "spark"} />
+    <CandleInteractionEffect interaction={interaction} />
     {burst && createPortal(
       <div className="portfolio-candle__sparkles portfolio-candle-magic" key={burst.cycle} aria-hidden="true" data-candle-burst={burst.cycle} style={{ "--magic-origin-x": `${burst.originX}px`, "--magic-origin-y": `${burst.originY}px` }}>
         {MAGIC_PARTICLES.map(([drift, size, delay], index) => {

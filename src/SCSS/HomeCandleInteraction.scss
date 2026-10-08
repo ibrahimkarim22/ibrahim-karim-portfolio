@@ -1,0 +1,301 @@
+.portfolio-candle-action {
+  position: fixed;
+  z-index: var(--portfolio-light-fixture-layer);
+  left: var(--candle-left);
+  bottom: 0;
+  width: var(--candle-width);
+  min-width: 44px;
+  // Include the flame above the wick as well as the wax below it.
+  height: var(--candle-height);
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 8px 8px 0 0;
+  background: transparent;
+  cursor: pointer;
+  touch-action: manipulation;
+  &:focus-visible { outline: 1px solid var(--home-color-accent, #f3ce70); outline-offset: 4px; }
+}
+
+.portfolio-candle__click-flame-envelope {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  transition: opacity 120ms ease, transform 140ms ease;
+}
+.portfolio-candle[data-candle-interaction="surge"]:is([data-candle-interaction-phase="compress"], [data-candle-interaction-phase="burst"], [data-candle-interaction-phase="full"], [data-candle-interaction-phase="collapse"]) .portfolio-candle__click-flame-envelope {
+  animation: candle-click-normal-flame 1600ms linear both;
+}
+.portfolio-candle[data-candle-interaction="surge"]:is([data-candle-interaction-phase="burst"], [data-candle-interaction-phase="full"], [data-candle-interaction-phase="collapse"]) .portfolio-candle__click-flame-envelope {
+  // Keep the base style dark too, so canceling the animation cannot reveal it.
+  opacity: 0;
+}
+.portfolio-candle[data-candle-interaction="surge"][data-candle-interaction-repeat="true"]:is([data-candle-interaction-phase="compress"], [data-candle-interaction-phase="burst"], [data-candle-interaction-phase="full"], [data-candle-interaction-phase="collapse"]) .portfolio-candle__click-flame-envelope {
+  animation: none;
+  opacity: 0;
+}
+.portfolio-candle[data-candle-interaction-phase="compress"] .portfolio-candle__glow-envelope { filter: opacity(0.86); }
+.portfolio-candle[data-candle-interaction="surge"]:is([data-candle-interaction-phase="out"], [data-candle-interaction-phase="strike"], [data-candle-interaction-phase="strike-gap"], [data-candle-interaction-phase="strike-again"]) {
+  .portfolio-candle__click-flame-envelope { opacity: 0; transform: scale(0.2, 0.08); }
+  .portfolio-candle__glow-envelope { opacity: 0; transition-duration: 120ms; }
+  .portfolio-candle__wax-highlight { opacity: 0.06; transition-duration: 120ms; }
+}
+.portfolio-candle[data-candle-interaction-phase="relight"] {
+  .portfolio-candle__click-flame-envelope { animation: candle-click-relight 240ms ease-out both; }
+  .portfolio-candle__glow-envelope, .portfolio-candle__wax-highlight { transition-duration: 240ms; }
+}
+// Only a canceled dark interaction needs this handoff. Normal navigation still
+// uses the existing outer extinguish fade with the inner flame untouched.
+.portfolio-candle[data-candle-state="extinguishing"][data-candle-dark-handoff="true"] .portfolio-candle__click-flame-envelope {
+  opacity: 0;
+  animation: none;
+  transition: none;
+}
+// The local one-second blackout temporarily masks the existing candle pool;
+// its theme/color and the navigation-driven extinguish state remain authoritative.
+.menu-div-main:not([data-light-theme="home"]):has(.portfolio-candle:is([data-candle-interaction-phase="out"], [data-candle-interaction-phase="strike"], [data-candle-interaction-phase="strike-gap"], [data-candle-interaction-phase="strike-again"]))::after {
+  filter: opacity(0);
+  transition-duration: 120ms;
+}
+.menu-div-main:has(.portfolio-candle[data-candle-interaction-phase="relight"])::after { transition-duration: 240ms; }
+
+.portfolio-candle-click {
+  position: fixed;
+  z-index: 1060;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  contain: layout paint;
+  &__light, &__wick-flash, &__spark, &__fire, &__ember, &__smoke, &__smoke-mote, &__strike-light {
+    position: absolute;
+    left: var(--click-origin-x);
+    top: var(--click-origin-y);
+    pointer-events: none;
+  }
+  &__light {
+    width: 17rem;
+    height: 17rem;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(closest-side, #ffd18b6e, #f08b3130 28%, #db742115 54%, transparent);
+    mix-blend-mode: screen;
+    animation: candle-click-spark-light 1600ms ease-out both;
+  }
+  &[data-candle-interaction="surge"] &__light {
+    width: min(82vw, 58rem);
+    height: min(calc(var(--click-fire-height) * 1.45), 120dvh);
+    transform: translate(-40%, -65%);
+    background: radial-gradient(ellipse closest-side, #ffcc7d85, #ff9e3c4f 25%, #e8732526 53%, transparent);
+    animation: candle-click-fire-light 1600ms linear both;
+  }
+  &[data-candle-interaction="surge"][data-interaction-motion="full"] &__light {
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    transform: none;
+    // The tall flame lights the wall along its height. Keep substantial warmth
+    // through the page midpoint, then let the far side fall back into darkness.
+    background:
+      radial-gradient(ellipse 24vw 75dvh at var(--click-origin-x) calc(var(--click-origin-y) * 0.48), #ffe6af80, #ffa95d40 42%, transparent 80%),
+      radial-gradient(ellipse 78vw 100dvh at var(--click-origin-x) calc(var(--click-origin-y) * 0.48), #ffc777b3, #ffa24e99 32%, #e17b386b 58%, #b3542833 82%, transparent);
+  }
+  &__wick-flash {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, #fffef1 20%, #fff6a7 44%, #ffb33d 62%, #e7712400 78%);
+    box-shadow: 0 0 5px #fff6c2, 0 0 13px #ffaa4b;
+    animation: candle-click-wick-flash 180ms ease-out both;
+  }
+  &__spark {
+    width: 1.4px;
+    height: 3px;
+    border-radius: 50%;
+    background: #fff5c4;
+    box-shadow: 0 0 3px #ffb135;
+    animation: candle-click-spark-flight 180ms ease-out both;
+  }
+  &__fire {
+    width: var(--click-fire-width);
+    height: var(--click-fire-height);
+    transform-origin: 50% 100%;
+    filter: drop-shadow(0 0 7px #f79b4266);
+    animation: candle-click-fire-envelope 1480ms linear both;
+    > svg { display: block; width: 100%; height: 100%; overflow: visible; }
+  }
+  &__tongue {
+    transform-box: view-box;
+    transform-origin: 60px 357px;
+    animation: candle-click-fire-curl 430ms ease-in-out 4 alternate both;
+    &--side { animation-duration: 350ms; animation-direction: alternate-reverse; }
+    &--inner { animation-duration: 290ms; }
+  }
+  &__ember {
+    width: var(--ember-size);
+    height: var(--ember-size);
+    border-radius: 50%;
+    background: #ffdb8e;
+    box-shadow: 0 0 3px #f2963e;
+    opacity: 0;
+    animation: candle-click-ember-rise var(--ember-duration) var(--ember-delay) ease-out both;
+  }
+  &__smoke {
+    width: var(--click-smoke-size);
+    height: calc(var(--click-smoke-size) * 4);
+    transform-origin: 50% 100%;
+    opacity: 0;
+    animation: candle-click-smoke-rise var(--click-smoke-duration) var(--click-smoke-delay) ease-out both;
+    will-change: transform, opacity;
+    > svg { display: block; width: 100%; height: 100%; filter: blur(0.8px); }
+    path { fill: none; stroke: #a49c94; stroke-width: 3; stroke-linecap: round; }
+  }
+  &__smoke-mote {
+    width: var(--click-smoke-size);
+    height: var(--click-smoke-size);
+    border-radius: 50%;
+    background: radial-gradient(circle, #c4b8ad88, #938d8140 40%, transparent 74%);
+    filter: blur(1.8px);
+    opacity: 0;
+    animation: candle-click-smoke-mote-rise var(--click-smoke-duration) var(--click-smoke-delay) ease-out both;
+    will-change: transform, opacity;
+  }
+  &__strike-light {
+    width: 10rem;
+    height: 12rem;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(closest-side, #ffdf9773, #f8a34630 35%, transparent);
+    mix-blend-mode: screen;
+    animation: candle-click-strike-light 420ms ease-out both;
+  }
+  &[data-interaction-motion="full"][data-interaction-repeat="true"] {
+    .portfolio-candle-click__fire { animation-name: candle-click-fire-regenerate; }
+    .portfolio-candle-click__light { animation-name: candle-click-light-regenerate; }
+  }
+}
+
+@keyframes candle-click-normal-flame {
+  0% { opacity: 1; transform: scale(1); }
+  7.5% { opacity: 0.8; transform: scale(0.8, 0.46); }
+  20%, 100% { opacity: 0; transform: scale(0.55, 0.45); }
+}
+@keyframes candle-click-wick-flash {
+  0% { opacity: 0.2; transform: translate(-50%, -50%) scale(0.5); }
+  12% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(0.3); }
+}
+@keyframes candle-click-spark-flight {
+  0% { opacity: 1; transform: translate(-50%, -50%) rotate(var(--spark-spin)); }
+  100% { opacity: 0; transform: translate(var(--spark-x), var(--spark-y)) rotate(var(--spark-spin)) scale(0.2); }
+}
+@keyframes candle-click-spark-light {
+  0% { opacity: 0; }
+  3% { opacity: 0.9; }
+  12% { opacity: 0.4; }
+  100% { opacity: 0; }
+}
+@keyframes candle-click-fire-light {
+  0% { opacity: 0; }
+  7.5% { opacity: 0.015; }
+  20% { opacity: 0.92; }
+  34% { opacity: 0.8; }
+  45% { opacity: 0.96; }
+  61% { opacity: 0.74; }
+  78% { opacity: 0.22; }
+  100% { opacity: 0; }
+}
+@keyframes candle-click-fire-envelope {
+  0% { opacity: 0.65; transform: translate(-50%, -99%) scale(0.3, 0.1); }
+  14% { opacity: 1; transform: translate(-50%, -99%) scale(1.06, 1); }
+  32% { opacity: 0.95; transform: translate(-50%, -99%) scale(0.93, 0.96); }
+  47% { opacity: 1; transform: translate(-50%, -99%) scale(1, 1.035); }
+  58% { opacity: 0.9; transform: translate(-50%, -99%) scale(0.93, 0.97); }
+  78% { opacity: 0.5; transform: translate(-50%, -99%) scale(0.32, 0.4); }
+  100% { opacity: 0; transform: translate(-50%, -99%) scale(0.14, 0.13); }
+}
+@keyframes candle-click-fire-regenerate {
+  0% { opacity: 0.95; transform: translate(-50%, -99%) scale(0.94, 1); }
+  14% { opacity: 1; transform: translate(-50%, -99%) scale(1.06, 1.02); }
+  32% { opacity: 0.95; transform: translate(-50%, -99%) scale(0.93, 0.96); }
+  47% { opacity: 1; transform: translate(-50%, -99%) scale(1, 1.035); }
+  58% { opacity: 0.9; transform: translate(-50%, -99%) scale(0.93, 0.97); }
+  78% { opacity: 0.5; transform: translate(-50%, -99%) scale(0.32, 0.4); }
+  100% { opacity: 0; transform: translate(-50%, -99%) scale(0.14, 0.13); }
+}
+@keyframes candle-click-light-regenerate {
+  0% { opacity: 0.8; }
+  7.5% { opacity: 0.86; }
+  20% { opacity: 0.92; }
+  34% { opacity: 0.8; }
+  45% { opacity: 0.96; }
+  61% { opacity: 0.74; }
+  78% { opacity: 0.22; }
+  100% { opacity: 0; }
+}
+@keyframes candle-click-fire-curl {
+  from { transform: skewX(-3deg) scale(0.97, 1); }
+  to { transform: skewX(4deg) scale(1.04, 0.94); }
+}
+@keyframes candle-click-ember-rise {
+  0% { opacity: 0; transform: translate(-50%, var(--ember-start)); }
+  14% { opacity: 0.88; }
+  100% { opacity: 0; transform: translate(var(--ember-x), var(--ember-y)) scale(0.4); }
+}
+@keyframes candle-click-smoke-rise {
+  0% { opacity: 0; transform: translate(-50%, -100%) scale(0.4, 0.55); }
+  18% { opacity: 0.4; }
+  58% { opacity: 0.3; }
+  100% { opacity: 0; transform: translate(calc(-50% + var(--click-smoke-drift)), calc(-100% + var(--click-smoke-rise))) scale(1.05, 1.1); }
+}
+@keyframes candle-click-smoke-mote-rise {
+  0% { opacity: 0; transform: translate(-50%, -50%) scale(0.4); }
+  20% { opacity: 0.4; }
+  65% { opacity: 0.24; }
+  100% { opacity: 0; transform: translate(calc(-50% + var(--click-smoke-drift)), calc(-50% + var(--click-smoke-rise))) scale(2.4); }
+}
+@keyframes candle-click-smoke-still {
+  0%, 100% { opacity: 0; }
+  25% { opacity: 0.3; }
+}
+@keyframes candle-click-strike-light {
+  0%, 100% { opacity: 0; }
+  8% { opacity: 0.85; }
+  45% { opacity: 0.35; }
+}
+@keyframes candle-click-relight {
+  from { opacity: 0; transform: scale(0.45, 0.3); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@media (max-width: 1250px), (max-height: 700px) {
+  .portfolio-candle-action { position: absolute; left: calc(var(--candle-left) + var(--candle-width) / 2 - 22px); width: 44px; }
+}
+
+@mixin candle-click-reduced {
+  .portfolio-candle[data-candle-interaction="surge"]:not([data-candle-interaction-phase="relight"]) .portfolio-candle__click-flame-envelope { animation: none; }
+  .portfolio-candle-click__light { animation: candle-click-calm-light 450ms ease-out both !important; }
+  .portfolio-candle-click__fire {
+    width: 26px;
+    height: 66px;
+    transform: translate(-50%, -99%);
+    animation: candle-click-calm-light 450ms ease-out both;
+  }
+  .portfolio-candle-click__tongue { animation: none; }
+  .portfolio-candle-click__spark, .portfolio-candle-click__ember { display: none; }
+}
+.portfolio-candle-click[data-interaction-motion="reduced"] {
+  & .portfolio-candle-click__light { animation: candle-click-calm-light 450ms ease-out both; width: 13rem; height: 15rem; }
+  & .portfolio-candle-click__fire { width: 26px; height: 66px; transform: translate(-50%, -99%); animation: candle-click-calm-light 450ms ease-out both; }
+  & .portfolio-candle-click__tongue { animation: none; }
+  & .portfolio-candle-click__smoke { width: 15px; height: 48px; transform: translate(-50%, -100%); animation: candle-click-smoke-still 1000ms ease-out both; }
+  & .portfolio-candle-click__strike-light { width: 6.5rem; height: 7rem; animation-duration: 280ms; }
+}
+.portfolio-candle[data-light-motion="reduced"][data-candle-interaction="surge"]:not([data-candle-interaction-phase="relight"]) .portfolio-candle__click-flame-envelope { animation: none; }
+.portfolio-candle[data-light-motion="reduced"][data-candle-interaction="surge"][data-candle-interaction-phase="full"] .portfolio-candle__click-flame-envelope { opacity: 0; }
+.portfolio-candle[data-light-motion="reduced"][data-candle-interaction-phase="relight"] {
+  .portfolio-candle__click-flame-envelope { animation-duration: 180ms; }
+  .portfolio-candle__glow-envelope, .portfolio-candle__wax-highlight { transition-duration: 180ms; }
+}
+@media (prefers-reduced-motion: reduce) { @include candle-click-reduced; }
+@keyframes candle-click-calm-light {
+  0%, 100% { opacity: 0; }
+  20% { opacity: 0.7; }
+}

@@ -8,6 +8,13 @@ const MAIN_HALO_OPACITY = 0.5;
 const PRONUNCIATION_HALO_OPACITY = 0.24;
 
 function filledRegions(piece, materialNames = FILLED_MATERIAL_NAMES) {
+  // Default regions belong to the immutable source analysis. Return fresh boxes:
+  // callers and each moonlight effect may own/mutate their runtime region data.
+  if (materialNames === FILLED_MATERIAL_NAMES && piece.filledRegionBounds) {
+    return piece.filledRegionBounds.map(({ min, max }) => new THREE.Box3(
+      new THREE.Vector3().fromArray(min), new THREE.Vector3().fromArray(max)
+    ));
+  }
   piece.group.updateWorldMatrix(true, true);
   const inverse = piece.group.matrixWorld.clone().invert();
   const intervals = [];
@@ -91,7 +98,7 @@ export function createLogoMoonlight(rig, color = HOME_MOONLIGHT_FALLBACK, {
   };
   const texture = moonlightTexture();
   const effect = {
-    uniforms, texture, glowColor: new THREE.Color(glowColor),
+    uniforms, texture, haloGeometry: null, glowColor: new THREE.Color(glowColor),
     halos: [], sources: [], pieceStates: new Map(), time: 0,
     seed: (seed ?? Math.floor(Math.random() * 4294967296)) >>> 0,
     activeEvent: null, nextEventTime: Infinity, lastSourceIndex: -1,
@@ -117,6 +124,11 @@ export function createLogoMoonlight(rig, color = HOME_MOONLIGHT_FALLBACK, {
         toneMapped: false,
       });
       const halo = new THREE.Sprite(material);
+      // Three keeps its default sprite quad globally. Own an identical tiny
+      // quad so retired renderer callbacks can be released without touching
+      // another live effect that uses the default geometry.
+      if (!effect.haloGeometry) effect.haloGeometry = halo.geometry.clone();
+      halo.geometry = effect.haloGeometry;
       halo.name = `Moonlight-${piece.id}-${index}`;
       region.getCenter(halo.position);
       halo.position.z = Math.min(piece.bounds.min.z, region.min.z) - 0.01;
@@ -302,6 +314,7 @@ export function disposeLogoMoonlight(effect) {
     halo.removeFromParent();
     halo.material.dispose();
   });
+  effect.haloGeometry?.dispose();
   effect.texture.dispose();
   effect.pieceStates.clear();
 }

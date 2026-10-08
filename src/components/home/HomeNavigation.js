@@ -1,217 +1,65 @@
-import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Modal } from "reactstrap";
 import { PORTFOLIO_VIEWS } from "./portfolioRouteState";
 import { SECTION_LIGHTS } from "./portfolioLighting";
-
-const IDLE_MOTION = { kind: null, source: null, phase: "idle" };
-const MOTION_FINISH_ANIMATIONS = {
-  projects: "navigation-projects-settle",
-  resume: "navigation-document-word",
-  profile: "navigation-stereo-center",
-  racer: "navigation-racer-enchant",
-};
-const STATIC_MOTION_QUERIES = ["(prefers-reduced-motion: reduce)", "(hover: none), (pointer: coarse)"];
-
-function getStaticMotionMedia() {
-  return STATIC_MOTION_QUERIES.map((query) => window.matchMedia?.(query))
-    .filter((media, index) => media && (!media.media || media.media === STATIC_MOTION_QUERIES[index]));
-}
+import { ROPE_ENDS } from "./navigationRopeGeometry";
+import NavigationRopes from "./NavigationRopes";
+import useNavigationRopes from "./useNavigationRopes";
+import "../../SCSS/HomeNavigationRopes.scss";
 
 function NavigationWord({ kind, children, className }) {
-  return (
-    <span className={`navigation-lettering navigation-lettering--${kind}`}>
-      {kind === "profile" && (
-        <>
-          <span className="navigation-channel navigation-channel--red" aria-hidden="true">{children}</span>
-          <span className="navigation-channel navigation-channel--cyan" aria-hidden="true">{children}</span>
-        </>
-      )}
-      <span
-        className={`navigation-word ${className}`}
-        data-motion-finish={kind}
-        style={kind === "projects" ? { "--projects-letter-count": children.length } : undefined}
-      >{kind === "projects" ? Array.from(children).map((letter, index) => (
-        <span className="navigation-project-letter" aria-hidden="true" style={{ "--project-letter-index": index, "--project-letter-offset": index - (children.length - 1) / 2 }} key={index}>{letter}</span>
-      )) : children}</span>
-      {kind === "resume" && (
-        <span className="navigation-document-assembly" aria-hidden="true">
-          <span className="navigation-document-page navigation-document-page--rear" />
-          <span className="navigation-document-page navigation-document-page--front" />
-          <svg className="navigation-document-rules" viewBox="0 0 240 100" preserveAspectRatio="none" focusable="false"><path d="M12 12h145m-145 17h214M12 48h196M12 68h214M12 88h125" /></svg>
-          <svg className="navigation-document-crops" viewBox="0 0 240 100" preserveAspectRatio="none" focusable="false"><path d="M15 0v10M0 15h10m215-15v10m5 5h10M0 85h10m5 5v10m215-15h10m-15 5v10" /></svg>
-        </span>
-      )}
-      {kind === "racer" && (
-        <svg className="navigation-racer-spell" viewBox="0 0 280 100" preserveAspectRatio="none" aria-hidden="true" focusable="false">
-          <path className="navigation-racer-trail" d="M12 82C76 94 189 68 268 79" pathLength="100" />
-          <g className="navigation-racer-spark">
-            <path d="M12 73l2.5 6.5 6.5 2.5-6.5 2.5-2.5 6.5-2.5-6.5-6.5-2.5 6.5-2.5Z" />
-          </g>
-          <path className="navigation-racer-rune" d="m52 83 3 4-3 4-3-4Z" />
-          <path className="navigation-racer-rune" d="m92 81 2.4 3-2.4 3-2.4-3Z" />
-        </svg>
-      )}
+  const view = kind === "profile" ? "3d-profile" : kind === "racer" ? "megaracer" : kind;
+  const end = ROPE_ENDS[view];
+  const glyphIndex = end === "left" ? 0 : children.length - 1;
+  const tiedGlyph = <span className="navigation-tied-letter" data-rope-glyph data-rope-end={end}>
+    {children[glyphIndex]}<span className="navigation-letter-baseline" data-rope-baseline aria-hidden="true" /><span className="navigation-rope-pin" data-rope-pin aria-hidden="true" />
+  </span>;
+  return <span className={`navigation-lettering navigation-lettering--${kind}`} data-rope-lever={kind} data-rope-end={end}>
+    <span className={`navigation-word ${className}`}>
+      {end === "left" ? tiedGlyph : children.slice(0, -1)}{end === "left" ? children.slice(1) : tiedGlyph}
     </span>
-  );
+  </span>;
 }
 
 function NavigationDestinations({ activeView, onSelect }) {
-  const racerTouchRef = useRef(false);
-  const [racerPlayback, setRacerPlayback] = useState(0);
-  const [motion, setMotion] = useState(IDLE_MOTION);
-  const motionRef = useRef(IDLE_MOTION);
-  const keyboardModeRef = useRef(true);
-  const staticMotionRef = useRef(getStaticMotionMedia().some((media) => media.matches));
-
-  const updateMotion = useCallback((next) => {
-    motionRef.current = next;
-    setMotion(next);
-  }, []);
-
-  const clearMotion = useCallback(() => updateMotion(IDLE_MOTION), [updateMotion]);
-
-  const beginMotion = useCallback((kind, source) => {
-    const current = motionRef.current;
-    if (current.kind === kind && current.phase !== "idle") {
-      if (current.source !== source) updateMotion({ ...current, source });
-      return;
-    }
-    updateMotion({ kind, source, phase: staticMotionRef.current || source === "touch" ? "held" : "playing" });
-  }, [updateMotion]);
-
-  function releaseMotion(kind, source) {
-    if (motionRef.current.kind === kind && motionRef.current.source === source) clearMotion();
-  }
-
-  function enterPointer(kind, event) {
-    if (event.relatedTarget?.nodeType && event.currentTarget.contains(event.relatedTarget)) return;
-    if (event.pointerType === "touch") return;
-    keyboardModeRef.current = false;
-    beginMotion(kind, "pointer");
-  }
-
-  function leavePointer(kind, event) {
-    if (event.relatedTarget?.nodeType && event.currentTarget.contains(event.relatedTarget)) return;
-    releaseMotion(kind, "pointer");
-  }
-
-  function finishMotion(kind, event) {
-    if (event.target.dataset.motionFinish !== kind || event.animationName !== MOTION_FINISH_ANIMATIONS[kind]) return;
-    const current = motionRef.current;
-    if (current.kind === kind && current.phase === "playing") updateMotion({ ...current, phase: "held" });
-  }
-
-  useEffect(() => {
-    const media = getStaticMotionMedia();
-    const updatePreferences = () => {
-      staticMotionRef.current = media.some((query) => query.matches);
-      if (staticMotionRef.current && motionRef.current.phase === "playing") updateMotion({ ...motionRef.current, phase: "held" });
-    };
-    const keyboardInput = () => { keyboardModeRef.current = true; };
-    const pointerInput = () => {
-      keyboardModeRef.current = false;
-      if (motionRef.current.source === "keyboard") clearMotion();
-    };
-    media.forEach((query) => {
-      if (query.addEventListener) query.addEventListener("change", updatePreferences);
-      else query.addListener?.(updatePreferences);
-    });
-    document.addEventListener("keydown", keyboardInput, true);
-    document.addEventListener("pointerdown", pointerInput, true);
-    window.addEventListener("blur", clearMotion);
-    return () => {
-      media.forEach((query) => {
-        if (query.removeEventListener) query.removeEventListener("change", updatePreferences);
-        else query.removeListener?.(updatePreferences);
-      });
-      document.removeEventListener("keydown", keyboardInput, true);
-      document.removeEventListener("pointerdown", pointerInput, true);
-      window.removeEventListener("blur", clearMotion);
-    };
-  }, [clearMotion, updateMotion]);
-
-  function controlMotionProps(kind) {
-    return {
-      "data-motion-phase": motion.kind === kind ? motion.phase : "idle",
-      "data-motion-source": motion.kind === kind ? motion.source : undefined,
-      onFocus: () => { if (keyboardModeRef.current) beginMotion(kind, "keyboard"); },
-      onBlur: () => releaseMotion(kind, "keyboard"),
-      onKeyDown: (event) => { if (event.key === "Enter" || event.key === " ") beginMotion(kind, "keyboard"); },
-      onPointerDown: (event) => beginMotion(kind, event.pointerType === "touch" ? "touch" : "pointer"),
-      onPointerUp: (event) => { if (event.pointerType === "touch") releaseMotion(kind, "touch"); },
-      onPointerCancel: () => { if (motionRef.current.kind === kind) clearMotion(); },
-      onAnimationEnd: (event) => finishMotion(kind, event),
-    };
-  }
-
-  function activateRacer() {
-    if (!racerTouchRef.current || keyboardModeRef.current) {
-      setRacerPlayback((playback) => playback + 1);
-      updateMotion({ kind: "racer", source: keyboardModeRef.current ? "keyboard" : "pointer", phase: staticMotionRef.current ? "held" : "playing" });
-    }
-    onSelect(PORTFOLIO_VIEWS.MEGARACER);
-  }
-  const racerMotionProps = controlMotionProps("racer");
   const isRacerActive = activeView === PORTFOLIO_VIEWS.MEGARACER;
-
-  return (
-    <>
-      {[
-        [PORTFOLIO_VIEWS.PROJECTS, "Projects", "projects", "projects-title-div-container", "projects-title-div", "project-selector"],
-        [PORTFOLIO_VIEWS.RESUME, "Resume", "resume", "pdfResume-title-div-container", "pdfResume-title-div", "resume-view"],
-        [PORTFOLIO_VIEWS.THREE_D_PROFILE, "3D profile", "profile", "threeResume-title-div-container", "threeResume-title-div"],
-      ].map(([view, label, kind, containerClass, wordClass, controls], index) => {
-        const isActive = activeView === view;
-        return (
-          <button
-            key={view}
-            type="button"
-            className={`home-navigation-button navigation-destination navigation-destination--${kind}`}
-            aria-label={kind === "profile" ? "3D Profile" : kind === "projects" ? label : undefined}
-            aria-controls={controls}
-            aria-expanded={controls ? isActive : undefined}
-            aria-pressed={isActive}
-            aria-current={isActive ? "page" : undefined}
-            onClick={() => onSelect(view)}
-            style={view !== PORTFOLIO_VIEWS.RESUME ? { "--destination-source": SECTION_LIGHTS[view] } : undefined}
-            {...controlMotionProps(kind)}
-            onPointerEnter={(event) => enterPointer(kind, event)}
-            onPointerLeave={(event) => leavePointer(kind, event)}
-          >
-            <span className="navigation-index" aria-hidden="true">0{index + 1}</span>
-            <span className={containerClass}><NavigationWord kind={kind} className={wordClass}>{label}</NavigationWord></span>
-            {isActive && <span className="navigation-current" aria-hidden="true">Current</span>}
-          </button>
-        );
-      })}
-      <div className="megaracer-container navigation-racer-container">
-        <button
-          className="home-navigation-button navigation-destination navigation-destination--racer"
-          type="button"
-          aria-controls="megaracer-view"
-          aria-expanded={isRacerActive}
-          aria-pressed={isRacerActive}
-          aria-current={isRacerActive ? "page" : undefined}
-          style={{ "--destination-source": SECTION_LIGHTS.megaracer }}
-          onClick={activateRacer}
-          {...racerMotionProps}
-          onPointerEnter={(event) => enterPointer("racer", event)}
-          onPointerLeave={(event) => leavePointer("racer", event)}
-          onPointerDown={(event) => { racerTouchRef.current = event.pointerType === "touch"; racerMotionProps.onPointerDown(event); }}
-        >
-          <span className="navigation-index" aria-hidden="true">04</span>
-          <NavigationWord kind="racer" className="megaracer" key={racerPlayback}>Megaracer</NavigationWord>
-          {isRacerActive && <span className="navigation-current" aria-hidden="true">Current</span>}
-        </button>
-      </div>
-    </>
-  );
+  return <>
+    {[
+      [PORTFOLIO_VIEWS.PROJECTS, "Projects", "projects", "projects-title-div-container", "projects-title-div", "project-selector"],
+      [PORTFOLIO_VIEWS.RESUME, "Resume", "resume", "pdfResume-title-div-container", "pdfResume-title-div", "resume-view"],
+      [PORTFOLIO_VIEWS.THREE_D_PROFILE, "3D profile", "profile", "threeResume-title-div-container", "threeResume-title-div"],
+    ].map(([view, label, kind, containerClass, wordClass, controls], index) => {
+      const isActive = activeView === view;
+      return <button key={view} data-rope-control={view} type="button"
+        className={`home-navigation-button navigation-destination navigation-destination--${kind}`}
+        aria-label={kind === "profile" ? "3D Profile" : label}
+        aria-controls={controls} aria-expanded={controls ? isActive : undefined}
+        aria-pressed={isActive} aria-current={isActive ? "page" : undefined}
+        onClick={() => onSelect(view)}
+        style={view !== PORTFOLIO_VIEWS.RESUME ? { "--destination-source": SECTION_LIGHTS[view] } : undefined}>
+        <span className="navigation-index" aria-hidden="true">0{index + 1}</span>
+        <span className={containerClass}><NavigationWord kind={kind} className={wordClass}>{label}</NavigationWord></span>
+        {isActive && <span className="navigation-current" aria-hidden="true">Current</span>}
+      </button>;
+    })}
+    <div className="megaracer-container navigation-racer-container">
+      <button className="home-navigation-button navigation-destination navigation-destination--racer" type="button"
+        data-rope-control="megaracer" aria-label="Megaracer" aria-controls="megaracer-view" aria-expanded={isRacerActive}
+        aria-pressed={isRacerActive} aria-current={isRacerActive ? "page" : undefined}
+        style={{ "--destination-source": SECTION_LIGHTS.megaracer }} onClick={() => onSelect(PORTFOLIO_VIEWS.MEGARACER)}>
+        <span className="navigation-index" aria-hidden="true">04</span>
+        <NavigationWord kind="racer" className="megaracer">Megaracer</NavigationWord>
+        {isRacerActive && <span className="navigation-current" aria-hidden="true">Current</span>}
+      </button>
+    </div>
+  </>;
 }
 
 export default function HomeNavigation({
   activeView,
   routeKey,
   isNarrowLayout = false,
+  isProjectModalOpen = false,
   onToggleProjects,
   onToggleResume,
   onToggleThreeDProfile,
@@ -223,6 +71,8 @@ export default function HomeNavigation({
 }) {
   const [isShortLayout, setIsShortLayout] = useState(() => window.innerHeight <= 700);
   const [isOpen, setIsOpen] = useState(false);
+  const [isClosing, setIsClosing] = useState(false);
+  const closeTimerRef = useRef(null);
   const [wheelAnchor, setWheelAnchor] = useState(null);
   const [homeActivation, setHomeActivation] = useState(0);
   const navRef = useRef(null);
@@ -240,6 +90,9 @@ export default function HomeNavigation({
   const navMode = isCompact ? "compact" : isHome && isNarrowLayout ? "artwork" : "desktop";
   // History and resize can invalidate an open wheel before its state effect runs.
   const isWheelVisible = isOpen && isCompact && openedViewRef.current === activeView && openedRouteKeyRef.current === routeKey;
+  const ropes = useNavigationRopes({ navRef, mode: navMode, wheelVisible: isWheelVisible, closing: isClosing, routeKey, activeView, hidden: isProjectModalOpen });
+
+  useEffect(() => () => window.clearTimeout(closeTimerRef.current), []);
 
   useEffect(() => {
     const updateHeight = () => {
@@ -275,6 +128,8 @@ export default function HomeNavigation({
   }, []);
 
   function openWheel() {
+    window.clearTimeout(closeTimerRef.current);
+    setIsClosing(false);
     const bounds = triggerRef.current?.getBoundingClientRect();
     setWheelAnchor(bounds?.width ? { left: bounds.left, top: bounds.top } : null);
     openedViewRef.current = activeView;
@@ -285,10 +140,31 @@ export default function HomeNavigation({
 
   function closeWheel() {
     closeReasonRef.current = "cancel";
-    setIsOpen(false);
+    if (isClosing) return;
+    ropes.cancelPending();
+    if (ropes.canFold()) {
+      // Reverse the actual in-flight pose, including the staggered opening.
+      // Read all five layers before writing their fold departure variables.
+      const departure = Array.from(document.querySelectorAll('.navigation-wheel__destinations > *')).map((element) => {
+        const style = window.getComputedStyle(element);
+        return { element, transform: style.transform, opacity: style.opacity };
+      });
+      departure.forEach(({ element, transform, opacity }) => {
+        element.style.setProperty('--rope-fold-from', transform);
+        element.style.setProperty('--rope-fold-opacity', opacity);
+      });
+      setIsClosing(true);
+      closeTimerRef.current = window.setTimeout(() => { setIsOpen(false); setIsClosing(false); }, 280);
+    } else setIsOpen(false);
   }
 
   function selectDestination(view) {
+    ropes.activate(view, () => commitDestination(view));
+  }
+
+  function commitDestination(view) {
+    window.clearTimeout(closeTimerRef.current);
+    setIsClosing(false);
     onLightingSelect?.(view);
     if (isWheelVisible) {
       closeReasonRef.current = activeView === view ? "cancel" : "destination";
@@ -314,6 +190,7 @@ export default function HomeNavigation({
         className="home-navigation-button navigation-home"
         type="button"
         data-home-activation={homeActivation}
+        data-rope-control="home"
         aria-current={isHome ? "page" : undefined}
         onPointerEnter={(event) => { if (event.pointerType !== "touch") pulseHome(); }}
         onPointerDown={() => { homePointerFocusRef.current = true; }}
@@ -322,10 +199,11 @@ export default function HomeNavigation({
         onFocus={(event) => { if (!homePointerFocusRef.current && event.currentTarget.matches(":focus-visible")) pulseHome(); }}
         onClick={() => { pulseHome(); selectDestination(PORTFOLIO_VIEWS.HOME); }}
       ><span className="navigation-home__activation navigation-lettering navigation-lettering--home">
-        <span className="navigation-home__label navigation-word" key={homeActivation}>Home</span>
+        <span className="navigation-home__label navigation-word">Home</span>
         <span className="navigation-home__moon" aria-hidden="true">
-          <span className="navigation-home__moonlight" />
           <span className="navigation-home__moon-float">
+            <span className="navigation-home__moon-pull">
+            <span className="navigation-home__moonlight" />
             <span className="navigation-home__moon-scale">
               <svg className="navigation-home__moon-icon" viewBox="0 0 24 24" focusable="false">
                 <g className="navigation-home__moon-drift">
@@ -336,12 +214,15 @@ export default function HomeNavigation({
                 </g>
               </svg>
             </span>
+            </span>
           </span>
         </span>
       </span></button>
   );
 
   return (
+    <>
+    <NavigationRopes layerRef={ropes.layerRef} color={SECTION_LIGHTS[activeView]} hidden={isProjectModalOpen} />
     <nav className="menu-items portfolio-navigation" aria-label="Portfolio navigation" data-nav-mode={navMode} ref={navRef}>
       {!isCompact && homeControl}
       {isCompact ? (
@@ -383,6 +264,7 @@ export default function HomeNavigation({
         >
           <div
             className="navigation-wheel__surface"
+            data-rope-closing={isClosing ? "true" : undefined}
             style={wheelAnchor ? { "--wheel-anchor-left": `${wheelAnchor.left}px`, "--wheel-anchor-top": `${wheelAnchor.top}px` } : undefined}
             onClick={(event) => { if (!event.target.closest("button")) closeWheel(); }}
           >
@@ -399,5 +281,6 @@ export default function HomeNavigation({
         </Modal>
       )}
     </nav>
+    </>
   );
 }

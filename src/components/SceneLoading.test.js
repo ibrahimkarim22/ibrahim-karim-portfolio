@@ -9,6 +9,7 @@ import Logo from "./Logo";
 
 let mockAsset;
 let mockSceneState;
+let mockSceneFrames;
 
 // JSDOM cannot render WebGL. Substitute only the GPU/loader boundary: the real
 // model components, Suspense, shell, readiness and camera rig still execute.
@@ -21,7 +22,13 @@ jest.mock("@react-three/fiber", () => {
         {React.Children.toArray(children).filter((child) => typeof child.type !== "string")}
       </div>
     ),
-    useFrame: () => {},
+    useFrame: (callback, priority) => {
+      React.useLayoutEffect(() => {
+        if (priority !== 1) return undefined;
+        mockSceneFrames.add(callback);
+        return () => mockSceneFrames.delete(callback);
+      }, [callback, priority]);
+    },
     useThree: (selector) => selector ? selector(mockSceneState) : mockSceneState,
   };
 });
@@ -59,6 +66,7 @@ beforeEach(() => {
       && ["primitive", "group"].includes(args[0])) return;
     reportError(message, ...args);
   });
+  mockSceneFrames = new Set();
   originalMatchMedia = window.matchMedia;
   window.matchMedia = () => ({
     matches: false, addEventListener: jest.fn(), removeEventListener: jest.fn(),
@@ -80,7 +88,9 @@ beforeEach(() => {
     value: { scene, animations: [] },
     resolve: () => { mockAsset.ready = true; resolve(); },
   };
-  mockSceneState = { scene: new Group(), camera: new PerspectiveCamera(60), size: { width: 600, height: 300 } };
+  mockSceneState = { scene: new Group(), camera: new PerspectiveCamera(60), size: { width: 600, height: 300 },
+    gl: { compile: () => new Set(), properties: { get: () => ({}) }, clear: jest.fn(), render: jest.fn() },
+  };
 });
 
 afterEach(() => {
@@ -104,15 +114,19 @@ function renderPortfolio(path = "/") {
   );
 }
 
-async function finishAsset() {
+async function finishAsset({ renderFrame = true } = {}) {
+  // Canvas startup now follows a real paint opportunity before asset readiness.
+  await screen.findByLabelText("Scene canvas");
   await act(async () => {
     mockAsset.resolve();
     await mockAsset.promise;
   });
+  if (renderFrame) act(() => Array.from(mockSceneFrames).forEach(frame => frame(mockSceneState, 1 / 60)));
 }
 
-test("the Home name scene uses the shared opaque near-black environment color", () => {
+test("the Home name scene uses the shared opaque near-black environment color", async () => {
   render(<Logo />);
+  await screen.findByLabelText("Scene canvas");
   expect(mockSceneState.scene.background?.getHexString()).toBe("050505");
 });
 
@@ -266,7 +280,7 @@ test("the name contains a cold GLB suspension inside its existing Canvas", async
     <Suspense fallback={<p>Outside scene suspension</p>}><Logo /></Suspense>
   );
   expect(screen.queryByText("Outside scene suspension")).not.toBeInTheDocument();
-  const canvas = screen.getByLabelText("Scene canvas");
+  const canvas = await screen.findByLabelText("Scene canvas");
   const region = container.querySelector(".logo-canvas");
   expect(region).toHaveAttribute("aria-busy", "true");
   await finishAsset();
@@ -288,7 +302,7 @@ test("Home biography, navigation and footer exist while the real name is pending
   expect(screen.getByText(`© ${new Date().getFullYear()} Ibrahim Karim.`)).toBeInTheDocument();
   expect(screen.queryByText("Loading...")).not.toBeInTheDocument();
   expect(screen.queryByText("Outside scene suspension")).not.toBeInTheDocument();
-  const canvas = screen.getByLabelText("Scene canvas");
+  const canvas = await screen.findByLabelText("Scene canvas");
   const classChanges = [];
   const observer = new MutationObserver((records) => classChanges.push(...records));
   observer.observe(shell, { attributes: true, attributeFilter: ["class"] });
@@ -315,7 +329,7 @@ test("direct Profile exposes its shell before GLB readiness and resets without r
   expect(screen.getByText(`© ${new Date().getFullYear()} Ibrahim Karim.`)).toBeInTheDocument();
   expect(screen.queryByText("Outside scene suspension")).not.toBeInTheDocument();
   expect(screen.queryByText("Loading...")).not.toBeInTheDocument();
-  const canvas = screen.getByLabelText("Scene canvas");
+  const canvas = await screen.findByLabelText("Scene canvas");
   const sceneRegion = container.querySelector(".blender-environment");
   expect(sceneRegion).toHaveAttribute("aria-busy", "true");
   expect(screen.getByRole("button", { name: "Reset View" })).toBeDisabled();
@@ -333,10 +347,14 @@ test("direct Profile exposes its shell before GLB readiness and resets without r
   await user.click(screen.getByRole("button", { name: "Home" }));
   expect(screen.getByText(/Hello! I’m Ibrahim/)).toBeInTheDocument();
   expect(canvas).not.toBeInTheDocument();
+  await screen.findByLabelText("Scene canvas");
   expect(container.querySelectorAll("canvas")).toHaveLength(1);
   expect(screen.getByRole("navigation", { name: "Portfolio navigation" })).toBe(navigation);
   await user.click(screen.getByRole("button", { name: "3D Profile" }));
+  await screen.findByLabelText("Scene canvas");
   expect(container.querySelectorAll("canvas")).toHaveLength(1);
+  expect(container.querySelector(".blender-environment")).toHaveAttribute("aria-busy", "true");
+  act(() => Array.from(mockSceneFrames).forEach(frame => frame(mockSceneState, 1 / 60)));
   expect(container.querySelector(".blender-environment")).toHaveAttribute("aria-busy", "false");
   expect(screen.queryByText("Loading...")).not.toBeInTheDocument();
 });
@@ -353,4 +371,18 @@ test("leaving Profile during cold loading stays usable and late completion canno
   expect(container.querySelector(".blender-environment")).not.toBeInTheDocument();
   expect(container.querySelectorAll("canvas")).toHaveLength(1);
   expect(container.querySelector(".logo-canvas")).toHaveAttribute("aria-busy", "false");
+});
+
+
+test('camera framing alone does not announce Profile ready before its first populated frame', async () => {
+  const { container, unmount } = renderPortfolio('/threeDeeResume');
+  await screen.findByLabelText('Scene canvas');
+  await finishAsset({ renderFrame: false });
+  expect(container.querySelector('.blender-environment')).toHaveAttribute('aria-busy', 'true');
+  expect(screen.getByRole('button', { name: 'Reset View' })).toBeDisabled();
+  act(() => Array.from(mockSceneFrames).forEach(frame => frame(mockSceneState, 1 / 60)));
+  expect(container.querySelector('.blender-environment')).toHaveAttribute('aria-busy', 'false');
+  expect(screen.getByRole('button', { name: 'Reset View' })).toBeEnabled();
+  unmount();
+  expect(mockSceneFrames.size).toBe(0);
 });

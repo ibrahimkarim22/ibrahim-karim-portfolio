@@ -74,7 +74,8 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .portfolio-light__emission-envelope { transition-duration: 240ms; }
+  .portfolio-light__emission-envelope,
+  .portfolio-light__dust-envelope { transition-duration: 240ms; }
   .portfolio-light__dust-particle {
     animation: none;
     transform: none;

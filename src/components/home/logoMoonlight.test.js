@@ -470,3 +470,27 @@ test("halo measurement transforms filled geometry into its wrapper space without
   expect(mesh.parent).toBe(authored);
   disposeLogoMoonlight(effect);
 });
+
+
+test("halo effects own an identical shared-within-effect quad and release its renderer listeners independently", () => {
+  const standard = new THREE.Sprite().geometry;
+  const first = createLogoMoonlight(suspendedPieces(), "#FF3131");
+  const second = createLogoMoonlight(suspendedPieces(), "#FF3131");
+  const firstQuad = first.halos[0].geometry, secondQuad = second.halos[0].geometry;
+  expect(firstQuad).not.toBe(standard);
+  expect(secondQuad).not.toBe(firstQuad);
+  expect(first.halos.every((halo) => halo.geometry === firstQuad)).toBe(true);
+  expect(Array.from(firstQuad.attributes.position.data.array)).toEqual(Array.from(standard.attributes.position.data.array));
+  expect(Array.from(firstQuad.index.array)).toEqual(Array.from(standard.index.array));
+  const releaseBackend = jest.fn(() => firstQuad.removeEventListener("dispose", releaseBackend));
+  firstQuad.addEventListener("dispose", releaseBackend);
+  const disposeFirst = jest.spyOn(firstQuad, "dispose"), disposeSecond = jest.spyOn(secondQuad, "dispose"), disposeStandard = jest.spyOn(standard, "dispose");
+  disposeLogoMoonlight(first);disposeLogoMoonlight(first);
+  expect(disposeFirst).toHaveBeenCalledTimes(1);
+  expect(releaseBackend).toHaveBeenCalledTimes(1);
+  expect(firstQuad.hasEventListener("dispose", releaseBackend)).toBe(false);
+  expect(disposeSecond).not.toHaveBeenCalled();
+  expect(disposeStandard).not.toHaveBeenCalled();
+  disposeLogoMoonlight(second);
+  disposeStandard.mockRestore();
+});

@@ -3,6 +3,7 @@ import userEvent from "@testing-library/user-event";
 import { MemoryRouter, useLocation } from "react-router-dom";
 import { PortfolioRoutes } from "../../App";
 import ThreeDProfileView from "./ThreeDProfileView";
+import { beginNavigationMotion } from "../home/navigationMotion";
 
 const mockResetView = jest.fn();
 let mockCameraReady;
@@ -45,8 +46,10 @@ afterEach(() => {
   jest.useRealTimers();
 });
 
-test("mounts the scene and accurate controls immediately without simulated progress", () => {
+test("exposes accurate controls immediately and starts a direct scene after shell paint", () => {
   const { unmount } = render(<ThreeDProfileView />);
+  expect(screen.queryByRole("img", { name: "3D profile scene" })).not.toBeInTheDocument();
+  act(() => jest.advanceTimersByTime(32));
   expect(screen.queryByText("Loading...")).not.toBeInTheDocument();
   expect(screen.queryByText(/^\d+%$/)).not.toBeInTheDocument();
   expect(screen.getByRole("img", { name: "3D profile scene" }))
@@ -69,6 +72,7 @@ test("mounts the scene and accurate controls immediately without simulated progr
 test("pending camera readiness does not introduce a simulated loading timer", () => {
   mockCameraReady = false;
   const { unmount } = render(<ThreeDProfileView />);
+  act(() => jest.advanceTimersByTime(32));
   expect(screen.getByRole("button", { name: "Reset View" })).toBeDisabled();
   expect(screen.queryByText("Loading...")).not.toBeInTheDocument();
   expect(jest.getTimerCount()).toBe(0);
@@ -82,6 +86,7 @@ function loadProfile(compact = false, touch = compact) {
   touchMedia.matches = touch;
   const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
   render(<ThreeDProfileView />);
+  act(() => jest.advanceTimersByTime(32));
   return user;
 }
 
@@ -161,6 +166,7 @@ test("Reset leaves the 3D route, history entry and mounted scene intact, then Ba
       <RouteProbe />
     </MemoryRouter>
   );
+  act(() => jest.advanceTimersByTime(32));
   const entry = screen.getByLabelText("Route and entry").textContent;
   const canvas = screen.getByRole("img", { name: "3D profile scene" });
   const navigation = screen.getByRole("navigation", { name: "Portfolio navigation" });
@@ -181,7 +187,54 @@ test("Reset leaves the 3D route, history entry and mounted scene intact, then Ba
   expect(canvas).not.toBeInTheDocument();
   expect(container.querySelectorAll("canvas")).toHaveLength(1);
   await user.click(screen.getByRole("button", { name: "3D Profile" }));
+  act(() => jest.advanceTimersByTime(32));
   expect(screen.queryByText("Loading...")).not.toBeInTheDocument();
   expect(container.querySelectorAll("canvas")).toHaveLength(1);
   expect(screen.getByRole("img", { name: "3D profile scene" })).not.toBe(canvas);
+});
+
+
+test('the destination shell is prompt but Canvas waits for the real outgoing pull and a paint', () => {
+  const release = beginNavigationMotion();
+  const { unmount } = render(<ThreeDProfileView />);
+  try {
+  expect(screen.getByRole('region', { name: '3D controls' })).toBeInTheDocument();
+  expect(screen.getByRole('button', { name: 'Reset View' })).toBeDisabled();
+  expect(screen.queryByRole('img', { name: '3D profile scene' })).not.toBeInTheDocument();
+  act(() => jest.advanceTimersByTime(2000));
+  expect(screen.queryByRole('img', { name: '3D profile scene' })).not.toBeInTheDocument();
+  act(release);
+  act(() => jest.advanceTimersByTime(16));
+  expect(screen.queryByRole('img', { name: '3D profile scene' })).not.toBeInTheDocument();
+  act(() => jest.advanceTimersByTime(16));
+  expect(screen.getByRole('img', { name: '3D profile scene' })).toBeInTheDocument();
+  } finally { unmount(); release(); }
+});
+
+test('new motion cancels a pending Canvas start and route exit cancels its paint callbacks', () => {
+  const { unmount } = render(<ThreeDProfileView />);
+  act(() => jest.advanceTimersByTime(16));
+  let release;
+  act(() => { release = beginNavigationMotion(); });
+  act(() => jest.advanceTimersByTime(80));
+  expect(screen.queryByRole('img', { name: '3D profile scene' })).not.toBeInTheDocument();
+  act(release);
+  unmount();
+  expect(jest.getTimerCount()).toBe(0);
+  act(() => jest.advanceTimersByTime(100));
+  expect(screen.queryByRole('img', { name: '3D profile scene' })).not.toBeInTheDocument();
+});
+
+
+test('reduced-motion direct entry starts after paint and subsequent pulls keep its scene mounted', () => {
+  window.matchMedia = () => ({ matches: true, addEventListener: jest.fn(), removeEventListener: jest.fn() });
+  const { unmount } = render(<ThreeDProfileView />);
+  act(() => jest.advanceTimersByTime(32));
+  const canvas = screen.getByRole('img', { name: '3D profile scene' });
+  let release;
+  act(() => { release = beginNavigationMotion(); });
+  expect(screen.getByRole('img', { name: '3D profile scene' })).toBe(canvas);
+  act(release);
+  expect(screen.getByRole('img', { name: '3D profile scene' })).toBe(canvas);
+  unmount();
 });
