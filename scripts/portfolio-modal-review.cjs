@@ -22,10 +22,12 @@ const sizes = [
 ];
 const sections = [
   "concept",
-  "system",
-  "worlds",
-  "motion",
-  "assets",
+  "heyyou",
+  "bard",
+  "portfolio",
+  "tuhdoo",
+  "krispy",
+  "whackamole",
   "experience",
   "quality",
   "deployment",
@@ -129,7 +131,7 @@ async function polishAudit(page, width) {
     ].filter((element) => !element.closest("details:not([open])"));
     const copy = [
       ...root.querySelectorAll(
-        "h1, h2, h3, p, figcaption > span, figcaption > a",
+        "h1, h2, h3, h4, p, figcaption > span, figcaption > a",
       ),
     ].filter(visible);
     const found = [];
@@ -196,7 +198,7 @@ async function polishAudit(page, width) {
       return {
         height: rect("#tp-system").height,
         exploded: rect(".tp-exploded").height,
-        next: rect("#tp-worlds").top,
+        next: rect("#tp-tuhdoo").top,
         scroll: body.scrollTop,
         scrollHeight: body.scrollHeight,
         width: body.scrollWidth,
@@ -250,10 +252,12 @@ async function polishAudit(page, width) {
   for (const [index, chapter] of sections.entries()) {
     const names = [
       "Concept",
-      "System",
-      "Worlds",
-      "Motion",
-      "Assets",
+      "HeyYou",
+      "BARD",
+      "Portfolio",
+      "Tuh-Doo",
+      "KRISPY",
+      "Whack a Mole",
       "Loading",
       "Quality",
       "Ship",
@@ -642,7 +646,7 @@ async function main() {
               document.documentElement.scrollWidth > window.innerWidth + 1,
             bodyOverflow: body.scrollWidth > body.clientWidth + 1,
             escaped: [
-              ...root.querySelectorAll("h2, h3, p, figure, button, pre"),
+              ...root.querySelectorAll("h2, h3, h4, p, figure, button, pre"),
             ]
               .filter((node) => {
                 const r = node.getBoundingClientRect();
@@ -754,8 +758,13 @@ async function main() {
           true,
         );
       }
-      await position(page, ".tp-motion-lab");
-      for (const name of ["HeyYou", "BARD", "Tuh-Doo"]) {
+      for (const [project, name] of [
+        ["heyyou", "HeyYou"],
+        ["bard", "BARD"],
+        ["tuhdoo", "Tuh-Doo"],
+      ]) {
+        const studySelector = `#tp-${project} .tp-motion-lab`;
+        await position(page, studySelector);
         const model = page.getByRole("img", {
           name: `${name} simplified motion study`,
         });
@@ -779,19 +788,24 @@ async function main() {
           timing.length > 0 && timing.every((item) => item.iterations === 1),
           "motion study does not play once",
         );
-      }
-      for (const ms of [0, 1900, 3800]) {
-        await page.locator(".tp-motion-lab").evaluate(
-          (root, time) =>
-            root.getAnimations({ subtree: true }).forEach((animation) => {
-              animation.pause();
-              animation.currentTime = time;
-            }),
-          ms,
-        );
-        await page.screenshot({
-          path: path.join(output, `${width}-motion-${ms}.png`),
-        });
+        for (const ms of [0, 1900, 3800]) {
+          await page.locator(studySelector).evaluate(
+            (root, time) =>
+              root.getAnimations({ subtree: true }).forEach((animation) => {
+                animation.pause();
+                animation.currentTime = time;
+              }),
+            ms,
+          );
+          await page.screenshot({
+            path: path.join(
+              output,
+              project === "heyyou"
+                ? `${width}-motion-${ms}.png`
+                : `${width}-${project}-motion-${ms}.png`,
+            ),
+          });
+        }
       }
       await page
         .getByRole("button", { name: "Replay source timeline" })
@@ -888,7 +902,7 @@ async function main() {
       await page
         .getByText("Open the splash motion source", { exact: true })
         .click();
-      await loadImages(page, ".tp-motion-section");
+      await loadImages(page, "#tp-heyyou");
       await accessibility(page);
       const originals = await page
         .getByRole("link", { name: /^View .* at full size/ })
@@ -922,17 +936,17 @@ async function main() {
         report.assets = originals.map((link) => link.href);
       }
       const before = page.url();
-      await page.getByRole("button", { name: "03 Worlds" }).click();
+      await page.getByRole("button", { name: "02 HeyYou" }).click();
       assert.equal(
         await page
-          .getByRole("heading", { name: "One system. Different worlds." })
+          .getByRole("heading", { name: "HeyYou", level: 2, exact: true })
           .evaluate((h) => h === document.activeElement),
         true,
       );
       assert.equal(page.url(), before);
       assert.equal(
         await page
-          .getByRole("button", { name: "03 Worlds" })
+          .getByRole("button", { name: "02 HeyYou" })
           .getAttribute("aria-current"),
         "step",
       );

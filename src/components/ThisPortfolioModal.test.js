@@ -127,26 +127,29 @@ it("names the dialog and makes the studio atlas keyboard scrollable", () => {
   ).toHaveAttribute("tabindex", "0");
 });
 
-it("presents current project worlds and preserves contextual process evidence", () => {
+it("keeps each project preview with its own implementation story", () => {
   open();
-  const worlds = screen.getByRole("region", {
-    name: "One system. Different worlds.",
-  });
-  ["HeyYou", "BARD", "Tuh-Doo"].forEach((name) =>
-    expect(within(worlds).getByRole("heading", { name })).toBeInTheDocument(),
-  );
-  expect(
-    within(worlds)
-      .getAllByRole("img")
-      .map((img) => img.getAttribute("src")),
-  ).toEqual(["heyyou-connection.jpg", "bard-curtain.jpg", "tuhdoo-board.jpg"]);
+  const names = ["HeyYou", "BARD", "Portfolio", "Tuh-Doo", "KRISPY", "Whack a Mole"];
+  const stories = names.map((name) => screen.getByRole("region", { name, exact: true }));
+  expect(screen.getAllByRole("heading", { level: 2 })
+    .map((heading) => heading.textContent).filter((name) => names.includes(name)))
+    .toEqual(names);
+  expect(stories.map((story, index) => within(story)
+    .getByRole("img", { name: new RegExp(`^${names[index]} current case study:`) })
+    .getAttribute("src"))).toEqual([
+      "heyyou-connection.jpg", "bard-curtain.jpg", "portfolio-signature.jpg",
+      "tuhdoo-board.jpg", "krispy-cinema.jpg", "whackamole-arcade.jpg",
+    ]);
+  expect(within(stories[0]).getByLabelText("Actual HeyYou whale animation")).toBeInTheDocument();
+  expect(within(stories[0]).getByRole("img", { name: /Process archive: whale keyframes/ })).toHaveAttribute("src", "whaleKeyframes.png");
+  expect(within(stories[1]).getByLabelText("BARD simplified motion study")).toBeInTheDocument();
+  expect(within(stories[2]).getByRole("img", { name: /Process archive: Blender signature/ })).toHaveAttribute("src", "logoModel.png");
+  expect(within(stories[2]).getByRole("region", { name: "System detail" })).toBeInTheDocument();
+  expect(screen.queryByRole("heading", { name: "3D Portfolio" })).not.toBeInTheDocument();
+  const opening = screen.getByRole("img", { name: /HeyYou and BARD lead the opening composition/ });
+  expect(within(opening).getAllByRole("presentation", { hidden: true }).map((img) => img.getAttribute("src")))
+    .toEqual(["heyyou-connection.jpg", "bard-curtain.jpg", "tuhdoo-board.jpg"]);
   expect(screen.getByText(/Case studies were redesigned/)).toBeInTheDocument();
-  expect(
-    screen.getByRole("img", { name: /Process archive: Blender signature/ }),
-  ).toHaveAttribute("src", "logoModel.png");
-  expect(
-    screen.getByRole("img", { name: /Process archive: whale keyframes/ }),
-  ).toHaveAttribute("src", "whaleKeyframes.png");
 });
 
 it("selects actual architecture nodes and reveals their source responsibilities", async () => {
@@ -191,10 +194,9 @@ it("allows keyboard and tap selection of exploded layers without a drag gesture"
 
 it("offers separate, replayable motion interpretations with honest source context", async () => {
   open();
-  const study = screen.getByRole("region", {
-    name: "Three worlds. Three motion languages.",
-  });
   for (const name of ["HeyYou", "BARD", "Tuh-Doo"]) {
+    const story = screen.getByRole("region", { name, exact: true });
+    const study = within(story).getByRole("region", { name: `${name} motion study` });
     const replay = within(study).getByRole("button", {
       name: `Replay ${name} motion study`,
     });
@@ -204,8 +206,8 @@ it("offers separate, replayable motion interpretations with honest source contex
     expect(
       within(study).getByLabelText(`${name} simplified motion study`),
     ).toHaveAttribute("data-run", "2");
+    expect(within(study).getByText(/simplified/i)).toBeInTheDocument();
   }
-  expect(within(study).getByText(/Simplified studies/)).toBeInTheDocument();
 });
 
 it("lets a visitor inspect real CSS timeline poses without running the animation", async () => {
@@ -366,9 +368,9 @@ it("moves the index destination into keyboard focus without altering the URL", a
   const before = window.location.href;
   await userEvent
     .setup()
-    .click(screen.getByRole("button", { name: "03 Worlds" }));
+    .click(screen.getByRole("button", { name: "02 HeyYou" }));
   expect(
-    screen.getByRole("heading", { name: "One system. Different worlds." }),
+    screen.getByRole("heading", { name: "HeyYou", level: 2 }),
   ).toHaveFocus();
   expect(window.location.href).toBe(before);
 });

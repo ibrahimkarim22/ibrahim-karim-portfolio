@@ -109,7 +109,7 @@ export function OpeningAssembly({ worlds }) {
       ref={ref}
       className="tp-assembly"
       role="img"
-      aria-label="HeyYou, BARD and Tuh-Doo float as separate image planes above the shared portfolio architecture"
+      aria-label="HeyYou and BARD lead the opening composition, with a smaller Tuh-Doo preview behind them above the shared portfolio architecture"
       onPointerMove={move}
       onPointerLeave={reset}
     >
@@ -263,27 +263,51 @@ function MotionStudy({ name, language, description, type }) {
   );
 }
 
-export function MotionStudies() {
+const studyPresentations = [
+  { id: "heyyou", name: "HeyYou", title: "Connection in motion." },
+  { id: "bard", name: "BARD", title: "An entrance with weight." },
+  { id: "tuhdoo", name: "Tuh-Doo", title: "One task at a time." },
+];
+
+export function MotionStudies({ project } = {}) {
+  const presentation = studyPresentations.find(({ id }) => id === project);
+  const studies = presentation
+    ? studyCopy.filter(([name]) => name === presentation.name)
+    : studyCopy;
   return (
     <div
       role="region"
-      aria-label="Three worlds. Three motion languages."
-      className="tp-motion-lab tp-scene"
+      aria-label={
+        presentation
+          ? `${presentation.name} motion study`
+          : "Three worlds. Three motion languages."
+      }
+      className={`tp-motion-lab tp-scene${presentation ? " tp-motion-lab--single" : ""}`}
     >
       <div className="tp-lab-heading">
         <h3>
-          Three worlds.
-          <br />
-          Three motion languages.
+          {presentation ? (
+            presentation.title
+          ) : (
+            <>
+              Three worlds.
+              <br />
+              Three motion languages.
+            </>
+          )}
         </h3>
         <p>
-          Simplified studies of each project’s character.
+          {presentation
+            ? "A simplified study of this project’s character."
+            : "Simplified studies of each project’s character."}
           <br />
-          Small interpretations, played once. Replay to compare.
+          {presentation
+            ? "A small interpretation, played once. Replay to inspect."
+            : "Small interpretations, played once. Replay to compare."}
         </p>
       </div>
-      <div className="tp-studies">
-        {studyCopy.map(([name, language, description, type]) => (
+      <div className={`tp-studies${presentation ? " tp-studies--single" : ""}`}>
+        {studies.map(([name, language, description, type]) => (
           <MotionStudy key={name} {...{ name, language, description, type }} />
         ))}
       </div>
