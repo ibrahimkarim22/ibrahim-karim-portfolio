@@ -683,12 +683,12 @@ test("preserves Home biography and contacts, title, copyright, Resume, and Megar
 });
 
 const previewCases = [
-  ["Whack a Mole", "A playful test of timing.", "A browser game built around quick reactions and a ticking score clock.", "JavaScript · HTML · SCSS"],
-  ["KRISPY", "Streams, cinema, and discovery.", "A web streaming project bringing live TV, global feeds, and public-domain films together.", "JavaScript · React · Firebase · Redux · Bootstrap · SCSS"],
   ["HeyYou", "Location sharing meets conversation.", "A mobile app combining real-time location sharing and group messaging.", "JavaScript · React Native · Android Studio · Socket.io · MongoDB · Node.js · Docker · Google Cloud"],
   ["BARD", "A new way into Shakespeare.", "A mobile learning project exploring Shakespeare’s plays through reading, quizzes, and video.", "JavaScript · React Native · Android Studio · Redux · Firebase · Firestore"],
-  ["Tuh-Doo / Kanban Board", "From to-do to done.", "A task board with drag-and-drop columns and saved work tied to each user’s account.", "JavaScript · React · SCSS · Firebase · Firestore"],
   ["Portfolio", "Code with a visual signature.", "A developer portfolio combining a React interface with modeled and animated 3D scenes.", "JavaScript · React · Firebase · SCSS · Blender 3D · React Three Fiber"],
+  ["KRISPY", "Streams, cinema, and discovery.", "A web streaming project bringing live TV, global feeds, and public-domain films together.", "JavaScript · React · Firebase · Redux · Bootstrap · SCSS"],
+  ["Tuh-Doo / Kanban Board", "From to-do to done.", "A task board with drag-and-drop columns and saved work tied to each user’s account.", "JavaScript · React · SCSS · Firebase · Firestore"],
+  ["Whack a Mole", "A playful test of timing.", "A browser game built around quick reactions and a ticking score clock.", "JavaScript · HTML · SCSS"],
 ];
 
 function expectRestingContext() {
@@ -719,30 +719,30 @@ test.each(previewCases)("hover previews %s without navigating and leaving restor
 
 test("keyboard focus previews cards and leaving pointer hover falls back to the focused card", async () => {
   const user = renderPortfolio(["/projects"]);
-  await user.tab(); // Whack a Mole
-  const focused = screen.getByRole("button", { name: /^Whack a Mole / });
+  await user.tab(); // HeyYou
+  const focused = screen.getByRole("button", { name: /^HeyYou / });
   expect(focused).toHaveFocus();
   const context = screen.getByRole("complementary", { name: "Portfolio context" });
-  expect(within(context).getByRole("heading", { name: "A playful test of timing." })).toBeInTheDocument();
-  const hovered = screen.getByRole("button", { name: /^HeyYou / });
-  await user.hover(hovered);
   expect(within(context).getByRole("heading", { name: "Location sharing meets conversation." })).toBeInTheDocument();
-  await user.unhover(hovered);
+  const hovered = screen.getByRole("button", { name: /^Whack a Mole / });
+  await user.hover(hovered);
   expect(within(context).getByRole("heading", { name: "A playful test of timing." })).toBeInTheDocument();
+  await user.unhover(hovered);
+  expect(within(context).getByRole("heading", { name: "Location sharing meets conversation." })).toBeInTheDocument();
   await user.tab();
-  expect(within(context).getByRole("heading", { name: "Streams, cinema, and discovery." })).toBeInTheDocument();
+  expect(within(context).getByRole("heading", { name: "A new way into Shakespeare." })).toBeInTheDocument();
   for (let i = 0; i < 5; i += 1) await user.tab();
   expectRestingContext();
 });
 
 test("new keyboard focus supersedes an existing hover and blur returns to the hovered card", async () => {
   const user = renderPortfolio(["/projects"]);
-  await user.hover(screen.getByRole("button", { name: /^HeyYou / }));
+  await user.hover(screen.getByRole("button", { name: /^Whack a Mole / }));
   await user.tab();
   const context = screen.getByRole("complementary", { name: "Portfolio context" });
-  expect(within(context).getByRole("heading", { name: "A playful test of timing." })).toBeInTheDocument();
-  await user.tab({ shift: true });
   expect(within(context).getByRole("heading", { name: "Location sharing meets conversation." })).toBeInTheDocument();
+  await user.tab({ shift: true });
+  expect(within(context).getByRole("heading", { name: "A playful test of timing." })).toBeInTheDocument();
 });
 
 test("rapid pointer changes supersede earlier captions and do not add history entries", async () => {
@@ -756,7 +756,7 @@ test("rapid pointer changes supersede earlier captions and do not add history en
   }
   // A leave event belonging to an older card must not clear the newest preview.
   fireEvent.pointerLeave(cards[0]);
-  expect(within(context).getByRole("heading", { name: "Code with a visual signature." })).toBeInTheDocument();
+  expect(within(context).getByRole("heading", { name: "A playful test of timing." })).toBeInTheDocument();
   await user.unhover(cards[5]);
   advance(1000);
   expectRestingContext();

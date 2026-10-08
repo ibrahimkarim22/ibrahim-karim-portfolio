@@ -4,12 +4,12 @@ import ProjectSelector from "./ProjectSelector";
 import { PROJECTS } from "./projectCatalog";
 
 const expectedCopy = [
-  ["Whack a Mole", "Online Game", ["JavaScript", "HTML", "SCSS"]],
-  ["KRISPY", "Streaming Service", ["JavaScript", "React", "Firebase", "Redux", "Bootstrap", "SCSS"]],
   ["HeyYou", "Location & Chat", ["JavaScript", "React Native", "Android Studio", "Socket.io", "MongoDB", "Node.js", "Docker", "Google Cloud"]],
   ["BARD", "Online Course", ["JavaScript", "React Native", "Android Studio", "Redux", "Firebase", "Firestore"]],
-  ["Tuh-Doo / Kanban Board", "To Do List", ["JavaScript", "React", "SCSS", "Firebase", "Firestore"]],
   ["Portfolio", "This Portfolio", ["JavaScript", "React", "Firebase", "SCSS", "Blender 3D", "React Three Fiber"]],
+  ["KRISPY", "Streaming Service", ["JavaScript", "React", "Firebase", "Redux", "Bootstrap", "SCSS"]],
+  ["Tuh-Doo / Kanban Board", "To Do List", ["JavaScript", "React", "SCSS", "Firebase", "Firestore"]],
+  ["Whack a Mole", "Online Game", ["JavaScript", "HTML", "SCSS"]],
 ];
 
 describe("ProjectSelector", () => {
@@ -56,7 +56,7 @@ describe("ProjectSelector", () => {
     await user.keyboard("{Enter}");
 
     expect(onSelectProject).toHaveBeenCalledTimes(1);
-    expect(onSelectProject).toHaveBeenCalledWith("whackamole", button);
+    expect(onSelectProject).toHaveBeenCalledWith("heyyou", button);
   });
 
   it("keeps the complete stack accessible when the visual summary uses +N", () => {
@@ -71,16 +71,16 @@ describe("ProjectSelector", () => {
   });
 
   it("updates indexes when a project is inserted before Portfolio without rendering a collection heading", () => {
-    const projects = [...PROJECTS.slice(0, -1), {
+    const projects = [...PROJECTS.slice(0, 2), {
       id: "new-project", name: "New project", description: "Web application", technologies: ["JavaScript"],
-    }, PROJECTS[PROJECTS.length - 1]];
+    }, ...PROJECTS.slice(2)];
     render(<ProjectSelector projects={projects} onSelectProject={() => {}} />);
     expect(screen.queryByText(/Selected worlds/i)).not.toBeInTheDocument();
     const items = within(screen.getByRole("list")).getAllByRole("listitem");
-    expect(within(items[5]).getByRole("button", { name: "New project Web application" })).toBeInTheDocument();
-    expect(within(items[5]).getByText("06")).toBeInTheDocument();
-    expect(within(items[6]).getByRole("button", { name: "Portfolio This Portfolio" })).toBeInTheDocument();
-    expect(within(items[6]).getByText("07")).toBeInTheDocument();
+    expect(within(items[2]).getByRole("button", { name: "New project Web application" })).toBeInTheDocument();
+    expect(within(items[2]).getByText("03")).toBeInTheDocument();
+    expect(within(items[3]).getByRole("button", { name: "Portfolio This Portfolio" })).toBeInTheDocument();
+    expect(within(items[3]).getByText("04")).toBeInTheDocument();
   });
 
   it.each(PROJECTS.map(({ id, name }) => [id, name]))("activates %s by mouse and Space", async (id, name) => {
