@@ -9,6 +9,8 @@ import {
   updateLogoCables,
 } from "./logoSuspension";
 
+import { createLogoMoonlight, disposeLogoMoonlight, getLogoFilledRegions } from "./logoMoonlight";
+
 const PAIRS = [
   ["ibrahim", "outer", "inner", 0.25, 0.7, 0.12],
   ["karim", "outer.001", "inner.001", 0.025, 0.55, 0.12],
@@ -582,4 +584,118 @@ test("cleanup disposes only runtime cable resources", () => {
   expect(lineMaterial).toHaveBeenCalledTimes(1);
   expect(sourceGeometry).not.toHaveBeenCalled();
   expect(sourceMaterial).not.toHaveBeenCalled();
+});
+
+// Include separate filled caps so cached analysis covers the special EE support
+// and both material-specific visible ties, as well as default glow regions.
+function cacheSpecimen() {
+  const source = specimen();
+  PAIRS.forEach(([, , name]) => {
+    const node = source.getObjectByName(THREE.PropertyBinding.sanitizeNodeName(name));
+    const original = node.children.find((child) => child.isMesh);
+    original.geometry.computeBoundingBox();
+    const size = original.geometry.boundingBox.getSize(new THREE.Vector3());
+    node.remove(original);
+    [["Material.004", -0.32], ["Material.007", 0.32]].forEach(([materialName, offset]) => {
+      const material = new THREE.MeshStandardMaterial();
+      material.name = materialName;
+      const mesh = new THREE.Mesh(new THREE.BoxGeometry(size.x * 0.2, size.y, size.z), material);
+      mesh.position.x = size.x * offset;
+      node.add(mesh);
+    });
+  });
+  return source;
+}
+
+function analysisSnapshot(rig) {
+  return rig.pieces.map((piece) => ({
+    id: piece.id, nominal: piece.nominalPosition.toArray(), size: piece.size.toArray(),
+    bounds: [piece.bounds.min.toArray(), piece.bounds.max.toArray()],
+    motion: piece.motionSupports.map(({ side, attachment }) => [side, attachment.toArray()]),
+    visible: piece.supports.map(({ side, label, attachment }) => [side, label, attachment.toArray()]),
+    regions: getLogoFilledRegions(piece).map((region) => [region.min.toArray(), region.max.toArray()]),
+    artwork: piece.names.map((name) => {
+      const object = rig.scene.getObjectByName(THREE.PropertyBinding.sanitizeNodeName(name));
+      object.updateWorldMatrix(true, false);
+      return object.matrixWorld.toArray();
+    }),
+  }));
+}
+
+test("warm logo construction preserves analyzed artwork and ties without repeating mesh scans or raycasts", () => {
+  const source = cacheSpecimen();
+  const rays = jest.spyOn(THREE.Raycaster.prototype, "intersectObjects");
+  const vertices = jest.spyOn(THREE.Vector3.prototype, "fromBufferAttribute");
+  let cold, warm, glow;
+  try {
+    cold = createLogoSuspension(source);
+    const expected = analysisSnapshot(cold);
+    expect(rays).toHaveBeenCalled();
+    expect(vertices).toHaveBeenCalled();
+    rays.mockClear(); vertices.mockClear();
+    warm = createLogoSuspension(source);
+    expect(analysisSnapshot(warm)).toEqual(expected);
+    glow = createLogoMoonlight(warm, "#FF3131", { seed: 1821 });
+    expect(glow.halos.length).toBeGreaterThan(0);
+    expect(rays).not.toHaveBeenCalled();
+    expect(vertices).not.toHaveBeenCalled();
+  } finally {
+    rays.mockRestore(); vertices.mockRestore();
+    if (glow) disposeLogoMoonlight(glow);
+    if (cold) disposeLogoSuspension(cold);
+    if (warm) disposeLogoSuspension(warm);
+  }
+});
+
+test("cached geometry creates independent runtime state and a fresh entrance after disposal", () => {
+  const source = cacheSpecimen();
+  const first = createLogoSuspension(source), second = createLogoSuspension(source);
+  const expected = analysisSnapshot(second);
+  const camera = new THREE.PerspectiveCamera(30, 1440 / 740, 0.1, 1000);
+  camera.position.set(0.45, 0.4, 2); camera.updateMatrixWorld(true);
+  configureLogoSuspension(first, { camera, width: 1440 });
+  step(first, 5);
+  expect(second.time).toBe(0);
+  expect(second.configured).toBe(false);
+  expect(second.scene).not.toBe(first.scene);
+  expect(second.lines.geometry).not.toBe(first.lines.geometry);
+  expect(second.lines.material).not.toBe(first.lines.material);
+  first.pieces.forEach((piece, index) => {
+    expect(piece.state).not.toBe(second.pieces[index].state);
+    expect(piece.motionSupports[0]).not.toBe(second.pieces[index].motionSupports[0]);
+    expect(piece.supports[0].attachment).not.toBe(second.pieces[index].supports[0].attachment);
+    piece.motionSupports[0].attachment.set(20, 30, 40);
+    piece.supports[0].attachment.set(40, 30, 20);
+  });
+  expect(analysisSnapshot(second)).toEqual(expected);
+  disposeLogoSuspension(first);
+  const third = createLogoSuspension(source);
+  expect(analysisSnapshot(third)).toEqual(expected);
+  expect(third.time).toBe(0);
+  expect(third.activeSlip).toBeNull();
+  configureLogoSuspension(second, { camera, width: 1440 });
+  configureLogoSuspension(third, { camera, width: 1440 });
+  step(second, 0.7); step(third, 0.7);
+  expect(analysisSnapshot(third)).toEqual(analysisSnapshot(second));
+  disposeLogoSuspension(second); disposeLogoSuspension(third);
+});
+
+test("filled-region results and moonlight resources remain independent across cached logo mounts", () => {
+  const source = cacheSpecimen();
+  const first = createLogoSuspension(source), second = createLogoSuspension(source);
+  const expected = getLogoFilledRegions(second.pieces[0]);
+  const regions = getLogoFilledRegions(first.pieces[0]);
+  regions[0].min.set(100, 100, 100); regions.pop();
+  expect(getLogoFilledRegions(first.pieces[0])).toEqual(expected);
+  const firstGlow = createLogoMoonlight(first, "#FF3131", { seed: 1821 });
+  const secondGlow = createLogoMoonlight(second, "#FF3131", { seed: 1821 });
+  expect(firstGlow.texture).not.toBe(secondGlow.texture);
+  expect(firstGlow.sources[0].state).not.toBe(secondGlow.sources[0].state);
+  expect(firstGlow.halos[0].material).not.toBe(secondGlow.halos[0].material);
+  firstGlow.sources[0].region.min.x = 100;
+  disposeLogoMoonlight(firstGlow);
+  expect(secondGlow.sources[0].region).toEqual(expected[0]);
+  expect(secondGlow.halos[0].parent).toBe(second.pieces[0].group);
+  expect(getLogoFilledRegions(second.pieces[0])).toEqual(expected);
+  disposeLogoMoonlight(secondGlow); disposeLogoSuspension(first); disposeLogoSuspension(second);
 });

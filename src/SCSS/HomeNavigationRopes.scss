@@ -1,0 +1,121 @@
+// Body portals and the shell share one paint plane. Navigation sits above the
+// cable web; ordinary project dialogs retain their existing higher layer.
+body:has(.menu-div-main[data-active-view]) {
+  isolation: isolate;
+  .menu-div-main[data-active-view] { background-color: transparent; }
+
+  // Reactstrap's outer host otherwise flattens its backdrop and controls into
+  // one layer, preventing the cable web from painting between them.
+  > div:has(> div > .navigation-wheel-modal) { z-index: auto !important; }
+  .navigation-wheel-backdrop.modal-backdrop { z-index: 1100; }
+  .navigation-wheel-modal.modal { z-index: 1112; }
+  &:has(.navigation-wheel-modal) .navigation-ropes { z-index: 1111; }
+}
+.menu-div-main[data-active-view] {
+  isolation: auto;
+  > .menu-items.portfolio-navigation[data-nav-mode] { z-index: 1000; }
+  // Keep the real bulb above the transparent navigation box and reachable
+  // through the existing wheel cutout.
+  > .portfolio-light,
+  > .portfolio-light__trigger { z-index: 1001; }
+}
+
+// Fine flax cord, shadowed against the wall and lightly picked out by brass.
+// This layer has no hit targets and keeps the deliberately exposed crossings.
+.navigation-ropes {
+  --rope-material: #a49273;
+  --rope-highlight: #e6d6b5;
+  --rope-hardware: #b9a074;
+  position: fixed;
+  z-index: 999;
+  inset: 0;
+  width: 100%;
+  height: 100dvh;
+  overflow: hidden;
+  pointer-events: none !important;
+  visibility: hidden;
+  contain: layout style;
+  path { fill: none; stroke-linecap: round; vector-effect: non-scaling-stroke; }
+  .navigation-rope__shadow { stroke: #050403; stroke-width: 2.8; opacity: 0.6; }
+  .navigation-rope__thread { stroke: var(--rope-material); stroke-width: 1.1; opacity: 0.82; }
+  .navigation-rope__fibre { stroke: var(--rope-highlight); stroke-width: 0.4; stroke-dasharray: 1.6 8.5 0.4 5.2; opacity: 0.36; }
+  .navigation-rope__eyelet { fill: #1b1711; stroke: var(--rope-hardware); stroke-width: 0.8; }
+  .navigation-rope[data-active="true"] {
+    .navigation-rope__thread { stroke: color-mix(in srgb, var(--rope-cue) 24%, var(--rope-highlight)); stroke-width: 1.45; opacity: 0.95; }
+    .navigation-rope__eyelet { fill: var(--rope-hardware); }
+  }
+  .navigation-rope__gather {
+    fill: #201a11;
+    stroke: var(--rope-hardware);
+    stroke-width: 0.9;
+    circle:last-of-type { fill: #070605; stroke-width: 0.65; }
+    path { stroke: #91784f; stroke-width: 0.65; }
+  }
+}
+
+// Separate transform layers compose pull, existing hover scale, and lettering.
+.menu-div-main .portfolio-navigation,
+.navigation-wheel__destinations {
+  .navigation-home .navigation-home__label { animation: none !important; transform: none !important; }
+  .navigation-home__moon-pull { display: block; width: 100%; height: 100%; transform: translate(var(--rope-x, 0px), var(--rope-y, 0px)); }
+  [data-rope-lever] {
+    transform: rotate(var(--rope-angle, 0deg));
+    transform-origin: 100% 38%;
+    &[data-rope-end="right"] { transform-origin: 0% 38%; }
+  }
+  .navigation-tied-letter { position: relative; display: inline-block; font: inherit; letter-spacing: inherit; }
+  .navigation-letter-baseline { display: inline-block; width: 0; height: 0; vertical-align: baseline; }
+  .navigation-rope-pin { position: absolute; top: 55%; left: 15%; width: 1px; height: 1px; transform: translate(-50%, -50%); }
+  .navigation-tied-letter[data-rope-end="right"] .navigation-rope-pin:not([data-rope-ink]) { left: 75%; }
+}
+.navigation-wheel__destinations {
+  .navigation-destination { translate: var(--rope-x, 0px) var(--rope-y, 0px); }
+  [data-rope-lever] { transform: none !important; }
+}
+.navigation-wheel__surface[data-rope-closing="true"] .navigation-wheel__destinations > * {
+  animation: navigation-wheel-rope-fold 280ms cubic-bezier(0.4, 0, 0.65, 1) both;
+  pointer-events: none;
+}
+@keyframes navigation-wheel-rope-fold {
+  from { opacity: var(--rope-fold-opacity, 1); transform: var(--rope-fold-from, translate(calc(var(--wheel-x) - 50%), calc(var(--wheel-y) - 50%)) scale(1)); }
+  to { opacity: 0; transform: translate(calc(var(--wheel-origin-x) - 50%), calc(var(--wheel-origin-y) - 50%)) scale(0.18); }
+}
+.portfolio-light[data-rope-connected="true"] .portfolio-light__pull-cord {
+  animation: none !important;
+  transform: none !important;
+  .portfolio-light__pull-thread, .portfolio-light__pull-toggle { animation: none !important; transform: none !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .navigation-wheel__surface[data-rope-closing="true"] .navigation-wheel__destinations > * { animation: none !important; }
+}
+
+// Keep the existing bulb available through the overlay. The cutout exposes the
+// real control; the rest of the surface retains click-outside dismissal.
+.navigation-wheel-modal.modal,
+.navigation-wheel-backdrop.modal-backdrop,
+.navigation-wheel .navigation-wheel__content,
+.navigation-wheel__surface { pointer-events: none !important; }
+.navigation-wheel__surface::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: auto;
+  clip-path: polygon(0 0, calc(100% - 64px) 0, calc(100% - 64px) 120px, 100% 120px, 100% 100%, 0 100%);
+}
+.navigation-wheel__surface button { pointer-events: auto; }
+
+// The hit area can follow the visibly pulled glyph/moon beyond the stationary
+// button box; these descendants bubble into the same single native control.
+.menu-div-main .portfolio-navigation,
+.navigation-wheel__destinations {
+  .navigation-destination [data-rope-lever] { pointer-events: auto; }
+  .navigation-destination[data-rope-selected="true"] { z-index: 2; }
+  .navigation-home__moon-pull,
+  .navigation-home__moon-scale { pointer-events: auto; }
+}
+
+// Match the original individually set Projects letters without their fan effect.
+.menu-div-main .portfolio-navigation,
+.navigation-wheel__destinations {
+  .navigation-lettering--projects :is(.navigation-word, .navigation-tied-letter) { font-kerning: none; }
+}

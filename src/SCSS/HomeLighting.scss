@@ -76,17 +76,13 @@ body:has(.menu-div-main:not([data-active-view="home"])),
     .navigation-destination .navigation-word { color: var(--home-color-primary); }
     .navigation-home[aria-current="page"] .navigation-home__label,
     .navigation-home:is(:hover, :focus-visible) .navigation-home__label,
-    .navigation-destination:is(:hover, :focus-visible, [data-motion-phase="playing"], [data-motion-phase="held"], [aria-current="page"]) .navigation-word {
+    .navigation-destination:is(:hover, :focus-visible, [data-rope-selected="true"], [aria-current="page"]) .navigation-word {
       color: var(--home-color-accent);
     }
     .navigation-destination--projects,
     .navigation-destination--resume,
     .navigation-destination--profile,
     .navigation-destination--racer { --destination-fill: var(--home-color-accent); }
-    .navigation-channel--red { color: var(--home-color-rose); }
-    .navigation-channel--cyan { color: var(--home-color-accent); }
-    .navigation-stereo-register__red { stroke: var(--home-color-rose); }
-    .navigation-stereo-register__cyan { stroke: var(--home-color-accent); }
   }
 
   .full-stack-div {

@@ -1,0 +1,117 @@
+// Transparent semantic control sits over the existing glass, with a 44px tap area.
+.portfolio-light__trigger {
+  position: fixed;
+  z-index: var(--portfolio-light-fixture-layer);
+  top: calc(env(safe-area-inset-top) + 32px);
+  left: calc(var(--light-source-x) - 22px);
+  box-sizing: border-box;
+  width: 44px;
+  height: 48px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 45%;
+  background: transparent;
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+
+  &:focus-visible {
+    outline: 1px solid var(--home-color-accent, #e6dabf);
+    outline-offset: 3px;
+    box-shadow: 0 0 9px color-mix(in srgb, var(--home-color-accent, #e6dabf) 25%, transparent);
+  }
+  &[aria-disabled="true"] { cursor: default; }
+}
+
+.portfolio-light {
+  &__dust-envelope {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    transition: opacity 420ms ease;
+  }
+  &__sway {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-origin: 50% 0;
+    transform: rotate(var(--rope-fixture-angle, 0deg));
+  }
+  &__carriage {
+    transform: translateY(var(--bulb-carriage-offset, 0px));
+    transform-box: view-box;
+    transform-origin: 28px 38px;
+  }
+  &__fracture { fill: none; stroke: #d6cdbb; stroke-width: 0.75; opacity: 0; }
+
+  &[data-bulb-phase="breaking"] &__fracture { opacity: 0.7; }
+  &:is([data-bulb-phase="breaking"], [data-bulb-phase="falling"], [data-bulb-phase="retracting"]) {
+    .portfolio-light__glass--unlit,
+    .portfolio-light__fixture .portfolio-light__reflection { opacity: 0; }
+  }
+  &[data-bulb-emitting="false"][data-bulb-phase]:not([data-bulb-phase="idle"]) &__emission-envelope,
+  &[data-bulb-emitting="false"][data-bulb-phase]:not([data-bulb-phase="idle"]) &__dust-envelope {
+    opacity: 0;
+    transition: none;
+  }
+  &:is([data-bulb-phase="retracting"], [data-bulb-phase="replacing"], [data-bulb-phase="settling"]) &__cord {
+    transform: scaleY(var(--bulb-cable-scale, 1));
+    transform-origin: 28px 0;
+  }
+  &[data-bulb-phase="settling"] &__carriage { animation: portfolio-bulb-settle 460ms ease-out both; }
+  &[data-bulb-phase="settling"] &__emission-envelope {
+    transform-origin: 50% 34%;
+    animation: portfolio-bulb-settle 460ms ease-out both;
+  }
+  &__debris {
+    position: fixed;
+    z-index: var(--portfolio-light-fixture-layer);
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    contain: layout paint;
+  }
+  &__shard {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: linear-gradient(120deg, #dcd5c5aa, #aba79555 34%, #e8e2d0bb 48%, #79736555 75%);
+    box-shadow: inset 0 0 0 0.6px #eae1c5bb;
+    will-change: transform;
+  }
+}
+
+// Mask only the existing bulb pool while glass is absent. The theme remains
+// authoritative, including navigation that happens during the temporary effect.
+.menu-div-main:not([data-active-view="home"]):has(.portfolio-light[data-bulb-emitting="false"][data-bulb-phase]:not([data-bulb-phase="idle"]))::before {
+  visibility: hidden;
+}
+
+@keyframes portfolio-bulb-settle {
+  0% { transform: translateY(0.8px) rotate(0.65deg); }
+  38% { transform: translateY(0) rotate(-0.35deg); }
+  72% { transform: rotate(0.12deg); }
+  100% { transform: translateY(0) rotate(0); }
+}
+
+@media (max-width: 1250px), (max-height: 700px) {
+  .portfolio-light__trigger {
+    top: calc(env(safe-area-inset-top) + 15px);
+    left: auto;
+    right: calc(max(env(safe-area-inset-right), 14px) - 8px);
+    height: 44px;
+  }
+}
+
+.portfolio-light[data-light-motion="reduced"] {
+  &[data-bulb-phase="breaking"] .portfolio-light__fracture { opacity: 0.35; }
+  &[data-bulb-phase="replacing"] .portfolio-light__carriage { animation: portfolio-bulb-replacement-fade 120ms ease-out both; }
+  &[data-bulb-phase="settling"] .portfolio-light__carriage,
+  &[data-bulb-phase="settling"] .portfolio-light__emission-envelope { animation: none; }
+}
+
+@keyframes portfolio-bulb-replacement-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

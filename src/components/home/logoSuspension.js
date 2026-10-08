@@ -34,6 +34,24 @@ export const LOGO_SUSPENSION = Object.freeze({
   releasedPayoutRatio: 0.16,
 });
 
+// The GLTF source is immutable across route mounts. Cache only frozen numeric
+// analysis, so no scene, material, animation state or disposable resource survives
+// through this cache. Every rig still gets its own wrappers and entrance.
+const sourceAnalysis = new WeakMap();
+const vectorDescriptor = (vector) => Object.freeze(vector.toArray());
+const boxDescriptor = (box) => Object.freeze({ min: vectorDescriptor(box.min), max: vectorDescriptor(box.max) });
+const boxFromDescriptor = (box) => new THREE.Box3(
+  new THREE.Vector3().fromArray(box.min), new THREE.Vector3().fromArray(box.max)
+);
+const supportDescriptor = ({ side, label, attachment }) => Object.freeze({
+  side, label, attachment: vectorDescriptor(attachment),
+});
+const freshSupport = ({ side, label, attachment }) => ({
+  side, label, attachment: new THREE.Vector3().fromArray(attachment),
+  anchor: new THREE.Vector3(), endpoint: new THREE.Vector3(),
+  nominalLength: 0, targetLength: 0, length: 0, paidOutLength: 0, slack: 0, tension: 1,
+});
+
 const STEP = 1 / 120;
 const clamp01 = (value) => Math.min(1, Math.max(0, value));
 const smooth = (value) => {
@@ -167,6 +185,8 @@ function attachmentOnStroke(bounds, vertices, side, nodes, scene, options = {}) 
 }
 
 export function createLogoSuspension(sourceScene) {
+  const cached = sourceAnalysis.get(sourceScene);
+  const initialAnalysis = {};
   sourceScene.updateMatrixWorld(true);
   const scene = sourceScene.clone(true);
   // Three's light.copy clones .target separately from child targets. GLTFLoader
@@ -192,13 +212,20 @@ export function createLogoSuspension(sourceScene) {
   const pieces = PIECES.flatMap((definition, index) => {
     const nodes = definition.names.map((name) => byName.get(name)).filter(Boolean);
     if (!nodes.length) return [];
-    const { bounds, vertices } = measurePiece(scene, nodes);
+    const saved = cached?.[definition.id];
+    const { bounds, vertices } = saved
+      ? { bounds: boxFromDescriptor(saved.bounds) } : measurePiece(scene, nodes);
     if (bounds.isEmpty()) return [];
     const center = bounds.getCenter(new THREE.Vector3());
     const size = bounds.getSize(new THREE.Vector3());
-    const attachments = definition.supports.map((side) => ({
+    const attachments = saved ? saved.initialSupports.map(freshSupport) : definition.supports.map((side) => ({
       side, attachment: attachmentOnStroke(bounds, vertices, side, nodes, scene).sub(center),
     }));
+    // Snapshot before the existing constructor scales the attachment vectors.
+    if (!cached) initialAnalysis[definition.id] = {
+      bounds: boxDescriptor(bounds),
+      initialSupports: Object.freeze(attachments.map(supportDescriptor)),
+    };
     const group = new THREE.Group();
     group.name = `Suspended-${definition.id}`;
     group.position.copy(center);
@@ -239,7 +266,7 @@ export function createLogoSuspension(sourceScene) {
     piece.group.position.copy(piece.nominalPosition);
   });
   const pronunciation = pieces.find(({ id }) => id === "ibrahimPronunciation");
-  if (pronunciation) {
+  if (pronunciation && !cached) {
     const regions = getLogoFilledRegions(pronunciation);
     if (regions.length > 1) {
       // The first filled region is EE; the hollow BRAH lies between it and EEM.
@@ -256,6 +283,12 @@ export function createLogoSuspension(sourceScene) {
     }
   }
   pieces.forEach((piece) => {
+    const saved = cached?.[piece.id];
+    if (saved) {
+      piece.motionSupports = saved.motionSupports.map(freshSupport);
+      piece.supports = saved.supports.map(freshSupport);
+      return;
+    }
     // Keep the working pose solver and its original pivots intact. Visible
     // rigging may attach to other strokes without rechoreographing the logo.
     piece.motionSupports = piece.supports;
@@ -304,6 +337,19 @@ export function createLogoSuspension(sourceScene) {
       piece.supports = [visibleSupport("left", "kuh", kuh), visibleSupport("right", "m", endM)];
     }
   });
+  if (!cached) {
+    pieces.forEach((piece) => {
+      initialAnalysis[piece.id] = Object.freeze({
+        ...initialAnalysis[piece.id],
+        motionSupports: Object.freeze(piece.motionSupports.map(supportDescriptor)),
+        supports: Object.freeze(piece.supports.map(supportDescriptor)),
+        filledRegions: Object.freeze(getLogoFilledRegions(piece).map(boxDescriptor)),
+      });
+    });
+    sourceAnalysis.set(sourceScene, Object.freeze(initialAnalysis));
+  }
+  const analysis = cached || sourceAnalysis.get(sourceScene);
+  pieces.forEach((piece) => { piece.filledRegionBounds = analysis[piece.id].filledRegions; });
   const supportCount = pieces.reduce((sum, piece) => sum + piece.supports.length, 0);
   const geometry = new THREE.BufferGeometry();
   geometry.setAttribute("position", new THREE.BufferAttribute(

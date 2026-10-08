@@ -146,8 +146,6 @@ function Home() {
         data-light-motion={lighting.reduced ? "reduced" : "full"}
         style={lighting.style}
       >
-        <HomeAmbientLight />
-        <HomeCandle />
         {!(isNarrowLayout && activeView === PORTFOLIO_VIEWS.HOME) && (
           <HomeContextPanel
             activeView={activeView}
@@ -165,6 +163,7 @@ function Home() {
         {isNarrowLayout && activeView === PORTFOLIO_VIEWS.HOME && <AboutMeSheet />}
         <HomeNavigation
           activeView={activeView}
+          isProjectModalOpen={Boolean(getProjectById(selectedProjectId))}
           onLightingSelect={lighting.selectTheme}
           isNarrowLayout={isNarrowLayout}
           routeKey={location.key}
@@ -182,6 +181,9 @@ function Home() {
             <Copyright />
           </div>
         </div>
+        {/* Keep the established content/navigation tab order ahead of discovery actions. */}
+        <HomeAmbientLight />
+        <HomeCandle />
       </div>
       <ProjectModalHost selectedProjectId={selectedProjectId} onClose={closeProject} />
     </PortfolioLightingContext.Provider>

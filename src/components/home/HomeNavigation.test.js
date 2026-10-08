@@ -79,16 +79,6 @@ function openIndex(user) {
   return user.click(screen.getByRole("button", { name: "Navigate" }));
 }
 
-function finishMotion(control, label, animationName) {
-  // Projects renders individual decorative letters; the wrapper owns completion.
-  // eslint-disable-next-line testing-library/no-node-access
-  const word = control.querySelector(".navigation-word[data-motion-finish]");
-  expect(word).toHaveTextContent(label);
-  const event = createEvent.animationEnd(word);
-  Object.defineProperty(event, "animationName", { value: animationName });
-  fireEvent(word, event);
-}
-
 function emulateKeyboardFocusVisible(control) {
   // JSDOM reports :focus-visible false even after keyboard focus; emulate the
   // native browser state without replacing the actual keyboard/focus events.
@@ -109,18 +99,23 @@ function navigationSvgs(control) {
   return control.querySelectorAll("svg");
 }
 
-function expectNoTrailingMarkers(control) {
-  // Hover artwork stays available, but the small resting endpoint icons do not.
+function destinationWord(control) {
+  // Query the painted text layer so hover, focus and repeated activation cannot
+  // silently remount it or swap in old decorative lettering.
   // eslint-disable-next-line testing-library/no-node-access
-  expect(control.querySelectorAll(".navigation-print-marker, .navigation-stereo-register, .navigation-racer-sigil, .navigation-wheel__glyph")).toHaveLength(0);
+  return control.querySelector(".navigation-word");
 }
 
-function expectProjectsTextOnly(control) {
-  expect(control).toHaveAccessibleName("Projects");
-  expect(control).toHaveAttribute("aria-label", "Projects");
-  expect(navigationSvgs(control)).toHaveLength(0);
+function expectPlainDestination(control, label) {
+  expect(control).toHaveAccessibleName(label);
+  const word = destinationWord(control);
+  expect(word).toHaveTextContent(label === "3D Profile" ? "3D profile" : label);
+  expect(control).not.toHaveAttribute("data-motion-phase");
+  expect(control).not.toHaveAttribute("data-motion-source");
+  expect(word).not.toHaveAttribute("data-motion-finish");
+  // Mechanical glyph fittings remain; retired independent art never returns.
   // eslint-disable-next-line testing-library/no-node-access
-  expect(control.querySelectorAll(".navigation-gallery-burst, .navigation-world-tile")).toHaveLength(0);
+  expect(control.querySelectorAll(".navigation-project-letter, .navigation-document-assembly, .navigation-document-page, .navigation-channel, .navigation-racer-spell, .navigation-print-marker, .navigation-stereo-register, .navigation-racer-sigil, .navigation-wheel__glyph")).toHaveLength(0);
 }
 
 function navigationFrames(control) {
@@ -199,7 +194,7 @@ test("the decorative moon shares Home's target and keeps its animation nodes thr
 
   await user.hover(moon);
   expect(home).toHaveAttribute("data-home-activation", "1");
-  expect(within(home).getByText("Home", { selector: ".navigation-home__label" })).not.toBe(originalLabel);
+  expect(within(home).getByText("Home", { selector: ".navigation-home__label" })).toBe(originalLabel);
   selectors.forEach((selector, index) => expect(decorativeHomePart(home, selector)).toBe(parts[index]));
   expect(screen.getByLabelText("Selected lighting")).toHaveTextContent("projects");
 
@@ -242,36 +237,29 @@ test("touch pointer entry does not simulate Home hover feedback", () => {
   expect(screen.getByLabelText("Selected lighting")).toHaveTextContent("projects");
 });
 
-test.each(["pointer", "keyboard"])("Megaracer word feedback completes, holds and replays on native %s activation", async (source) => {
+test.each(["pointer", "keyboard"])("Megaracer activation keeps its readable lettering and native button for %s input", async (source) => {
   const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
   render(<NavigationHarness initialView="megaracer" isNarrowLayout={false} />);
   const racer = screen.getByRole("button", { name: "Megaracer", exact: true });
-  const word = within(racer).getByText("Megaracer", { selector: ".navigation-word" });
-  expect(word).toBeInTheDocument();
-  expectNoTrailingMarkers(racer);
-  expect(decorativeHomePart(racer, ".navigation-racer-spell")).toBeInTheDocument();
-  expect(within(racer).queryByRole("img")).not.toBeInTheDocument();
+  const word = destinationWord(racer);
+  expectPlainDestination(racer, "Megaracer");
   if (source === "pointer") await user.hover(word);
   else for (let index = 0; index < 5; index += 1) await user.tab();
-  expect(screen.getByRole("button", { name: "Megaracer", exact: true })).toBe(racer);
-  finishMotion(racer, "Megaracer", "navigation-racer-enchant");
-  expect(racer).toHaveAttribute("data-motion-phase", "held");
+  expect(screen.getByLabelText("Lighting activations")).toHaveTextContent("0");
   if (source === "pointer") await user.click(racer);
   else await user.keyboard("{Enter}");
-  expect(racer).toHaveAttribute("data-motion-phase", "playing");
-  finishMotion(racer, "Megaracer", "navigation-racer-enchant");
-  expect(racer).toHaveAttribute("data-motion-phase", "held");
+  expect(screen.getByLabelText("Lighting activations")).toHaveTextContent("1");
+  expect(screen.getByLabelText("Megaracer selections")).toHaveTextContent("0");
   expect(screen.getByRole("button", { name: "Megaracer", exact: true })).toBe(racer);
+  expect(destinationWord(racer)).toBe(word);
+  expectPlainDestination(racer, "Megaracer");
   expect(screen.queryByRole("link")).not.toBeInTheDocument();
-  expect(within(racer).getByText("Megaracer", { selector: ".navigation-word" })).toBeInTheDocument();
-  expectNoTrailingMarkers(racer);
-  expect(decorativeHomePart(racer, ".navigation-racer-spell")).toBeInTheDocument();
   if (source === "pointer") await user.unhover(racer);
   else await user.tab();
-  expect(racer).toHaveAttribute("data-motion-phase", "idle");
+  expect(destinationWord(racer)).toBe(word);
 });
 
-test.each([false, true])("navigation keeps Home's moon and hover artwork while omitting resting end symbols at narrow=%s", async (isNarrowLayout) => {
+test.each([false, true])("navigation retains one Home moon and plain destination labels at narrow=%s", async (isNarrowLayout) => {
   const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
   render(<NavigationHarness isNarrowLayout={isNarrowLayout} />);
   if (isNarrowLayout) await openIndex(user);
@@ -279,68 +267,47 @@ test.each([false, true])("navigation keeps Home's moon and hover artwork while o
     ? screen.getByRole("dialog", { name: "Choose a destination" })
     : screen.getByRole("navigation", { name: "Portfolio navigation" }));
   const home = scope.getByRole("button", { name: "Home", exact: true });
+  const moon = decorativeHomePart(home, ".navigation-home__moon-icon");
   expect(navigationSvgs(home)).toHaveLength(1);
-  expect(decorativeHomePart(home, ".navigation-home__moon-icon")).toBeInTheDocument();
-  const destinations = [
-    ["Projects", null],
-    ["Resume", ".navigation-document-assembly"],
-    ["3D Profile", null],
-    ["Megaracer", ".navigation-racer-spell"],
-  ].map(([name, selector]) => ({ name, selector, control: scope.getByRole("button", { name, exact: true }) }));
-  destinations.forEach(({ control, selector, name }) => {
-    expectNoTrailingMarkers(control);
-    expect(control).toHaveAttribute("data-motion-phase", "idle");
-    if (selector) expect(decorativeHomePart(control, selector)).toBeInTheDocument();
-    if (name === "Projects") expectProjectsTextOnly(control);
-  });
+  expect(moon).toBeInTheDocument();
+  const destinations = ["Projects", "Resume", "3D Profile", "Megaracer"]
+    .map((name) => ({ name, control: scope.getByRole("button", { name, exact: true }) }));
   await user.tab();
   expect(home).toHaveFocus();
-  for (const { control, selector, name } of destinations) {
+  for (const { control, name } of destinations) {
+    const word = destinationWord(control);
     await user.tab();
     expect(control).toHaveFocus();
-    expectNoTrailingMarkers(control);
-    expect(control).toHaveAttribute("data-motion-phase", "playing");
-    if (selector) expect(decorativeHomePart(control, selector)).toBeInTheDocument();
-    if (name === "Projects") expectProjectsTextOnly(control);
+    expectPlainDestination(control, name);
     await user.hover(control);
-    expectNoTrailingMarkers(control);
-    if (name === "Projects") {
-      expectProjectsTextOnly(control);
-      finishMotion(control, "Projects", "navigation-projects-settle");
-      expect(control).toHaveAttribute("data-motion-phase", "held");
-      expectProjectsTextOnly(control);
-    }
+    expectPlainDestination(control, name);
     await user.unhover(control);
-    expectNoTrailingMarkers(control);
-    expect(control).toHaveAttribute("data-motion-phase", "idle");
-    if (selector) expect(decorativeHomePart(control, selector)).toBeInTheDocument();
-    if (name === "Projects") expectProjectsTextOnly(control);
+    expect(destinationWord(control)).toBe(word);
   }
+  expect(screen.getByLabelText("Lighting activations")).toHaveTextContent("0");
+  expect(screen.getByRole("heading", { name: "projects destination" })).toBeInTheDocument();
   expect(navigationSvgs(home)).toHaveLength(1);
-  expect(decorativeHomePart(home, ".navigation-home__moon-icon")).toBeInTheDocument();
+  expect(decorativeHomePart(home, ".navigation-home__moon-icon")).toBe(moon);
 });
 
-test.each([false, true])("Projects keeps one accessible name while its decorative letters animate at narrow=%s", async (isNarrowLayout) => {
+test.each([false, true])("Projects retains one accessible label and glyph attachment without a split letter fan at narrow=%s", async (isNarrowLayout) => {
   const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
   render(<NavigationHarness isNarrowLayout={isNarrowLayout} />);
   if (isNarrowLayout) await openIndex(user);
   const projects = screen.getByRole("button", { name: "Projects", exact: true });
-  expectProjectsTextOnly(projects);
-  // Each painted letter is excluded from the accessible name; the button owns it.
-  // eslint-disable-next-line testing-library/no-node-access
-  const letters = [...projects.querySelectorAll(".navigation-project-letter")];
-  expect(letters).toHaveLength("Projects".length);
-  letters.forEach((letter) => expect(letter).toHaveAttribute("aria-hidden", "true"));
+  const word = destinationWord(projects);
+  expect(projects).toHaveAttribute("aria-label", "Projects");
+  expectPlainDestination(projects, "Projects");
   await user.hover(projects);
   expect(screen.getAllByRole("button", { name: "Projects", exact: true })).toEqual([projects]);
-  finishMotion(projects, "Projects", "navigation-projects-settle");
-  expect(projects).toHaveAttribute("data-motion-phase", "held");
-  expectProjectsTextOnly(projects);
+  expect(destinationWord(projects)).toBe(word);
+  expectPlainDestination(projects, "Projects");
   await user.unhover(projects);
-  expect(screen.getByRole("button", { name: "Projects", exact: true })).toBe(projects);
+  expect(destinationWord(projects)).toBe(word);
+  expect(screen.getByLabelText("Lighting activations")).toHaveTextContent("0");
 });
 
-test.each([["home", false], ["home", true], ["projects", true]])("colored destination titles share the lighting palette at %s narrow=%s", async (initialView, isNarrowLayout) => {
+test.each([["home", false], ["home", true], ["projects", true]])("destination titles retain the lighting palette at %s narrow=%s", async (initialView, isNarrowLayout) => {
   const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
   render(<NavigationHarness initialView={initialView} isNarrowLayout={isNarrowLayout} />);
   if (initialView === "projects" && isNarrowLayout) await openIndex(user);
@@ -349,50 +316,49 @@ test.each([["home", false], ["home", true], ["projects", true]])("colored destin
   }
 });
 
-test("pointer entry plays once, holds across rerenders, resets on leave and restarts on the next entry", async () => {
+test("hover, focus and shell rerenders preserve destination lettering without activating the lamp", async () => {
   const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
   const { rerender } = render(<NavigationHarness initialView="home" isNarrowLayout={false} />);
   const projects = screen.getByRole("button", { name: "Projects" });
-  expect(projects).toHaveAttribute("data-motion-phase", "idle");
+  const word = destinationWord(projects);
   await user.hover(projects);
-  expect(projects).toHaveAttribute("data-motion-phase", "playing");
-  finishMotion(projects, "Projects", "navigation-projects-settle");
-  expect(projects).toHaveAttribute("data-motion-phase", "held");
   rerender(<NavigationHarness initialView="home" isNarrowLayout={false} routeKey="rerendered" />);
   expect(screen.getByRole("button", { name: "Projects" })).toBe(projects);
-  expect(projects).toHaveAttribute("data-motion-phase", "held");
+  expect(destinationWord(projects)).toBe(word);
   await user.unhover(projects);
-  expect(projects).toHaveAttribute("data-motion-phase", "idle");
-  await user.hover(projects);
-  expect(projects).toHaveAttribute("data-motion-phase", "playing");
+  await user.tab();
+  await user.tab();
+  expect(projects).toHaveFocus();
+  expectPlainDestination(projects, "Projects");
+  expect(destinationWord(projects)).toBe(word);
+  expect(screen.getByLabelText("Lighting activations")).toHaveTextContent("0");
+  expect(screen.getByRole("heading", { name: "home destination" })).toBeInTheDocument();
 });
 
-test("moving directly between destinations releases the old owner and ignores its late animation completion", async () => {
+test("moving between titles and old animation completion events cannot trigger navigation or lighting", async () => {
   const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
   render(<NavigationHarness initialView="home" isNarrowLayout={false} />);
   const projects = screen.getByRole("button", { name: "Projects" });
   const resume = screen.getByRole("button", { name: "Resume" });
   await user.hover(projects);
-  finishMotion(projects, "Projects", "navigation-projects-settle");
   await user.hover(resume);
-  expect(projects).toHaveAttribute("data-motion-phase", "idle");
-  expect(resume).toHaveAttribute("data-motion-phase", "playing");
-  finishMotion(projects, "Projects", "navigation-projects-settle");
-  expect(resume).toHaveAttribute("data-motion-phase", "playing");
-  finishMotion(resume, "Resume", "navigation-document-rules");
-  expect(resume).toHaveAttribute("data-motion-phase", "playing");
-  finishMotion(resume, "Resume", "navigation-document-word");
-  expect(resume).toHaveAttribute("data-motion-phase", "held");
+  fireEvent.animationEnd(destinationWord(projects), { animationName: "navigation-projects-settle" });
+  fireEvent.animationEnd(destinationWord(resume), { animationName: "navigation-document-word" });
+  expectPlainDestination(projects, "Projects");
+  expectPlainDestination(resume, "Resume");
+  expect(screen.getByLabelText("Lighting activations")).toHaveTextContent("0");
+  expect(screen.getByRole("heading", { name: "home destination" })).toBeInTheDocument();
 });
 
-test.each([false, true])("Megaracer hover at narrow=%s only plays word feedback without selecting a view or loading a profile", async (isNarrowLayout) => {
+test.each([false, true])("Megaracer hover at narrow=%s preserves its label without selecting a view or loading a profile", async (isNarrowLayout) => {
   const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
   render(<NavigationHarness initialView="home" isNarrowLayout={isNarrowLayout} />);
   const nav = screen.getByRole("navigation", { name: "Portfolio navigation" });
   const racer = screen.getByRole("button", { name: "Megaracer" });
+  const word = destinationWord(racer);
   await user.hover(racer);
-  finishMotion(racer, "Megaracer", "navigation-racer-enchant");
-  expect(racer).toHaveAttribute("data-motion-phase", "held");
+  expectPlainDestination(racer, "Megaracer");
+  expect(destinationWord(racer)).toBe(word);
   expect(screen.getByRole("heading", { name: "home destination" })).toBeInTheDocument();
   expect(screen.getByLabelText("Selected lighting")).toHaveTextContent("home");
   expect(screen.getByLabelText("Lighting activations")).toHaveTextContent("0");
@@ -400,72 +366,88 @@ test.each([false, true])("Megaracer hover at narrow=%s only plays word feedback 
   expect(within(nav).queryByRole("link")).not.toBeInTheDocument();
   expect(navigationFrames(nav)).toHaveLength(0);
   await user.hover(screen.getByRole("button", { name: "Outside navigation" }));
-  expect(racer).toHaveAttribute("data-motion-phase", "idle");
+  expect(destinationWord(racer)).toBe(word);
 });
 
-test("keyboard focus activates motion but mouse-click focus does not keep Megaracer active", async () => {
+test.each(["Projects", "Resume", "3D Profile", "Megaracer"])("%s keyboard focus and decorative attachment add no navigation or focus stop", async (name) => {
   const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
   render(<NavigationHarness initialView="home" isNarrowLayout={false} />);
-  const projects = screen.getByRole("button", { name: "Projects" });
-  const racer = screen.getByRole("button", { name: "Megaracer" });
-  await user.tab();
-  expect(screen.getByRole("button", { name: "Home", exact: true })).toHaveFocus();
-  await user.tab();
-  expect(projects).toHaveFocus();
-  expect(projects).toHaveAttribute("data-motion-phase", "playing");
-  await user.click(racer);
-  await user.unhover(racer);
-  expect(racer).toHaveFocus();
-  expect(racer).toHaveAttribute("data-motion-phase", "idle");
+  const control = screen.getByRole("button", { name, exact: true });
+  const word = destinationWord(control);
+  for (let index = 0; index < 5 && document.activeElement !== control; index += 1) await user.tab();
+  expect(control).toHaveFocus();
+  expectPlainDestination(control, name);
+  // Fittings are decorative parts of the existing button, never extra tab stops.
+  // eslint-disable-next-line testing-library/no-node-access
+  expect(control.querySelectorAll("button, a, [tabindex], input, select, textarea")).toHaveLength(0);
+  expect(destinationWord(control)).toBe(word);
+  expect(screen.getByLabelText("Lighting activations")).toHaveTextContent("0");
+  expect(screen.getByRole("heading", { name: "home destination" })).toBeInTheDocument();
 });
 
-test("window blur clears held pointer state before returning from an external window", async () => {
+test("window blur preserves plain destination lettering without a held visual state", async () => {
   const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
   render(<NavigationHarness initialView="home" isNarrowLayout={false} />);
   const racer = screen.getByRole("button", { name: "Megaracer" });
+  const word = destinationWord(racer);
   await user.hover(racer);
-  finishMotion(racer, "Megaracer", "navigation-racer-enchant");
-  expect(racer).toHaveAttribute("data-motion-phase", "held");
   fireEvent.blur(window);
-  expect(racer).toHaveAttribute("data-motion-phase", "idle");
+  expectPlainDestination(racer, "Megaracer");
+  expect(destinationWord(racer)).toBe(word);
+  expect(screen.getByLabelText("Lighting activations")).toHaveTextContent("0");
 });
 
-test("reduced motion enters the completed state immediately without waiting for an animation event", async () => {
+test("reduced motion retains readable titles and native activation without an animation completion event", async () => {
   window.matchMedia = jest.fn((query) => ({ matches: query === "(prefers-reduced-motion: reduce)", media: query, addEventListener: jest.fn(), removeEventListener: jest.fn() }));
   const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
   render(<NavigationHarness initialView="home" isNarrowLayout={false} />);
   const racer = screen.getByRole("button", { name: "Megaracer" });
-  expect(racer).toHaveAttribute("data-motion-phase", "idle");
   await user.hover(racer);
-  expect(racer).toHaveAttribute("data-motion-phase", "held");
-  await user.unhover(racer);
-  expect(racer).toHaveAttribute("data-motion-phase", "idle");
+  expectPlainDestination(racer, "Megaracer");
+  expect(screen.getByLabelText("Lighting activations")).toHaveTextContent("0");
+  await user.click(racer);
+  expect(screen.getByLabelText("Lighting activations")).toHaveTextContent("1");
+  expect(screen.getByRole("heading", { name: "megaracer destination" })).toBeInTheDocument();
+  expectPlainDestination(racer, "Megaracer");
 });
 
-test("touch interaction ends on release instead of leaving Megaracer in a filled held state", () => {
+test("touch press and release retain the same readable word and activate only on native click", () => {
   render(<NavigationHarness initialView="home" isNarrowLayout={false} />);
   const racer = screen.getByRole("button", { name: "Megaracer" });
-  const press = createEvent.pointerDown(racer);
-  Object.defineProperty(press, "pointerType", { value: "touch" });
-  fireEvent(racer, press);
-  expect(racer).toHaveAttribute("data-motion-phase", "held");
-  const release = createEvent.pointerUp(racer);
-  Object.defineProperty(release, "pointerType", { value: "touch" });
-  fireEvent(racer, release);
-  expect(racer).toHaveAttribute("data-motion-phase", "idle");
+  const word = destinationWord(racer);
+  for (const create of [createEvent.pointerDown, createEvent.pointerUp]) {
+    const event = create(racer);
+    Object.defineProperty(event, "pointerType", { value: "touch" });
+    fireEvent(racer, event);
+    expectPlainDestination(racer, "Megaracer");
+    expect(destinationWord(racer)).toBe(word);
+    expect(screen.getByLabelText("Lighting activations")).toHaveTextContent("0");
+  }
+  fireEvent.click(racer);
+  expect(screen.getByLabelText("Lighting activations")).toHaveTextContent("1");
+  expect(destinationWord(racer)).toBe(word);
 });
 
-test("enabling reduced motion completes an in-flight interaction immediately", async () => {
+test("changing reduced motion preserves destination focus and does not replay lighting", async () => {
   const listeners = new Set();
   const reducedMedia = { matches: false, media: "(prefers-reduced-motion: reduce)", addEventListener: (event, handler) => listeners.add(handler), removeEventListener: (event, handler) => listeners.delete(handler) };
   window.matchMedia = jest.fn((query) => query === reducedMedia.media ? reducedMedia : { matches: false, media: query, addEventListener: jest.fn(), removeEventListener: jest.fn() });
   const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
   render(<NavigationHarness initialView="home" isNarrowLayout={false} />);
   const resume = screen.getByRole("button", { name: "Resume" });
-  await user.hover(resume);
-  expect(resume).toHaveAttribute("data-motion-phase", "playing");
+  const word = destinationWord(resume);
+  await user.tab();
+  await user.tab();
+  await user.tab();
+  expect(resume).toHaveFocus();
   act(() => { reducedMedia.matches = true; listeners.forEach((handler) => handler({ matches: true })); });
-  expect(resume).toHaveAttribute("data-motion-phase", "held");
+  expect(resume).toHaveFocus();
+  expectPlainDestination(resume, "Resume");
+  expect(destinationWord(resume)).toBe(word);
+  expect(screen.getByLabelText("Lighting activations")).toHaveTextContent("0");
+  await user.keyboard("{Enter}");
+  expect(screen.getByLabelText("Lighting activations")).toHaveTextContent("1");
+  expect(screen.getByRole("heading", { name: "resume destination" })).toBeInTheDocument();
 });
 
 test.each(["pointer", "Enter", "Space"])("native %s activation selects the Megaracer center view and lights it once", async (source) => {
@@ -507,12 +489,12 @@ test("keyboard focus passes directly from Megaracer to the next control without 
   await user.tab();
   await user.tab();
   expect(title).toHaveFocus();
-  expect(title).toHaveAttribute("data-motion-phase", "playing");
+  expectPlainDestination(title, "Megaracer");
   expect(screen.getByLabelText("Lighting activations")).toHaveTextContent("0");
   expect(screen.queryByRole("link")).not.toBeInTheDocument();
   await user.tab();
   expect(screen.getByRole("button", { name: "Outside navigation" })).toHaveFocus();
-  expect(title).toHaveAttribute("data-motion-phase", "idle");
+  expectPlainDestination(title, "Megaracer");
 });
 
 test("repeated selected Megaracer activation replays lighting once per press without selecting the route again", async () => {
@@ -520,9 +502,8 @@ test("repeated selected Megaracer activation replays lighting once per press wit
   render(<NavigationHarness initialView="megaracer" isNarrowLayout={false} />);
   const title = screen.getByRole("button", { name: "Megaracer" });
   await user.click(title);
-  finishMotion(title, "Megaracer", "navigation-racer-enchant");
   await user.click(title);
-  expect(title).toHaveAttribute("data-motion-phase", "playing");
+  expectPlainDestination(title, "Megaracer");
   expect(screen.getByLabelText("Lighting activations")).toHaveTextContent("2");
   await user.keyboard("{Enter}");
   expect(screen.getByLabelText("Lighting activations")).toHaveTextContent("3");

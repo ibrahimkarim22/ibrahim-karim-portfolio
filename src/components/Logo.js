@@ -1,8 +1,10 @@
-import { Suspense, useState, useEffect, useLayoutEffect, useRef, useCallback, useMemo } from "react";
+import { Suspense, useState, useEffect, useLayoutEffect, useRef, useCallback, useMemo, useSyncExternalStore } from "react";
 import * as THREE from "three";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { useGLTF, PerspectiveCamera } from "@react-three/drei";
 import logo from "../models/logo.glb";
+import { RendererCleanup, useCachedSceneResources } from "./renderResourceLifecycle";
+import { getNavigationMotionSnapshot, subscribeNavigationMotion } from "./home/navigationMotion";
 import {
   advanceLogoSuspension,
   configureLogoSuspension,
@@ -94,6 +96,7 @@ function LogoCamera({ position, viewport }) {
 
 function LogoInit({ path, cameraPosition, viewport, width, onReady, reducedMotion }) {
   const { scene: sourceScene } = useGLTF(path, true);
+  useCachedSceneResources(sourceScene);
   const rig = useMemo(() => createLogoSuspension(sourceScene), [sourceScene]);
   const moonlightRef = useRef(null);
   const [cameraX, cameraY, cameraZ] = cameraPosition;
@@ -180,6 +183,28 @@ function LogoInit({ path, cameraPosition, viewport, width, onReady, reducedMotio
 }
 
 function Logo() {
+  const navigationMoving = useSyncExternalStore(subscribeNavigationMotion, getNavigationMotionSnapshot, () => false);
+  const [startRequested, setStartRequested] = useState(false);
+  const sceneStarted = useRef(false);
+  const startScene = sceneStarted.current || (startRequested && !navigationMoving);
+  useLayoutEffect(() => { if (startScene) sceneStarted.current = true; }, [startScene]);
+  useEffect(() => {
+    if (sceneStarted.current) return undefined;
+    if (navigationMoving) { setStartRequested(false); return undefined; }
+    let frame = null;
+    let cancelled = false;
+    const start = () => {
+      if (!cancelled && !getNavigationMotionSnapshot()) setStartRequested(true);
+    };
+    // Keep the measured Home layout present while the moon and fixture settle.
+    // Only GPU startup waits for real motion completion and a paint opportunity.
+    try {
+      frame = requestAnimationFrame(() => {
+        try { frame = requestAnimationFrame(start); } catch { start(); }
+      });
+    } catch { start(); }
+    return () => { cancelled = true; if (frame !== null) cancelAnimationFrame(frame); };
+  }, [navigationMoving]);
   const [sceneReady, setSceneReady] = useState(false);
   const onSceneReady = useCallback(() => setSceneReady(true), []);
   const reducedMotion = useReducedMotionPreference();
@@ -198,7 +223,8 @@ function Logo() {
       <div ref={slot} className="logo-canvas" aria-busy={!sceneReady} style={{ position: "relative" }}>
         <div style={{ position: "absolute", top: -viewport.topExtension, left: 0,
           width: "100%", height: renderHeight, pointerEvents: "none" }}>
-          <Canvas className="signature-canvas">
+          {startScene && <Canvas className="signature-canvas">
+            <RendererCleanup />
             <BackgroundColor cssVariable="--home-environment-color" fallback="#050505" />
             <Suspense fallback={null}>
               <LogoInit path={logo} cameraPosition={cameraPosition} viewport={viewport}
@@ -206,7 +232,7 @@ function Logo() {
             </Suspense>
             <LogoCamera position={cameraPosition} viewport={viewport} />
             <ambientLight intensity={0.1} />
-          </Canvas>
+          </Canvas>}
         </div>
       </div>
     </div>

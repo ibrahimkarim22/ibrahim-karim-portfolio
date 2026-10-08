@@ -9,14 +9,16 @@ export const SECTION_LIGHTS = Object.freeze({
 });
 
 export const PortfolioLightingContext = createContext({
-  theme: "home", cycle: 0, changing: false, reduced: false,
+  theme: "home", bulbEnabled: false, cycle: 0, changing: false, reduced: false,
 });
 
 function lightingReducer(state, action) {
   if (action.type === "activation" || action.type === "routeSync") {
     if (!Object.prototype.hasOwnProperty.call(SECTION_LIGHTS, action.theme)) return state;
     if (action.type === "routeSync" && state.theme === action.theme) return state;
-    return { theme: action.theme, cycle: state.cycle + 1, changing: true };
+    // An intentional control pull requests ON, including Home. History/direct
+    // Home entry retains its quiet lighting without undoing a just-selected Home.
+    return { theme: action.theme, bulbEnabled: action.type === "activation" || action.theme !== "home", cycle: state.cycle + 1, changing: true };
   }
   if (action.type === "settle" && action.cycle === state.cycle && state.changing) {
     return { ...state, changing: false };
@@ -26,7 +28,8 @@ function lightingReducer(state, action) {
 
 export function usePortfolioLighting(activeView) {
   const [state, dispatch] = useReducer(lightingReducer, {
-    theme: Object.prototype.hasOwnProperty.call(SECTION_LIGHTS, activeView) ? activeView : "home", cycle: 0, changing: false,
+    theme: Object.prototype.hasOwnProperty.call(SECTION_LIGHTS, activeView) ? activeView : "home",
+    bulbEnabled: Object.prototype.hasOwnProperty.call(SECTION_LIGHTS, activeView) && activeView !== "home", cycle: 0, changing: false,
   });
   const [reduced, setReduced] = useState(() => window.matchMedia?.("(prefers-reduced-motion: reduce)").matches ?? false);
   const selectTheme = useCallback((theme) => dispatch({ type: "activation", theme }), []);
