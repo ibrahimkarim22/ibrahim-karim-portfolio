@@ -18,26 +18,12 @@ export function reportImageFailure(src) {
   if (process.env.NODE_ENV !== "production") console.error(`Project image failed to load: ${src}`);
 }
 
-export async function decodeImage(image) {
-  if (typeof image.decode === "function") {
-    try {
-      await image.decode();
-    } catch (error) {
-      // A completed native load remains usable on browsers/formats that reject decode.
-      if (process.env.NODE_ENV !== "production") {
-        console.warn(`Project image decode failed: ${image.currentSrc || image.src}`, error);
-      }
-    }
-  }
-  return image.naturalWidth > 0;
-}
-
 export function preloadImage(src) {
   if (preloads.has(src)) return preloads.get(src).promise;
   const image = new Image();
   let settle;
   const promise = new Promise((resolve) => { settle = resolve; });
-  // Retain successful decoded images as well as promises while the page is open.
+  // Retain successfully loaded images as well as promises while the page is open.
   preloads.set(src, { image, promise });
   const finish = (success) => {
     image.onload = null;
@@ -45,7 +31,8 @@ export function preloadImage(src) {
     if (!success) preloads.delete(src); // A later intentional opening may retry.
     settle(success);
   };
-  image.onload = async () => finish(await decodeImage(image));
+  // Warming must settle on load even if an explicit decode would never finish.
+  image.onload = () => finish(image.naturalWidth > 0);
   image.onerror = () => {
     reportImageFailure(src);
     finish(false);

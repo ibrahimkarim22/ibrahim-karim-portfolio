@@ -2,7 +2,7 @@ import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import HorizontalScroll from "./HorizontalScroll";
 import Copyright from "./Copyright";
-import ProjectImage, { ProjectImageGroup } from "./projects/ProjectImage";
+import ProjectImage from "./projects/ProjectImage";
 import express from "../images/express.png";
 import mongo from "../images/mongo.png";
 import node from "../images/node.png";
@@ -130,10 +130,8 @@ function HeroConnection() {
         </g>
         <text className="hey-you-signal-label" x={center.x} y={center.y + radius + 14} textAnchor="middle">GROUP</text>
       </svg>
-      <ProjectImageGroup sources={[phoneHeyYouMap, phoneHeyYouChat]}>
-        <div className="hey-you-hero-phone hey-you-hero-phone-map" ref={leftRef}><ProjectImage src={phoneHeyYouMap} width={1367} height={1221} critical alt="HeyYou group map on an Android phone" /></div>
-        <div className="hey-you-hero-phone hey-you-hero-phone-chat" ref={rightRef}><ProjectImage src={phoneHeyYouChat} width={1367} height={1221} critical alt="HeyYou messages on an Android phone" /></div>
-      </ProjectImageGroup>
+      <div className="hey-you-hero-phone hey-you-hero-phone-map" ref={leftRef}><ProjectImage src={phoneHeyYouMap} width={1367} height={1221} critical alt="HeyYou group map on an Android phone" /></div>
+      <div className="hey-you-hero-phone hey-you-hero-phone-chat" ref={rightRef}><ProjectImage src={phoneHeyYouChat} width={1367} height={1221} critical alt="HeyYou messages on an Android phone" /></div>
       <span className="hey-you-product-annotation">ONE GROUP.<br />TWO WAYS TO CONNECT.</span>
     </div>
   );

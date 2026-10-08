@@ -3,6 +3,10 @@
   opacity: 0;
   transition: opacity 200ms ease;
 
+  // Conceal loading logos even when their own keyframes animate opacity.
+  // Keep their geometry intact so native lazy loading can observe them.
+  &[data-image-state="loading"],
+  &[data-image-state="error"] { opacity: 0 !important; }
   &[data-image-state="ready"] { opacity: 1; }
 }
 
