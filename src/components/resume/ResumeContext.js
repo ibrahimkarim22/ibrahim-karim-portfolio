@@ -1,6 +1,7 @@
-export const RESUME_PDF_PATH = "/Ibrahim_Karim_Full_Stack_Resume.pdf";
+import { getResumeSource } from "./resumeSource";
 
 export default function ResumeContext({ className = "" }) {
+  const source = getResumeSource();
   return (
     <div className={`home-context-panel__caption resume-context ${className}`}>
       <p className="home-context-panel__label">RESUME</p>
@@ -8,14 +9,16 @@ export default function ResumeContext({ className = "" }) {
       <p className="home-context-panel__description">
         Web development, software projects, technical tools, and a background in visual design.
       </p>
-      <div className="resume-context__actions">
-        <a className="resume-download" href={RESUME_PDF_PATH} download>
-          Download Resume
-        </a>
-        <a className="resume-view__open" href={RESUME_PDF_PATH} target="_blank" rel="noopener noreferrer">
-          Open Resume
-        </a>
-      </div>
+      {source && (
+        <div className="resume-context__actions">
+          <a className="resume-download" href={source.downloadUrl} target="_blank" rel="noopener noreferrer">
+            Download Resume
+          </a>
+          <a className="resume-view__open" href={source.openUrl} target="_blank" rel="noopener noreferrer">
+            Open Resume
+          </a>
+        </div>
+      )}
     </div>
   );
 }

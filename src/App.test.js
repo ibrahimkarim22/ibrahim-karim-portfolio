@@ -975,7 +975,7 @@ test("keyboard activation of Resume changes the route and center while preservin
   expect(screen.getByRole("heading", { name: "Resume view" })).toHaveFocus();
 });
 
-test("direct /resume shows Resume context and the existing PDF without mounting either 3D scene", () => {
+test("direct /resume shows Resume context and the Drive PDF without mounting either 3D scene", () => {
   renderPortfolio(["/resume"]);
   const center = expectCenter("Resume");
   const context = screen.getByRole("complementary", { name: "Portfolio context" });
@@ -984,7 +984,7 @@ test("direct /resume shows Resume context and the existing PDF without mounting 
   expect(within(context).getByText("Web development, software projects, technical tools, and a background in visual design.")).toBeInTheDocument();
   const viewer = within(center).getByTitle("Ibrahim Karim resume PDF");
   expect(viewer.tagName).toBe("IFRAME");
-  expect(new URL(viewer.getAttribute("src"), "http://localhost").pathname).toBe("/Ibrahim_Karim_Full_Stack_Resume.pdf");
+  expect(viewer).toHaveAttribute("src", "https://drive.google.com/file/d/1ur7krnoyejgUwa6azvwzmWAas6kzIiVT/preview");
   expect(screen.getByText("Full-Stack Developer")).toBeInTheDocument();
   expect(screen.getByRole("link", { name: "GitHub" })).toBeInTheDocument();
   expect(screen.queryByText(/Hello! I’m Ibrahim/)).not.toBeInTheDocument();
@@ -1000,15 +1000,17 @@ test("Resume stacks Download and Open links in the context while the PDF starts 
   const desktopDownload = within(context).getByRole("link", { name: "Download Resume" });
   [desktopDownload, within(center).getByRole("link", { name: "Download Resume" })].forEach((download) => {
     expect(download.tagName).toBe("A");
-    expect(download).toHaveAttribute("href", "/Ibrahim_Karim_Full_Stack_Resume.pdf");
-    expect(download).toHaveAttribute("download");
+    expect(download).toHaveAttribute("href", "https://drive.google.com/uc?export=download&id=1ur7krnoyejgUwa6azvwzmWAas6kzIiVT");
+    expect(download).not.toHaveAttribute("download");
+    expect(download).toHaveAttribute("target", "_blank");
+    expect(download).toHaveAttribute("rel", "noopener noreferrer");
   });
   const description = within(context).getByText("Web development, software projects, technical tools, and a background in visual design.");
   expect(description.compareDocumentPosition(desktopDownload) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
   expect(within(center).getByRole("heading", { name: "Experience & practice." })).toBeInTheDocument();
   const open = within(context).getByRole("link", { name: "Open Resume" });
   expect(desktopDownload.compareDocumentPosition(open) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
-  expect(open).toHaveAttribute("href", "/Ibrahim_Karim_Full_Stack_Resume.pdf");
+  expect(open).toHaveAttribute("href", "https://drive.google.com/file/d/1ur7krnoyejgUwa6azvwzmWAas6kzIiVT/view");
   expect(open).toHaveAttribute("target", "_blank");
   expect(open).toHaveAttribute("rel", "noopener noreferrer");
   expect(within(center).queryByRole("banner")).not.toBeInTheDocument();
