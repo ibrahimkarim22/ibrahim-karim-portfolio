@@ -6,10 +6,16 @@ import chaplinOneAM from "../images/chaplinOneAM.jpg";
 import js from "../images/js.png";
 import reactLogo from "../images/reactLogo.png";
 import firebase from "../images/firebase.png";
+import firestore from "../images/firestore.png";
 import css from "../images/css.png";
 import krispyMovies from "../images/krispyMovies.png";
+import krispyFilmPreview from "../images/krispyFilmPreview.png";
 import krispyLiveTV from "../images/krispyLiveTV.png";
+import krispyLiveTVPreview from "../images/krispyLiveTVPreview.png";
+import krispyLiveTVDetails from "../images/krispyLiveTVDetails.png";
+import krispyLogin from "../images/krispyLogin.png";
 import krispyMyList from "../images/krispyMyList.png";
+import krispyAccount from "../images/krispyAccount.png";
 import krispyGlobe from "../images/krispyGlobe.png";
 import Copyright from "./Copyright";
 
@@ -18,20 +24,26 @@ const technologies = [
   { name: "JavaScript", logo: js, width: 1200, height: 1200 },
   { name: "React", logo: reactLogo, width: 300, height: 270, className: "krispy-modal-react-logo" },
   { name: "Firebase Authentication", logo: firebase, width: 219, height: 300 },
+  { name: "Cloud Firestore", logo: firestore, width: 256, height: 300 },
   { name: "HLS.js" },
   { name: "CSS", logo: css, width: 263, height: 300 },
 ];
 
-// Excerpts from Krispy's storage.js and LibraryContext.js, with line wrapping.
+// Excerpts from Krispy's storage.js and firebaseFavoritesStore.js, with line wrapping.
 const favoritesExcerpt = `const emptyLibrary = () => ({
   saved: [],
   progress: {},
   recent: [],
 });`;
-const removalExcerpt = `const alreadySaved = previous.saved.includes(id);
-const saved = alreadySaved
-  ? previous.saved.filter((value) => value !== id)
-  : [...previous.saved, id];`;
+const favoritesSyncExcerpt = `await setDoc(favoritesDocument(uid), {
+  saved: saved ? arrayUnion(id) : arrayRemove(id),
+}, { merge: true });`;
+
+function revealScreenshot(event) {
+  if (event.currentTarget.scrollWidth > event.currentTarget.clientWidth) {
+    event.target.scrollIntoView({ block: "nearest", inline: "nearest" });
+  }
+}
 
 function KrispyMoviePlayer() {
   const playerRef = useRef(null);
@@ -57,7 +69,7 @@ function KrispyMoviePlayer() {
         </video>
         <div className="krispy-screen-notation"><span>Charlie Chaplin · 1916</span><span>Your screening. Your pace.</span></div>
       </div>
-      {hasError && <p className="krispy-movie-error" role="status">The film could not load from its original source. <a href={movieSource} target="_blank" rel="noopener noreferrer">Open the original movie source<span className="visually-hidden"> (opens in a new tab)</span> ↗</a></p>}
+      {hasError && <p className="krispy-movie-error" role="status">The film could not load from its original source. <a href={movieSource} target="_blank" rel="noopener noreferrer">Open the original movie source<span className="visually-hidden"> (opens in a new tab)</span></a></p>}
     </section>
   );
 }
@@ -90,7 +102,7 @@ function KrispyModal({ isOpen, closeModal }) {
                     <h1 id="krispy-project-title">KRISPY</h1>
                     <p className="krispy-hero-subtitle">Streaming Service</p>
                     <p className="krispy-modal-info">Classic films, Blender open films, live TV, and webcams in one React app. Search the collections, watch in-app, and save favorites to My List.</p>
-                    <a className="krispy-text-link" href="https://krispy22.web.app" target="_blank" rel="noopener noreferrer">Explore Krispy <span aria-hidden="true">↗</span><span className="visually-hidden"> (opens in a new tab)</span></a>
+                    <a className="krispy-text-link" href="https://krispy22.web.app" target="_blank" rel="noopener noreferrer">Explore Krispy<span className="visually-hidden"> (opens in a new tab)</span></a>
                   </div>
                   <aside className="krispy-program" aria-label="On the program">
                     <p className="krispy-eyebrow">On the program</p>
@@ -120,16 +132,16 @@ function KrispyModal({ isOpen, closeModal }) {
                 <div className="krispy-section-heading"><div><p className="krispy-eyebrow">Now showing / Classic cinema</p><h2 id="krispy-collection-title">Charlie Chaplin Collection</h2></div><p>Two posters. A little perspective.<br />Select a film to watch on Krispy.</p></div>
                 <div className="film-container">
                   <figure className="krispy-poster-exhibit">
-                    <a className="chaplin-vagabond-container krispy-poster-link" href="https://krispy22.web.app/movie/3" target="_blank" rel="noopener noreferrer" aria-label="Watch The Vagabond (opens in a new tab)">
+                    <a className="chaplin-vagabond-container krispy-poster-link" href="https://krispy22.web.app/movie/film-vagabond?collection=chaplin&watch=1" target="_blank" rel="noopener noreferrer" aria-label="Watch The Vagabond (opens in a new tab)">
                       <ProjectImage className="chaplin-vagabond" src={chaplinVagabond} width={960} height={1440} alt="Charlie Chaplin — The Vagabond film poster" /><span className="krispy-poster-play" aria-hidden="true">▶</span>
                     </a>
-                    <figcaption><span><small>01 / Charlie Chaplin</small><strong>The Vagabond</strong></span><a className="krispy-poster-caption-action" href="https://krispy22.web.app/movie/3" target="_blank" rel="noopener noreferrer" aria-label="Watch film: The Vagabond (opens in a new tab)">Watch film <span aria-hidden="true">↗</span></a></figcaption>
+                    <figcaption><span><small>01 / Charlie Chaplin</small><strong>The Vagabond</strong></span><a className="krispy-poster-caption-action" href="https://krispy22.web.app/movie/film-vagabond?collection=chaplin&watch=1" target="_blank" rel="noopener noreferrer" aria-label="Watch film: The Vagabond (opens in a new tab)">Watch film</a></figcaption>
                   </figure>
                   <figure className="krispy-poster-exhibit">
-                    <a className="chaplin-one-am-container krispy-poster-link" href="https://krispy22.web.app/movie/1" target="_blank" rel="noopener noreferrer" aria-label="Watch One A.M. (opens in a new tab)">
+                    <a className="chaplin-one-am-container krispy-poster-link" href="https://krispy22.web.app/movie/film-one-am?collection=chaplin&watch=1" target="_blank" rel="noopener noreferrer" aria-label="Watch One A.M. (opens in a new tab)">
                       <ProjectImage className="chaplin-one-am" src={chaplinOneAM} width={800} height={1195} alt="Charlie Chaplin — One A.M. film poster" /><span className="krispy-poster-play" aria-hidden="true">▶</span>
                     </a>
-                    <figcaption><span><small>02 / Charlie Chaplin</small><strong>One A.M.</strong></span><a className="krispy-poster-caption-action" href="https://krispy22.web.app/movie/1" target="_blank" rel="noopener noreferrer" aria-label="Watch film: One A.M. (opens in a new tab)">Watch film <span aria-hidden="true">↗</span></a></figcaption>
+                    <figcaption><span><small>02 / Charlie Chaplin</small><strong>One A.M.</strong></span><a className="krispy-poster-caption-action" href="https://krispy22.web.app/movie/film-one-am?collection=chaplin&watch=1" target="_blank" rel="noopener noreferrer" aria-label="Watch film: One A.M. (opens in a new tab)">Watch film</a></figcaption>
                   </figure>
                 </div>
                 <p className="krispy-gallery-note"><span aria-hidden="true">●</span> Chaplin films. Part of a wider collection.</p>
@@ -140,7 +152,7 @@ function KrispyModal({ isOpen, closeModal }) {
                 <div className="krispy-story-copy">
                   <p>Krispy brings classic films, Blender open films, live television, and webcams into one React application.</p>
                   <p>I rebuilt the browsing and playback experience around a shared catalog, with a poster wall, featured films, search and filters, and an in-app player.</p>
-                  <p>Browsing and playback work without signing in. An email/password account lets viewers save favorites to My List.</p>
+                  <p>Browsing and playback work without signing in. An email/password account lets viewers save favorites to My List and access them across devices.</p>
                   <dl className="krispy-story-credits"><div><dt>Content</dt><dd>Movies / TV / Globe</dd></div><div><dt>Experience</dt><dd>Browse / Watch / Favorite</dd></div></dl>
                 </div>
               </section>
@@ -151,29 +163,40 @@ function KrispyModal({ isOpen, closeModal }) {
                 <article className="krispy-chapter">
                   <div className="krispy-chapter-index"><span>01</span><p>Interface & rendering</p></div>
                   <div className="krispy-chapter-copy"><h3>A collection, rendered dynamically.</h3><p>A shared catalog and JavaScript’s <code>.map()</code> supply the React browsing interface. Search and filters narrow the collections by title, genre, country, or language.</p><p className="krispy-chapter-outcome">One catalog connects films, live TV, and webcams.</p></div>
-                  <figure className="krispy-favorites-demo"><picture><ProjectImage src={krispyMovies} width={1920} height={919} alt="KRISPY movies page with Big Buck Bunny featured above the film collection" loading="lazy" /></picture><figcaption>Featured films and the movie collection</figcaption></figure>
+                  <div className="krispy-favorites-demo" onFocus={revealScreenshot}>
+                    <figure className="krispy-screenshot-card" tabIndex={0}><picture><ProjectImage src={krispyMovies} width={1920} height={919} alt="KRISPY movies page with Big Buck Bunny featured above the film collection" loading="lazy" /></picture><figcaption>Featured films and the movie collection</figcaption></figure>
+                    <figure className="krispy-screenshot-card" tabIndex={0}><picture><ProjectImage src={krispyFilmPreview} width={1919} height={919} alt="KRISPY film preview for The Adventurer over the movie collection" loading="lazy" /></picture><figcaption>A film preview with playback, save, and information controls</figcaption></figure>
+                  </div>
                 </article>
 
                 <article className="krispy-chapter">
                   <div className="krispy-chapter-index"><span>02</span><p>Navigation</p></div>
                   <div className="krispy-chapter-copy"><h3>Every film has its place.</h3><p>The browser’s History API keeps selected titles and filters in shareable URLs. Film routes retain their <code>:id</code> path, and <code>popstate</code> restores the view when navigating back or forward.</p><p className="krispy-chapter-outcome">A poster can lead directly to its film, just as the Chaplin posters above do.</p></div>
-                  <figure className="krispy-favorites-demo"><picture><ProjectImage src={krispyLiveTV} width={1920} height={919} alt="KRISPY Live TV page with Danish Parliament and UN Web TV" loading="lazy" /></picture><figcaption>Live TV with country, language, and genre filters</figcaption></figure>
+                  <div className="krispy-favorites-demo" onFocus={revealScreenshot}>
+                    <figure className="krispy-screenshot-card" tabIndex={0}><picture><ProjectImage src={krispyLiveTV} width={1920} height={919} alt="KRISPY Live TV page with Danish Parliament and UN Web TV" loading="lazy" /></picture><figcaption>Live TV with country, language, and genre filters</figcaption></figure>
+                    <figure className="krispy-screenshot-card" tabIndex={0}><picture><ProjectImage src={krispyLiveTVPreview} width={1919} height={915} alt="KRISPY Live TV preview for the Danish Parliament channel" loading="lazy" /></picture><figcaption>Previewing a channel from the TV collection</figcaption></figure>
+                    <figure className="krispy-screenshot-card" tabIndex={0}><picture><ProjectImage src={krispyLiveTVDetails} width={1920} height={919} alt="KRISPY UN Web TV page with channel details and source information" loading="lazy" /></picture><figcaption>Channel details, attribution, and source information</figcaption></figure>
+                  </div>
                 </article>
 
                 <article className="krispy-chapter krispy-favorites-chapter">
                   <div className="krispy-chapter-index"><span>03</span><p>State & favorites</p></div>
-                  <div className="krispy-chapter-copy"><h3>A personal collection</h3><p>Firebase Authentication handles email/password accounts. Saving to My List requires login; favorites, playback progress, and recent items stay separate for each account in this browser and do not sync across devices.</p><p>React Context shares library state. Saved IDs, playback progress, and recently opened titles are persisted through browser localStorage.</p><p className="krispy-data-credit"><span>Accounts & hosting</span> Firebase Authentication / Firebase Hosting</p></div>
-                  <figure className="krispy-favorites-demo"><picture><ProjectImage src={krispyMyList} width={1920} height={919} alt="KRISPY My List page with saved films and collection filters" loading="lazy" /></picture><figcaption>Saved films in My List</figcaption></figure>
+                  <div className="krispy-chapter-copy"><h3>A personal collection</h3><p>Firebase Authentication handles email/password accounts. Saving to My List requires login. Favorites are stored in Cloud Firestore and sync across devices signed in to the same account. Playback progress and recently viewed titles stay in this browser, separately for each account.</p><p>React Context shares library state, with a browser cache for favorites and a one-time import of existing saved titles. My List shows sync status and offers Retry sync when a save fails.</p><p className="krispy-data-credit"><span>Accounts, data & hosting</span> Firebase Authentication / Cloud Firestore / Firebase Hosting</p></div>
+                  <div className="krispy-favorites-demo" onFocus={revealScreenshot}>
+                    <figure className="krispy-screenshot-card" tabIndex={0}><picture><ProjectImage src={krispyLogin} width={1920} height={919} alt="KRISPY email login screen for saving favorites" loading="lazy" /></picture><figcaption>Signing in to save favorites</figcaption></figure>
+                    <figure className="krispy-screenshot-card" tabIndex={0}><picture><ProjectImage src={krispyMyList} width={1920} height={919} alt="KRISPY My List page with saved films and collection filters" loading="lazy" /></picture><figcaption>Saved films in My List</figcaption></figure>
+                    <figure className="krispy-screenshot-card" tabIndex={0}><picture><ProjectImage src={krispyAccount} width={1920} height={919} alt="Earlier KRISPY account screen showing local favorites storage" loading="lazy" /></picture><figcaption>Account controls, captured before favorites synced across devices.</figcaption></figure>
+                  </div>
                   <div className="krispy-code-pair">
                     <figure className="krispy-code-frame"><figcaption><span>Library / Initial state</span><span aria-hidden="true">EXCERPT 01</span></figcaption><pre><code>{favoritesExcerpt}</code></pre><p>Saved titles, playback progress, and recent items.</p></figure>
-                    <figure className="krispy-code-frame"><figcaption><span>Library / Toggle a saved title</span><span aria-hidden="true">EXCERPT 02</span></figcaption><pre><code>{removalExcerpt}</code></pre><p>Add or remove the selected ID from My List.</p></figure>
+                    <figure className="krispy-code-frame"><figcaption><span>Favorites / Cloud update</span><span aria-hidden="true">EXCERPT 02</span></figcaption><pre><code>{favoritesSyncExcerpt}</code></pre><p>Add or remove a title without overwriting another device's changes.</p></figure>
                   </div>
                 </article>
 
                 <article className="krispy-chapter krispy-styling-chapter">
                   <div className="krispy-chapter-index"><span>04</span><p>Styling & motion</p></div>
                   <div className="krispy-chapter-copy"><h3>Room for every screen.</h3><p>Plain CSS adapts the poster wall, navigation, and player for desktop and mobile. CSS scene transitions respect reduced-motion preferences.</p><p>Playback uses <code>HTML5 video</code>, <code>HLS.js</code>, and official provider embeds, with loading states and retry controls when a stream cannot play.</p></div>
-                  <figure className="krispy-favorites-demo"><picture><ProjectImage src={krispyGlobe} width={1920} height={919} alt="KRISPY Globe page with Alveus Sanctuary and Abisko webcams" loading="lazy" /></picture><figcaption>Live webcams in Globe</figcaption></figure>
+                  <div className="krispy-favorites-demo" onFocus={revealScreenshot}><figure className="krispy-screenshot-card" tabIndex={0}><picture><ProjectImage src={krispyGlobe} width={1920} height={919} alt="KRISPY Globe page with Alveus Sanctuary and Abisko webcams" loading="lazy" /></picture><figcaption>Live webcams in Globe</figcaption></figure></div>
                 </article>
 
               </section>
@@ -188,7 +211,7 @@ function KrispyModal({ isOpen, closeModal }) {
             <span className="krispy-footer-note" aria-hidden="true">KRISPY <span> / Enjoy the show.</span></span>
             <Button color="" className="krispy-modal-close-btn krispy-footer-action" onClick={closeModal}>Close</Button>
             <Button tag="a" color="" className="krispy-site-btn krispy-footer-action" href="https://krispy22.web.app" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">▶</span> Watch!<span className="visually-hidden"> (opens in a new tab)</span></Button>
-            <Button tag="a" color="" className="krispy-modal-github-btn krispy-footer-action" href="https://github.com/ibrahimkarim22/krispy" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span><span className="visually-hidden"> (opens in a new tab)</span></Button>
+            <Button tag="a" color="" className="krispy-modal-github-btn krispy-footer-action" href="https://github.com/ibrahimkarim22/krispy" target="_blank" rel="noopener noreferrer">GitHub<span className="visually-hidden"> (opens in a new tab)</span></Button>
           </ModalFooter>
         </>
       )}

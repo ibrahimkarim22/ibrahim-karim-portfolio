@@ -3,8 +3,8 @@ import userEvent from "@testing-library/user-event";
 import KrispyModal from "./KrispyModal";
 
 const films = [
-  ["The Vagabond", "https://krispy22.web.app/movie/3"],
-  ["One A.M.", "https://krispy22.web.app/movie/1"],
+  ["The Vagabond", "https://krispy22.web.app/movie/film-vagabond?collection=chaplin&watch=1"],
+  ["One A.M.", "https://krispy22.web.app/movie/film-one-am?collection=chaplin&watch=1"],
 ];
 
 // JSDOM has no media engine; real playback is checked in the browser review.
@@ -27,28 +27,87 @@ it("presents the current technology stack and explains account storage accuratel
   const dialog = within(screen.getByRole("dialog", { name: "KRISPY" }));
   const technologyList = dialog.getByRole("list", { name: "Main technology stack" });
   expect(within(technologyList).getAllByRole("listitem").map((item) => item.textContent)).toEqual([
-    "JavaScript", "React", "Firebase Authentication", "HLS.js", "CSS",
+    "JavaScript", "React", "Firebase Authentication", "Cloud Firestore", "HLS.js", "CSS",
   ]);
-  expect(dialog.getByText("Firebase Authentication handles email/password accounts. Saving to My List requires login; favorites, playback progress, and recent items stay separate for each account in this browser and do not sync across devices.", { exact: true })).toBeInTheDocument();
+  expect(dialog.getByText("Firebase Authentication handles email/password accounts. Saving to My List requires login. Favorites are stored in Cloud Firestore and sync across devices signed in to the same account. Playback progress and recently viewed titles stay in this browser, separately for each account.", { exact: true })).toBeInTheDocument();
+  expect(dialog.getByText("React Context shares library state, with a browser cache for favorites and a one-time import of existing saved titles. My List shows sync status and offers Retry sync when a save fails.", { exact: true })).toBeInTheDocument();
 });
 
-it("presents the four supplied chapter screenshots in order with reserved lazy image geometry", () => {
+it("presents all nine chapter screenshots in order with reserved lazy image geometry", () => {
   render(<KrispyModal isOpen closeModal={jest.fn()} />);
 
-  const figures = [...screen.getByRole("dialog").querySelectorAll(".krispy-chapter .krispy-favorites-demo")];
-  const screenshots = figures.map((figure) => within(figure).getByRole("img"));
-  expect(screenshots.map((image) => [image.getAttribute("src"), image.getAttribute("alt")])).toEqual([
-    ["krispyMovies.png", "KRISPY movies page with Big Buck Bunny featured above the film collection"],
-    ["krispyLiveTV.png", "KRISPY Live TV page with Danish Parliament and UN Web TV"],
-    ["krispyMyList.png", "KRISPY My List page with saved films and collection filters"],
-    ["krispyGlobe.png", "KRISPY Globe page with Alveus Sanctuary and Abisko webcams"],
+  const dialog = screen.getByRole("dialog");
+  const groups = [...dialog.querySelectorAll(".krispy-chapter .krispy-favorites-demo")];
+  const screenshots = [...dialog.querySelectorAll(".krispy-chapter .krispy-favorites-demo img")];
+  expect(groups.map((group) => within(group).getAllByRole("img").length)).toEqual([2, 3, 3, 1]);
+  expect(screenshots.map((image) => ["src", "alt", "width", "height"].map((attribute) => image.getAttribute(attribute)))).toEqual([
+    ["krispyMovies.png", "KRISPY movies page with Big Buck Bunny featured above the film collection", "1920", "919"],
+    ["krispyFilmPreview.png", "KRISPY film preview for The Adventurer over the movie collection", "1919", "919"],
+    ["krispyLiveTV.png", "KRISPY Live TV page with Danish Parliament and UN Web TV", "1920", "919"],
+    ["krispyLiveTVPreview.png", "KRISPY Live TV preview for the Danish Parliament channel", "1919", "915"],
+    ["krispyLiveTVDetails.png", "KRISPY UN Web TV page with channel details and source information", "1920", "919"],
+    ["krispyLogin.png", "KRISPY email login screen for saving favorites", "1920", "919"],
+    ["krispyMyList.png", "KRISPY My List page with saved films and collection filters", "1920", "919"],
+    ["krispyAccount.png", "Earlier KRISPY account screen showing local favorites storage", "1920", "919"],
+    ["krispyGlobe.png", "KRISPY Globe page with Alveus Sanctuary and Abisko webcams", "1920", "919"],
   ]);
   screenshots.forEach((image) => {
-    expect(image).toHaveAttribute("width", "1920");
-    expect(image).toHaveAttribute("height", "919");
     expect(image).toHaveAttribute("loading", "lazy");
   });
-  figures.forEach((figure) => expect(figure.querySelector('source[media*="prefers-reduced-motion"]')).toBeNull());
+  groups.forEach((group) => {
+    expect(group.closest(".krispy-chapter").children[2]).toBe(group);
+    expect(group.querySelector('source[media*="prefers-reduced-motion"]')).toBeNull();
+  });
+});
+
+it("keeps project links free of decorative arrow glyphs, including the movie error action", () => {
+  render(<KrispyModal isOpen closeModal={jest.fn()} />);
+  fireEvent.error(screen.getByLabelText("The Vagabond (1916), Charlie Chaplin"));
+
+  const links = [...screen.getByRole("dialog").querySelectorAll("a")];
+  links.forEach((link) => expect(link.textContent).not.toMatch(/[\u2190-\u21ff]/));
+});
+
+it("reaches every chapter screenshot preview in order with the keyboard", async () => {
+  const user = userEvent.setup();
+  render(<KrispyModal isOpen closeModal={jest.fn()} />);
+
+  const dialog = screen.getByRole("dialog");
+  await waitFor(() => expect(dialog).toHaveFocus());
+  screen.getByRole("link", { name: "Watch film: One A.M. (opens in a new tab)" }).focus();
+  const screenshots = [...dialog.querySelectorAll(".krispy-chapter img")];
+
+  for (const screenshot of screenshots) {
+    await user.tab();
+    expect(screenshot.closest("figure")).toHaveFocus();
+  }
+
+  await user.tab();
+  expect(screen.getByLabelText("The Vagabond (1916), Charlie Chaplin")).toHaveFocus();
+});
+
+it("reveals focused screenshot previews only when their row overflows", async () => {
+  render(<KrispyModal isOpen closeModal={jest.fn()} />);
+  const dialog = screen.getByRole("dialog");
+  await waitFor(() => expect(dialog).toHaveFocus());
+
+  const row = dialog.querySelector(".krispy-favorites-demo");
+  const [firstPreview, secondPreview] = within(row).getAllByRole("figure");
+  Object.defineProperties(row, {
+    clientWidth: { value: 300, configurable: true },
+    scrollWidth: { value: 600, configurable: true },
+  });
+  firstPreview.scrollIntoView = jest.fn();
+  secondPreview.scrollIntoView = jest.fn();
+
+  secondPreview.focus();
+  expect(secondPreview).toHaveFocus();
+  expect(secondPreview.scrollIntoView).toHaveBeenCalledWith({ block: "nearest", inline: "nearest" });
+
+  Object.defineProperty(row, "scrollWidth", { value: 300 });
+  firstPreview.focus();
+  expect(firstPreview).toHaveFocus();
+  expect(firstPreview.scrollIntoView).not.toHaveBeenCalled();
 });
 
 it.each(films)("keeps %s as a safe, keyboard-accessible film link", async (title, url) => {

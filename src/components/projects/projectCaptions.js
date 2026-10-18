@@ -8,8 +8,8 @@ export const PROJECT_CAPTIONS = {
   },
   krispy: {
     heading: "Streams, cinema, and discovery.",
-    description: "A React media app for classic films, Blender open films, live TV, and webcams, with search and an account-based My List.",
-    technologies: ["React", "Firebase Authentication", "HLS.js"],
+    description: "A React media app for classic films, Blender open films, live TV, and webcams, with search and favorites that sync across devices.",
+    technologies: ["React", "Firebase Authentication", "Cloud Firestore", "HLS.js"],
   },
   heyyou: {
     heading: "Location sharing meets conversation.",
