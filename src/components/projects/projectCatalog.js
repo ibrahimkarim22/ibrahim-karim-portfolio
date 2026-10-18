@@ -31,7 +31,7 @@ export const PROJECTS = [
     id: "krispy",
     name: "KRISPY",
     description: "Streaming Service",
-    technologies: ["JavaScript", "React", "Firebase Authentication", "HLS.js", "CSS"],
+    technologies: ["JavaScript", "React", "Firebase Authentication", "Cloud Firestore", "HLS.js", "CSS"],
     ModalComponent: KrispyModal,
   },
   {
