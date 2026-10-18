@@ -7,7 +7,7 @@ const expectedCopy = [
   ["HeyYou", "Location & Chat", ["JavaScript", "React Native", "Android Studio", "Socket.io", "MongoDB", "Node.js", "Docker", "Google Cloud"]],
   ["BARD", "Online Course", ["JavaScript", "React Native", "Android Studio", "Redux", "Firebase", "Firestore"]],
   ["Portfolio", "This Portfolio", ["JavaScript", "React", "Firebase", "SCSS", "Blender 3D", "React Three Fiber"]],
-  ["KRISPY", "Streaming Service", ["JavaScript", "React", "Firebase", "Redux", "Bootstrap", "SCSS"]],
+  ["KRISPY", "Streaming Service", ["JavaScript", "React", "Firebase Authentication", "HLS.js", "CSS"]],
   ["Tuh-Doo / Kanban Board", "To Do List", ["JavaScript", "React", "SCSS", "Firebase", "Firestore"]],
   ["Whack a Mole", "Online Game", ["JavaScript", "HTML", "SCSS"]],
 ];

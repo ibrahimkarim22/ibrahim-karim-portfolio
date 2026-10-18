@@ -1,6 +1,6 @@
 import { Suspense, useState, useEffect, useLayoutEffect, useRef, useCallback, useMemo, useSyncExternalStore } from "react";
 import * as THREE from "three";
-import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import { Canvas, useFrame } from "@react-three/fiber";
 import { useGLTF, PerspectiveCamera } from "@react-three/drei";
 import logo from "../models/logo.glb";
 import { RendererCleanup, useCachedSceneResources } from "./renderResourceLifecycle";
@@ -40,15 +40,6 @@ function useReducedMotionPreference() {
     return () => query.removeEventListener?.("change", updatePreference);
   }, []);
   return reducedMotion;
-}
-
-function BackgroundColor({ cssVariable, fallback }) {
-  const { scene } = useThree();
-  useEffect(() => {
-    const sharedColor = getComputedStyle(document.documentElement).getPropertyValue(cssVariable).trim();
-    scene.background = new THREE.Color(sharedColor || fallback);
-  }, [scene, cssVariable, fallback]);
-  return null;
 }
 
 function useLogoViewport() {
@@ -225,7 +216,6 @@ function Logo() {
           width: "100%", height: renderHeight, pointerEvents: "none" }}>
           {startScene && <Canvas className="signature-canvas">
             <RendererCleanup />
-            <BackgroundColor cssVariable="--home-environment-color" fallback="#050505" />
             <Suspense fallback={null}>
               <LogoInit path={logo} cameraPosition={cameraPosition} viewport={viewport}
                 width={windowWidth} onReady={onSceneReady} reducedMotion={reducedMotion} />

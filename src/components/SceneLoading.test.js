@@ -88,7 +88,7 @@ beforeEach(() => {
     value: { scene, animations: [] },
     resolve: () => { mockAsset.ready = true; resolve(); },
   };
-  mockSceneState = { scene: new Group(), camera: new PerspectiveCamera(60), size: { width: 600, height: 300 },
+  mockSceneState = { scene: new THREE.Scene(), camera: new PerspectiveCamera(60), size: { width: 600, height: 300 },
     gl: { compile: () => new Set(), properties: { get: () => ({}) }, clear: jest.fn(), render: jest.fn() },
   };
 });
@@ -124,10 +124,10 @@ async function finishAsset({ renderFrame = true } = {}) {
   if (renderFrame) act(() => Array.from(mockSceneFrames).forEach(frame => frame(mockSceneState, 1 / 60)));
 }
 
-test("the Home name scene uses the shared opaque near-black environment color", async () => {
+test("the Home name scene stays transparent so the CSS environment supplies its background", async () => {
   render(<Logo />);
   await screen.findByLabelText("Scene canvas");
-  expect(mockSceneState.scene.background?.getHexString()).toBe("050505");
+  expect(mockSceneState.scene.background).toBeNull();
 });
 
 test("the Home name clones and recolors only its four named materials", async () => {
