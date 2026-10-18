@@ -3,7 +3,7 @@ import HomeContextPanel from "./HomeContextPanel";
 
 const completeStacks = [
   ["whackamole", "JavaScript · HTML · SCSS"],
-  ["krispy", "JavaScript · React · Firebase · Redux · Bootstrap · SCSS"],
+  ["krispy", "JavaScript · React · Firebase Authentication · HLS.js · CSS"],
   ["heyyou", "JavaScript · React Native · Android Studio · Socket.io · MongoDB · Node.js · Docker · Google Cloud"],
   ["bard", "JavaScript · React Native · Android Studio · Redux · Firebase · Firestore"],
   ["thisportfolio", "JavaScript · React · Firebase · SCSS · Blender 3D · React Three Fiber"],

@@ -21,6 +21,36 @@ it("names the dialog and exposes the film collection and technical story", () =>
   expect(within(dialog).getByRole("heading", { name: "A personal collection" })).toBeInTheDocument();
 });
 
+it("presents the current technology stack and explains account storage accurately", () => {
+  render(<KrispyModal isOpen closeModal={jest.fn()} />);
+
+  const dialog = within(screen.getByRole("dialog", { name: "KRISPY" }));
+  const technologyList = dialog.getByRole("list", { name: "Main technology stack" });
+  expect(within(technologyList).getAllByRole("listitem").map((item) => item.textContent)).toEqual([
+    "JavaScript", "React", "Firebase Authentication", "HLS.js", "CSS",
+  ]);
+  expect(dialog.getByText("Firebase Authentication handles email/password accounts. Saving to My List requires login; favorites, playback progress, and recent items stay separate for each account in this browser and do not sync across devices.", { exact: true })).toBeInTheDocument();
+});
+
+it("presents the four supplied chapter screenshots in order with reserved lazy image geometry", () => {
+  render(<KrispyModal isOpen closeModal={jest.fn()} />);
+
+  const figures = [...screen.getByRole("dialog").querySelectorAll(".krispy-chapter .krispy-favorites-demo")];
+  const screenshots = figures.map((figure) => within(figure).getByRole("img"));
+  expect(screenshots.map((image) => [image.getAttribute("src"), image.getAttribute("alt")])).toEqual([
+    ["krispyMovies.png", "KRISPY movies page with Big Buck Bunny featured above the film collection"],
+    ["krispyLiveTV.png", "KRISPY Live TV page with Danish Parliament and UN Web TV"],
+    ["krispyMyList.png", "KRISPY My List page with saved films and collection filters"],
+    ["krispyGlobe.png", "KRISPY Globe page with Alveus Sanctuary and Abisko webcams"],
+  ]);
+  screenshots.forEach((image) => {
+    expect(image).toHaveAttribute("width", "1920");
+    expect(image).toHaveAttribute("height", "919");
+    expect(image).toHaveAttribute("loading", "lazy");
+  });
+  figures.forEach((figure) => expect(figure.querySelector('source[media*="prefers-reduced-motion"]')).toBeNull());
+});
+
 it.each(films)("keeps %s as a safe, keyboard-accessible film link", async (title, url) => {
   const user = userEvent.setup();
   render(<KrispyModal isOpen closeModal={jest.fn()} />);
@@ -48,7 +78,7 @@ it("keeps all three original footer actions and safe external destinations", () 
   const watch = within(footer).getByRole("link", { name: /watch!/i });
   const github = within(footer).getByRole("link", { name: /github/i });
   expect(watch).toHaveAttribute("href", "https://krispy22.web.app");
-  expect(github).toHaveAttribute("href", "https://github.com/ibrahim-karim-22/portfolioProjectReact");
+  expect(github).toHaveAttribute("href", "https://github.com/ibrahimkarim22/krispy");
   [watch, github].forEach((link) => {
     expect(link).toHaveAttribute("target", "_blank");
     expect(link).toHaveAttribute("rel", "noopener noreferrer");
@@ -164,12 +194,12 @@ it.each(films)("makes the %s caption a separate keyboard-accessible film link", 
   expect(activated).toHaveBeenCalledTimes(2);
 });
 
-it("switches house lights with the keyboard without replacing the movie or favorites motion", async () => {
+it("switches house lights with the keyboard without replacing the movie or screenshots", async () => {
   const user = userEvent.setup();
   render(<KrispyModal isOpen closeModal={jest.fn()} />);
   const lights = screen.getByRole("button", { name: "House lights", exact: true });
   const movie = screen.getByLabelText("The Vagabond (1916), Charlie Chaplin");
-  const demo = screen.getByRole("img", { name: "Krispy favorites demonstration" });
+  const demo = screen.getByRole("img", { name: "KRISPY My List page with saved films and collection filters" });
   const originalBodyStyle = document.body.getAttribute("style");
   const originalBodyClass = document.body.className;
   expect(lights).toHaveAttribute("aria-pressed", "false");
@@ -180,7 +210,8 @@ it("switches house lights with the keyboard without replacing the movie or favor
   expect(lights).toHaveAccessibleDescription(/Screening.*Bring up the lights/);
   expect(screen.getByRole("document")).toHaveClass("krispy-screening");
   expect(screen.getByLabelText("The Vagabond (1916), Charlie Chaplin")).toBe(movie);
-  expect(demo.getAttribute("src")).toMatch(/krispyFavoriteGif\.gif$/);
+  expect(screen.getByRole("img", { name: "KRISPY My List page with saved films and collection filters" })).toBe(demo);
+  expect(demo.getAttribute("src")).toMatch(/krispyMyList\.png$/);
   expect(document.body.getAttribute("style")).toBe(originalBodyStyle);
   expect(document.body.className).toBe(originalBodyClass);
   await user.keyboard(" ");

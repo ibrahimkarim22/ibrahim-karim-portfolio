@@ -8,8 +8,8 @@ export const PROJECT_CAPTIONS = {
   },
   krispy: {
     heading: "Streams, cinema, and discovery.",
-    description: "A web streaming project bringing live TV, global feeds, and public-domain films together.",
-    technologies: ["React", "Redux", "Firebase"],
+    description: "A React media app for classic films, Blender open films, live TV, and webcams, with search and an account-based My List.",
+    technologies: ["React", "Firebase Authentication", "HLS.js"],
   },
   heyyou: {
     heading: "Location sharing meets conversation.",

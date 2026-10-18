@@ -686,7 +686,7 @@ const previewCases = [
   ["HeyYou", "Location sharing meets conversation.", "A mobile app combining real-time location sharing and group messaging.", "JavaScript · React Native · Android Studio · Socket.io · MongoDB · Node.js · Docker · Google Cloud"],
   ["BARD", "A new way into Shakespeare.", "A mobile learning project exploring Shakespeare’s plays through reading, quizzes, and video.", "JavaScript · React Native · Android Studio · Redux · Firebase · Firestore"],
   ["Portfolio", "Code with a visual signature.", "A developer portfolio combining a React interface with modeled and animated 3D scenes.", "JavaScript · React · Firebase · SCSS · Blender 3D · React Three Fiber"],
-  ["KRISPY", "Streams, cinema, and discovery.", "A web streaming project bringing live TV, global feeds, and public-domain films together.", "JavaScript · React · Firebase · Redux · Bootstrap · SCSS"],
+  ["KRISPY", "Streams, cinema, and discovery.", "A React media app for classic films, Blender open films, live TV, and webcams, with search and an account-based My List.", "JavaScript · React · Firebase Authentication · HLS.js · CSS"],
   ["Tuh-Doo / Kanban Board", "From to-do to done.", "A task board with drag-and-drop columns and saved work tied to each user’s account.", "JavaScript · React · SCSS · Firebase · Firestore"],
   ["Whack a Mole", "A playful test of timing.", "A browser game built around quick reactions and a ticking score clock.", "JavaScript · HTML · SCSS"],
 ];
