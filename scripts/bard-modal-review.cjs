@@ -10,13 +10,15 @@ const { chromium } = require(process.env.BARD_PLAYWRIGHT_PATH || "playwright");
 const baseUrl = process.env.BARD_REVIEW_URL || "http://localhost:3000";
 const output = process.env.BARD_REVIEW_OUTPUT_DIRECTORY || path.join(os.tmpdir(), "bard-modal-review");
 const sizes = [[1440, 900], [1024, 768], [768, 1024], [390, 844], [320, 568]];
-const spreads = [".bard-hero", ".bard-prologue", ".bard-interface-index", ".bard-sources", ".bard-accounts", ".bard-feature-frontispiece", ".bard-feature-spread--paper", ".bard-feature-spread--reverse", ".bard-feature-spread--aubergine", ".bard-additional", ".bard-video-feature", ".bard-screening"];
-const deviceBounds = {
-  Home: [424, 12, 947, 1192], SideMenu: [352, 5, 1109, 1202], Profile: [467, 0, 972, 1193],
-  Info: [433, 34, 976, 1197], Course: [435, 13, 927, 1208], Synopsis: [453, 17, 908, 1203],
-  Quiz: [243, 108, 968, 1163], QuizOne: [448, 27, 914, 1199], Medals: [453, 17, 908, 1203],
-  Performance: [411, 41, 963, 1137], HowTo: [321, 27, 921, 1201],
-};
+const spreads = [".bard-hero", ".bard-highlights", ".bard-synopses", ".bard-learning", ".bard-account", ".bard-sources"];
+const recordings = [
+  [".bard-hero", "reader"],
+  [".bard-highlights", "highlights"],
+  [".bard-synopses", "synopses"],
+  [".bard-learning", "quiz"],
+  [".bard-learning", "medals"],
+  [".bard-account", "account"],
+];
 const waitForOpen = (page) => page.locator('.bard-stage[data-curtain-state="open"]').waitFor();
 
 async function scrollTo(page, selector) {
@@ -41,12 +43,61 @@ async function capture(page, name) {
   await page.screenshot({ path: path.join(output, name) });
 }
 
-async function decodeVisibleImages(page, selector) {
-  await page.locator(selector).evaluate(async (section) => {
-    const frame = document.querySelector(".bard-modal-body-main").getBoundingClientRect();
-    const images = [...section.querySelectorAll("img")].filter((image) => { const r = image.getBoundingClientRect(); return r.bottom > frame.top && r.top < frame.bottom; });
-    await Promise.all(images.map((image) => image.decode()));
+async function reviewRecording(page, selector, id, width) {
+  const section = page.locator(selector);
+  const moviePath = `/media/bard/${id}.mp4`;
+  const videoSelector = `video[src$="${moviePath}"]`;
+  const device = section.locator(".bard-device").filter({ has: page.locator(videoSelector) });
+  const video = device.locator("video");
+  assert.equal(await device.count(), 1);
+  assert.equal(await device.locator("a,input,.bard-transport").count(), 0, `${id}: standalone playback controls or links`);
+
+  // Trigger the same viewport observer a visitor reaches by scrolling.
+  await video.evaluate((element) => element.scrollIntoView({ block: "center", behavior: "instant" }));
+  await page.waitForFunction((selector) => {
+    const video = document.querySelector(selector);
+    if (!video || video.paused || video.currentTime <= 0) return false;
+    const frame = video.closest(".bard-modal-body-main").getBoundingClientRect();
+    return [...document.querySelectorAll(".bard-device video")].every((other) => {
+      const r = other.getBoundingClientRect();
+      return (r.bottom > frame.top && r.top < frame.bottom) || other.paused;
+    });
+  }, videoSelector, { timeout: 12000 });
+  const metrics = await video.evaluate(async (element) => {
+    const poster = new Image();
+    poster.src = element.poster;
+    await poster.decode();
+    const r = element.getBoundingClientRect();
+    return {
+      posterPath: new URL(poster.src).pathname,
+      posterAspect: poster.naturalWidth / poster.naturalHeight,
+      sourceAspect: element.videoWidth / element.videoHeight,
+      renderedAspect: r.width / r.height,
+      objectFit: getComputedStyle(element).objectFit,
+      left: r.left, right: r.right, duration: element.duration,
+      muted: element.muted, playsInline: element.playsInline, loop: element.loop, controls: element.controls,
+    };
   });
+  assert(metrics.posterPath.endsWith(`/media/bard/${id}.jpg`));
+  assert(metrics.duration > 0 && Number.isFinite(metrics.duration));
+  assert(metrics.muted && metrics.playsInline && metrics.loop && !metrics.controls, `${id}: silent inline loop`);
+  assert(metrics.sourceAspect > 0 && metrics.sourceAspect < 1, `${id}: upright device footage`);
+  assert(Math.abs(metrics.sourceAspect - metrics.posterAspect) < 0.01, `${id}: poster aspect`);
+  assert(metrics.objectFit === "contain" || Math.abs(metrics.sourceAspect - metrics.renderedAspect) < 0.01, `${id}: cropped or stretched footage`);
+  assert(metrics.left >= -1 && metrics.right <= width + 1, `${width}: ${id} escapes viewport`);
+  if (id === "reader") {
+    await video.evaluate((element) => { element.currentTime = element.duration - 0.2; });
+    await page.waitForFunction((selector) => {
+      const video = document.querySelector(selector);
+      return !video.paused && !video.seeking && video.currentTime < 2;
+    }, videoSelector, { timeout: 5000 });
+    await device.getByRole("button", { name: "Pause Full plays recording" }).click();
+    assert.equal(await video.evaluate((element) => element.paused), true);
+    await device.getByRole("button", { name: "Play Full plays recording" }).press("Enter");
+    await page.waitForFunction(() => !document.querySelector(".bard-hero video").paused);
+  }
+  await device.screenshot({ path: path.join(output, `${width}-device-${id}.png`) });
+  return { id, ...metrics };
 }
 
 async function main() {
@@ -69,6 +120,10 @@ async function main() {
       const openingTiming = await page.locator(".bard-curtain-performance .bard-curtain-panel--right").evaluate((e) => ({ duration: getComputedStyle(e).animationDuration, easing: getComputedStyle(e).animationTimingFunction }));
       const curtain = await page.locator(".bard-curtain-performance").evaluate((root) => [...root.querySelectorAll(".bard-curtain-panel")].map((e) => ({ transform: getComputedStyle(e).transform, background: getComputedStyle(e).backgroundImage })));
       assert.equal(openingTiming.duration, "3.8s");
+      assert.equal(await page.locator(".bard-device video").count(), 6);
+      assert.equal(await page.locator(".bard-learning .bard-device").count(), 2);
+      assert.equal(await page.locator(".bard-modal-body-main").getByRole("group", { name: /choose a (recording|feature)/i }).count(), 0);
+      assert(await page.locator(".bard-device video").evaluateAll((videos) => videos.every((v) => v.paused && v.currentTime === 0)), "Playback began behind the curtain");
       assert.equal(await page.getByRole("button", { name: "Draw curtain", exact: true }).isDisabled(), true);
       for (const time of [0, 950, 1900, 3100, 3750]) {
         await freezeCurtain(page, time);
@@ -106,10 +161,9 @@ async function main() {
           });
         }, selector);
         await page.locator(selector).locator("[data-bard-cue]").evaluateAll((elements) => Promise.all(elements.flatMap((e) => e.getAnimations().map((animation) => animation.finished))));
-        await decodeVisibleImages(page, selector);
         const bounds = await page.locator(selector).evaluate((element) => {
           const r = element.getBoundingClientRect();
-          const overflowing = [...element.querySelectorAll("h1,h2,h3,p,figcaption,iframe")].filter((e) => { const b = e.getBoundingClientRect(); return b.left < -1 || b.right > window.innerWidth + 1 || e.scrollWidth > e.clientWidth + 2; }).map((e) => ({ tag: e.tagName, text: e.textContent.slice(0, 80), width: e.clientWidth, scrollWidth: e.scrollWidth }));
+          const overflowing = [...element.querySelectorAll("h1,h2,h3,p,figcaption,video,summary")].filter((e) => { const b = e.getBoundingClientRect(); return b.left < -1 || b.right > window.innerWidth + 1 || e.scrollWidth > e.clientWidth + 2; }).map((e) => ({ tag: e.tagName, text: e.textContent.slice(0, 80), width: e.clientWidth, scrollWidth: e.scrollWidth }));
           return { left: r.left, right: r.right, overflowing };
         });
         assert(bounds.left >= -1 && bounds.right <= width + 1, `${width}: spread overflow ${selector}`);
@@ -120,41 +174,25 @@ async function main() {
         layout.push({ selector, ...bounds });
       }
 
-      // Check every existing image by rendering it; lazy media must not silently disappear.
-      const media = page.locator('img[alt^="Bard app:"], img[alt^="Bard implementation:"]');
-      assert.equal(await media.count(), 22);
       const devices = [];
-      for (let index = 0; index < 22; index++) {
-        const figure = media.nth(index).locator("xpath=ancestor::figure");
-        await figure.scrollIntoViewIfNeeded();
-        await media.nth(index).evaluate((image) => image.decode());
-        const imageMetrics = await media.nth(index).evaluate((image) => ({ natural: image.naturalWidth / image.naturalHeight, rendered: image.width / image.height }));
-        assert(Math.abs(imageMetrics.natural - imageMetrics.rendered) < 0.01, `${width}: distorted image ${index}`);
-        if (await media.nth(index).getAttribute("alt").then((alt) => alt.startsWith("Bard app:"))) {
-          const metrics = await media.nth(index).evaluate((image, bounds) => {
-            const figure = image.closest("figure"), mount = image.parentElement, section = image.closest("section");
-            const rendered = image.getBoundingClientRect();
-            const filename = image.src.match(/phoneBard(\w+)\./)[1];
-            const [l, t, r, b] = bounds[filename];
-            const scale = rendered.width / image.naturalWidth;
-            const visible = { left: rendered.left + l * scale, right: rendered.left + r * scale, top: rendered.top + t * scale, bottom: rendered.top + b * scale };
-            const box = (e) => { const rect = e.getBoundingClientRect(); return { left: rect.left, right: rect.right, top: rect.top, bottom: rect.bottom, width: rect.width, height: rect.height }; };
-            return { filename, visible, frame: box(mount), figure: box(figure), section: box(section), caption: box(figure.querySelector("figcaption")), cap: parseFloat(getComputedStyle(mount).height), role: figure.className };
-          }, deviceBounds);
-          const { visible, frame, figure: figureBounds, section, caption } = metrics;
-          assert(visible.left >= frame.left - 1 && visible.right <= frame.right + 1 && visible.top >= frame.top - 1 && visible.bottom <= frame.bottom + 1, `${width}: clipped device ${metrics.filename}`);
-          assert(figureBounds.left >= section.left && figureBounds.right <= section.right && figureBounds.top >= section.top && figureBounds.bottom <= section.bottom + 1, `${width}: escaped composition ${metrics.filename}`);
-          assert(visible.bottom < caption.top, `${width}: device/caption collision ${metrics.filename}`);
-          assert(frame.height <= (metrics.role.includes("--hero") ? 576 : metrics.role.includes("--lead") ? 448 : metrics.role.includes("--supporting") ? 416 : 384) + 1, `${width}: oversized device ${metrics.filename}`);
-          assert(Math.abs((visible.left + visible.right) / 2 - (frame.left + frame.right) / 2) <= 1, `${width}: off-center device ${metrics.filename}`);
-          await capture(page, `${width}-phone-${metrics.filename}.png`);
-          await figure.screenshot({ path: path.join(output, `${width}-device-${metrics.filename}.png`) });
-          devices.push(metrics);
-        }
+      for (const [selector, id] of recordings) {
+        devices.push(await reviewRecording(page, selector, id, width));
       }
-      assert.equal(devices.length, 11);
 
       await scrollTo(page, ".bard-sources");
+      assert.match(await page.getByRole("link", { name: /original honors submission/i }).getAttribute("href"), /youtube\.com/);
+      const details = page.locator(".bard-sources details");
+      await details.locator("summary").click();
+      // Closed details may report image bounds before native lazy loading starts.
+      // Decode the excerpts here, after opening them and scrolling them into view.
+      const excerpts = details.locator("img");
+      assert.equal(await excerpts.count(), 2);
+      for (const image of await excerpts.all()) {
+        await image.scrollIntoViewIfNeeded();
+        await image.evaluate((element) => element.decode());
+        const aspectError = await image.evaluate((element) => Math.abs(element.naturalWidth / element.naturalHeight - element.width / element.height));
+        assert(aspectError < 0.01, `${width}: distorted source excerpt`);
+      }
       const fullSize = page.getByRole("link", { name: /Open Folger synopsis and character data at full size/ });
       const imageUrl = await fullSize.getAttribute("href");
       const popupPromise = page.waitForEvent("popup");
@@ -163,8 +201,8 @@ async function main() {
       await popup.waitForURL(new URL(imageUrl, baseUrl).href);
       await popup.close();
       const captionLinks = page.getByRole("link", { name: /^View .* at full size/ });
-      assert.equal(await captionLinks.count(), 11);
-      for (let index = 0; index < (width === 1440 ? 11 : 1); index++) {
+      assert.equal(await captionLinks.count(), 2);
+      for (let index = 0; index < (width === 1440 ? 2 : 1); index++) {
         const link = captionLinks.nth(index);
         const target = await link.getAttribute("href");
         const captionPopupPromise = page.waitForEvent("popup");
@@ -174,7 +212,7 @@ async function main() {
         await captionPopup.close();
       }
 
-      await scrollTo(page, ".bard-sources");
+      await scrollTo(page, ".bard-hero");
       const before = await page.locator(".bard-modal-body-main").evaluate((e) => e.scrollTop);
       await page.mouse.move(width / 2, height / 2);
       await page.mouse.wheel(0, 350);
@@ -184,7 +222,8 @@ async function main() {
       await page.keyboard.press("PageDown");
       await page.waitForFunction((previous) => document.querySelector(".bard-modal-body-main").scrollTop > previous + 50, keyboardBefore);
 
-      await page.getByRole("link", { name: /GitHub/ }).focus();
+      const github = page.getByRole("dialog", { name: "BARD", exact: true }).getByRole("link", { name: /GitHub/ });
+      await github.focus();
       await page.keyboard.press("Tab");
       assert.equal(await page.evaluate(() => document.activeElement.getAttribute("aria-label")), "Close project");
       const closeFocus = await page.locator(".bard-modal-header .btn-close").evaluate((e) => {
@@ -198,13 +237,13 @@ async function main() {
       assert(closeFocus.width >= 2 && closeFocus.contrast >= 3, `${width}: close focus outline lacks contrast`);
       await page.keyboard.press("Shift+Tab");
       assert.equal(await page.evaluate(() => document.activeElement.textContent.includes("GitHub")), true);
-      const focusOutline = await page.getByRole("link", { name: /GitHub/ }).evaluate((e) => getComputedStyle(e).outlineWidth);
+      const focusOutline = await github.evaluate((e) => getComputedStyle(e).outlineWidth);
       assert.notEqual(focusOutline, "0px");
       await page.addScriptTag({ path: require.resolve("axe-core") });
-      // Audit BARD and the iframe's accessible name; the external YouTube document is not ours.
+      // Include the expanded source excerpts and named controls in the audit.
       const animatedAccessibility = await page.evaluate(() => window.axe.run(".bard-modal-main-div", { iframes: false, runOnly: { type: "tag", values: ["wcag2a", "wcag2aa", "wcag21aa"] } }));
       assert.deepEqual(animatedAccessibility.violations.map(({ id }) => id), [], `${width}: accessibility violations with motion enabled`);
-      await scrollTo(page, ".bard-sources");
+      await page.locator(".bard-account video").evaluate((video) => video.scrollIntoView({ block: "center", behavior: "instant" }));
       const manualScroll = await page.locator(".bard-modal-body-main").evaluate((e) => { window.bardProgrammeUnderTest = e; return e.scrollTop; });
       const draw = page.getByRole("button", { name: "Draw curtain", exact: true });
       await draw.focus();
@@ -218,6 +257,7 @@ async function main() {
       const raise = intermission.getByRole("button", { name: "Raise curtain", exact: true });
       assert.equal(await raise.evaluate((e) => document.activeElement === e), true);
       assert.equal(await page.locator(".bard-modal-body-main").getAttribute("inert"), "");
+      assert(await page.locator(".bard-device video").evaluateAll((videos) => videos.every((v) => v.paused)), "A recording kept playing during intermission");
       const intermissionBox = await intermission.boundingBox();
       const raiseBox = await raise.boundingBox();
       assert(Math.abs(raiseBox.x + raiseBox.width / 2 - (intermissionBox.x + intermissionBox.width / 2)) < 1, `${width}: Intermission is not centered`);
@@ -270,6 +310,9 @@ async function main() {
       await page.emulateMedia({ reducedMotion: "reduce" });
       await opener.click();
       const reduced = await page.locator(".bard-modal-main-div").evaluate((root) => ({ curtain: [...root.querySelectorAll(".bard-curtain-panel")].map((e) => getComputedStyle(e).animationName), title: getComputedStyle(root.querySelector(".bard-title-entrance")).opacity, hiddenCues: [...root.querySelectorAll("[data-bard-cue]")].filter((e) => getComputedStyle(e).opacity === "0").length }));
+      await page.locator(".bard-hero video").evaluate((video) => video.scrollIntoView({ block: "center", behavior: "instant" }));
+      await page.locator(".bard-hero video").evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+      assert(await page.locator(".bard-device video").evaluateAll((videos) => videos.every((v) => v.paused && v.currentTime === 0)), "Reduced motion started video automatically");
       assert.deepEqual(reduced.curtain, ["none", "none"]);
       assert.equal(reduced.title, "1");
       assert.equal(reduced.hiddenCues, 0);
@@ -300,9 +343,9 @@ async function main() {
       await page.waitForURL(`${baseUrl}/projects`);
       const bodyAfterModal = await page.evaluate(() => ({ classes: document.body.className, overflow: document.body.style.overflow, priority: document.body.style.getPropertyPriority("overflow") }));
       assert.deepEqual(bodyAfterModal, bodyBeforeModal, `${width}: body scroll ownership was not restored`);
-      report.push({ width, height, chrome, curtain, openingTiming, exitElapsed, layout, devices, mediaCount: 22, reduced, accessibilityViolations: 0, manualDrawRaise: "exact scroll preserved; centered Intermission; keyboard focus, repeated activation and reduced motion pass", fullSizeCaptionLinks: "11 native links verified", scrolling: "pass", keyboard: "pass", openClose: "pass", historyAndBodyRestoration: "pass" });
+      report.push({ width, height, chrome, curtain, openingTiming, exitElapsed, layout, devices, recordingCount: devices.length, reduced, accessibilityViolations: 0, manualDrawRaise: "exact scroll preserved; centered Intermission; keyboard focus, repeated activation and reduced motion pass", fullSizeCaptionLinks: 2, scrolling: "pass", keyboard: "pass", openClose: "pass", historyAndBodyRestoration: "pass" });
       await context.close();
-      console.log(`${width}×${height}: layout, curtain, 22 media, scroll, keyboard, open/close, reduced motion PASS`);
+      console.log(`${width}×${height}: layout, curtain, six recordings, source links, scroll, keyboard, open/close, reduced motion PASS`);
     }
     assert.deepEqual(errors, [], "Browser JavaScript errors");
     await fs.writeFile(path.join(output, "results.json"), JSON.stringify({ report, errors, consoleMessages: [...consoleMessages] }, null, 2));

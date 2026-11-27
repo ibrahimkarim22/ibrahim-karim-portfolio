@@ -16,7 +16,7 @@ export const PROJECTS = [
   {
     id: "bard",
     name: "BARD",
-    description: "Online Course",
+    description: "Shakespeare Reader",
     technologies: ["JavaScript", "React Native", "Android Studio", "Redux", "Firebase", "Firestore"],
     ModalComponent: BardModal,
   },

@@ -36,7 +36,7 @@ A real-time mobile location-sharing and messaging application built for groups.
 A responsive React media platform for browsing public-domain films and live streams.
 
 ### Bard
-A React Native learning application focused on Shakespeare, quizzes, progress tracking, and achievements.
+A React Native app for reading Shakespeare scene by scene, saving highlights, and earning medals through quizzes with feedback drawn from the plays.
 
 ### Whack a Mole
 An interactive browser game presented through a custom project experience.

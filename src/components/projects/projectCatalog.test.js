@@ -8,7 +8,7 @@ import { PROJECTS, getProjectById } from "./projectCatalog";
 
 const expectedProjects = [
   ["heyyou", "HeyYou", "Location & Chat", ["JavaScript", "React Native", "Android Studio", "Socket.io", "MongoDB", "Node.js", "Docker", "Google Cloud"], HeyYouModal],
-  ["bard", "BARD", "Online Course", ["JavaScript", "React Native", "Android Studio", "Redux", "Firebase", "Firestore"], BardModal],
+  ["bard", "BARD", "Shakespeare Reader", ["JavaScript", "React Native", "Android Studio", "Redux", "Firebase", "Firestore"], BardModal],
   ["thisportfolio", "Portfolio", "This Portfolio", ["JavaScript", "React", "Firebase", "SCSS", "Blender 3D", "React Three Fiber"], ThisPortfolioModal],
   ["krispy", "KRISPY", "Streaming Service", ["JavaScript", "React", "Firebase Authentication", "Cloud Firestore", "HLS.js", "CSS"], KrispyModal],
   ["kanban", "Tuh-Doo / Kanban Board", "To Do List", ["JavaScript", "React", "SCSS", "Firebase", "Firestore"], KanbanBoardModal],

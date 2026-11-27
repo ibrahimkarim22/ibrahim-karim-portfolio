@@ -6,9 +6,9 @@ import curtain from "../../images/portfolio-process/bard-curtain.jpg";
 import board from "../../images/portfolio-process/tuhdoo-board.jpg";
 
 // URL imports do not fetch images. Only user intent or project opening warms them.
-// BARD's first phone follows its full opening screen; TUH-DOO's hero is DOM/SVG.
 const criticalImages = {
   heyyou: [phoneHeyYouMap, phoneHeyYouChat],
+  bard: [`${process.env.PUBLIC_URL || ""}/media/bard/reader.jpg`],
   whackamole: [whacka],
   thisportfolio: [connection, curtain, board],
 };

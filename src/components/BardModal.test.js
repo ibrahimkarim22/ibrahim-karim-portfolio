@@ -32,15 +32,19 @@ it("gives the programme an accessible dialog name and a navigable heading hierar
   const dialog = screen.getByRole("dialog", { name: "BARD" });
   expect(dialog).toHaveAttribute("aria-modal", "true");
   expect(within(dialog).getByRole("heading", { level: 1, name: "BARD" })).toBeInTheDocument();
-  expect(within(dialog).getAllByRole("heading", { level: 2 }).length).toBeGreaterThan(4);
+  const chapters = within(dialog).getAllByRole("heading", { level: 2 });
+  expect(chapters).toHaveLength(5);
+  expect(chapters[0]).toHaveAccessibleName("My Highlights");
+  expect(chapters[1]).toHaveAccessibleName("Synopses");
+  chapters.forEach((heading) => expect(heading).toHaveAccessibleName());
 });
 
 it.each([
-  ["APK!", "https://drive.google.com/file/d/1kblapPn0vab5BiiJwcaMAioJ5yW14cCf/view?usp=drive_link"],
+  ["Get APK", "https://drive.google.com/file/d/1kblapPn0vab5BiiJwcaMAioJ5yW14cCf/view?usp=drive_link"],
   ["GitHub", "https://github.com/ibrahim-karim-22/reactNativePortfolioProject"],
 ])("preserves the %s destination as a native keyboard-accessible link", async (name, href) => {
   render(<BardModal isOpen closeModal={jest.fn()} />);
-  const link = screen.getByRole("link", { name: new RegExp(name.replace("!", "\\!")) });
+  const link = screen.getByRole("link", { name: new RegExp(name) });
   expect(link).toHaveAttribute("href", href);
   expect(link).toHaveAttribute("target", "_blank");
   expect(link).toHaveAttribute("rel", "noopener noreferrer");
@@ -254,47 +258,58 @@ it("contains keyboard focus and restores the opener after closing", async () => 
   expect(opener).toHaveFocus();
 });
 
-it("preserves all existing phone and implementation media and names the screening", () => {
+it("presents every recording inline in its own chapter, with the two learning devices together", () => {
   render(<BardModal isOpen closeModal={jest.fn()} />);
-  expect(screen.getAllByRole("img", { name: /^Bard app:/ })).toHaveLength(11);
-  expect(screen.getAllByRole("img", { name: /^Bard implementation:/ })).toHaveLength(11);
-  expect(screen.getAllByRole("img", { name: /^Bard app:/ }).map((image) => image.getAttribute("src"))).toEqual(expect.arrayContaining([
-    "phoneBardHome.png", "phoneBardProfile.png", "phoneBardSideMenu.png", "phoneBardCourse.png",
-    "phoneBardQuiz.png", "phoneBardQuizOne.png", "phoneBardMedals.png", "phoneBardInfo.png",
-    "phoneBardSynopsis.png", "phoneBardPerformance.png", "phoneBardHowTo.png",
-  ]));
-  expect(screen.getAllByRole("img", { name: /^Bard implementation:/ }).map((image) => image.getAttribute("src"))).toEqual(expect.arrayContaining([
-    "folgerSlice.png", "mitSlice.png", "bardSignUp.png", "bardLogin.png", "playsRoot.png", "medalsCode.png",
-    "quizCode.png", "certificateCode.png", "freeFolger.png", "freeSynopsis.png", "readFolger.png",
-  ]));
-  expect(screen.getByTitle("BARD — Honors Video Submission")).toHaveAttribute("src", "https://www.youtube.com/embed/mDVozMvFYb8?si=ep73q8kv4df0j77v");
+  const programme = screen.getByRole("region", { name: "BARD programme" });
+  expect(within(programme).getAllByLabelText(/./, { selector: "video" })).toHaveLength(6);
+  for (const [name, files] of [
+    ["BARD", ["reader"]],
+    ["My Highlights", ["highlights"]],
+    ["Synopses", ["synopses"]],
+    [/quiz/i, ["quiz", "medals"]],
+    [/account/i, ["account"]],
+  ]) {
+    const section = within(programme).getByRole("region", { name, exact: true });
+    const devices = within(section).getAllByRole("figure");
+    expect(devices).toHaveLength(files.length);
+    expect(within(section).queryByRole("link")).not.toBeInTheDocument();
+    expect(within(section).queryByRole("slider")).not.toBeInTheDocument();
+    // Each handset is the only playback control in its chapter.
+    expect(within(section).getAllByRole("button")).toHaveLength(devices.length);
+    devices.forEach((device, index) => {
+      const player = within(device).getByLabelText(/./, { selector: "video" });
+      const file = files[index];
+      expect(player).toHaveAttribute("src", expect.stringContaining(`/media/bard/${file}.mp4`));
+      expect(player).toHaveAttribute("poster", expect.stringContaining(`/media/bard/${file}.jpg`));
+      expect(player).toHaveAccessibleDescription();
+      expect(within(device).getByRole("button")).toContainElement(player);
+      expect(player.loop && player.playsInline && player.muted).toBe(true);
+      expect(player.controls).toBe(false);
+      expect(player.preload).toBe("none");
+    });
+  }
 });
 
-it("offers the original implementation images at full size for reading on small screens", () => {
+it("keeps the original honors submission and the source excerpts accessible at full size", async () => {
   render(<BardModal isOpen closeModal={jest.fn()} />);
-  const fullSizeLinks = screen.getAllByRole("link", { name: /Open .* at full size/ });
-  expect(fullSizeLinks).toHaveLength(11);
-  fullSizeLinks.forEach((link) => {
-    expect(link).toHaveAttribute("href", within(link).getByRole("img").getAttribute("src"));
-    expect(link).toHaveAttribute("target", "_blank");
-    expect(link).toHaveAttribute("rel", "noopener noreferrer");
-  });
-});
-
-it("makes every View full size caption a native image link that also activates with Enter", async () => {
-  render(<BardModal isOpen closeModal={jest.fn()} />);
-  const captionLinks = screen.getAllByRole("link", { name: /^View .* at full size/ });
-  const imageLinks = screen.getAllByRole("link", { name: /^Open .* at full size/ });
-  expect(captionLinks).toHaveLength(11);
-  captionLinks.forEach((link, index) => {
-    expect(link).toHaveAttribute("href", imageLinks[index].getAttribute("href"));
-    expect(link).toHaveAttribute("target", "_blank");
-    expect(link).toHaveAttribute("rel", "noopener noreferrer");
+  expect(screen.getByRole("link", { name: /original honors submission/ }))
+    .toHaveAttribute("href", "https://www.youtube.com/watch?v=mDVozMvFYb8");
+  const user = userEvent.setup();
+  await user.click(screen.getByText("Original source-code excerpts"));
+  const captions = screen.getAllByRole("link", { name: /^View .* at full size/ });
+  const images = screen.getAllByRole("link", { name: /^Open .* at full size/ });
+  expect(images).toHaveLength(2);
+  expect(captions).toHaveLength(2);
+  images.forEach((link, index) => {
+    const src = within(link).getByRole("img").getAttribute("src");
+    expect(link).toHaveAttribute("href", src);
+    expect(captions[index]).toHaveAttribute("href", src);
+    expect(captions[index]).toHaveAttribute("rel", "noopener noreferrer");
   });
   const activate = jest.fn((event) => event.preventDefault());
-  captionLinks[0].addEventListener("click", activate);
-  captionLinks[0].focus();
-  await userEvent.setup().keyboard("{Enter}");
+  captions[0].addEventListener("click", activate);
+  captions[0].focus();
+  await user.keyboard("{Enter}");
   expect(activate).toHaveBeenCalledTimes(1);
 });
 
@@ -315,8 +330,10 @@ it("reveals stage cues once, then clears pending motion when the preference chan
   const disconnect = jest.fn();
   const unobserve = jest.fn();
   window.IntersectionObserver = class {
-    constructor(callback) { reveal = callback; }
-    observe() {}
+    constructor(callback) { this.callback = callback; }
+    observe(element) {
+      if (element.hasAttribute("data-bard-cue")) reveal = this.callback;
+    }
     unobserve = unobserve;
     disconnect = disconnect;
   };
@@ -327,7 +344,7 @@ it("reveals stage cues once, then clears pending motion when the preference chan
   });
   try {
     const { unmount } = render(<BardModal isOpen closeModal={jest.fn()} />);
-    const cue = screen.getByRole("heading", { name: /A way into/ });
+    const cue = within(screen.getByRole("region", { name: /quiz/i })).getByRole("heading", { level: 2 });
     // This test inspects the observer's presentation state on the real programme.
     // eslint-disable-next-line testing-library/no-node-access
     const programme = cue.closest(".bard-modal-main-flex-container");
