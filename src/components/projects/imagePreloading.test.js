@@ -103,7 +103,14 @@ it("handles load errors without rejection and permits a subsequent intentional r
   await expect(retry).resolves.toBe(true);
 });
 
-it.each(["bard", "krispy", "kanban", "megaracer", "unknown", null])("does not preload raster imagery for %s", async (id) => {
+it("warms only the reader poster on intent to open Bard", async () => {
+  const result = loader.preloadProjectImages("bard");
+  expect(images.map(({ src }) => src)).toEqual([`${process.env.PUBLIC_URL || ""}/media/bard/reader.jpg`]);
+  load(images[0]);
+  await expect(result).resolves.toEqual([true]);
+});
+
+it.each(["krispy", "kanban", "megaracer", "unknown", null])("does not preload raster imagery for %s", async (id) => {
   const result = loader.preloadProjectImages(id);
   expect(images).toHaveLength(0);
   await expect(result).resolves.toEqual([]);

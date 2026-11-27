@@ -18,7 +18,7 @@ export const PROJECT_CAPTIONS = {
   },
   bard: {
     heading: "A new way into Shakespeare.",
-    description: "A mobile learning project exploring Shakespeare’s plays through reading, quizzes, and video.",
+    description: "Read scene by scene, collect favorite passages in My Highlights, and revisit the lines behind each quiz answer.",
     technologies: ["React Native", "Redux", "Firebase"],
   },
   thisportfolio: {
